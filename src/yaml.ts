@@ -27,7 +27,7 @@ export class Yaml {
     const data = docs.map(
       r => r === undefined ? '\n' : Yaml.stringify(r),
     ).join('---\n');
-    fs.writeFileSync(filePath, data, { encoding: 'utf-8' });
+    fs.writeFileSync(filePath, data, { encoding: 'utf8' });
   }
 
   /**
@@ -35,7 +35,7 @@ export class Yaml {
    * @param doc An object
    */
   public static stringify(doc: any) {
-    // Disable lineWidth to avoid loosing the \n into a multi-line parameter with long lines. 
+    // Disable lineWidth to avoid loosing the \n into a multi-line parameter with long lines.
     return YAML.stringify(doc, { keepUndefined: true, lineWidth: 0 });
   }
 
