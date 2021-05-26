@@ -92,6 +92,9 @@
       "description": "Run tests",
       "steps": [
         {
+          "spawn": "install-helm"
+        },
+        {
           "exec": "rm -fr lib/"
         },
         {
@@ -237,6 +240,16 @@
           "exec": "jsii-docgen"
         }
       ]
+    },
+    "install-helm": {
+      "name": "install-helm",
+      "description": "Install helm3",
+      "steps": [
+        {
+          "exec": "curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash"
+        }
+      ],
+      "condition": "! (helm version | grep \"v3.\")"
     }
   },
   "env": {

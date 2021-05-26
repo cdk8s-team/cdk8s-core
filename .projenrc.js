@@ -57,4 +57,14 @@ const project = new JsiiProject({
 project.gitignore.include('/src/_loadurl.js');
 project.compileTask.exec('cp src/_loadurl.js lib/');
 
+const installHelm = project.addTask('install-helm', {
+  exec: 'curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash',
+  description: 'Install helm3',
+
+  // will exit with non-zero if helm is not installed or has the wrong version
+  condition: '! (helm version | grep "v3.")',
+});
+
+project.testTask.prependSpawn(installHelm);
+
 project.synth();

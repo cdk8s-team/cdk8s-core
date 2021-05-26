@@ -23,6 +23,7 @@
     "eslint": "npx projen eslint",
     "compat": "npx projen compat",
     "docgen": "npx projen docgen",
+    "install-helm": "npx projen install-helm",
     "projen": "npx projen",
     "start": "npx projen start"
   },
