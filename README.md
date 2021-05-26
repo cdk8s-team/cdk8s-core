@@ -1,17 +1,23 @@
-## My Project
+# cdk8s
 
-TODO: Fill this README out!
+### Cloud Development Kit for Kubernetes
 
-Be sure to:
+<br>
 
-* Change the title in this README
-* Edit your repository description on GitHub
+![Beta](https://img.shields.io/badge/beta-informational.svg?style=for-the-badge)
 
-## Security
+**cdk8s** is a software development framework for defining Kubernetes
+applications using rich object-oriented APIs. It allows developers to leverage
+the full power of software in order to define abstract components called
+"constructs" which compose Kubernetes resources or other constructs into
+higher-level abstractions.
 
-See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
+## Documentation
+
+See [cdk8s.io](https://cdk8s.io).
 
 ## License
 
-This project is licensed under the Apache-2.0 License.
+This project is distributed under the [Apache License, Version 2.0](./LICENSE).
 
+This module is part of the [cdk8s project](https://github.com/cdk8s-team/cdk8s).
