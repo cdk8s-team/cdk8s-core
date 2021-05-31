@@ -5,6 +5,7 @@ const project = new JsiiProject({
   description: 'Cloud Development Kit for Kubernetes',
   repositoryUrl: 'git@github.com:cdk8s-team/cdk8s-core.git',
   prerelease: 'beta',
+  projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
 
   authorName: 'Amazon Web Services',
   authorUrl: 'https://aws.amazon.com',
