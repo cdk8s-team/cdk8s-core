@@ -3,7 +3,7 @@
   "description": "Cloud Development Kit for Kubernetes",
   "repository": {
     "type": "git",
-    "url": "git@github.com:cdk8s-team/cdk8s-core.git"
+    "url": "https://github.com/cdk8s-team/cdk8s-core.git"
   },
   "scripts": {
     "clobber": "npx projen clobber",
