@@ -1,8 +1,8 @@
 {
   "packageFiles": [
     {
-      "filename": ".version.tmp.json",
-      "type": "plain-text"
+      "filename": "package.json",
+      "type": "json"
     }
   ],
   "bumpFiles": [
@@ -10,6 +10,7 @@
   ],
   "commitAll": false,
   "infile": ".changelog.tmp.md",
+  "prerelease": "beta",
   "header": "",
   "skip": {
     "commit": true,
