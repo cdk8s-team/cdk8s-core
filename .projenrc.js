@@ -18,6 +18,8 @@ const project = new JsiiProject({
     'yaml@2.0.0-5',
     'follow-redirects',
     'fast-json-patch',
+    'http-proxy-agent',
+    'https-proxy-agent',
   ],
   devDeps: [
     'constructs',
