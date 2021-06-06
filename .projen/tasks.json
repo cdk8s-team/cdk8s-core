@@ -126,15 +126,11 @@
       "description": "Bumps version based on latest git tag and generates a changelog entry",
       "env": {
         "OUTFILE": "package.json",
-        "INITIAL_VERSION": "v0.1.0",
-        "PRERELEASE": "beta"
+        "CHANGELOG": ".changelog.tmp.md"
       },
       "steps": [
         {
-          "builtin": "release/resolve-version"
-        },
-        {
-          "exec": "npx standard-version@^9"
+          "builtin": "release/bump-version"
         }
       ],
       "condition": "! git log --oneline -1 | grep -q \"chore(release):\""
@@ -144,7 +140,8 @@
       "category": "20.release",
       "description": "Restores version to 0.0.0",
       "env": {
-        "OUTFILE": "package.json"
+        "OUTFILE": "package.json",
+        "CHANGELOG": ".changelog.tmp.md"
       },
       "steps": [
         {
@@ -166,6 +163,9 @@
           "exec": "yarn install --check-files"
         },
         {
+          "exec": "yarn upgrade @types/follow-redirects @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser constructs constructs eslint eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import jest jest-junit jsii jsii-diff jsii-docgen jsii-pacmak json-schema json-schema-to-typescript npm-check-updates npm-check-updates standard-version ts-jest typescript fast-json-patch follow-redirects yaml constructs"
+        },
+        {
           "exec": "npx projen"
         }
       ]
@@ -182,6 +182,9 @@
         },
         {
           "exec": "yarn install --check-files"
+        },
+        {
+          "exec": "yarn upgrade projen"
         },
         {
           "exec": "npx projen"
