@@ -52,6 +52,11 @@ const project = new JsiiProject({
   publishToGo: {
     moduleName: 'github.com/cdk8s-team/cdk8s-go',
   },
+  autoApproveOptions: {
+    allowedUsernames: ['cdk8s-automation'],
+    secret: 'GITHUB_TOKEN',
+  },
+  autoApproveUpgrades: true,
 });
 
 // _loadurl.js is written in javascript so we need to commit it and also copy it
