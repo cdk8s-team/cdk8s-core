@@ -141,7 +141,7 @@
         "packageId": "Org.Cdk8s"
       },
       "go": {
-        "moduleName": "github.com/cdk8s-team/cdk8s-go"
+        "moduleName": "github.com/cdk8s-team/cdk8s-core-go"
       }
     },
     "tsc": {
