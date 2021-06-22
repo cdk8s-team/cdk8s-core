@@ -50,7 +50,9 @@ const project = new JsiiProject({
     packageId: 'Org.Cdk8s',
   },
   publishToGo: {
-    moduleName: 'github.com/cdk8s-team/cdk8s-go',
+    gitUserName: 'cdk8s-automation',
+    gitUserEmail: 'cdk8s-team@amazon.com',
+    moduleName: 'github.com/cdk8s-team/cdk8s-core-go',
   },
   autoApproveOptions: {
     allowedUsernames: ['cdk8s-automation'],
