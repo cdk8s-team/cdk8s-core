@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`app with nested charts will deduplicate api objects 1`] = `
+"apiVersion: v1
+kind: CustomConstruct
+metadata:
+  name: chart1-chart2-child2-child2obj-c828dca6
+"
+`;
+
+exports[`app with nested charts will deduplicate api objects 2`] = `
+"apiVersion: v1
+kind: CustomConstruct
+metadata:
+  name: chart1-child1-child1obj-c868628e
+"
+`;

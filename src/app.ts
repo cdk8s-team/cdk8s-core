@@ -90,16 +90,26 @@ export class App extends Construct {
     // the necessary operations. We do however want to preserve the distributed validation.
     validate(this);
 
-    const simpleManifestNamer = (chart: Chart) => `${Names.toDnsLabel(chart)}.k8s.yaml`;
-    const manifestNamer = hasDependantCharts ? (chart: Chart) => `${index.toString().padStart(4, '0')}-${simpleManifestNamer(chart)}` : simpleManifestNamer;
+    const charts = new DependencyGraph(Node.of(this)).topology()
+      .filter(x => x instanceof Chart);
 
-    const charts: IConstruct[] = new DependencyGraph(Node.of(this)).topology().filter(x => x instanceof Chart);
-
-    let index = 0;
+    const found = new Set<IConstruct>();
+    const namer: ChartNamer = hasDependantCharts ? new IndexedChartNamer() : new SimpleChartNamer();
     for (const node of charts) {
       const chart: Chart = Chart.of(node);
-      Yaml.save(path.join(this.outdir, manifestNamer(chart)), chartToKube(chart));
-      index++;
+
+      // charts may nest each other and have overlapping scopes, so objects must be deduped
+      // otherwise two or more charts may include the same object
+      const objects = new DependencyGraph(Node.of(chart)).topology()
+        .filter(x => (x instanceof ApiObject) && !found.has(x));
+
+      const chartName = namer.name(chart);
+      const manifestContents = objects.map(x => (x as ApiObject).toJson());
+      Yaml.save(path.join(this.outdir, chartName), manifestContents);
+
+      for (const obj of objects) {
+        found.add(obj);
+      }
     }
 
   }
@@ -128,7 +138,9 @@ function resolveDependencies(app: App) {
 
     for (const target of targetApiObjects) {
       for (const source of sourceApiObjects) {
-        Node.of(source).addDependency(target);
+        if (target !== source) {
+          Node.of(source).addDependency(target);
+        }
       }
     }
 
@@ -143,6 +155,23 @@ function resolveDependencies(app: App) {
 
   }
 
+  const charts = new DependencyGraph(Node.of(app)).topology()
+    .filter(x => x instanceof Chart);
+
+  for (const parent of charts) {
+    for (const child of charts) {
+
+      // create an explicit chart dependency from nested chart relationships
+      const parentChart = Chart.of(parent);
+      const childChart = Chart.of(child);
+
+      if (parentChart !== childChart && Node.of(parent).tryFindChild(Node.of(child).id)) {
+        Node.of(parentChart).addDependency(childChart);
+        hasDependantCharts = true;
+      }
+    }
+  }
+
   return hasDependantCharts;
 
 }
@@ -151,4 +180,30 @@ function chartToKube(chart: Chart) {
   return new DependencyGraph(Node.of(chart)).topology()
     .filter(x => x instanceof ApiObject)
     .map(x => (x as ApiObject).toJson());
+}
+
+interface ChartNamer {
+  name(chart: Chart): string;
+}
+
+class SimpleChartNamer implements ChartNamer {
+  constructor() {
+  }
+
+  public name(chart: Chart) {
+    return `${Names.toDnsLabel(chart)}.k8s.yaml`;
+  }
+}
+
+class IndexedChartNamer extends SimpleChartNamer implements ChartNamer {
+  private index: number = 0;
+  constructor() {
+    super();
+  }
+
+  public name(chart: Chart) {
+    const name = `${this.index.toString().padStart(4, '0')}-${super.name(chart)}`;
+    this.index++;
+    return name;
+  }
 }

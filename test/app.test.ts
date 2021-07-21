@@ -163,6 +163,45 @@ test('app with chart dependencies via custom constructs', () => {
 
 });
 
+test('app with nested charts will deduplicate api objects', () => {
+
+  class CustomConstruct extends Construct {
+
+    public obj: ApiObject;
+
+    constructor(scope: Construct, id: string) {
+      super(scope, id);
+
+      this.obj = new ApiObject(this, `${id}obj`, { apiVersion: 'v1', kind: 'CustomConstruct' });
+    }
+  }
+
+  const app = Testing.app();
+  const chart = new Chart(app, 'chart1');
+  const childChart = new Chart(chart, 'chart2');
+  new CustomConstruct(chart, 'child1');
+  new CustomConstruct(childChart, 'child2');
+
+  app.synth();
+
+  expect(fs.readdirSync(app.outdir)).toEqual([
+    '0000-chart1-chart2-c883b207.k8s.yaml',
+    '0001-chart1.k8s.yaml',
+  ]);
+  expect(fs.readFileSync(path.join(app.outdir, '0000-chart1-chart2-c883b207.k8s.yaml'), 'utf8')).toMatchSnapshot();
+  expect(fs.readFileSync(path.join(app.outdir, '0001-chart1.k8s.yaml'), 'utf8')).toMatchSnapshot();
+
+  // individual rendered charts may still share objects
+  expect(Testing.synth(chart)).toMatchObject([
+    { apiVersion: 'v1', kind: 'CustomConstruct', metadata: { name: 'chart1-chart2-child2-child2obj-c828dca6' } },
+    { apiVersion: 'v1', kind: 'CustomConstruct', metadata: { name: 'chart1-child1-child1obj-c868628e' } },
+  ]);
+  expect(Testing.synth(childChart)).toMatchObject([
+    { apiVersion: 'v1', kind: 'CustomConstruct', metadata: { name: 'chart1-chart2-child2-child2obj-c828dca6' } },
+  ]);
+
+});
+
 test('synth calls validate', () => {
 
   class ValidatingConstruct extends Construct {
