@@ -191,17 +191,9 @@ test('app with nested charts will deduplicate api objects', () => {
   expect(fs.readFileSync(path.join(app.outdir, '0000-chart1-chart2-c883b207.k8s.yaml'), 'utf8')).toMatchSnapshot();
   expect(fs.readFileSync(path.join(app.outdir, '0001-chart1.k8s.yaml'), 'utf8')).toMatchSnapshot();
 
-  // a parent chart rendered by itself will not include resources belonging to children charts
-  expect(Testing.synth(chart)).toMatchObject([
-    { apiVersion: 'v1', kind: 'CustomConstruct', metadata: { name: 'chart1-child1-child1obj-c868628e' } },
-  ]);
-  expect(Testing.synth(childChart)).toMatchObject([
-    { apiVersion: 'v1', kind: 'CustomConstruct', metadata: { name: 'chart1-chart2-child2-child2obj-c828dca6' } },
-  ]);
-
 });
 
-test('app with nested charts will deduplicate api objects (with inheritance)', () => {
+test('app with nested charts will deduplicate api objects (using custom classes)', () => {
 
   class ChildChart1 extends Chart {
     constructor(scope: Construct, name: string) {
