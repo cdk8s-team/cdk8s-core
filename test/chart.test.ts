@@ -269,6 +269,23 @@ describe('toJson', () => {
 
   });
 
+  test('parent chart does not include objects of children charts', () => {
+
+    const app = Testing.app();
+    const chart = new Chart(app, 'chart1');
+    const childChart = new Chart(chart, 'chart2');
+    new CustomConstruct(chart, 'child1');
+    new CustomConstruct(childChart, 'child2');
+
+    expect(chart.toJson()).toMatchObject([
+      { apiVersion: 'v1', kind: 'CustomConstruct', metadata: { name: 'chart1-child1-child1obj-c868628e' } },
+    ]);
+    expect(childChart.toJson()).toMatchObject([
+      { apiVersion: 'v1', kind: 'CustomConstruct', metadata: { name: 'chart1-chart2-child2-child2obj-c828dca6' } },
+    ]);
+
+  });
+
 });
 
 function createImplictToken(value: any) {

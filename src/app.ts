@@ -46,7 +46,7 @@ export class App extends Construct {
     // but thats ok too since we no longer treat constructs as a self-contained synthesis unit.
     validate(app);
 
-    return chartToKube(chart);
+    return chartToKube(chart).map(obj => obj.toJson());
   }
 
   private static of(c: IConstruct): App {
@@ -97,15 +97,10 @@ export class App extends Construct {
     const namer: ChartNamer = hasDependantCharts ? new IndexedChartNamer() : new SimpleChartNamer();
     for (const node of charts) {
       const chart: Chart = Chart.of(node);
-
-      // charts may nest each other and have overlapping scopes, so objects must be deduped
-      // otherwise two or more charts may include the same object
-      const objects = new DependencyGraph(Node.of(chart)).topology()
-        .filter(x => (x instanceof ApiObject) && !found.has(x));
-
       const chartName = namer.name(chart);
-      const manifestContents = objects.map(x => (x as ApiObject).toJson());
-      Yaml.save(path.join(this.outdir, chartName), manifestContents);
+      const objects = chartToKube(chart);
+
+      Yaml.save(path.join(this.outdir, chartName), objects.map(obj => obj.toJson()));
 
       for (const obj of objects) {
         found.add(obj);
@@ -117,7 +112,6 @@ export class App extends Construct {
 
 function validate(app: App) {
 
-  // Note this is a copy-paste of https://github.com/aws/constructs/blob/master/lib/construct.ts#L438.
   const errors = Node.of(app).validate();
   if (errors.length > 0) {
     const errorList = errors.map(e => `[${Node.of(e.source).path}] ${e.message}`).join('\n  ');
@@ -158,17 +152,11 @@ function resolveDependencies(app: App) {
   const charts = new DependencyGraph(Node.of(app)).topology()
     .filter(x => x instanceof Chart);
 
-  for (const parent of charts) {
-    for (const child of charts) {
-
+  for (const parentChart of charts) {
+    for (const childChart of Node.of(parentChart).children.filter(x => x instanceof Chart)) {
       // create an explicit chart dependency from nested chart relationships
-      const parentChart = Chart.of(parent);
-      const childChart = Chart.of(child);
-
-      if (parentChart !== childChart && Node.of(parent).tryFindChild(Node.of(child).id)) {
-        Node.of(parentChart).addDependency(childChart);
-        hasDependantCharts = true;
-      }
+      Node.of(parentChart).addDependency(childChart);
+      hasDependantCharts = true;
     }
   }
 
@@ -179,7 +167,8 @@ function resolveDependencies(app: App) {
 function chartToKube(chart: Chart) {
   return new DependencyGraph(Node.of(chart)).topology()
     .filter(x => x instanceof ApiObject)
-    .map(x => (x as ApiObject).toJson());
+    .filter(x => Chart.of(x) === chart) // include an object only in its closest parent chart
+    .map(x => (x as ApiObject));
 }
 
 interface ChartNamer {

@@ -191,14 +191,54 @@ test('app with nested charts will deduplicate api objects', () => {
   expect(fs.readFileSync(path.join(app.outdir, '0000-chart1-chart2-c883b207.k8s.yaml'), 'utf8')).toMatchSnapshot();
   expect(fs.readFileSync(path.join(app.outdir, '0001-chart1.k8s.yaml'), 'utf8')).toMatchSnapshot();
 
-  // individual rendered charts may still share objects
+  // a parent chart rendered by itself will not include resources belonging to children charts
   expect(Testing.synth(chart)).toMatchObject([
-    { apiVersion: 'v1', kind: 'CustomConstruct', metadata: { name: 'chart1-chart2-child2-child2obj-c828dca6' } },
     { apiVersion: 'v1', kind: 'CustomConstruct', metadata: { name: 'chart1-child1-child1obj-c868628e' } },
   ]);
   expect(Testing.synth(childChart)).toMatchObject([
     { apiVersion: 'v1', kind: 'CustomConstruct', metadata: { name: 'chart1-chart2-child2-child2obj-c828dca6' } },
   ]);
+
+});
+
+test('app with nested charts will deduplicate api objects (with inheritance)', () => {
+
+  class ChildChart1 extends Chart {
+    constructor(scope: Construct, name: string) {
+      super(scope, name);
+      new ApiObject(this, 'namespace1', { apiVersion: 'v1', kind: 'Namespace' });
+    }
+  }
+
+  class ChildChart2 extends Chart {
+    constructor(scope: Construct, name: string) {
+      super(scope, name);
+      new ApiObject(this, 'namespace2', { apiVersion: 'v1', kind: 'Namespace' });
+    }
+  }
+
+  class ParentChart extends Chart {
+    constructor(scope: Construct, name: string) {
+      super(scope, name);
+      new ChildChart1(this, 'child1');
+      new ChildChart2(this, 'child2');
+      new ApiObject(this, 'namespace3', { apiVersion: 'v1', kind: 'Namespace' });
+    }
+  }
+
+  const app = Testing.app();
+  new ParentChart(app, 'parent');
+
+  app.synth();
+
+  expect(fs.readdirSync(app.outdir)).toEqual([
+    '0000-parent-child1-c8e38b2d.k8s.yaml',
+    '0001-parent-child2-c882caae.k8s.yaml',
+    '0002-parent.k8s.yaml',
+  ]);
+  expect(fs.readFileSync(path.join(app.outdir, '0000-parent-child1-c8e38b2d.k8s.yaml'), 'utf8')).toMatchSnapshot();
+  expect(fs.readFileSync(path.join(app.outdir, '0001-parent-child2-c882caae.k8s.yaml'), 'utf8')).toMatchSnapshot();
+  expect(fs.readFileSync(path.join(app.outdir, '0002-parent.k8s.yaml'), 'utf8')).toMatchSnapshot();
 
 });
 
