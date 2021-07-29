@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`app with nested charts will deduplicate api objects (using custom classes) 1`] = `
+"apiVersion: v1
+kind: Namespace
+metadata:
+  name: parent-child1-namespace1-c871643e
+"
+`;
+
+exports[`app with nested charts will deduplicate api objects (using custom classes) 2`] = `
+"apiVersion: v1
+kind: Namespace
+metadata:
+  name: parent-child2-namespace2-c806260b
+"
+`;
+
+exports[`app with nested charts will deduplicate api objects (using custom classes) 3`] = `
+"apiVersion: v1
+kind: Namespace
+metadata:
+  name: parent-namespace3-c8bf842a
+"
+`;
+
+exports[`app with nested charts will deduplicate api objects 1`] = `
+"apiVersion: v1
+kind: CustomConstruct
+metadata:
+  name: chart1-chart2-child2-child2obj-c828dca6
+"
+`;
+
+exports[`app with nested charts will deduplicate api objects 2`] = `
+"apiVersion: v1
+kind: CustomConstruct
+metadata:
+  name: chart1-child1-child1obj-c868628e
+"
+`;

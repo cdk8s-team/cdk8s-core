@@ -163,6 +163,77 @@ test('app with chart dependencies via custom constructs', () => {
 
 });
 
+test('app with nested charts will deduplicate api objects', () => {
+
+  class CustomConstruct extends Construct {
+
+    public obj: ApiObject;
+
+    constructor(scope: Construct, id: string) {
+      super(scope, id);
+
+      this.obj = new ApiObject(this, `${id}obj`, { apiVersion: 'v1', kind: 'CustomConstruct' });
+    }
+  }
+
+  const app = Testing.app();
+  const chart = new Chart(app, 'chart1');
+  const childChart = new Chart(chart, 'chart2');
+  new CustomConstruct(chart, 'child1');
+  new CustomConstruct(childChart, 'child2');
+
+  app.synth();
+
+  expect(fs.readdirSync(app.outdir)).toEqual([
+    '0000-chart1-chart2-c883b207.k8s.yaml',
+    '0001-chart1.k8s.yaml',
+  ]);
+  expect(fs.readFileSync(path.join(app.outdir, '0000-chart1-chart2-c883b207.k8s.yaml'), 'utf8')).toMatchSnapshot();
+  expect(fs.readFileSync(path.join(app.outdir, '0001-chart1.k8s.yaml'), 'utf8')).toMatchSnapshot();
+
+});
+
+test('app with nested charts will deduplicate api objects (using custom classes)', () => {
+
+  class ChildChart1 extends Chart {
+    constructor(scope: Construct, name: string) {
+      super(scope, name);
+      new ApiObject(this, 'namespace1', { apiVersion: 'v1', kind: 'Namespace' });
+    }
+  }
+
+  class ChildChart2 extends Chart {
+    constructor(scope: Construct, name: string) {
+      super(scope, name);
+      new ApiObject(this, 'namespace2', { apiVersion: 'v1', kind: 'Namespace' });
+    }
+  }
+
+  class ParentChart extends Chart {
+    constructor(scope: Construct, name: string) {
+      super(scope, name);
+      new ChildChart1(this, 'child1');
+      new ChildChart2(this, 'child2');
+      new ApiObject(this, 'namespace3', { apiVersion: 'v1', kind: 'Namespace' });
+    }
+  }
+
+  const app = Testing.app();
+  new ParentChart(app, 'parent');
+
+  app.synth();
+
+  expect(fs.readdirSync(app.outdir)).toEqual([
+    '0000-parent-child1-c8e38b2d.k8s.yaml',
+    '0001-parent-child2-c882caae.k8s.yaml',
+    '0002-parent.k8s.yaml',
+  ]);
+  expect(fs.readFileSync(path.join(app.outdir, '0000-parent-child1-c8e38b2d.k8s.yaml'), 'utf8')).toMatchSnapshot();
+  expect(fs.readFileSync(path.join(app.outdir, '0001-parent-child2-c882caae.k8s.yaml'), 'utf8')).toMatchSnapshot();
+  expect(fs.readFileSync(path.join(app.outdir, '0002-parent.k8s.yaml'), 'utf8')).toMatchSnapshot();
+
+});
+
 test('synth calls validate', () => {
 
   class ValidatingConstruct extends Construct {
