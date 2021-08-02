@@ -7,6 +7,16 @@ import { DependencyGraph } from './dependency';
 import { Names } from './names';
 import { Yaml } from './yaml';
 
+/** The method to divide YAML output into files */
+export enum YamlOutputType {
+  /** All resources are output into a single YAML file */
+  FILE_PER_APP,
+  /** Resources are split into seperate files by chart */
+  FILE_PER_CHART,
+  /** Each resource is output to its own file */
+  FILE_PER_RESOURCE,
+}
+
 export interface AppProps {
   /**
    * The directory to output Kubernetes manifests.
@@ -14,6 +24,10 @@ export interface AppProps {
    * @default - CDK8S_OUTDIR if defined, otherwise "dist"
    */
   readonly outdir?: string;
+  /** How to divide the YAML output into files
+   * @default YamlOutputType.FILE_PER_CHART
+   */
+  readonly yamlOutputType?: YamlOutputType;
 }
 
 /**
@@ -66,6 +80,11 @@ export class App extends Construct {
    */
   public readonly outdir: string;
 
+  /** How to divide the YAML output into files
+   * @default YamlOutputType.FILE_PER_CHART
+   */
+  public readonly yamlOutputType: YamlOutputType;
+
   /**
    * Defines an app
    * @param props configuration options
@@ -73,6 +92,7 @@ export class App extends Construct {
   constructor(props: AppProps = { }) {
     super(undefined as any, '');
     this.outdir = props.outdir ?? process.env.CDK8S_OUTDIR ?? 'dist';
+    this.yamlOutputType = props.yamlOutputType ?? YamlOutputType.FILE_PER_CHART;
   }
 
   /**
@@ -94,19 +114,58 @@ export class App extends Construct {
       .filter(x => x instanceof Chart);
 
     const found = new Set<IConstruct>();
-    const namer: ChartNamer = hasDependantCharts ? new IndexedChartNamer() : new SimpleChartNamer();
-    for (const node of charts) {
-      const chart: Chart = Chart.of(node);
-      const chartName = namer.name(chart);
-      const objects = chartToKube(chart);
 
-      Yaml.save(path.join(this.outdir, chartName), objects.map(obj => obj.toJson()));
+    switch (this.yamlOutputType) {
+      case YamlOutputType.FILE_PER_APP:
+        let apiObjectList: ApiObject[] = [];
 
-      for (const obj of objects) {
-        found.add(obj);
-      }
+        for (const node of charts) {
+          const chart: Chart = Chart.of(node);
+          apiObjectList.push(...chartToKube(chart));
+        }
+
+        if (charts.length > 0) {
+          Yaml.save(
+            path.join(this.outdir, 'app.k8s.yaml'), // There is no "app name", so we just hardcode the file name
+            apiObjectList.map((apiObject) => apiObject.toJson()),
+          );
+        }
+        break;
+
+      case YamlOutputType.FILE_PER_CHART:
+        const namer: ChartNamer = hasDependantCharts ? new IndexedChartNamer() : new SimpleChartNamer();
+
+        for (const node of charts) {
+          const chart: Chart = Chart.of(node);
+          const chartName = namer.name(chart);
+          const objects = chartToKube(chart);
+
+          Yaml.save(path.join(this.outdir, chartName), objects.map(obj => obj.toJson()));
+
+          for (const obj of objects) {
+            found.add(obj);
+          }
+        }
+        break;
+
+      case YamlOutputType.FILE_PER_RESOURCE:
+        for (const node of charts) {
+          const chart: Chart = Chart.of(node);
+          const apiObjects = chartToKube(chart);
+
+          apiObjects.forEach((apiObject) => {
+            if (!(apiObject === undefined)) {
+              const fileName = `${`${apiObject.kind}.${apiObject.metadata.name}`
+                .replace(/[^0-9a-zA-Z-_.]/g, '')}.k8s.yaml`;
+              Yaml.save(path.join(this.outdir, fileName), [apiObject.toJson()]);
+            }
+          });
+        }
+        break;
+
+      default:
+        break;
     }
-
   }
 }
 
