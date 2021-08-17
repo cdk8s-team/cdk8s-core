@@ -194,7 +194,7 @@ export class ApiObject extends Construct {
     const sortKeys = process.env.CDK8S_DISABLE_SORT ? false : true;
     const baseJson = sanitizeValue(resolve(data), { sortKeys });
     const extraJson = sanitizeValue(resolve(this.lazySpec), { sortKeys });
-    if (extraJson.metadata !== undefined) {
+    if (extraJson?.metadata !== undefined) {
       throw new Error('Metadata cannot be provided through the lazySpec field.');
     }
     const json = deepMerge(baseJson, extraJson);
