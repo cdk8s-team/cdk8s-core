@@ -74,6 +74,7 @@ new ApiObject(scope: Construct, id: string, props: ApiObjectProps)
 * **props** (<code>[ApiObjectProps](#cdk8s-apiobjectprops)</code>)  options.
   * **apiVersion** (<code>string</code>)  API version. 
   * **kind** (<code>string</code>)  Resource kind. 
+  * **lazySpec** (<code>[Lazy](#cdk8s-lazy)</code>)  This is an escape hatch to allow providing all other attributes as a single "Lazy" value. __*Optional*__
   * **metadata** (<code>[ApiObjectMetadata](#cdk8s-apiobjectmetadata)</code>)  Object metadata. __*Optional*__
 
 
@@ -1323,6 +1324,7 @@ Name | Type | Description
 -----|------|-------------
 **apiVersion** | <code>string</code> | API version.
 **kind** | <code>string</code> | Resource kind.
+**lazySpec**? | <code>[Lazy](#cdk8s-lazy)</code> | This is an escape hatch to allow providing all other attributes as a single "Lazy" value.<br/>__*Optional*__
 **metadata**? | <code>[ApiObjectMetadata](#cdk8s-apiobjectmetadata)</code> | Object metadata.<br/>__*Optional*__
 
 
