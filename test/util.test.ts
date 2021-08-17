@@ -1,4 +1,4 @@
-import { sanitizeValue } from '../src/_util';
+import { deepMerge, sanitizeValue } from '../src/_util';
 
 describe('sanitizeValue', () => {
 
@@ -47,6 +47,41 @@ describe('sanitizeValue', () => {
   });
 
   class Dummy { }
+});
+
+describe('deepMerge', () => {
+  test('merges objects', () => {
+    // GIVEN
+    const original = { a: { b: 3 } };
+
+    // WHEN
+    deepMerge(original, { a: { c: 4 } });
+
+    // THEN
+    expect(original).toEqual({ a: { b: 3, c: 4 } });
+  });
+
+  test('overwrites non-objects', () => {
+    // GIVEN
+    const original = { a: [] };
+
+    // WHEN
+    deepMerge(original, { a: { b: 3 } });
+
+    // THEN
+    expect(original).toEqual({ a: { b: 3 } });
+  });
+
+  test('does not overwrite if rightmost is "undefined"', () => {
+    // GIVEN
+    const original = { a: 1 };
+
+    // WHEN
+    deepMerge(original, { a: undefined });
+
+    // THEN
+    expect(original).toEqual({ a: 1 });
+  });
 });
 
 function str(obj: any) {

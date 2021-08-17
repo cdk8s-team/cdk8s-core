@@ -1,8 +1,9 @@
 import { Construct, IConstruct, Node } from 'constructs';
 import { resolve } from './_resolve';
-import { sanitizeValue } from './_util';
+import { deepMerge, sanitizeValue } from './_util';
 import { Chart } from './chart';
 import { JsonPatch } from './json-patch';
+import { Lazy } from './lazy';
 import { ApiObjectMetadata, ApiObjectMetadataDefinition } from './metadata';
 
 /**
@@ -26,6 +27,14 @@ export interface ApiObjectProps {
    * Resource kind.
    */
   readonly kind: string;
+
+  /**
+   * This is an escape hatch to allow providing all other attributes as
+   * a single "Lazy" value. The lazy value must resolve to an object.
+   *
+   * Metadata cannot be provided through this field.
+   */
+  readonly lazySpec?: Lazy;
 
   /**
    * Additional attributes for this API object.
@@ -108,6 +117,11 @@ export class ApiObject extends Construct {
   private readonly patches: Array<JsonPatch>;
 
   /**
+   * A Lazy value that should resolve to an object.
+   */
+  private readonly lazySpec?: Lazy;
+
+  /**
    * Defines an API object.
    *
    * @param scope the construct scope
@@ -121,6 +135,7 @@ export class ApiObject extends Construct {
     this.kind = props.kind;
     this.apiVersion = props.apiVersion;
     this.apiGroup = parseApiGroup(this.apiVersion);
+    this.lazySpec = props.lazySpec;
 
     this.name = props.metadata?.name ?? this.chart.generateObjectName(this);
 
@@ -174,9 +189,15 @@ export class ApiObject extends Construct {
       ...this.props,
       metadata: this.metadata.toJson(),
     };
+    delete data.lazySpec;
 
     const sortKeys = process.env.CDK8S_DISABLE_SORT ? false : true;
-    const json = sanitizeValue(resolve(data), { sortKeys });
+    const baseJson = sanitizeValue(resolve(data), { sortKeys });
+    const extraJson = sanitizeValue(resolve(this.lazySpec), { sortKeys });
+    if (extraJson.metadata !== undefined) {
+      throw new Error('Metadata cannot be provided through the lazySpec field.');
+    }
+    const json = deepMerge(baseJson, extraJson);
     const patched = JsonPatch.apply(json, ...this.patches);
 
     // reorder top-level keys so that we first have "apiVersion", "kind" and

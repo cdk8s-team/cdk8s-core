@@ -58,3 +58,54 @@ export function sanitizeValue(obj: any, options: SanitizeOptions = { }): any {
 
   return newObj;
 }
+
+/**
+ * Type of a map mapping strings to some arbitrary type
+ */
+export type Obj<T> = { [key: string]: T };
+
+/**
+  * Return whether the given value is an object
+  *
+  * Even though arrays and instances of classes technically are objects, we
+  * usually want to treat them differently, so we return false in those cases.
+  */
+export function isObject(x: any): x is Obj<any> {
+  return x !== null && typeof x === 'object' && !Array.isArray(x)
+       && x.constructor.name === 'Object';
+}
+
+/**
+ * Recursively merge objects together
+ *
+ * The leftmost object is mutated and returned. Arrays are not merged
+ * but overwritten just like scalars.
+ *
+ * If an object is merged into a non-object, the non-object is lost.
+ */
+export function deepMerge(...objects: Array<Obj<any> | undefined>) {
+  function mergeOne(target: Obj<any>, source: Obj<any>) {
+    for (const key of Object.keys(source)) {
+      const value = source[key];
+
+      if (isObject(value)) {
+        // if the value at the target is not an object, override it with an
+        // object so we can continue the recursion
+        if (!isObject(target[key])) {
+          target[key] = value;
+        }
+        mergeOne(target[key], value);
+      } else if (typeof value !== 'undefined') {
+        target[key] = value;
+      }
+    }
+  }
+
+  const others = objects.filter(x => x != null) as Array<Obj<any>>;
+
+  if (others.length === 0) { return {}; }
+  const into = others.splice(0, 1)[0];
+
+  others.forEach(other => mergeOne(into, other));
+  return into;
+}

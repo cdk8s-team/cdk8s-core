@@ -35,3 +35,36 @@ export function resolve(value: any): any {
   return result;
 
 }
+
+/**
+ * Identical to resolve, except it only resolves Lazy values.
+ */
+export function resolveLazy(value: any): any {
+
+  if (value == null) {
+    return value;
+  }
+
+  // cdk8s token
+  if (value instanceof Lazy) {
+    const resolved = value.produce();
+    return resolveLazy(resolved);
+  }
+
+  if (typeof(value) !== 'object') {
+    return value;
+  }
+
+  if (Array.isArray(value)) {
+    return value.map(x => resolveLazy(x));
+  }
+
+  const result: any = {};
+
+  for (const [k, v] of Object.entries(value)) {
+    result[k] = resolveLazy(v);
+  }
+
+  return result;
+
+}

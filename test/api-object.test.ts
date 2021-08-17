@@ -1,5 +1,5 @@
 import { Construct, Node, Dependency } from 'constructs';
-import { ApiObject, Chart, JsonPatch, Testing } from '../src';
+import { ApiObject, Chart, JsonPatch, Lazy, Testing } from '../src';
 
 test('minimal configuration', () => {
   const app = Testing.app();
@@ -359,6 +359,37 @@ describe('addJsonPatch()', () => {
           bar: {
             baz: [1, 2, 3, 4],
           },
+        },
+      },
+    ]);
+  });
+
+  test('applied after both regular props and lazySpec', () => {
+    // GIVEN
+    const chart = Testing.chart();
+    const obj = new ApiObject(chart, 'obj', {
+      kind: 'Obj',
+      apiVersion: 'v1',
+      spec: {
+        foo: 1234,
+      },
+      lazySpec: Lazy.any({ produce: () => ({ spec: { bar: 2345 } }) }),
+    });
+
+    // WHEN
+    obj.addJsonPatch(JsonPatch.remove('/spec/foo'));
+    obj.addJsonPatch(JsonPatch.add('/spec/bar', 3456));
+
+    // THEN
+    expect(Testing.synth(chart)).toStrictEqual([
+      {
+        apiVersion: 'v1',
+        kind: 'Obj',
+        metadata: {
+          name: 'test-obj-c8686f96',
+        },
+        spec: {
+          bar: 3456,
         },
       },
     ]);
