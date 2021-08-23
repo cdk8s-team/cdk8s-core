@@ -1,4 +1,4 @@
-const { JsiiProject } = require('projen');
+const { JsiiProject, DependenciesUpgradeMechanism } = require('projen');
 
 const project = new JsiiProject({
   name: 'cdk8s',
@@ -59,6 +59,18 @@ const project = new JsiiProject({
     secret: 'GITHUB_TOKEN',
   },
   autoApproveUpgrades: true,
+
+  depsUpgrade: DependenciesUpgradeMechanism.githubWorkflow({
+    exclude: ['yaml'],
+    ignoreProjen: false,
+    workflowOptions: {
+      labels: ['auto-approve'],
+      secret: 'PROJEN_GITHUB_TOKEN',
+      container: {
+        image: 'jsii/superchain',
+      },
+    },
+  }),
 });
 
 // _loadurl.js is written in javascript so we need to commit it and also copy it

@@ -162,13 +162,13 @@
       },
       "steps": [
         {
-          "exec": "npm-check-updates --upgrade --target=minor"
+          "exec": "npm-check-updates --upgrade --target=minor --reject='yaml'"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade"
+          "exec": "yarn upgrade @types/follow-redirects @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser constructs eslint eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import jest jest-junit jsii jsii-diff jsii-docgen jsii-pacmak json-schema json-schema-to-typescript npm-check-updates projen standard-version ts-jest typescript fast-json-patch follow-redirects constructs"
         },
         {
           "exec": "npx projen"
