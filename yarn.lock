@@ -567,7 +567,7 @@
     chalk "^4.1.2"
     semver "^7.3.5"
 
-"@jsii/spec@^1.30.0", "@jsii/spec@^1.33.0":
+"@jsii/spec@^1.33.0":
   version "1.33.0"
   resolved "https://registry.yarnpkg.com/@jsii/spec/-/spec-1.33.0.tgz#0cd8cf3dec506b0002ce2de6ed51671e9500b7bf"
   integrity sha512-JUu4NhmFQiLnzegaj4gJ5xAt7YjB2fUteJppIN/J49TQJd1kWxsFFmYIMJDuUiAUzo0Gx99N4YqgcfKK3kLAbQ==
@@ -2879,7 +2879,7 @@ glob-promise@^3.4.0:
   dependencies:
     "@types/glob" "*"
 
-glob@^7, glob@^7.0.0, glob@^7.1.1, glob@^7.1.2, glob@^7.1.3, glob@^7.1.4, glob@^7.1.6:
+glob@^7, glob@^7.0.0, glob@^7.1.1, glob@^7.1.2, glob@^7.1.3, glob@^7.1.4, glob@^7.1.6, glob@^7.1.7:
   version "7.1.7"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.7.tgz#3b193e9233f01d42d0b3f78294bbeeb418f94a90"
   integrity sha512-OvD9ENzPLbegENnYP5UUfJIirTg4+XwMWGaQfQTY0JenxNvvIKP3U3/tAQSPIu/lHxXYSZmpXlUHeqAIdKzBLQ==
@@ -4008,14 +4008,18 @@ jsii-diff@^1.33.0:
     typescript "~3.9.10"
     yargs "^16.2.0"
 
-jsii-docgen@^1.8.110:
-  version "1.8.110"
-  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-1.8.110.tgz#83c829864db993a9479531b43e8dcb2288803c1f"
-  integrity sha512-xl/A8lpOfRzG7KQqHDkWf3bveR3b0hM91CG1/eHLSpBJpvsEvCS97JkOpcCp16XEiTHrHMrnILZPPGWneFUncw==
+jsii-docgen@^3.2.32:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-3.3.1.tgz#2c5fa9a4778e7001b72b65d5a24a9d80c025f199"
+  integrity sha512-utnAMd1QhfVlyHUvs6KjGpDMyOJSPReGWdIJUEyNEAxyMK63Y1GLT9Anl82ZYhyEx5q27eQNkSc3+H5KwyMUIA==
   dependencies:
-    "@jsii/spec" "^1.30.0"
+    "@jsii/spec" "^1.33.0"
+    case "^1.6.3"
     fs-extra "^9.1.0"
-    jsii-reflect "^1.30.0"
+    glob "^7.1.7"
+    glob-promise "^3.4.0"
+    jsii-reflect "^1.33.0"
+    jsii-rosetta "^1.33.0"
     yargs "^16.2.0"
 
 jsii-pacmak@^1.33.0:
@@ -4037,7 +4041,7 @@ jsii-pacmak@^1.33.0:
     xmlbuilder "^15.1.1"
     yargs "^16.2.0"
 
-jsii-reflect@^1.30.0, jsii-reflect@^1.33.0:
+jsii-reflect@^1.33.0:
   version "1.33.0"
   resolved "https://registry.yarnpkg.com/jsii-reflect/-/jsii-reflect-1.33.0.tgz#d259d4c5e3869588a29a8643b50e8606f5c01b82"
   integrity sha512-FH3lextueMXDFezWEPRYNEmEDcFg2Tvh4Wdjs0tBi+oSmewK3I+xCAVXmnpE8CRC2RW1zOLutH9hQbQnrKtsOw==

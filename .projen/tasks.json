@@ -297,7 +297,10 @@
       "description": "Generate API.md from .jsii manifest",
       "steps": [
         {
-          "exec": "jsii-docgen"
+          "exec": "jsii-docgen -l typescript -o docs/typescript.md"
+        },
+        {
+          "exec": "jsii-docgen -l python -o docs/python.md"
         }
       ]
     },
