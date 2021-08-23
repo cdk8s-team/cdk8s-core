@@ -40,7 +40,7 @@
   "devDependencies": {
     "@types/follow-redirects": "^1.13.1",
     "@types/jest": "^26.0.24",
-    "@types/node": "^10.17.60",
+    "@types/node": "^10.17.0",
     "@typescript-eslint/eslint-plugin": "^4.29.3",
     "@typescript-eslint/parser": "^4.29.3",
     "constructs": "^3.3.130",
