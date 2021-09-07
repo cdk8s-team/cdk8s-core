@@ -40,7 +40,7 @@
   "devDependencies": {
     "@types/follow-redirects": "^1.13.1",
     "@types/jest": "^26.0.24",
-    "@types/node": "^10.17.0",
+    "@types/node": "^12.13.0",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
     "constructs": "^3.3.140",
@@ -68,7 +68,7 @@
   "dependencies": {
     "fast-json-patch": "^2.2.1",
     "follow-redirects": "^1.14.3",
-    "yaml": "2.0.0-5"
+    "yaml": "2.0.0-7"
   },
   "bundledDependencies": [
     "fast-json-patch",
@@ -82,7 +82,7 @@
     "kubernetes"
   ],
   "engines": {
-    "node": ">= 10.17.0"
+    "node": ">= 12.13.0"
   },
   "main": "lib/index.js",
   "license": "Apache-2.0",

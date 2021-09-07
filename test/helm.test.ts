@@ -103,7 +103,7 @@ test('helmFlags can be used to specify additional helm options', () => {
     stderr: Buffer.from(''),
     stdout: Buffer.from(''),
     pid: 123,
-    output: ['stdout', 'stderr'],
+    output: [Buffer.from('stdout', 'utf8'), Buffer.from('stderr', 'utf8')],
     signal: null,
   });
 
