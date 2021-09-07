@@ -92,5 +92,6 @@ const docgenTask = project.tasks.tryFind('docgen');
 docgenTask.reset();
 docgenTask.exec('jsii-docgen -l typescript -o docs/typescript.md');
 docgenTask.exec('jsii-docgen -l python -o docs/python.md');
+docgenTask.exec('jsii-docgen -l java -o docs/java.md');
 
 project.synth();

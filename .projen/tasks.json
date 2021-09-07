@@ -301,6 +301,9 @@
         },
         {
           "exec": "jsii-docgen -l python -o docs/python.md"
+        },
+        {
+          "exec": "jsii-docgen -l java -o docs/java.md"
         }
       ]
     },
