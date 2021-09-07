@@ -15,7 +15,7 @@ const project = new JsiiProject({
   ],
 
   bundledDeps: [
-    'yaml@2.0.0-5',
+    'yaml@2.0.0-7',
     'follow-redirects',
     'fast-json-patch',
   ],
@@ -33,7 +33,7 @@ const project = new JsiiProject({
   ],
 
   defaultReleaseBranch: 'main',
-  minNodeVersion: '10.17.0',
+  minNodeVersion: '12.13.0',
 
   // jsii configuration
   publishToMaven: {
