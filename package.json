@@ -41,9 +41,9 @@
     "@types/follow-redirects": "^1.13.1",
     "@types/jest": "^26.0.24",
     "@types/node": "^12.13.0",
-    "@typescript-eslint/eslint-plugin": "^4.30.0",
-    "@typescript-eslint/parser": "^4.30.0",
-    "constructs": "^3.3.140",
+    "@typescript-eslint/eslint-plugin": "^4.31.0",
+    "@typescript-eslint/parser": "^4.31.0",
+    "constructs": "^3.3.147",
     "eslint": "^7.32.0",
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-import-resolver-typescript": "^2.4.0",
@@ -52,18 +52,18 @@
     "jest-junit": "^12",
     "jsii": "^1.34.0",
     "jsii-diff": "^1.34.0",
-    "jsii-docgen": "^3.3.11",
+    "jsii-docgen": "^3.4.5",
     "jsii-pacmak": "^1.34.0",
     "json-schema": "^0.3.0",
     "json-schema-to-typescript": "^10.1.4",
     "npm-check-updates": "^11",
-    "projen": "^0.27.41",
+    "projen": "^0.27.50",
     "standard-version": "^9",
     "ts-jest": "^27.0.5",
     "typescript": "^4.4.2"
   },
   "peerDependencies": {
-    "constructs": "^3.3.140"
+    "constructs": "^3.3.147"
   },
   "dependencies": {
     "fast-json-patch": "^2.2.1",
