@@ -60,6 +60,8 @@ const project = new JsiiProject({
   },
   autoApproveUpgrades: true,
 
+  releaseFailureIssue: true,
+
   depsUpgrade: DependenciesUpgradeMechanism.githubWorkflow({
     exclude: ['yaml'],
     ignoreProjen: false,
