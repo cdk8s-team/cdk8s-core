@@ -50,5 +50,6 @@ junit.xml
 .jsii
 tsconfig.json
 !/API.md
+.vscode/
 !/src/_loadurl.js
 !/.github/workflows/release.yml

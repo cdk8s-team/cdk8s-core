@@ -73,6 +73,8 @@ const project = new JsiiProject({
   }),
 });
 
+project.gitignore.exclude('.vscode/');
+
 // _loadurl.js is written in javascript so we need to commit it and also copy it
 // after compilation to the `lib/` directory.
 project.gitignore.include('/src/_loadurl.js');
