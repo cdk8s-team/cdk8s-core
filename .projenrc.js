@@ -15,7 +15,7 @@ const project = new JsiiProject({
   ],
 
   bundledDeps: [
-    'yaml@2.0.0-5',
+    'yaml@2.0.0-7',
     'follow-redirects',
     'fast-json-patch',
   ],
@@ -33,7 +33,7 @@ const project = new JsiiProject({
   ],
 
   defaultReleaseBranch: 'main',
-  minNodeVersion: '10.17.0',
+  minNodeVersion: '12.13.0',
 
   // jsii configuration
   publishToMaven: {
@@ -59,6 +59,8 @@ const project = new JsiiProject({
     secret: 'GITHUB_TOKEN',
   },
   autoApproveUpgrades: true,
+
+  releaseFailureIssue: true,
 
   depsUpgrade: DependenciesUpgradeMechanism.githubWorkflow({
     exclude: ['yaml'],
@@ -94,5 +96,6 @@ const docgenTask = project.tasks.tryFind('docgen');
 docgenTask.reset();
 docgenTask.exec('jsii-docgen -l typescript -o docs/typescript.md');
 docgenTask.exec('jsii-docgen -l python -o docs/python.md');
+docgenTask.exec('jsii-docgen -l java -o docs/java.md');
 
 project.synth();

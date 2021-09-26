@@ -4,7 +4,7 @@
 
 ### ApiObject <a name="cdk8s.ApiObject"></a>
 
-#### Initializer <a name="cdk8s.ApiObject.Initializer"></a>
+#### Initializers <a name="cdk8s.ApiObject.Initializer"></a>
 
 ```python
 import cdk8s
@@ -125,6 +125,10 @@ The higher-level construct.
 
 ##### `api_group`<sup>Required</sup> <a name="cdk8s.ApiObject.property.api_group"></a>
 
+```python
+api_group: str
+```
+
 - *Type:* `str`
 
 The group portion of the API version (e.g. `authorization.k8s.io`).
@@ -132,6 +136,10 @@ The group portion of the API version (e.g. `authorization.k8s.io`).
 ---
 
 ##### `api_version`<sup>Required</sup> <a name="cdk8s.ApiObject.property.api_version"></a>
+
+```python
+api_version: str
+```
 
 - *Type:* `str`
 
@@ -141,6 +149,10 @@ The object's API version (e.g. `authorization.k8s.io/v1`).
 
 ##### `chart`<sup>Required</sup> <a name="cdk8s.ApiObject.property.chart"></a>
 
+```python
+chart: Chart
+```
+
 - *Type:* [`cdk8s.Chart`](#cdk8s.Chart)
 
 The chart in which this object is defined.
@@ -148,6 +160,10 @@ The chart in which this object is defined.
 ---
 
 ##### `kind`<sup>Required</sup> <a name="cdk8s.ApiObject.property.kind"></a>
+
+```python
+kind: str
+```
 
 - *Type:* `str`
 
@@ -157,6 +173,10 @@ The object kind.
 
 ##### `metadata`<sup>Required</sup> <a name="cdk8s.ApiObject.property.metadata"></a>
 
+```python
+metadata: ApiObjectMetadataDefinition
+```
+
 - *Type:* [`cdk8s.ApiObjectMetadataDefinition`](#cdk8s.ApiObjectMetadataDefinition)
 
 Metadata associated with this API object.
@@ -164,6 +184,10 @@ Metadata associated with this API object.
 ---
 
 ##### `name`<sup>Required</sup> <a name="cdk8s.ApiObject.property.name"></a>
+
+```python
+name: str
+```
 
 - *Type:* `str`
 
@@ -181,7 +205,7 @@ construct path to generate a DNS-compatible name for the resource.
 
 Represents a cdk8s application.
 
-#### Initializer <a name="cdk8s.App.Initializer"></a>
+#### Initializers <a name="cdk8s.App.Initializer"></a>
 
 ```python
 import cdk8s
@@ -223,6 +247,10 @@ def synth()
 
 ##### `outdir`<sup>Required</sup> <a name="cdk8s.App.property.outdir"></a>
 
+```python
+outdir: str
+```
+
 - *Type:* `str`
 
 The output directory into which manifests will be synthesized.
@@ -230,6 +258,10 @@ The output directory into which manifests will be synthesized.
 ---
 
 ##### `yaml_output_type`<sup>Required</sup> <a name="cdk8s.App.property.yaml_output_type"></a>
+
+```python
+yaml_output_type: YamlOutputType
+```
 
 - *Type:* [`cdk8s.YamlOutputType`](#cdk8s.YamlOutputType)
 - *Default:* YamlOutputType.FILE_PER_CHART
@@ -241,7 +273,7 @@ How to divide the YAML output into files.
 
 ### Chart <a name="cdk8s.Chart"></a>
 
-#### Initializer <a name="cdk8s.Chart.Initializer"></a>
+#### Initializers <a name="cdk8s.Chart.Initializer"></a>
 
 ```python
 import cdk8s
@@ -351,6 +383,10 @@ a construct node.
 
 ##### `labels`<sup>Required</sup> <a name="cdk8s.Chart.property.labels"></a>
 
+```python
+labels: typing.Mapping[str]
+```
+
 - *Type:* typing.Mapping[`str`]
 
 Labels applied to all resources in this chart.
@@ -360,6 +396,10 @@ This is an immutable copy.
 ---
 
 ##### `namespace`<sup>Optional</sup> <a name="cdk8s.Chart.property.namespace"></a>
+
+```python
+namespace: str
+```
 
 - *Type:* `str`
 
@@ -374,7 +414,7 @@ Represents a Helm deployment.
 
 Use this construct to import an existing Helm chart and incorporate it into your constructs.
 
-#### Initializer <a name="cdk8s.Helm.Initializer"></a>
+#### Initializers <a name="cdk8s.Helm.Initializer"></a>
 
 ```python
 import cdk8s
@@ -456,6 +496,10 @@ Values to pass to the chart.
 
 ##### `release_name`<sup>Required</sup> <a name="cdk8s.Helm.property.release_name"></a>
 
+```python
+release_name: str
+```
+
 - *Type:* `str`
 
 The helm release name.
@@ -470,7 +514,7 @@ Reads a YAML manifest from a file or a URL and defines all resources as API obje
 The names (`metadata.name`) of imported resources will be preserved as-is
 from the manifest.
 
-#### Initializer <a name="cdk8s.Include.Initializer"></a>
+#### Initializers <a name="cdk8s.Include.Initializer"></a>
 
 ```python
 import cdk8s
@@ -508,6 +552,10 @@ Local file path or URL which includes a Kubernetes YAML manifest.
 
 ##### `api_objects`<sup>Required</sup> <a name="cdk8s.Include.property.api_objects"></a>
 
+```python
+api_objects: typing.List[ApiObject]
+```
+
 - *Type:* typing.List[[`cdk8s.ApiObject`](#cdk8s.ApiObject)]
 
 Returns all the included API objects.
@@ -536,6 +584,10 @@ cdk8s.ApiObjectMetadata(
 
 ##### `annotations`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.annotations"></a>
 
+```python
+annotations: typing.Mapping[str]
+```
+
 - *Type:* typing.Mapping[`str`]
 - *Default:* No annotations.
 
@@ -550,6 +602,10 @@ preserved when modifying objects.
 
 ##### `labels`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.labels"></a>
 
+```python
+labels: typing.Mapping[str]
+```
+
 - *Type:* typing.Mapping[`str`]
 - *Default:* No labels.
 
@@ -562,6 +618,10 @@ May match selectors of replication controllers and services.
 ---
 
 ##### `name`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.name"></a>
+
+```python
+name: str
+```
 
 - *Type:* `str`
 - *Default:* an app-unique name generated by the chart
@@ -584,6 +644,10 @@ leave this unspecified.
 ---
 
 ##### `namespace`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.namespace"></a>
+
+```python
+namespace: str
+```
 
 - *Type:* `str`
 - *Default:* undefined (will be assigned to the 'default' namespace)
@@ -613,6 +677,10 @@ cdk8s.ApiObjectProps(
 
 ##### `api_version`<sup>Required</sup> <a name="cdk8s.ApiObjectProps.property.api_version"></a>
 
+```python
+api_version: str
+```
+
 - *Type:* `str`
 
 API version.
@@ -621,6 +689,10 @@ API version.
 
 ##### `kind`<sup>Required</sup> <a name="cdk8s.ApiObjectProps.property.kind"></a>
 
+```python
+kind: str
+```
+
 - *Type:* `str`
 
 Resource kind.
@@ -628,6 +700,10 @@ Resource kind.
 ---
 
 ##### `metadata`<sup>Optional</sup> <a name="cdk8s.ApiObjectProps.property.metadata"></a>
+
+```python
+metadata: ApiObjectMetadata
+```
 
 - *Type:* [`cdk8s.ApiObjectMetadata`](#cdk8s.ApiObjectMetadata)
 
@@ -653,6 +729,10 @@ cdk8s.AppProps(
 
 ##### `outdir`<sup>Optional</sup> <a name="cdk8s.AppProps.property.outdir"></a>
 
+```python
+outdir: str
+```
+
 - *Type:* `str`
 - *Default:* CDK8S_OUTDIR if defined, otherwise "dist"
 
@@ -661,6 +741,10 @@ The directory to output Kubernetes manifests.
 ---
 
 ##### `yaml_output_type`<sup>Optional</sup> <a name="cdk8s.AppProps.property.yaml_output_type"></a>
+
+```python
+yaml_output_type: YamlOutputType
+```
 
 - *Type:* [`cdk8s.YamlOutputType`](#cdk8s.YamlOutputType)
 - *Default:* YamlOutputType.FILE_PER_CHART
@@ -684,6 +768,10 @@ cdk8s.ChartProps(
 
 ##### `labels`<sup>Optional</sup> <a name="cdk8s.ChartProps.property.labels"></a>
 
+```python
+labels: typing.Mapping[str]
+```
+
 - *Type:* typing.Mapping[`str`]
 - *Default:* no common labels
 
@@ -692,6 +780,10 @@ Labels to apply to all resources in this chart.
 ---
 
 ##### `namespace`<sup>Optional</sup> <a name="cdk8s.ChartProps.property.namespace"></a>
+
+```python
+namespace: str
+```
 
 - *Type:* `str`
 - *Default:* no namespace is synthesized (usually this implies "default")
@@ -718,6 +810,10 @@ cdk8s.GroupVersionKind(
 
 ##### `api_version`<sup>Required</sup> <a name="cdk8s.GroupVersionKind.property.api_version"></a>
 
+```python
+api_version: str
+```
+
 - *Type:* `str`
 
 The object's API version (e.g. `authorization.k8s.io/v1`).
@@ -725,6 +821,10 @@ The object's API version (e.g. `authorization.k8s.io/v1`).
 ---
 
 ##### `kind`<sup>Required</sup> <a name="cdk8s.GroupVersionKind.property.kind"></a>
+
+```python
+kind: str
+```
 
 - *Type:* `str`
 
@@ -752,6 +852,10 @@ cdk8s.HelmProps(
 
 ##### `chart`<sup>Required</sup> <a name="cdk8s.HelmProps.property.chart"></a>
 
+```python
+chart: str
+```
+
 - *Type:* `str`
 
 The chart name to use. It can be a chart from a helm repository or a local directory.
@@ -762,6 +866,10 @@ This name is passed to `helm template` and has all the relevant semantics.
 
 ##### `helm_executable`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.helm_executable"></a>
 
+```python
+helm_executable: str
+```
+
 - *Type:* `str`
 - *Default:* "helm"
 
@@ -771,6 +879,10 @@ The local helm executable to use in order to create the manifest the chart.
 
 ##### `helm_flags`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.helm_flags"></a>
 
+```python
+helm_flags: typing.List[str]
+```
+
 - *Type:* typing.List[`str`]
 - *Default:* []
 
@@ -779,6 +891,10 @@ Additional flags to add to the `helm` execution.
 ---
 
 ##### `release_name`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.release_name"></a>
+
+```python
+release_name: str
+```
 
 - *Type:* `str`
 - *Default:* if unspecified, a name will be allocated based on the construct path
@@ -790,6 +906,10 @@ The release name.
 ---
 
 ##### `values`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.values"></a>
+
+```python
+values: typing.Mapping[typing.Any]
+```
 
 - *Type:* typing.Mapping[`typing.Any`]
 - *Default:* If no values are specified, chart will use the defaults.
@@ -811,6 +931,10 @@ cdk8s.IncludeProps(
 ```
 
 ##### `url`<sup>Required</sup> <a name="cdk8s.IncludeProps.property.url"></a>
+
+```python
+url: str
+```
 
 - *Type:* `str`
 
@@ -837,6 +961,10 @@ cdk8s.NameOptions(
 
 ##### `delimiter`<sup>Optional</sup> <a name="cdk8s.NameOptions.property.delimiter"></a>
 
+```python
+delimiter: str
+```
+
 - *Type:* `str`
 - *Default:* "-"
 
@@ -845,6 +973,10 @@ Delimiter to use between components.
 ---
 
 ##### `extra`<sup>Optional</sup> <a name="cdk8s.NameOptions.property.extra"></a>
+
+```python
+extra: typing.List[str]
+```
 
 - *Type:* typing.List[`str`]
 - *Default:* [] use the construct path components
@@ -855,6 +987,10 @@ Extra components to include in the name.
 
 ##### `include_hash`<sup>Optional</sup> <a name="cdk8s.NameOptions.property.include_hash"></a>
 
+```python
+include_hash: bool
+```
+
 - *Type:* `bool`
 - *Default:* true
 
@@ -863,6 +999,10 @@ Include a short hash as last part of the name.
 ---
 
 ##### `max_len`<sup>Optional</sup> <a name="cdk8s.NameOptions.property.max_len"></a>
+
+```python
+max_len: typing.Union[int, float]
+```
 
 - *Type:* `typing.Union[int, float]`
 - *Default:* 63
@@ -887,6 +1027,10 @@ cdk8s.SizeConversionOptions(
 
 ##### `rounding`<sup>Optional</sup> <a name="cdk8s.SizeConversionOptions.property.rounding"></a>
 
+```python
+rounding: SizeRoundingBehavior
+```
+
 - *Type:* [`cdk8s.SizeRoundingBehavior`](#cdk8s.SizeRoundingBehavior)
 - *Default:* SizeRoundingBehavior.FAIL
 
@@ -910,6 +1054,10 @@ cdk8s.TimeConversionOptions(
 
 ##### `integral`<sup>Optional</sup> <a name="cdk8s.TimeConversionOptions.property.integral"></a>
 
+```python
+integral: bool
+```
+
 - *Type:* `bool`
 - *Default:* true
 
@@ -923,7 +1071,7 @@ If `true`, conversions into a larger time unit (e.g. `Seconds` to `Minutes`) wil
 
 Object metadata.
 
-#### Initializer <a name="cdk8s.ApiObjectMetadataDefinition.Initializer"></a>
+#### Initializers <a name="cdk8s.ApiObjectMetadataDefinition.Initializer"></a>
 
 ```python
 import cdk8s
@@ -1101,6 +1249,10 @@ def to_json()
 
 ##### `name`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinition.property.name"></a>
 
+```python
+name: str
+```
+
 - *Type:* `str`
 
 The name of the API object.
@@ -1113,6 +1265,10 @@ construct path to generate a DNS-compatible name for the resource.
 ---
 
 ##### `namespace`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinition.property.namespace"></a>
+
+```python
+namespace: str
+```
 
 - *Type:* `str`
 
@@ -1134,7 +1290,7 @@ childless children of the root node of the graph.
 The graph does not include cross-scope dependencies. That is, if a child on the current scope depends on a node
 from a different scope, that relationship is not represented in this graph.
 
-#### Initializer <a name="cdk8s.DependencyGraph.Initializer"></a>
+#### Initializers <a name="cdk8s.DependencyGraph.Initializer"></a>
 
 ```python
 import cdk8s
@@ -1163,6 +1319,10 @@ def topology()
 
 ##### `root`<sup>Required</sup> <a name="cdk8s.DependencyGraph.property.root"></a>
 
+```python
+root: DependencyVertex
+```
+
 - *Type:* [`cdk8s.DependencyVertex`](#cdk8s.DependencyVertex)
 
 Returns the root of the graph.
@@ -1179,7 +1339,7 @@ Represents a vertex in the graph.
 
 The value of each vertex is an `IConstruct` that is accessible via the `.value` getter.
 
-#### Initializer <a name="cdk8s.DependencyVertex.Initializer"></a>
+#### Initializers <a name="cdk8s.DependencyVertex.Initializer"></a>
 
 ```python
 import cdk8s
@@ -1224,6 +1384,10 @@ def topology()
 
 ##### `inbound`<sup>Required</sup> <a name="cdk8s.DependencyVertex.property.inbound"></a>
 
+```python
+inbound: typing.List[DependencyVertex]
+```
+
 - *Type:* typing.List[[`cdk8s.DependencyVertex`](#cdk8s.DependencyVertex)]
 
 Returns the parents of the vertex (i.e dependants).
@@ -1232,6 +1396,10 @@ Returns the parents of the vertex (i.e dependants).
 
 ##### `outbound`<sup>Required</sup> <a name="cdk8s.DependencyVertex.property.outbound"></a>
 
+```python
+outbound: typing.List[DependencyVertex]
+```
+
 - *Type:* typing.List[[`cdk8s.DependencyVertex`](#cdk8s.DependencyVertex)]
 
 Returns the children of the vertex (i.e dependencies).
@@ -1239,6 +1407,10 @@ Returns the children of the vertex (i.e dependencies).
 ---
 
 ##### `value`<sup>Optional</sup> <a name="cdk8s.DependencyVertex.property.value"></a>
+
+```python
+value: IConstruct
+```
 
 - *Type:* [`constructs.IConstruct`](#constructs.IConstruct)
 

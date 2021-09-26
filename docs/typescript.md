@@ -4,7 +4,7 @@
 
 ### ApiObject <a name="cdk8s.ApiObject"></a>
 
-#### Initializer <a name="cdk8s.ApiObject.Initializer"></a>
+#### Initializers <a name="cdk8s.ApiObject.Initializer"></a>
 
 ```typescript
 import { ApiObject } from 'cdk8s'
@@ -94,6 +94,10 @@ The higher-level construct.
 
 ##### `apiGroup`<sup>Required</sup> <a name="cdk8s.ApiObject.property.apiGroup"></a>
 
+```typescript
+public readonly apiGroup: string;
+```
+
 - *Type:* `string`
 
 The group portion of the API version (e.g. `authorization.k8s.io`).
@@ -101,6 +105,10 @@ The group portion of the API version (e.g. `authorization.k8s.io`).
 ---
 
 ##### `apiVersion`<sup>Required</sup> <a name="cdk8s.ApiObject.property.apiVersion"></a>
+
+```typescript
+public readonly apiVersion: string;
+```
 
 - *Type:* `string`
 
@@ -110,6 +118,10 @@ The object's API version (e.g. `authorization.k8s.io/v1`).
 
 ##### `chart`<sup>Required</sup> <a name="cdk8s.ApiObject.property.chart"></a>
 
+```typescript
+public readonly chart: Chart;
+```
+
 - *Type:* [`cdk8s.Chart`](#cdk8s.Chart)
 
 The chart in which this object is defined.
@@ -117,6 +129,10 @@ The chart in which this object is defined.
 ---
 
 ##### `kind`<sup>Required</sup> <a name="cdk8s.ApiObject.property.kind"></a>
+
+```typescript
+public readonly kind: string;
+```
 
 - *Type:* `string`
 
@@ -126,6 +142,10 @@ The object kind.
 
 ##### `metadata`<sup>Required</sup> <a name="cdk8s.ApiObject.property.metadata"></a>
 
+```typescript
+public readonly metadata: ApiObjectMetadataDefinition;
+```
+
 - *Type:* [`cdk8s.ApiObjectMetadataDefinition`](#cdk8s.ApiObjectMetadataDefinition)
 
 Metadata associated with this API object.
@@ -133,6 +153,10 @@ Metadata associated with this API object.
 ---
 
 ##### `name`<sup>Required</sup> <a name="cdk8s.ApiObject.property.name"></a>
+
+```typescript
+public readonly name: string;
+```
 
 - *Type:* `string`
 
@@ -150,7 +174,7 @@ construct path to generate a DNS-compatible name for the resource.
 
 Represents a cdk8s application.
 
-#### Initializer <a name="cdk8s.App.Initializer"></a>
+#### Initializers <a name="cdk8s.App.Initializer"></a>
 
 ```typescript
 import { App } from 'cdk8s'
@@ -179,6 +203,10 @@ public synth()
 
 ##### `outdir`<sup>Required</sup> <a name="cdk8s.App.property.outdir"></a>
 
+```typescript
+public readonly outdir: string;
+```
+
 - *Type:* `string`
 
 The output directory into which manifests will be synthesized.
@@ -186,6 +214,10 @@ The output directory into which manifests will be synthesized.
 ---
 
 ##### `yamlOutputType`<sup>Required</sup> <a name="cdk8s.App.property.yamlOutputType"></a>
+
+```typescript
+public readonly yamlOutputType: YamlOutputType;
+```
 
 - *Type:* [`cdk8s.YamlOutputType`](#cdk8s.YamlOutputType)
 - *Default:* YamlOutputType.FILE_PER_CHART
@@ -197,7 +229,7 @@ How to divide the YAML output into files.
 
 ### Chart <a name="cdk8s.Chart"></a>
 
-#### Initializer <a name="cdk8s.Chart.Initializer"></a>
+#### Initializers <a name="cdk8s.Chart.Initializer"></a>
 
 ```typescript
 import { Chart } from 'cdk8s'
@@ -281,6 +313,10 @@ a construct node.
 
 ##### `labels`<sup>Required</sup> <a name="cdk8s.Chart.property.labels"></a>
 
+```typescript
+public readonly labels: {[ key: string ]: string};
+```
+
 - *Type:* {[ key: string ]: `string`}
 
 Labels applied to all resources in this chart.
@@ -290,6 +326,10 @@ This is an immutable copy.
 ---
 
 ##### `namespace`<sup>Optional</sup> <a name="cdk8s.Chart.property.namespace"></a>
+
+```typescript
+public readonly namespace: string;
+```
 
 - *Type:* `string`
 
@@ -304,7 +344,7 @@ Represents a Helm deployment.
 
 Use this construct to import an existing Helm chart and incorporate it into your constructs.
 
-#### Initializer <a name="cdk8s.Helm.Initializer"></a>
+#### Initializers <a name="cdk8s.Helm.Initializer"></a>
 
 ```typescript
 import { Helm } from 'cdk8s'
@@ -336,6 +376,10 @@ new Helm(scope: Construct, id: string, props: HelmProps)
 
 ##### `releaseName`<sup>Required</sup> <a name="cdk8s.Helm.property.releaseName"></a>
 
+```typescript
+public readonly releaseName: string;
+```
+
 - *Type:* `string`
 
 The helm release name.
@@ -350,7 +394,7 @@ Reads a YAML manifest from a file or a URL and defines all resources as API obje
 The names (`metadata.name`) of imported resources will be preserved as-is
 from the manifest.
 
-#### Initializer <a name="cdk8s.Include.Initializer"></a>
+#### Initializers <a name="cdk8s.Include.Initializer"></a>
 
 ```typescript
 import { Include } from 'cdk8s'
@@ -382,6 +426,10 @@ new Include(scope: Construct, id: string, props: IncludeProps)
 
 ##### `apiObjects`<sup>Required</sup> <a name="cdk8s.Include.property.apiObjects"></a>
 
+```typescript
+public readonly apiObjects: ApiObject[];
+```
+
 - *Type:* [`cdk8s.ApiObject`](#cdk8s.ApiObject)[]
 
 Returns all the included API objects.
@@ -405,6 +453,10 @@ const apiObjectMetadata: ApiObjectMetadata = { ... }
 
 ##### `annotations`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.annotations"></a>
 
+```typescript
+public readonly annotations: {[ key: string ]: string};
+```
+
 - *Type:* {[ key: string ]: `string`}
 - *Default:* No annotations.
 
@@ -419,6 +471,10 @@ preserved when modifying objects.
 
 ##### `labels`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.labels"></a>
 
+```typescript
+public readonly labels: {[ key: string ]: string};
+```
+
 - *Type:* {[ key: string ]: `string`}
 - *Default:* No labels.
 
@@ -431,6 +487,10 @@ May match selectors of replication controllers and services.
 ---
 
 ##### `name`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.name"></a>
+
+```typescript
+public readonly name: string;
+```
 
 - *Type:* `string`
 - *Default:* an app-unique name generated by the chart
@@ -453,6 +513,10 @@ leave this unspecified.
 ---
 
 ##### `namespace`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.namespace"></a>
+
+```typescript
+public readonly namespace: string;
+```
 
 - *Type:* `string`
 - *Default:* undefined (will be assigned to the 'default' namespace)
@@ -478,6 +542,10 @@ const apiObjectProps: ApiObjectProps = { ... }
 
 ##### `apiVersion`<sup>Required</sup> <a name="cdk8s.ApiObjectProps.property.apiVersion"></a>
 
+```typescript
+public readonly apiVersion: string;
+```
+
 - *Type:* `string`
 
 API version.
@@ -486,6 +554,10 @@ API version.
 
 ##### `kind`<sup>Required</sup> <a name="cdk8s.ApiObjectProps.property.kind"></a>
 
+```typescript
+public readonly kind: string;
+```
+
 - *Type:* `string`
 
 Resource kind.
@@ -493,6 +565,10 @@ Resource kind.
 ---
 
 ##### `metadata`<sup>Optional</sup> <a name="cdk8s.ApiObjectProps.property.metadata"></a>
+
+```typescript
+public readonly metadata: ApiObjectMetadata;
+```
 
 - *Type:* [`cdk8s.ApiObjectMetadata`](#cdk8s.ApiObjectMetadata)
 
@@ -515,6 +591,10 @@ const appProps: AppProps = { ... }
 
 ##### `outdir`<sup>Optional</sup> <a name="cdk8s.AppProps.property.outdir"></a>
 
+```typescript
+public readonly outdir: string;
+```
+
 - *Type:* `string`
 - *Default:* CDK8S_OUTDIR if defined, otherwise "dist"
 
@@ -523,6 +603,10 @@ The directory to output Kubernetes manifests.
 ---
 
 ##### `yamlOutputType`<sup>Optional</sup> <a name="cdk8s.AppProps.property.yamlOutputType"></a>
+
+```typescript
+public readonly yamlOutputType: YamlOutputType;
+```
 
 - *Type:* [`cdk8s.YamlOutputType`](#cdk8s.YamlOutputType)
 - *Default:* YamlOutputType.FILE_PER_CHART
@@ -543,6 +627,10 @@ const chartProps: ChartProps = { ... }
 
 ##### `labels`<sup>Optional</sup> <a name="cdk8s.ChartProps.property.labels"></a>
 
+```typescript
+public readonly labels: {[ key: string ]: string};
+```
+
 - *Type:* {[ key: string ]: `string`}
 - *Default:* no common labels
 
@@ -551,6 +639,10 @@ Labels to apply to all resources in this chart.
 ---
 
 ##### `namespace`<sup>Optional</sup> <a name="cdk8s.ChartProps.property.namespace"></a>
+
+```typescript
+public readonly namespace: string;
+```
 
 - *Type:* `string`
 - *Default:* no namespace is synthesized (usually this implies "default")
@@ -574,6 +666,10 @@ const groupVersionKind: GroupVersionKind = { ... }
 
 ##### `apiVersion`<sup>Required</sup> <a name="cdk8s.GroupVersionKind.property.apiVersion"></a>
 
+```typescript
+public readonly apiVersion: string;
+```
+
 - *Type:* `string`
 
 The object's API version (e.g. `authorization.k8s.io/v1`).
@@ -581,6 +677,10 @@ The object's API version (e.g. `authorization.k8s.io/v1`).
 ---
 
 ##### `kind`<sup>Required</sup> <a name="cdk8s.GroupVersionKind.property.kind"></a>
+
+```typescript
+public readonly kind: string;
+```
 
 - *Type:* `string`
 
@@ -602,6 +702,10 @@ const helmProps: HelmProps = { ... }
 
 ##### `chart`<sup>Required</sup> <a name="cdk8s.HelmProps.property.chart"></a>
 
+```typescript
+public readonly chart: string;
+```
+
 - *Type:* `string`
 
 The chart name to use. It can be a chart from a helm repository or a local directory.
@@ -612,6 +716,10 @@ This name is passed to `helm template` and has all the relevant semantics.
 
 ##### `helmExecutable`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.helmExecutable"></a>
 
+```typescript
+public readonly helmExecutable: string;
+```
+
 - *Type:* `string`
 - *Default:* "helm"
 
@@ -621,6 +729,10 @@ The local helm executable to use in order to create the manifest the chart.
 
 ##### `helmFlags`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.helmFlags"></a>
 
+```typescript
+public readonly helmFlags: string[];
+```
+
 - *Type:* `string`[]
 - *Default:* []
 
@@ -629,6 +741,10 @@ Additional flags to add to the `helm` execution.
 ---
 
 ##### `releaseName`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.releaseName"></a>
+
+```typescript
+public readonly releaseName: string;
+```
 
 - *Type:* `string`
 - *Default:* if unspecified, a name will be allocated based on the construct path
@@ -640,6 +756,10 @@ The release name.
 ---
 
 ##### `values`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.values"></a>
+
+```typescript
+public readonly values: {[ key: string ]: any};
+```
 
 - *Type:* {[ key: string ]: `any`}
 - *Default:* If no values are specified, chart will use the defaults.
@@ -659,6 +779,10 @@ const includeProps: IncludeProps = { ... }
 ```
 
 ##### `url`<sup>Required</sup> <a name="cdk8s.IncludeProps.property.url"></a>
+
+```typescript
+public readonly url: string;
+```
 
 - *Type:* `string`
 
@@ -680,6 +804,10 @@ const nameOptions: NameOptions = { ... }
 
 ##### `delimiter`<sup>Optional</sup> <a name="cdk8s.NameOptions.property.delimiter"></a>
 
+```typescript
+public readonly delimiter: string;
+```
+
 - *Type:* `string`
 - *Default:* "-"
 
@@ -688,6 +816,10 @@ Delimiter to use between components.
 ---
 
 ##### `extra`<sup>Optional</sup> <a name="cdk8s.NameOptions.property.extra"></a>
+
+```typescript
+public readonly extra: string[];
+```
 
 - *Type:* `string`[]
 - *Default:* [] use the construct path components
@@ -698,6 +830,10 @@ Extra components to include in the name.
 
 ##### `includeHash`<sup>Optional</sup> <a name="cdk8s.NameOptions.property.includeHash"></a>
 
+```typescript
+public readonly includeHash: boolean;
+```
+
 - *Type:* `boolean`
 - *Default:* true
 
@@ -706,6 +842,10 @@ Include a short hash as last part of the name.
 ---
 
 ##### `maxLen`<sup>Optional</sup> <a name="cdk8s.NameOptions.property.maxLen"></a>
+
+```typescript
+public readonly maxLen: number;
+```
 
 - *Type:* `number`
 - *Default:* 63
@@ -728,6 +868,10 @@ const sizeConversionOptions: SizeConversionOptions = { ... }
 
 ##### `rounding`<sup>Optional</sup> <a name="cdk8s.SizeConversionOptions.property.rounding"></a>
 
+```typescript
+public readonly rounding: SizeRoundingBehavior;
+```
+
 - *Type:* [`cdk8s.SizeRoundingBehavior`](#cdk8s.SizeRoundingBehavior)
 - *Default:* SizeRoundingBehavior.FAIL
 
@@ -749,6 +893,10 @@ const timeConversionOptions: TimeConversionOptions = { ... }
 
 ##### `integral`<sup>Optional</sup> <a name="cdk8s.TimeConversionOptions.property.integral"></a>
 
+```typescript
+public readonly integral: boolean;
+```
+
 - *Type:* `boolean`
 - *Default:* true
 
@@ -762,7 +910,7 @@ If `true`, conversions into a larger time unit (e.g. `Seconds` to `Minutes`) wil
 
 Object metadata.
 
-#### Initializer <a name="cdk8s.ApiObjectMetadataDefinition.Initializer"></a>
+#### Initializers <a name="cdk8s.ApiObjectMetadataDefinition.Initializer"></a>
 
 ```typescript
 import { ApiObjectMetadataDefinition } from 'cdk8s'
@@ -869,6 +1017,10 @@ public toJson()
 
 ##### `name`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinition.property.name"></a>
 
+```typescript
+public readonly name: string;
+```
+
 - *Type:* `string`
 
 The name of the API object.
@@ -881,6 +1033,10 @@ construct path to generate a DNS-compatible name for the resource.
 ---
 
 ##### `namespace`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinition.property.namespace"></a>
+
+```typescript
+public readonly namespace: string;
+```
 
 - *Type:* `string`
 
@@ -902,7 +1058,7 @@ childless children of the root node of the graph.
 The graph does not include cross-scope dependencies. That is, if a child on the current scope depends on a node
 from a different scope, that relationship is not represented in this graph.
 
-#### Initializer <a name="cdk8s.DependencyGraph.Initializer"></a>
+#### Initializers <a name="cdk8s.DependencyGraph.Initializer"></a>
 
 ```typescript
 import { DependencyGraph } from 'cdk8s'
@@ -929,6 +1085,10 @@ public topology()
 
 ##### `root`<sup>Required</sup> <a name="cdk8s.DependencyGraph.property.root"></a>
 
+```typescript
+public readonly root: DependencyVertex;
+```
+
 - *Type:* [`cdk8s.DependencyVertex`](#cdk8s.DependencyVertex)
 
 Returns the root of the graph.
@@ -945,7 +1105,7 @@ Represents a vertex in the graph.
 
 The value of each vertex is an `IConstruct` that is accessible via the `.value` getter.
 
-#### Initializer <a name="cdk8s.DependencyVertex.Initializer"></a>
+#### Initializers <a name="cdk8s.DependencyVertex.Initializer"></a>
 
 ```typescript
 import { DependencyVertex } from 'cdk8s'
@@ -986,6 +1146,10 @@ public topology()
 
 ##### `inbound`<sup>Required</sup> <a name="cdk8s.DependencyVertex.property.inbound"></a>
 
+```typescript
+public readonly inbound: DependencyVertex[];
+```
+
 - *Type:* [`cdk8s.DependencyVertex`](#cdk8s.DependencyVertex)[]
 
 Returns the parents of the vertex (i.e dependants).
@@ -994,6 +1158,10 @@ Returns the parents of the vertex (i.e dependants).
 
 ##### `outbound`<sup>Required</sup> <a name="cdk8s.DependencyVertex.property.outbound"></a>
 
+```typescript
+public readonly outbound: DependencyVertex[];
+```
+
 - *Type:* [`cdk8s.DependencyVertex`](#cdk8s.DependencyVertex)[]
 
 Returns the children of the vertex (i.e dependencies).
@@ -1001,6 +1169,10 @@ Returns the children of the vertex (i.e dependencies).
 ---
 
 ##### `value`<sup>Optional</sup> <a name="cdk8s.DependencyVertex.property.value"></a>
+
+```typescript
+public readonly value: IConstruct;
+```
 
 - *Type:* [`constructs.IConstruct`](#constructs.IConstruct)
 

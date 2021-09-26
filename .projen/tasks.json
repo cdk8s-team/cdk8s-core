@@ -119,7 +119,8 @@
       "env": {
         "OUTFILE": "package.json",
         "CHANGELOG": "dist/changelog.md",
-        "BUMPFILE": "dist/version.txt"
+        "BUMPFILE": "dist/version.txt",
+        "RELEASETAG": "dist/releasetag.txt"
       },
       "steps": [
         {
@@ -134,7 +135,8 @@
       "env": {
         "OUTFILE": "package.json",
         "CHANGELOG": "dist/changelog.md",
-        "BUMPFILE": "dist/version.txt"
+        "BUMPFILE": "dist/version.txt",
+        "RELEASETAG": "dist/releasetag.txt"
       },
       "steps": [
         {
@@ -146,11 +148,13 @@
       "name": "publish:github",
       "description": "Publish this package to GitHub Releases",
       "requiredEnv": [
-        "GITHUB_TOKEN"
+        "GITHUB_TOKEN",
+        "GITHUB_REPOSITORY",
+        "GITHUB_REF"
       ],
       "steps": [
         {
-          "exec": "gh release create v$(cat dist/version.txt) -R ${{ github.repository }} -F dist/changelog.md -t v$(cat dist/version.txt)"
+          "exec": "errout=$(mktemp); gh release create $(cat dist/releasetag.txt) -R $GITHUB_REPOSITORY -F dist/changelog.md -t $(cat dist/releasetag.txt) --target $GITHUB_REF 2> $errout && true; exitcode=$?; if [ $exitcode -ne 0 ] && ! grep -q \"Release.tag_name already exists\" $errout; then cat $errout; exit $exitcode; fi"
         }
       ]
     },
@@ -301,6 +305,9 @@
         },
         {
           "exec": "jsii-docgen -l python -o docs/python.md"
+        },
+        {
+          "exec": "jsii-docgen -l java -o docs/java.md"
         }
       ]
     },
