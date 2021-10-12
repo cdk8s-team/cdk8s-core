@@ -556,9 +556,11 @@ import org.cdk8s.ApiObjectMetadata;
 
 ApiObjectMetadata.builder()
 //  .annotations(java.util.Map<java.lang.String, java.lang.String>)
+//  .finalizers(java.util.List<java.lang.String>)
 //  .labels(java.util.Map<java.lang.String, java.lang.String>)
 //  .name(java.lang.String)
 //  .namespace(java.lang.String)
+//  .ownerReferences(java.util.List<OwnerReference>)
     .build();
 ```
 
@@ -577,6 +579,35 @@ They are not queryable and should be
 preserved when modifying objects.
 
 > http://kubernetes.io/docs/user-guide/annotations
+
+---
+
+##### `finalizers`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadata.property.finalizers"></a>
+
+```java
+public java.util.List<java.lang.String> getFinalizers();
+```
+
+- *Type:* java.util.List<`java.lang.String`>
+- *Default:* No finalizers.
+
+Namespaced keys that tell Kubernetes to wait until specific conditions are met before it fully deletes resources marked for deletion.
+
+Must be empty before the object is deleted from the registry. Each entry is
+an identifier for the responsible component that will remove the entry from
+the list. If the deletionTimestamp of the object is non-nil, entries in
+this list can only be removed. Finalizers may be processed and removed in
+any order.  Order is NOT enforced because it introduces significant risk of
+stuck finalizers. finalizers is a shared field, any actor with permission
+can reorder it. If the finalizer list is processed in order, then this can
+lead to a situation in which the component responsible for the first
+finalizer in the list is waiting for a signal (field value, external
+system, or other) produced by a component responsible for a finalizer later
+in the list, resulting in a deadlock. Without enforced ordering finalizers
+are free to order amongst themselves and are not vulnerable to ordering
+changes in the list.
+
+> https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/
 
 ---
 
@@ -636,6 +667,34 @@ Namespace defines the space within each name must be unique.
 
 An empty namespace is equivalent to the "default" namespace, but "default" is the canonical representation.
 Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces
+
+---
+
+##### `ownerReferences`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadata.property.ownerReferences"></a>
+
+```java
+public java.util.List<OwnerReference> getOwnerReferences();
+```
+
+- *Type:* java.util.List<[`org.cdk8s.OwnerReference`](#org.cdk8s.OwnerReference)>
+- *Default:* automatically set by Kubernetes
+
+List of objects depended by this object.
+
+If ALL objects in the list have
+been deleted, this object will be garbage collected. If this object is
+managed by a controller, then an entry in this list will point to this
+controller, with the controller field set to true. There cannot be more
+than one managing controller.
+
+Kubernetes sets the value of this field automatically for objects that are
+dependents of other objects like ReplicaSets, DaemonSets, Deployments, Jobs
+and CronJobs, and ReplicationControllers. You can also configure these
+relationships manually by changing the value of this field. However, you
+usually don't need to and can allow Kubernetes to automatically manage the
+relationships.
+
+> https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/
 
 ---
 
@@ -991,6 +1050,112 @@ Maximum allowed length for the name.
 
 ---
 
+### OwnerReference <a name="org.cdk8s.OwnerReference"></a>
+
+OwnerReference contains enough information to let you identify an owning object.
+
+An owning object must be in the same namespace as the dependent, or
+be cluster-scoped, so there is no namespace field.
+
+#### Initializer <a name="[object Object].Initializer"></a>
+
+```java
+import org.cdk8s.OwnerReference;
+
+OwnerReference.builder()
+    .apiVersion(java.lang.String)
+    .kind(java.lang.String)
+    .name(java.lang.String)
+    .uid(java.lang.String)
+//  .blockOwnerDeletion(java.lang.Boolean)
+//  .controller(java.lang.Boolean)
+    .build();
+```
+
+##### `apiVersion`<sup>Required</sup> <a name="org.cdk8s.OwnerReference.property.apiVersion"></a>
+
+```java
+public java.lang.String getApiVersion();
+```
+
+- *Type:* `java.lang.String`
+
+API version of the referent.
+
+---
+
+##### `kind`<sup>Required</sup> <a name="org.cdk8s.OwnerReference.property.kind"></a>
+
+```java
+public java.lang.String getKind();
+```
+
+- *Type:* `java.lang.String`
+
+Kind of the referent.
+
+> https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+---
+
+##### `name`<sup>Required</sup> <a name="org.cdk8s.OwnerReference.property.name"></a>
+
+```java
+public java.lang.String getName();
+```
+
+- *Type:* `java.lang.String`
+
+Name of the referent.
+
+> http://kubernetes.io/docs/user-guide/identifiers#names
+
+---
+
+##### `uid`<sup>Required</sup> <a name="org.cdk8s.OwnerReference.property.uid"></a>
+
+```java
+public java.lang.String getUid();
+```
+
+- *Type:* `java.lang.String`
+
+UID of the referent.
+
+> http://kubernetes.io/docs/user-guide/identifiers#uids
+
+---
+
+##### `blockOwnerDeletion`<sup>Optional</sup> <a name="org.cdk8s.OwnerReference.property.blockOwnerDeletion"></a>
+
+```java
+public java.lang.Boolean getBlockOwnerDeletion();
+```
+
+- *Type:* `java.lang.Boolean`
+- *Default:* false. To set this field, a user needs "delete" permission of the
+owner, otherwise 422 (Unprocessable Entity) will be returned.
+
+If true, AND if the owner has the "foregroundDeletion" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed.
+
+Defaults to false. To set this field, a user needs "delete"
+permission of the owner, otherwise 422 (Unprocessable Entity) will be
+returned.
+
+---
+
+##### `controller`<sup>Optional</sup> <a name="org.cdk8s.OwnerReference.property.controller"></a>
+
+```java
+public java.lang.Boolean getController();
+```
+
+- *Type:* `java.lang.Boolean`
+
+If true, this reference points to the managing controller.
+
+---
+
 ### SizeConversionOptions <a name="org.cdk8s.SizeConversionOptions"></a>
 
 Options for how to convert time to a different unit.
@@ -1058,9 +1223,11 @@ import org.cdk8s.ApiObjectMetadataDefinition;
 
 ApiObjectMetadataDefinition.Builder.create()
 //  .annotations(java.util.Map<java.lang.String, java.lang.String>)
+//  .finalizers(java.util.List<java.lang.String>)
 //  .labels(java.util.Map<java.lang.String, java.lang.String>)
 //  .name(java.lang.String)
 //  .namespace(java.lang.String)
+//  .ownerReferences(java.util.List<OwnerReference>)
     .build();
 ```
 
@@ -1075,6 +1242,31 @@ They are not queryable and should be
 preserved when modifying objects.
 
 > http://kubernetes.io/docs/user-guide/annotations
+
+---
+
+##### `finalizers`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadata.parameter.finalizers"></a>
+
+- *Type:* java.util.List<`java.lang.String`>
+- *Default:* No finalizers.
+
+Namespaced keys that tell Kubernetes to wait until specific conditions are met before it fully deletes resources marked for deletion.
+
+Must be empty before the object is deleted from the registry. Each entry is
+an identifier for the responsible component that will remove the entry from
+the list. If the deletionTimestamp of the object is non-nil, entries in
+this list can only be removed. Finalizers may be processed and removed in
+any order.  Order is NOT enforced because it introduces significant risk of
+stuck finalizers. finalizers is a shared field, any actor with permission
+can reorder it. If the finalizer list is processed in order, then this can
+lead to a situation in which the component responsible for the first
+finalizer in the list is waiting for a signal (field value, external
+system, or other) produced by a component responsible for a finalizer later
+in the list, resulting in a deadlock. Without enforced ordering finalizers
+are free to order amongst themselves and are not vulnerable to ordering
+changes in the list.
+
+> https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/
 
 ---
 
@@ -1125,6 +1317,30 @@ Not all objects are required to be scoped to a namespace - the value of this fie
 
 ---
 
+##### `ownerReferences`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadata.parameter.ownerReferences"></a>
+
+- *Type:* java.util.List<[`org.cdk8s.OwnerReference`](#org.cdk8s.OwnerReference)>
+- *Default:* automatically set by Kubernetes
+
+List of objects depended by this object.
+
+If ALL objects in the list have
+been deleted, this object will be garbage collected. If this object is
+managed by a controller, then an entry in this list will point to this
+controller, with the controller field set to true. There cannot be more
+than one managing controller.
+
+Kubernetes sets the value of this field automatically for objects that are
+dependents of other objects like ReplicaSets, DaemonSets, Deployments, Jobs
+and CronJobs, and ReplicationControllers. You can also configure these
+relationships manually by changing the value of this field. However, you
+usually don't need to and can allow Kubernetes to automatically manage the
+relationships.
+
+> https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/
+
+---
+
 #### Methods <a name="Methods"></a>
 
 ##### `add` <a name="org.cdk8s.ApiObjectMetadataDefinition.add"></a>
@@ -1171,6 +1387,20 @@ The value.
 
 ---
 
+##### `addFinalizers` <a name="org.cdk8s.ApiObjectMetadataDefinition.addFinalizers"></a>
+
+```java
+public addFinalizers(java.lang.String finalizers)
+```
+
+###### `finalizers`<sup>Required</sup> <a name="org.cdk8s.ApiObjectMetadataDefinition.parameter.finalizers"></a>
+
+- *Type:* `java.lang.String`
+
+the finalizers.
+
+---
+
 ##### `addLabel` <a name="org.cdk8s.ApiObjectMetadataDefinition.addLabel"></a>
 
 ```java
@@ -1190,6 +1420,20 @@ The key.
 - *Type:* `java.lang.String`
 
 The value.
+
+---
+
+##### `addOwnerReference` <a name="org.cdk8s.ApiObjectMetadataDefinition.addOwnerReference"></a>
+
+```java
+public addOwnerReference(OwnerReference owner)
+```
+
+###### `owner`<sup>Required</sup> <a name="org.cdk8s.ApiObjectMetadataDefinition.parameter.owner"></a>
+
+- *Type:* [`org.cdk8s.OwnerReference`](#org.cdk8s.OwnerReference)
+
+the owner.
 
 ---
 
