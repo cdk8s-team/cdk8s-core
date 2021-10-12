@@ -28,6 +28,40 @@ test('Can add an annotation', () => {
 
 });
 
+test('Can add a finalizer', () => {
+
+  const meta = new ApiObjectMetadataDefinition();
+
+  meta.addFinalizers('my-finalizer');
+
+  const actual = meta.toJson();
+
+  expect(actual.finalizers).toEqual(['my-finalizer']);
+
+});
+
+test('Can add an owner reference', () => {
+
+  const meta = new ApiObjectMetadataDefinition();
+
+  meta.addOwnerReference({
+    apiVersion: 'v1',
+    kind: 'Pod',
+    name: 'mypod',
+    uid: 'abcdef12-3456-7890-abcd-ef1234567890',
+  });
+
+  const actual = meta.toJson();
+
+  expect(actual.ownerReferences).toEqual([{
+    apiVersion: 'v1',
+    kind: 'Pod',
+    name: 'mypod',
+    uid: 'abcdef12-3456-7890-abcd-ef1234567890',
+  }]);
+
+});
+
 test('Instantiation properties are all respected', () => {
 
   const meta = new ApiObjectMetadataDefinition({
