@@ -1,10 +1,9 @@
-const { JsiiProject, DependenciesUpgradeMechanism } = require('projen');
+const { JsiiProject } = require('projen');
 
 const project = new JsiiProject({
   name: 'cdk8s',
   description: 'Cloud Development Kit for Kubernetes',
   repositoryUrl: 'https://github.com/cdk8s-team/cdk8s-core.git',
-  prerelease: 'beta',
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
 
   authorName: 'Amazon Web Services',
@@ -62,17 +61,9 @@ const project = new JsiiProject({
 
   releaseFailureIssue: true,
 
-  depsUpgrade: DependenciesUpgradeMechanism.githubWorkflow({
+  depsUpgradeOptions: {
     exclude: ['yaml'],
-    ignoreProjen: false,
-    workflowOptions: {
-      labels: ['auto-approve'],
-      secret: 'PROJEN_GITHUB_TOKEN',
-      container: {
-        image: 'jsii/superchain',
-      },
-    },
-  }),
+  },
 });
 
 // _loadurl.js is written in javascript so we need to commit it and also copy it
