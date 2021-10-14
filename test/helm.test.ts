@@ -1,6 +1,6 @@
 import * as path from 'path';
 import { Helm, Testing } from '../src';
-import { _deps } from '../src/_deps';
+import { _child_process } from '../src/_child_process';
 
 const SAMPLE_CHART_PATH = path.join(__dirname, 'fixtures', 'helm-sample');
 
@@ -98,7 +98,7 @@ test('it is possible to interact with api objects in the chart', () => {
 
 test('helmFlags can be used to specify additional helm options', () => {
   // GIVEN
-  const spawnMock = jest.spyOn(_deps, 'spawnSync').mockReturnValue({
+  const spawnMock = jest.spyOn(_child_process, 'spawnSync').mockReturnValue({
     status: 0,
     stderr: Buffer.from(''),
     stdout: Buffer.from(''),

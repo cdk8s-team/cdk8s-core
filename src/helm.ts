@@ -3,7 +3,7 @@ import * as os from 'os';
 import * as path from 'path';
 import { Construct } from 'constructs';
 import * as yaml from 'yaml';
-import { _deps } from './_deps';
+import { _child_process } from './_child_process';
 import { Include } from './include';
 import { Names } from './names';
 
@@ -100,7 +100,7 @@ export class Helm extends Include {
 }
 
 function renderTemplate(workdir: string, prog: string, args: string[]) {
-  const helm = _deps.spawnSync(prog, args, {
+  const helm = _child_process.spawnSync(prog, args, {
     maxBuffer: MAX_HELM_BUFFER,
   });
 
