@@ -52,14 +52,14 @@
     "jest-junit": "^12",
     "jsii": "^1.39.0",
     "jsii-diff": "^1.39.0",
-    "jsii-docgen": "^3.7.5",
+    "jsii-docgen": "^3.7.7",
     "jsii-pacmak": "^1.39.0",
     "json-schema": "^0.3.0",
     "json-schema-to-typescript": "^10.1.5",
     "npm-check-updates": "^11",
-    "projen": "^0.30.0",
+    "projen": "^0.30.2",
     "standard-version": "^9",
-    "ts-jest": "^27.0.5",
+    "ts-jest": "^27.0.6",
     "typescript": "^4.4.4"
   },
   "peerDependencies": {
