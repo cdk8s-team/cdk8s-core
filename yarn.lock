@@ -2127,9 +2127,9 @@ ecc-jsbn@~0.1.1:
     safer-buffer "^2.1.0"
 
 electron-to-chromium@^1.3.867:
-  version "1.3.871"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.871.tgz#6e87365fd72037a6c898fb46050ad4be3ac9ef62"
-  integrity sha512-qcLvDUPf8DSIMWarHT2ptgcqrYg62n3vPA7vhrOF24d8UNzbUBaHu2CySiENR3nEDzYgaN60071t0F6KLYMQ7Q==
+  version "1.3.872"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.872.tgz#2311a82f344d828bab6904818adc4afb57b35369"
+  integrity sha512-qG96atLFY0agKyEETiBFNhpRLSXGSXOBuhXWpbkYqrLKKASpRyRBUtfkn0ZjIf/yXfA7FA4nScVOMpXSHFlUCQ==
 
 emittery@^0.8.1:
   version "0.8.1"
@@ -3475,9 +3475,9 @@ isstream@~0.1.2:
   integrity sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo=
 
 istanbul-lib-coverage@^3.0.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/istanbul-lib-coverage/-/istanbul-lib-coverage-3.1.0.tgz#554d3f8adb1101c6aff427d287ed077642a5dcb2"
-  integrity sha512-OFSPP1Csv3GxruycNA1iRJPnc5pon+N4Q89EUz8KYOFbdsqCoHRh0J8jwRdna5thveVcMTdgY27kUl/lZuAWdw==
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/istanbul-lib-coverage/-/istanbul-lib-coverage-3.2.0.tgz#189e7909d0a39fa5a3dfad5b03f71947770191d3"
+  integrity sha512-eOeJ5BHCmHYvQK7xt9GkdHuzuCGS1Y6g9Gvnx3Ym33fz/HpLRYxiS0wHNr+m/MBC8B647Xt608vCDEvhl9c6Mw==
 
 istanbul-lib-instrument@^4.0.3:
   version "4.0.3"
@@ -4050,10 +4050,10 @@ jsii-diff@^1.39.0:
     typescript "~3.9.10"
     yargs "^16.2.0"
 
-jsii-docgen@^3.7.10:
-  version "3.7.10"
-  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-3.7.10.tgz#85e46c62a7817e6761652de46a14f9d1c11fa4a7"
-  integrity sha512-hJ9/vjzq+U54b28ntlKQbAtIXgar2muEZKullnRNheHPRDmJBz1dg+9tgo7gZPxTq7cBJoWTDvkynCECOMoLLg==
+jsii-docgen@^3.7.11:
+  version "3.7.11"
+  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-3.7.11.tgz#46d6cc78b200fb46c083d44716be22f89b7f093c"
+  integrity sha512-s0jj7Tg7l9NwmKwiBAShErPwZTQqmzus4FFugpHBCD9X7D+mC+WcdLvvMZsXgK/PCMFfGErCyGf7DUP4dmLsDA==
   dependencies:
     "@jsii/spec" "^1.39.0"
     case "^1.6.3"
