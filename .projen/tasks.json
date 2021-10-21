@@ -40,9 +40,6 @@
           "exec": "jsii --silence-warnings=reserved-word --no-fix-peer-dependencies"
         },
         {
-          "spawn": "docgen"
-        },
-        {
           "exec": "cp src/_loadurl.js lib/"
         }
       ]
@@ -80,6 +77,9 @@
         },
         {
           "spawn": "package"
+        },
+        {
+          "spawn": "docgen"
         }
       ]
     },
