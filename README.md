@@ -13,7 +13,7 @@ the full power of software in order to define abstract components called
 "constructs" which compose Kubernetes resources or other constructs into
 higher-level abstractions.
 
-> **Note:** This repository is the "core library" of cdk8s, with logic for synthesizing kubernetes manifests using the [constructs framework](https://github.com/aws/constructs). It is published to NPM as [`cdk8s`](https://www.npmjs.com/package/cdk8s) and should not be confused with the cdk8s command-line tool [`cdk8s-cli`](https://www.npmjs.com/package/cdk8s-cli). For more general information about cdk8s, please see [cdk8s.io](https://cdk8s.io), or visit the umbrella repository located at [cdk8s-team/cdk8s](https://github.com/cdk8s-team/cdk8s).
+> **Note:** This repository is the "core library" of cdk8s, with logic for synthesizing Kubernetes manifests using the [constructs framework](https://github.com/aws/constructs). It is published to NPM as [`cdk8s`](https://www.npmjs.com/package/cdk8s) and should not be confused with the cdk8s command-line tool [`cdk8s-cli`](https://www.npmjs.com/package/cdk8s-cli). For more general information about cdk8s, please see [cdk8s.io](https://cdk8s.io), or visit the umbrella repository located at [cdk8s-team/cdk8s](https://github.com/cdk8s-team/cdk8s).
 
 ## Documentation
 
