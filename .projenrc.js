@@ -2,7 +2,7 @@ const { JsiiProject } = require('projen');
 
 const project = new JsiiProject({
   name: 'cdk8s',
-  description: 'Cloud Development Kit for Kubernetes',
+  description: 'This is the core library of Cloud Development Kit (CDK) for Kubernetes (cdk8s). cdk8s apps synthesize into standard Kubernetes manifests which can be applied to any Kubernetes cluster.',
   repositoryUrl: 'https://github.com/cdk8s-team/cdk8s-core.git',
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
 
@@ -29,6 +29,9 @@ const project = new JsiiProject({
     'kubernetes',
     'k8s',
     'constructs',
+    'containers',
+    'configuration',
+    'microservices',
   ],
 
   defaultReleaseBranch: 'main',

@@ -1,6 +1,6 @@
 {
   "name": "cdk8s",
-  "description": "Cloud Development Kit for Kubernetes",
+  "description": "This is the core library of Cloud Development Kit (CDK) for Kubernetes (cdk8s). cdk8s apps synthesize into standard Kubernetes manifests which can be applied to any Kubernetes cluster.",
   "repository": {
     "type": "git",
     "url": "https://github.com/cdk8s-team/cdk8s-core.git"
@@ -78,9 +78,12 @@
   ],
   "keywords": [
     "cdk",
+    "configuration",
     "constructs",
+    "containers",
     "k8s",
-    "kubernetes"
+    "kubernetes",
+    "microservices"
   ],
   "engines": {
     "node": ">= 12.13.0"
