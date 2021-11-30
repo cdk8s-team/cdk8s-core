@@ -148,8 +148,7 @@ export class App extends Construct {
         break;
 
       case YamlOutputType.FILE_PER_RESOURCE:
-        for (const node of this.charts) {
-          const chart: Chart = Chart.of(node);
+        for (const chart of this.charts) {
           const apiObjects = chartToKube(chart);
 
           apiObjects.forEach((apiObject) => {
