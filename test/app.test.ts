@@ -295,9 +295,14 @@ test('return app as yaml string', () => {
 
   // WHEN
   const chart = new Chart(app, 'chart1');
-  new Chart(app, 'chart2');
   new ApiObject(chart, 'obj1', { apiVersion: 'v1', kind: 'Kind1' });
   new ApiObject(chart, 'obj2', { apiVersion: 'v1', kind: 'Kind2' });
+
+  new Chart(app, 'chart2');
+
+  const chart3 = new Chart(app, 'chart3');
+  new ApiObject(chart3, 'obj3', { apiVersion: 'v1', kind: 'Kind3' });
+  new ApiObject(chart3, 'obj4', { apiVersion: 'v1', kind: 'Kind4' });
 
   const a = app.synthYaml();
 

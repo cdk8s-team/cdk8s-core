@@ -51,5 +51,15 @@ kind: Kind2
 metadata:
   name: chart1-obj2-c87a5a2e
 ---
+apiVersion: v1
+kind: Kind3
+metadata:
+  name: chart3-obj3-c8abbfb5
+---
+apiVersion: v1
+kind: Kind4
+metadata:
+  name: chart3-obj4-c8da728e
+---
 "
 `;
