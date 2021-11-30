@@ -85,6 +85,9 @@ export class App extends Construct {
    */
   public readonly yamlOutputType: YamlOutputType;
 
+  private found!: Set<IConstruct>;
+  private charts!: IConstruct[];
+
   /**
    * Defines an app
    * @param props configuration options
@@ -93,6 +96,15 @@ export class App extends Construct {
     super(undefined as any, '');
     this.outdir = props.outdir ?? process.env.CDK8S_OUTDIR ?? 'dist';
     this.yamlOutputType = props.yamlOutputType ?? YamlOutputType.FILE_PER_CHART;
+  }
+
+  /**Sets a new IConstruct and a new DependencyGraph for the object */
+  private commonFunc(): void {
+    validate(this);
+
+    this.found = new Set<IConstruct>();
+    this.charts = new DependencyGraph(Node.of(this)).topology()
+      .filter(x => x instanceof Chart);
   }
 
   /**
@@ -106,25 +118,18 @@ export class App extends Construct {
     // to be able to answer this question.
     const hasDependantCharts = resolveDependencies(this);
 
-    // Since we plan on removing the distributed synth mechanism, we no longer call `Node.synthesize`, but rather simply implement
-    // the necessary operations. We do however want to preserve the distributed validation.
-    validate(this);
-
-    const charts = new DependencyGraph(Node.of(this)).topology()
-      .filter(x => x instanceof Chart);
-
-    const found = new Set<IConstruct>();
+    this.commonFunc();
 
     switch (this.yamlOutputType) {
       case YamlOutputType.FILE_PER_APP:
         let apiObjectList: ApiObject[] = [];
 
-        for (const node of charts) {
+        for (const node of this.charts) {
           const chart: Chart = Chart.of(node);
           apiObjectList.push(...chartToKube(chart));
         }
 
-        if (charts.length > 0) {
+        if (this.charts.length > 0) {
           Yaml.save(
             path.join(this.outdir, 'app.k8s.yaml'), // There is no "app name", so we just hardcode the file name
             apiObjectList.map((apiObject) => apiObject.toJson()),
@@ -135,7 +140,7 @@ export class App extends Construct {
       case YamlOutputType.FILE_PER_CHART:
         const namer: ChartNamer = hasDependantCharts ? new IndexedChartNamer() : new SimpleChartNamer();
 
-        for (const node of charts) {
+        for (const node of this.charts) {
           const chart: Chart = Chart.of(node);
           const chartName = namer.name(chart);
           const objects = chartToKube(chart);
@@ -143,13 +148,13 @@ export class App extends Construct {
           Yaml.save(path.join(this.outdir, chartName), objects.map(obj => obj.toJson()));
 
           for (const obj of objects) {
-            found.add(obj);
+            this.found.add(obj);
           }
         }
         break;
 
       case YamlOutputType.FILE_PER_RESOURCE:
-        for (const node of charts) {
+        for (const node of this.charts) {
           const chart: Chart = Chart.of(node);
           const apiObjects = chartToKube(chart);
 
@@ -177,16 +182,11 @@ export class App extends Construct {
   public synthYaml(): any {
     // Since we plan on removing the distributed synth mechanism, we no longer call `Node.synthesize`, but rather simply implement
     // the necessary operations. We do however want to preserve the distributed validation.
-    validate(this);
-
-    const charts = new DependencyGraph(Node.of(this)).topology()
-      .filter(x => x instanceof Chart);
-
-    const found = new Set<IConstruct>();
+    this.commonFunc();
 
     var str = ''; // string we will concatenate all the yaml objects into
 
-    for (const node of charts) {
+    for (const node of this.charts) {
       const chart: Chart = Chart.of(node);
       const apiObjects = chartToKube(chart);
 
@@ -197,7 +197,7 @@ export class App extends Construct {
       });
 
       for (const obj of apiObjects) {
-        found.add(obj);
+        this.found.add(obj);
       }
     }
 
