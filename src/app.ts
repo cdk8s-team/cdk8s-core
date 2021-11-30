@@ -15,6 +15,8 @@ export enum YamlOutputType {
   FILE_PER_CHART,
   /** Each resource is output to its own file */
   FILE_PER_RESOURCE,
+  /** All resources are returned as a string in YAML format */
+  STRING,
 }
 
 export interface AppProps {
@@ -98,7 +100,7 @@ export class App extends Construct {
   /**
    * Synthesizes all manifests to the output directory
    */
-  public synth(): void {
+  public synth(): any {
 
     fs.mkdirSync(this.outdir, { recursive: true });
 
@@ -141,7 +143,6 @@ export class App extends Construct {
           const objects = chartToKube(chart);
 
           Yaml.save(path.join(this.outdir, chartName), objects.map(obj => obj.toJson()));
-
           for (const obj of objects) {
             found.add(obj);
           }
@@ -163,10 +164,31 @@ export class App extends Construct {
         }
         break;
 
+      case YamlOutputType.STRING:
+        var str = ''; // string we will concatenate all the yaml files into
+
+        for (const node of charts) {
+          const chart: Chart = Chart.of(node);
+          const apiObjects = chartToKube(chart);
+
+          apiObjects.forEach((apiObject) => {
+            if (!(apiObject === undefined)) {
+              str = str.concat(Yaml.stringify(apiObject.toJson()) + '---\n'); // concatenate the yaml files into a single string
+            }
+          });
+
+          for (const obj of apiObjects) {
+            found.add(obj);
+          }
+        }
+        return str;
+
       default:
         break;
     }
+
   }
+
 }
 
 function validate(app: App) {

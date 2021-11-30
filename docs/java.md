@@ -2400,3 +2400,10 @@ Each resource is output to its own file.
 
 ---
 
+
+#### `STRING` <a name="org.cdk8s.YamlOutputType.STRING"></a>
+
+All resources are returned as a string in YAML format.
+
+---
+

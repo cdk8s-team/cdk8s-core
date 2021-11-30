@@ -289,6 +289,26 @@ test('apps with varying yamlOutputTypes; two charts, no objects', () => {
   }
 });
 
+test('return app as yaml string', () => {
+  const testSpecs = {
+    props: { yamlOutputType: YamlOutputType.STRING },
+  };
+  // GIVEN
+  const app = Testing.app(testSpecs.props);
+
+  // WHEN
+  const chart = new Chart(app, 'chart1');
+  new Chart(app, 'chart2');
+  new ApiObject(chart, 'obj1', { apiVersion: 'v1', kind: 'Kind1' });
+  new ApiObject(chart, 'obj2', { apiVersion: 'v1', kind: 'Kind2' });
+
+  const a = app.synth();
+
+  // THEN
+  expect(a).toMatchSnapshot();
+},
+);
+
 test('apps with varying yamlOutputTypes; charts indirectly dependant, multiple objects', () => {
   const testSpecs = [
     {
