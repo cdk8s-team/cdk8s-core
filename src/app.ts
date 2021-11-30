@@ -111,7 +111,7 @@ export class App extends Construct {
   public synth(): void {
 
     fs.mkdirSync(this.outdir, { recursive: true });
-    
+
     // Since we plan on removing the distributed synth mechanism, we no longer call `Node.synthesize`, but rather simply implement
     // the necessary operations. We do however want to preserve the distributed validation.
     validate(this);
@@ -119,16 +119,17 @@ export class App extends Construct {
     // this is kind of sucky, eventually I would like the DependencyGraph
     // to be able to answer this question.
     const hasDependantCharts = resolveDependencies(this);
+    const charts = this.charts;
 
     switch (this.yamlOutputType) {
       case YamlOutputType.FILE_PER_APP:
         let apiObjectList: ApiObject[] = [];
 
-        for (const chart of this.charts) {
+        for (const chart of charts) {
           apiObjectList.push(...chartToKube(chart));
         }
 
-        if (this.charts.length > 0) {
+        if (charts.length > 0) {
           Yaml.save(
             path.join(this.outdir, 'app.k8s.yaml'), // There is no "app name", so we just hardcode the file name
             apiObjectList.map((apiObject) => apiObject.toJson()),
@@ -139,7 +140,7 @@ export class App extends Construct {
       case YamlOutputType.FILE_PER_CHART:
         const namer: ChartNamer = hasDependantCharts ? new IndexedChartNamer() : new SimpleChartNamer();
 
-        for (const chart of this.charts) {
+        for (const chart of charts) {
           const chartName = namer.name(chart);
           const objects = chartToKube(chart);
 
@@ -148,7 +149,7 @@ export class App extends Construct {
         break;
 
       case YamlOutputType.FILE_PER_RESOURCE:
-        for (const chart of this.charts) {
+        for (const chart of charts) {
           const apiObjects = chartToKube(chart);
 
           apiObjects.forEach((apiObject) => {
@@ -178,14 +179,13 @@ export class App extends Construct {
     validate(this);
 
     var str = ''; // string we will concatenate all the yaml objects into
+    const charts = this.charts;
 
-    for (const chart of this.charts) {
+    for (const chart of charts) {
       const apiObjects = chartToKube(chart);
 
       apiObjects.forEach((apiObject) => {
-        if (!(apiObject === undefined)) {
-          str = str.concat(Yaml.stringify(apiObject.toJson()) + '---\n'); // concatenate the yaml into a single string
-        }
+        str = str.concat(Yaml.stringify(apiObject.toJson()) + '---\n'); // concatenate the yaml into a single string
       });
     }
 
