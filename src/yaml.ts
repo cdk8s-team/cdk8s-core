@@ -16,7 +16,7 @@ YAML.defaultOptions.version = '1.1';
  */
 export class Yaml {
 
- /**
+  /**
    * Formats the yaml objects into a single string.
    * @param docs The set of objects
    * @returns The formatted string
