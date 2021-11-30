@@ -111,7 +111,9 @@ export class App extends Construct {
   public synth(): void {
 
     fs.mkdirSync(this.outdir, { recursive: true });
-
+    
+    // Since we plan on removing the distributed synth mechanism, we no longer call `Node.synthesize`, but rather simply implement
+    // the necessary operations. We do however want to preserve the distributed validation.
     validate(this);
 
     // this is kind of sucky, eventually I would like the DependencyGraph
