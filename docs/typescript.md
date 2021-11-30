@@ -207,6 +207,18 @@ public synthYaml()
 
 #### Properties <a name="Properties"></a>
 
+##### `charts`<sup>Required</sup> <a name="cdk8s.App.property.charts"></a>
+
+```typescript
+public readonly charts: Chart[];
+```
+
+- *Type:* [`cdk8s.Chart`](#cdk8s.Chart)[]
+
+Returns all the charts in this app, sorted topologically.
+
+---
+
 ##### `outdir`<sup>Required</sup> <a name="cdk8s.App.property.outdir"></a>
 
 ```typescript

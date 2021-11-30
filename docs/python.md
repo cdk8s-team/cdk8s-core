@@ -251,6 +251,18 @@ def synth_yaml()
 
 #### Properties <a name="Properties"></a>
 
+##### `charts`<sup>Required</sup> <a name="cdk8s.App.property.charts"></a>
+
+```python
+charts: typing.List[Chart]
+```
+
+- *Type:* typing.List[[`cdk8s.Chart`](#cdk8s.Chart)]
+
+Returns all the charts in this app, sorted topologically.
+
+---
+
 ##### `outdir`<sup>Required</sup> <a name="cdk8s.App.property.outdir"></a>
 
 ```python

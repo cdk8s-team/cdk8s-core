@@ -243,6 +243,18 @@ public synthYaml()
 
 #### Properties <a name="Properties"></a>
 
+##### `charts`<sup>Required</sup> <a name="org.cdk8s.App.property.charts"></a>
+
+```java
+public java.util.List<Chart> getCharts();
+```
+
+- *Type:* java.util.List<[`org.cdk8s.Chart`](#org.cdk8s.Chart)>
+
+Returns all the charts in this app, sorted topologically.
+
+---
+
 ##### `outdir`<sup>Required</sup> <a name="org.cdk8s.App.property.outdir"></a>
 
 ```java
