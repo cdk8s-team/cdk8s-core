@@ -290,11 +290,8 @@ test('apps with varying yamlOutputTypes; two charts, no objects', () => {
 });
 
 test('return app as yaml string', () => {
-  const testSpecs = {
-    props: { yamlOutputType: YamlOutputType.STRING },
-  };
   // GIVEN
-  const app = Testing.app(testSpecs.props);
+  const app = Testing.app();
 
   // WHEN
   const chart = new Chart(app, 'chart1');
@@ -302,7 +299,7 @@ test('return app as yaml string', () => {
   new ApiObject(chart, 'obj1', { apiVersion: 'v1', kind: 'Kind1' });
   new ApiObject(chart, 'obj2', { apiVersion: 'v1', kind: 'Kind2' });
 
-  const a = app.synth();
+  const a = app.synthYaml();
 
   // THEN
   expect(a).toMatchSnapshot();

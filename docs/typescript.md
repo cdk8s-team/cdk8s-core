@@ -198,6 +198,12 @@ configuration options.
 public synth()
 ```
 
+##### `synthYaml` <a name="cdk8s.App.synthYaml"></a>
+
+```typescript
+public synthYaml()
+```
+
 
 #### Properties <a name="Properties"></a>
 
@@ -2122,13 +2128,6 @@ Resources are split into seperate files by chart.
 #### `FILE_PER_RESOURCE` <a name="cdk8s.YamlOutputType.FILE_PER_RESOURCE"></a>
 
 Each resource is output to its own file.
-
----
-
-
-#### `STRING` <a name="cdk8s.YamlOutputType.STRING"></a>
-
-All resources are returned as a string in YAML format.
 
 ---
 

@@ -242,6 +242,12 @@ How to divide the YAML output into files.
 def synth()
 ```
 
+##### `synth_yaml` <a name="cdk8s.App.synth_yaml"></a>
+
+```python
+def synth_yaml()
+```
+
 
 #### Properties <a name="Properties"></a>
 
@@ -2669,13 +2675,6 @@ Resources are split into seperate files by chart.
 #### `FILE_PER_RESOURCE` <a name="cdk8s.YamlOutputType.FILE_PER_RESOURCE"></a>
 
 Each resource is output to its own file.
-
----
-
-
-#### `STRING` <a name="cdk8s.YamlOutputType.STRING"></a>
-
-All resources are returned as a string in YAML format.
 
 ---
 

@@ -15,8 +15,6 @@ export enum YamlOutputType {
   FILE_PER_CHART,
   /** Each resource is output to its own file */
   FILE_PER_RESOURCE,
-  /** All resources are returned as a string in YAML format */
-  STRING,
 }
 
 export interface AppProps {
@@ -100,7 +98,7 @@ export class App extends Construct {
   /**
    * Synthesizes all manifests to the output directory
    */
-  public synth(): any {
+  public synth(): void {
 
     fs.mkdirSync(this.outdir, { recursive: true });
 
@@ -143,6 +141,7 @@ export class App extends Construct {
           const objects = chartToKube(chart);
 
           Yaml.save(path.join(this.outdir, chartName), objects.map(obj => obj.toJson()));
+
           for (const obj of objects) {
             found.add(obj);
           }
@@ -163,30 +162,41 @@ export class App extends Construct {
           });
         }
         break;
-
-      case YamlOutputType.STRING:
-        var str = ''; // string we will concatenate all the yaml files into
-
-        for (const node of charts) {
-          const chart: Chart = Chart.of(node);
-          const apiObjects = chartToKube(chart);
-
-          apiObjects.forEach((apiObject) => {
-            if (!(apiObject === undefined)) {
-              str = str.concat(Yaml.stringify(apiObject.toJson()) + '---\n'); // concatenate the yaml files into a single string
-            }
-          });
-
-          for (const obj of apiObjects) {
-            found.add(obj);
-          }
-        }
-        return str;
-
       default:
         break;
     }
 
+  }
+
+  // return string with all yaml objects inside app
+  public synthYaml(): any {
+    // Since we plan on removing the distributed synth mechanism, we no longer call `Node.synthesize`, but rather simply implement
+    // the necessary operations. We do however want to preserve the distributed validation.
+    validate(this);
+
+    const charts = new DependencyGraph(Node.of(this)).topology()
+      .filter(x => x instanceof Chart);
+
+    const found = new Set<IConstruct>();
+
+    var str = ''; // string we will concatenate all the yaml objects into
+
+    for (const node of charts) {
+      const chart: Chart = Chart.of(node);
+      const apiObjects = chartToKube(chart);
+
+      apiObjects.forEach((apiObject) => {
+        if (!(apiObject === undefined)) {
+          str = str.concat(Yaml.stringify(apiObject.toJson()) + '---\n'); // concatenate the yaml into a single string
+        }
+      });
+
+      for (const obj of apiObjects) {
+        found.add(obj);
+      }
+    }
+
+    return str;
   }
 
 }
