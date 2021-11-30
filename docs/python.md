@@ -2539,6 +2539,24 @@ YAML utilities.
 
 #### Static Functions <a name="Static Functions"></a>
 
+##### `format_objects` <a name="cdk8s.Yaml.format_objects"></a>
+
+```python
+import cdk8s
+
+cdk8s.Yaml.format_objects(
+  docs: typing.List[typing.Any]
+)
+```
+
+###### `docs`<sup>Required</sup> <a name="cdk8s.Yaml.parameter.docs"></a>
+
+- *Type:* typing.List[`typing.Any`]
+
+The set of objects.
+
+---
+
 ##### `load` <a name="cdk8s.Yaml.load"></a>
 
 ```python

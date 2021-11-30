@@ -2001,6 +2001,22 @@ YAML utilities.
 
 #### Static Functions <a name="Static Functions"></a>
 
+##### `formatObjects` <a name="cdk8s.Yaml.formatObjects"></a>
+
+```typescript
+import { Yaml } from 'cdk8s'
+
+Yaml.formatObjects(docs: any[])
+```
+
+###### `docs`<sup>Required</sup> <a name="cdk8s.Yaml.parameter.docs"></a>
+
+- *Type:* `any`[]
+
+The set of objects.
+
+---
+
 ##### `load` <a name="cdk8s.Yaml.load"></a>
 
 ```typescript

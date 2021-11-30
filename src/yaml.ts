@@ -15,18 +15,31 @@ YAML.defaultOptions.version = '1.1';
  * YAML utilities.
  */
 export class Yaml {
-  /**
-   * Saves a set of objects as a multi-document YAML file.
-   * @param filePath The output path
+
+ /**
+   * Formats the yaml objects into a single string.
    * @param docs The set of objects
+   * @returns The formatted string
    */
-  public static save(filePath: string, docs: any[]) {
+
+  public static formatObjects(docs: any[]): string {
     // convert each resource to yaml and separate with a '---' line
     // NOTE: we convert undefined values to null, but ignore any documents that
     //  are undefined
     const data = docs.map(
       r => r === undefined ? '\n' : Yaml.stringify(r),
     ).join('---\n');
+
+    return data;
+  }
+
+  /**
+   * Saves a set of objects as a multi-document YAML file.
+   * @param filePath The output path
+   * @param docs The set of objects
+   */
+  public static save(filePath: string, docs: any[]) {
+    const data = this.formatObjects(docs);
     fs.writeFileSync(filePath, data, { encoding: 'utf8' });
   }
 

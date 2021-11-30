@@ -182,12 +182,11 @@ export class App extends Construct {
     for (const chart of charts) {
       const apiObjects = chartToKube(chart);
 
-      apiObjects.forEach((apiObject) => {
-        yamls.push(Yaml.stringify(apiObject.toJson()));
-      });
+      yamls.push(Yaml.formatObjects(apiObjects.map((apiObject) => apiObject.toJson())));
     }
 
-    return yamls.join('---\n');
+    yamls = yamls.filter((a) => a); // removes empty elements in array
+    return yamls.join('---\n'); // still need to do this since the yaml formatObjects does not add a --- at the end of every object
   }
 
 }
