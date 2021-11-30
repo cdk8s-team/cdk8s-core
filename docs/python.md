@@ -242,8 +242,26 @@ How to divide the YAML output into files.
 def synth()
 ```
 
+##### `synth_yaml` <a name="cdk8s.App.synth_yaml"></a>
+
+```python
+def synth_yaml()
+```
+
 
 #### Properties <a name="Properties"></a>
+
+##### `charts`<sup>Required</sup> <a name="cdk8s.App.property.charts"></a>
+
+```python
+charts: typing.List[Chart]
+```
+
+- *Type:* typing.List[[`cdk8s.Chart`](#cdk8s.Chart)]
+
+Returns all the charts in this app, sorted topologically.
+
+---
 
 ##### `outdir`<sup>Required</sup> <a name="cdk8s.App.property.outdir"></a>
 
@@ -2520,6 +2538,24 @@ YAML utilities.
 
 
 #### Static Functions <a name="Static Functions"></a>
+
+##### `format_objects` <a name="cdk8s.Yaml.format_objects"></a>
+
+```python
+import cdk8s
+
+cdk8s.Yaml.format_objects(
+  docs: typing.List[typing.Any]
+)
+```
+
+###### `docs`<sup>Required</sup> <a name="cdk8s.Yaml.parameter.docs"></a>
+
+- *Type:* typing.List[`typing.Any`]
+
+The set of objects.
+
+---
 
 ##### `load` <a name="cdk8s.Yaml.load"></a>
 

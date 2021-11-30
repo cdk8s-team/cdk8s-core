@@ -234,8 +234,26 @@ How to divide the YAML output into files.
 public synth()
 ```
 
+##### `synthYaml` <a name="org.cdk8s.App.synthYaml"></a>
+
+```java
+public synthYaml()
+```
+
 
 #### Properties <a name="Properties"></a>
+
+##### `charts`<sup>Required</sup> <a name="org.cdk8s.App.property.charts"></a>
+
+```java
+public java.util.List<Chart> getCharts();
+```
+
+- *Type:* java.util.List<[`org.cdk8s.Chart`](#org.cdk8s.Chart)>
+
+Returns all the charts in this app, sorted topologically.
+
+---
 
 ##### `outdir`<sup>Required</sup> <a name="org.cdk8s.App.property.outdir"></a>
 
@@ -2257,6 +2275,22 @@ YAML utilities.
 
 
 #### Static Functions <a name="Static Functions"></a>
+
+##### `formatObjects` <a name="org.cdk8s.Yaml.formatObjects"></a>
+
+```java
+import org.cdk8s.Yaml;
+
+Yaml.formatObjects(java.util.List<java.lang.Object> docs)
+```
+
+###### `docs`<sup>Required</sup> <a name="org.cdk8s.Yaml.parameter.docs"></a>
+
+- *Type:* java.util.List<`java.lang.Object`>
+
+The set of objects.
+
+---
 
 ##### `load` <a name="org.cdk8s.Yaml.load"></a>
 

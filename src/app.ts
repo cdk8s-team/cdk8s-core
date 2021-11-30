@@ -86,6 +86,16 @@ export class App extends Construct {
   public readonly yamlOutputType: YamlOutputType;
 
   /**
+   * Returns all the charts in this app, sorted topologically.
+   */
+  public get charts(): Chart[] {
+    const isChart = (x: IConstruct): x is Chart => x instanceof Chart;
+    return new DependencyGraph(Node.of(this))
+      .topology()
+      .filter(isChart);
+  }
+
+  /**
    * Defines an app
    * @param props configuration options
    */
@@ -102,25 +112,20 @@ export class App extends Construct {
 
     fs.mkdirSync(this.outdir, { recursive: true });
 
-    // this is kind of sucky, eventually I would like the DependencyGraph
-    // to be able to answer this question.
-    const hasDependantCharts = resolveDependencies(this);
-
     // Since we plan on removing the distributed synth mechanism, we no longer call `Node.synthesize`, but rather simply implement
     // the necessary operations. We do however want to preserve the distributed validation.
     validate(this);
 
-    const charts = new DependencyGraph(Node.of(this)).topology()
-      .filter(x => x instanceof Chart);
-
-    const found = new Set<IConstruct>();
+    // this is kind of sucky, eventually I would like the DependencyGraph
+    // to be able to answer this question.
+    const hasDependantCharts = resolveDependencies(this);
+    const charts = this.charts;
 
     switch (this.yamlOutputType) {
       case YamlOutputType.FILE_PER_APP:
         let apiObjectList: ApiObject[] = [];
 
-        for (const node of charts) {
-          const chart: Chart = Chart.of(node);
+        for (const chart of charts) {
           apiObjectList.push(...chartToKube(chart));
         }
 
@@ -135,22 +140,16 @@ export class App extends Construct {
       case YamlOutputType.FILE_PER_CHART:
         const namer: ChartNamer = hasDependantCharts ? new IndexedChartNamer() : new SimpleChartNamer();
 
-        for (const node of charts) {
-          const chart: Chart = Chart.of(node);
+        for (const chart of charts) {
           const chartName = namer.name(chart);
           const objects = chartToKube(chart);
 
           Yaml.save(path.join(this.outdir, chartName), objects.map(obj => obj.toJson()));
-
-          for (const obj of objects) {
-            found.add(obj);
-          }
         }
         break;
 
       case YamlOutputType.FILE_PER_RESOURCE:
-        for (const node of charts) {
-          const chart: Chart = Chart.of(node);
+        for (const chart of charts) {
           const apiObjects = chartToKube(chart);
 
           apiObjects.forEach((apiObject) => {
@@ -166,7 +165,30 @@ export class App extends Construct {
       default:
         break;
     }
+
   }
+
+  /**
+   * Synthesizes the app into a YAML string.
+   *
+   * @returns A string with all YAML objects across all charts in this app.
+   */
+  public synthYaml(): any {
+    validate(this);
+
+    var yamls: string[] = [];
+    const charts = this.charts;
+
+    for (const chart of charts) {
+      const apiObjects = chartToKube(chart);
+
+      yamls.push(Yaml.formatObjects(apiObjects.map((apiObject) => apiObject.toJson())));
+    }
+
+    yamls = yamls.filter((a) => a); // removes empty elements in array
+    return yamls.join('---\n'); // still need to do this since the yaml formatObjects does not add a --- at the end of every object
+  }
+
 }
 
 function validate(app: App) {
