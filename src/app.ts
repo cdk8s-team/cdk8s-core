@@ -86,8 +86,8 @@ export class App extends Construct {
   public readonly yamlOutputType: YamlOutputType;
 
   /**
- * Returns all the charts in this app, sorted topologically.
- */
+   * Returns all the charts in this app, sorted topologically.
+   */
   public get charts(): Chart[] {
     const isChart = (x: IConstruct): x is Chart => x instanceof Chart;
     return new DependencyGraph(Node.of(this))
@@ -178,18 +178,18 @@ export class App extends Construct {
     // the necessary operations. We do however want to preserve the distributed validation.
     validate(this);
 
-    var str = ''; // string we will concatenate all the yaml objects into
+    var yamls: string[] = [];
     const charts = this.charts;
 
     for (const chart of charts) {
       const apiObjects = chartToKube(chart);
 
       apiObjects.forEach((apiObject) => {
-        str = str.concat(Yaml.stringify(apiObject.toJson()) + '---\n'); // concatenate the yaml into a single string
+        yamls.push(Yaml.stringify(apiObject.toJson()));
       });
     }
 
-    return str;
+    return yamls.join('---\n');
   }
 
 }
