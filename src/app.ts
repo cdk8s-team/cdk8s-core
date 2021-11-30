@@ -174,8 +174,6 @@ export class App extends Construct {
    * @returns A string with all YAML objects across all charts in this app.
    */
   public synthYaml(): any {
-    // Since we plan on removing the distributed synth mechanism, we no longer call `Node.synthesize`, but rather simply implement
-    // the necessary operations. We do however want to preserve the distributed validation.
     validate(this);
 
     var yamls: string[] = [];
