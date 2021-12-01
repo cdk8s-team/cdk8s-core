@@ -2001,7 +2001,7 @@ YAML utilities.
 
 #### Static Functions <a name="Static Functions"></a>
 
-##### `formatObjects` <a name="cdk8s.Yaml.formatObjects"></a>
+##### ~~`formatObjects`~~ <a name="cdk8s.Yaml.formatObjects"></a>
 
 ```typescript
 import { Yaml } from 'cdk8s'
@@ -2012,8 +2012,6 @@ Yaml.formatObjects(docs: any[])
 ###### `docs`<sup>Required</sup> <a name="cdk8s.Yaml.parameter.docs"></a>
 
 - *Type:* `any`[]
-
-The set of objects.
 
 ---
 
@@ -2062,14 +2060,14 @@ The set of objects.
 ```typescript
 import { Yaml } from 'cdk8s'
 
-Yaml.stringify(doc: any)
+Yaml.stringify(docs: any)
 ```
 
-###### `doc`<sup>Required</sup> <a name="cdk8s.Yaml.parameter.doc"></a>
+###### `docs`<sup>Required</sup> <a name="cdk8s.Yaml.parameter.docs"></a>
 
 - *Type:* `any`
 
-An object.
+A set of objects to convert to YAML.
 
 ---
 

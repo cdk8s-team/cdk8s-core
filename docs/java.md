@@ -2276,7 +2276,7 @@ YAML utilities.
 
 #### Static Functions <a name="Static Functions"></a>
 
-##### `formatObjects` <a name="org.cdk8s.Yaml.formatObjects"></a>
+##### ~~`formatObjects`~~ <a name="org.cdk8s.Yaml.formatObjects"></a>
 
 ```java
 import org.cdk8s.Yaml;
@@ -2287,8 +2287,6 @@ Yaml.formatObjects(java.util.List<java.lang.Object> docs)
 ###### `docs`<sup>Required</sup> <a name="org.cdk8s.Yaml.parameter.docs"></a>
 
 - *Type:* java.util.List<`java.lang.Object`>
-
-The set of objects.
 
 ---
 
@@ -2337,14 +2335,14 @@ The set of objects.
 ```java
 import org.cdk8s.Yaml;
 
-Yaml.stringify(java.lang.Object doc)
+Yaml.stringify(java.lang.Object docs)
 ```
 
-###### `doc`<sup>Required</sup> <a name="org.cdk8s.Yaml.parameter.doc"></a>
+###### `docs`<sup>Required</sup> <a name="org.cdk8s.Yaml.parameter.docs"></a>
 
 - *Type:* `java.lang.Object`
 
-An object.
+A set of objects to convert to YAML.
 
 ---
 
