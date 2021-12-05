@@ -2539,7 +2539,7 @@ YAML utilities.
 
 #### Static Functions <a name="Static Functions"></a>
 
-##### `format_objects` <a name="cdk8s.Yaml.format_objects"></a>
+##### ~~`format_objects`~~ <a name="cdk8s.Yaml.format_objects"></a>
 
 ```python
 import cdk8s
@@ -2552,8 +2552,6 @@ cdk8s.Yaml.format_objects(
 ###### `docs`<sup>Required</sup> <a name="cdk8s.Yaml.parameter.docs"></a>
 
 - *Type:* typing.List[`typing.Any`]
-
-The set of objects.
 
 ---
 
@@ -2608,15 +2606,15 @@ The set of objects.
 import cdk8s
 
 cdk8s.Yaml.stringify(
-  doc: typing.Any
+  docs: typing.Any
 )
 ```
 
-###### `doc`<sup>Required</sup> <a name="cdk8s.Yaml.parameter.doc"></a>
+###### `docs`<sup>Required</sup> <a name="cdk8s.Yaml.parameter.docs"></a>
 
 - *Type:* `typing.Any`
 
-An object.
+A set of objects to convert to YAML.
 
 ---
 
