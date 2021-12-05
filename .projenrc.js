@@ -1,6 +1,6 @@
-const { JsiiProject } = require('projen');
+const { cdk } = require('projen');
 
-const project = new JsiiProject({
+const project = new cdk.JsiiProject({
   name: 'cdk8s',
   description: 'This is the core library of Cloud Development Kit (CDK) for Kubernetes (cdk8s). cdk8s apps synthesize into standard Kubernetes manifests which can be applied to any Kubernetes cluster.',
   repositoryUrl: 'https://github.com/cdk8s-team/cdk8s-core.git',
@@ -36,6 +36,7 @@ const project = new JsiiProject({
 
   defaultReleaseBranch: 'main',
   minNodeVersion: '12.13.0',
+  workflowNodeVersion: '12.22.0',
 
   // jsii configuration
   publishToMaven: {
