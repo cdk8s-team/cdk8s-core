@@ -107,3 +107,16 @@ test('multi-line text block with long line keep line break', () => {
   };
   expect(Yaml.stringify(yamlString)).toMatchSnapshot();
 });
+
+test('stringify() accepts multiple documents', () => {
+  const actual = Yaml.stringify({ foo: 123 }, { bar: ['hi', 'there'], jam: 12 });
+  expect(actual).toStrictEqual([
+    'foo: 123',
+    '---',
+    'bar:',
+    '  - hi',
+    '  - there',
+    'jam: 12',
+    '',
+  ].join('\n'));
+});

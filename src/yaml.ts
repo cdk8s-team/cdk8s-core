@@ -15,22 +15,11 @@ YAML.defaultOptions.version = '1.1';
  * YAML utilities.
  */
 export class Yaml {
-
   /**
-   * Formats the yaml objects into a single string.
-   * @param docs The set of objects
-   * @returns The formatted string
+   * @deprecated use `stringify(doc[, doc, ...])`
    */
-
   public static formatObjects(docs: any[]): string {
-    // convert each resource to yaml and separate with a '---' line
-    // NOTE: we convert undefined values to null, but ignore any documents that
-    //  are undefined
-    const data = docs.map(
-      r => r === undefined ? '\n' : Yaml.stringify(r),
-    ).join('---\n');
-
-    return data;
+    return this.stringify(...docs);
   }
 
   /**
@@ -39,17 +28,23 @@ export class Yaml {
    * @param docs The set of objects
    */
   public static save(filePath: string, docs: any[]) {
-    const data = this.formatObjects(docs);
+    const data = this.stringify(...docs);
     fs.writeFileSync(filePath, data, { encoding: 'utf8' });
   }
 
   /**
-   * Stringify a document into yaml
-   * @param doc An object
+   * Stringify a document (or multiple documents) into YAML
+   *
+   * We convert undefined values to null, but ignore any documents that are
+   * undefined.
+   *
+   * @param docs A set of objects to convert to YAML
+   * @returns a YAML string. Multiple docs are separated by `---`.
    */
-  public static stringify(doc: any) {
-    // Disable lineWidth to avoid loosing the \n into a multi-line parameter with long lines.
-    return YAML.stringify(doc, { keepUndefined: true, lineWidth: 0 });
+  public static stringify(...docs: any[]) {
+    return docs.map(
+      r => r === undefined ? '\n' : YAML.stringify(r, { keepUndefined: true, lineWidth: 0 }),
+    ).join('---\n');
   }
 
   /**
