@@ -15,6 +15,8 @@ export enum YamlOutputType {
   FILE_PER_CHART,
   /** Each resource is output to its own file */
   FILE_PER_RESOURCE,
+  /** Each chart in its own folder and each resource in its own file */
+  FOLDER_PER_CHART_FILE_PER_RESOURCE,
 }
 
 export interface AppProps {
@@ -162,6 +164,24 @@ export class App extends Construct {
         }
         break;
 
+      case YamlOutputType.FOLDER_PER_CHART_FILE_PER_RESOURCE:
+        const folderNamer: ChartNamer = hasDependantCharts ? new IndexedChartFolderNamer() : new SimpleChartFolderNamer();
+        for (const chart of charts) {
+          const chartName = folderNamer.name(chart);
+          const apiObjects = chartToKube(chart);
+          const fullOutDir = path.join(this.outdir, chartName);
+          fs.mkdirSync(fullOutDir, { recursive: true });
+
+          apiObjects.forEach((apiObject) => {
+            if (!(apiObject === undefined)) {
+              const fileName = `${`${apiObject.kind}.${apiObject.metadata.name}`
+                .replace(/[^0-9a-zA-Z-_.]/g, '')}.k8s.yaml`;
+              Yaml.save(path.join(fullOutDir, fileName), [apiObject.toJson()]);
+            }
+          });
+        }
+        break;
+
       default:
         break;
     }
@@ -264,6 +284,28 @@ class SimpleChartNamer implements ChartNamer {
 }
 
 class IndexedChartNamer extends SimpleChartNamer implements ChartNamer {
+  private index: number = 0;
+  constructor() {
+    super();
+  }
+
+  public name(chart: Chart) {
+    const name = `${this.index.toString().padStart(4, '0')}-${super.name(chart)}`;
+    this.index++;
+    return name;
+  }
+}
+
+class SimpleChartFolderNamer implements ChartNamer {
+  constructor() {
+  }
+
+  public name(chart: Chart) {
+    return Names.toDnsLabel(chart);
+  }
+}
+
+class IndexedChartFolderNamer extends SimpleChartFolderNamer implements ChartNamer {
   private index: number = 0;
   constructor() {
     super();
