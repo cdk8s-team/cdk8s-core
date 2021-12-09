@@ -176,19 +176,16 @@ export class App extends Construct {
   public synthYaml(): any {
     validate(this);
 
-    var yamls: string[] = [];
     const charts = this.charts;
+    const docs: any[] = [];
 
     for (const chart of charts) {
       const apiObjects = chartToKube(chart);
-
-      yamls.push(Yaml.formatObjects(apiObjects.map((apiObject) => apiObject.toJson())));
+      docs.push(...apiObjects.map(apiObject => apiObject.toJson()));
     }
 
-    yamls = yamls.filter((a) => a); // removes empty elements in array
-    return yamls.join('---\n'); // still need to do this since the yaml formatObjects does not add a --- at the end of every object
+    return Yaml.stringify(...docs);
   }
-
 }
 
 function validate(app: App) {
