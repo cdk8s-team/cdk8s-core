@@ -10,7 +10,7 @@ const project = new cdk.JsiiProject({
   authorUrl: 'https://aws.amazon.com',
 
   peerDeps: [
-    'constructs',
+    'constructs@^10.0.0',
   ],
 
   bundledDeps: [

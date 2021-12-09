@@ -37,8 +37,15 @@ export class DependencyGraph {
       putVertex(n);
     }
 
+    const deps = node.findAll().map(n => n.node.dependencies.map(ndep => {
+      return {
+        source: n,
+        target: ndep,
+      };
+    })).flat();
+
     // create all the edges of the graph.
-    for (const dep of node.dependencies) {
+    for (const dep of deps) {
 
       if (!getVertex(dep.target)) {
         // dont cross scope boundaries.

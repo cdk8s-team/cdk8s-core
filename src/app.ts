@@ -176,34 +176,46 @@ export class App extends Construct {
   public synthYaml(): any {
     validate(this);
 
+    var yamls: string[] = [];
     const charts = this.charts;
-    const docs: any[] = [];
 
     for (const chart of charts) {
       const apiObjects = chartToKube(chart);
-      docs.push(...apiObjects.map(apiObject => apiObject.toJson()));
+
+      yamls.push(Yaml.formatObjects(apiObjects.map((apiObject) => apiObject.toJson())));
     }
 
-    return Yaml.stringify(...docs);
+    yamls = yamls.filter((a) => a); // removes empty elements in array
+    return yamls.join('---\n'); // still need to do this since the yaml formatObjects does not add a --- at the end of every object
   }
+
 }
 
 function validate(app: App) {
 
   // Note this is a copy-paste of https://github.com/aws/constructs/blob/master/lib/construct.ts#L438.
-  const errors = Node.of(app).validate();
+  const errors = app.node.findAll().map((n) => {
+    return { path: n.node.path, errors: n.node.validate() };
+  }).filter(verr => verr.errors.length > 0);
+
   if (errors.length > 0) {
-    const errorList = errors.map(e => `[${Node.of(e.source).path}] ${e.message}`).join('\n  ');
+    const errorList = errors.map(e => `[${e.path}] ${e.errors.join(',')}`).join('\n  ');
     throw new Error(`Validation failed with the following errors:\n  ${errorList}`);
   }
-
 }
 
 function resolveDependencies(app: App) {
 
   let hasDependantCharts = false;
 
-  for (const dep of Node.of(app).dependencies) {
+  const deps = app.node.findAll().map(n => n.node.dependencies.map(ndep => {
+    return {
+      source: n,
+      target: ndep,
+    };
+  })).flat();
+
+  for (const dep of deps) {
 
     // create explicit api object dependencies from implicit construct dependencies
     const targetApiObjects = Node.of(dep.target).findAll().filter(c => c instanceof ApiObject);
