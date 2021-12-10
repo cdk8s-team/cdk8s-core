@@ -18,12 +18,6 @@
     "package": "npx projen package",
     "post-compile": "npx projen post-compile",
     "pre-compile": "npx projen pre-compile",
-    "publish:github": "npx projen publish:github",
-    "publish:golang": "npx projen publish:golang",
-    "publish:maven": "npx projen publish:maven",
-    "publish:npm": "npx projen publish:npm",
-    "publish:nuget": "npx projen publish:nuget",
-    "publish:pypi": "npx projen publish:pypi",
     "release": "npx projen release",
     "test": "npx projen test",
     "test:update": "npx projen test:update",
@@ -58,10 +52,10 @@
     "json-schema": "^0.4.0",
     "json-schema-to-typescript": "^10.1.5",
     "npm-check-updates": "^11",
-    "projen": "^0.39.2",
+    "projen": "^0.40.0",
     "standard-version": "^9",
     "ts-jest": "^27.1.1",
-    "typescript": "^4.5.2"
+    "typescript": "^4.5.3"
   },
   "peerDependencies": {
     "constructs": "^3.3.162"
