@@ -1,4 +1,5 @@
 import { Node, IConstruct } from 'constructs';
+import { getDependencies } from './_compat';
 
 
 /**
@@ -38,7 +39,7 @@ export class DependencyGraph {
     }
 
     // create all the edges of the graph.
-    for (const dep of node.dependencies) {
+    for (const dep of getDependencies(node)) {
 
       if (!getVertex(dep.target)) {
         // dont cross scope boundaries.

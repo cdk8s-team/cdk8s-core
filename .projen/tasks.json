@@ -194,6 +194,38 @@
         },
         {
           "spawn": "eslint"
+        },
+        {
+          "spawn": "test:compat"
+        }
+      ]
+    },
+    "test:compat": {
+      "name": "test:compat",
+      "steps": [
+        {
+          "exec": "cp package.json package.json.bak"
+        },
+        {
+          "exec": "yarn add --dev constructs@^10"
+        },
+        {
+          "exec": "npm list --depth=0 constructs --json"
+        },
+        {
+          "exec": "jest --passWithNoTests --all --updateSnapshot"
+        },
+        {
+          "exec": "cp package.json.bak package.json"
+        },
+        {
+          "exec": "yarn install --check-files"
+        },
+        {
+          "exec": "npm list --depth=0 constructs --json"
+        },
+        {
+          "exec": "rm package.json.bak"
         }
       ]
     },

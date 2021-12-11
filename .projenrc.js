@@ -85,6 +85,18 @@ const installHelm = project.addTask('install-helm', {
 
 project.testTask.prependSpawn(installHelm);
 
+// test compatibility with constructs v10
+const compatTask = project.addTask('test:compat');
+compatTask.exec('cp package.json package.json.bak');
+compatTask.exec('yarn add --dev constructs@^10');
+compatTask.exec('npm list --depth=0 constructs --json'); // for debugging
+compatTask.exec('jest --passWithNoTests --all --updateSnapshot');
+compatTask.exec('cp package.json.bak package.json');
+compatTask.exec('yarn install --check-files');
+compatTask.exec('npm list --depth=0 constructs --json'); // for debugging
+compatTask.exec('rm package.json.bak');
+project.testTask.spawn(compatTask);
+
 const docgenTask = project.tasks.tryFind('docgen');
 docgenTask.reset();
 docgenTask.exec('jsii-docgen -l typescript -o docs/typescript.md');
