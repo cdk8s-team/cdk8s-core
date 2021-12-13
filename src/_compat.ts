@@ -35,8 +35,6 @@ export function getDependencies(node: Node): Dependency[] {
       target: ndep,
     };
   })).flat();
-
-
 }
 
 export function getValidationErrors(node: Node): string[] {

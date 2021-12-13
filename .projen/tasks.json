@@ -207,10 +207,10 @@
           "exec": "cp package.json package.json.bak"
         },
         {
-          "exec": "yarn add --dev constructs@^10"
+          "exec": "yarn add --dev constructs@^3"
         },
         {
-          "exec": "npm list --depth=0 constructs --json"
+          "exec": "npm list --depth=0 constructs | grep \"constructs@3\""
         },
         {
           "exec": "jest --passWithNoTests --all --updateSnapshot"
@@ -222,7 +222,7 @@
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "npm list --depth=0 constructs --json"
+          "exec": "npm list --depth=0 constructs | grep \"constructs@10\""
         },
         {
           "exec": "rm package.json.bak"
