@@ -1,5 +1,6 @@
-import { Construct, Node, Dependency } from 'constructs';
+import { Construct, Node } from 'constructs';
 import { Chart, ApiObject, Testing } from '../src';
+import { Dependency, getDependencies } from '../src/_compat';
 import { Lazy } from '../src/lazy';
 
 test('empty stack', () => {
@@ -103,7 +104,7 @@ test('addDependency', () => {
 
   chart1.addDependency(chart2, chart3);
 
-  const dependencies: Set<Dependency> = new Set<Dependency>(Node.of(chart1).dependencies);
+  const dependencies: Set<Dependency> = new Set<Dependency>(getDependencies(Node.of(chart1)));
 
   expect(dependencies).toEqual(new Set<Dependency>([
     {
@@ -127,11 +128,9 @@ describe('toJson', () => {
 
       constructor(scope: Construct, id: string) {
         super(scope, id);
-      }
-
-      protected onValidate(): string[] {
-        this.validateInvoked = true;
-        return [];
+        Node.of(this).addValidation({
+          validate: (): string[] => { this.validateInvoked = true; return [];},
+        });
       }
     }
 

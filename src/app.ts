@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { Construct, Node, IConstruct } from 'constructs';
+import { getDependencies, getValidationErrors } from './_compat';
 import { ApiObject } from './api-object';
 import { Chart } from './chart';
 import { DependencyGraph } from './dependency';
@@ -189,12 +190,9 @@ export class App extends Construct {
 }
 
 function validate(app: App) {
-
-  // Note this is a copy-paste of https://github.com/aws/constructs/blob/master/lib/construct.ts#L438.
-  const errors = Node.of(app).validate();
+  const errors = getValidationErrors(Node.of(app));
   if (errors.length > 0) {
-    const errorList = errors.map(e => `[${Node.of(e.source).path}] ${e.message}`).join('\n  ');
-    throw new Error(`Validation failed with the following errors:\n  ${errorList}`);
+    throw new Error(`Validation failed with the following errors:\n  ${errors.join('\n  ')}`);
   }
 
 }
@@ -203,7 +201,7 @@ function resolveDependencies(app: App) {
 
   let hasDependantCharts = false;
 
-  for (const dep of Node.of(app).dependencies) {
+  for (const dep of getDependencies(Node.of(app))) {
 
     // create explicit api object dependencies from implicit construct dependencies
     const targetApiObjects = Node.of(dep.target).findAll().filter(c => c instanceof ApiObject);
