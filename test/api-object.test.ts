@@ -1,4 +1,4 @@
-import { Construct, Node, Dependency } from 'constructs';
+import { Construct, Node } from 'constructs';
 import { ApiObject, Chart, JsonPatch, Testing } from '../src';
 
 test('minimal configuration', () => {
@@ -78,18 +78,12 @@ test('addDependency', () => {
 
   obj1.addDependency(obj2, obj3);
 
-  const dependencies: Set<Dependency> = new Set<Dependency>(Node.of(obj1).dependencies);
+  const dependencies = Node.of(obj1).dependencies;
 
-  expect(dependencies).toEqual(new Set<Dependency>([
-    {
-      source: obj1,
-      target: obj2,
-    },
-    {
-      source: obj1,
-      target: obj3,
-    },
-  ]));
+  expect(dependencies).toEqual([
+    obj2,
+    obj3,
+  ]);
 
 });
 

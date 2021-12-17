@@ -242,12 +242,11 @@ test('synth calls validate', () => {
 
     constructor(scope: Construct, id: string) {
       super(scope, id);
+      this.node.addValidation({
+        validate: (): string[] => { this.validateInvoked = true; return []; },
+      });
     }
 
-    protected onValidate(): string[] {
-      this.validateInvoked = true;
-      return [];
-    }
   }
 
   const app = new App();
