@@ -34,7 +34,15 @@ const project = new cdk.JsiiProject({
     'microservices',
   ],
 
-  defaultReleaseBranch: 'main',
+  defaultReleaseBranch: '2.x',
+  majorVersion: 2,
+  releaseBranches: {
+    '1.x': {
+      majorVersion: 1,
+      npmDistTag: 'latest-1',
+    },
+  },
+
   minNodeVersion: '12.13.0',
   workflowNodeVersion: '12.22.0',
 
