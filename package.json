@@ -18,7 +18,8 @@
     "package": "npx projen package",
     "post-compile": "npx projen post-compile",
     "pre-compile": "npx projen pre-compile",
-    "release": "npx projen release",
+    "release:1.x": "npx projen release:1.x",
+    "release:2.x": "npx projen release:2.x",
     "test": "npx projen test",
     "test:update": "npx projen test:update",
     "test:watch": "npx projen test:watch",
@@ -38,7 +39,7 @@
     "@types/node": "^12",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
-    "constructs": "^3.3.166",
+    "constructs": "10.0.0",
     "eslint": "^8",
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-import-resolver-typescript": "^2.5.0",
@@ -58,7 +59,7 @@
     "typescript": "^4.5.4"
   },
   "peerDependencies": {
-    "constructs": "^3.3.166"
+    "constructs": "^10"
   },
   "dependencies": {
     "fast-json-patch": "^2.2.1",
