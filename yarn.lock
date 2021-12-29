@@ -2010,9 +2010,9 @@ duplexer3@^0.1.4:
   integrity sha1-7gHdHKwO08vH/b6jfcCo8c4ALOI=
 
 electron-to-chromium@^1.4.17:
-  version "1.4.29"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.29.tgz#a9b85ab888d0122124c9647c04d8dd246fae94b6"
-  integrity sha512-N2Jbwxo5Rum8G2YXeUxycs1sv4Qme/ry71HG73bv8BvZl+I/4JtRgK/En+ST/Wh/yF1fqvVCY4jZBgMxnhjtBA==
+  version "1.4.30"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.30.tgz#0f75a1dce26dffbd5a0f7212e5b87fe0b61cbc76"
+  integrity sha512-609z9sIMxDHg+TcR/VB3MXwH+uwtrYyeAwWc/orhnr90ixs6WVGSrt85CDLGUdNnLqCA7liv426V20EecjvflQ==
 
 emittery@^0.8.1:
   version "0.8.1"
@@ -2702,9 +2702,9 @@ get-symbol-description@^1.0.0:
     get-intrinsic "^1.1.1"
 
 git-raw-commits@^2.0.8:
-  version "2.0.10"
-  resolved "https://registry.yarnpkg.com/git-raw-commits/-/git-raw-commits-2.0.10.tgz#e2255ed9563b1c9c3ea6bd05806410290297bbc1"
-  integrity sha512-sHhX5lsbG9SOO6yXdlwgEMQ/ljIn7qMpAbJZCGfXX2fq5T8M5SrDnpYk9/4HswTildcIqatsWa91vty6VhWSaQ==
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/git-raw-commits/-/git-raw-commits-2.0.11.tgz#bc3576638071d18655e1cc60d7f524920008d723"
+  integrity sha512-VnctFhw+xfj8Va1xtfEqCUD2XDrbAPSJx+hSrE5K7fGdjZruW7XV+QOrN7LF/RJyvspRiD2I0asWsxFp0ya26A==
   dependencies:
     dargs "^7.0.0"
     lodash "^4.17.15"
@@ -5003,10 +5003,10 @@ progress@^2.0.0, progress@^2.0.3:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@^0.47.1:
-  version "0.47.1"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.47.1.tgz#b2a90f4acd0576a16e0a49fd0aa20174ee11056a"
-  integrity sha512-CmEPsaU/nI6w59NsP4yweOV5UwrOe/wbuFuqbQv08H/4t05mOi4Fz5GoLfWqPs6Yx7izIfftvXKi/Sv0LE6bCw==
+projen@^0.47.6:
+  version "0.47.6"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.47.6.tgz#07a60364364805ccb255f450066dde626d2eccb3"
+  integrity sha512-ELeaRtwDm3FBJ425Qh5S7aRoaGnp+fpzaKwEGyD/6qcFby5sf7/2/QQzer/fuM/I/ya8pe0Om8cTGuu1IGjcpw==
   dependencies:
     "@iarna/toml" "^2.2.5"
     case "^1.6.3"
