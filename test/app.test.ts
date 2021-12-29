@@ -319,7 +319,6 @@ test('apps with varying yamlOutputTypes; charts indirectly dependant, multiple o
   const testSpecs = [
     {
       props: { yamlOutputType: YamlOutputType.FILE_PER_CHART },
-      subFolders: false,
       result: [
         '0000-chart3.k8s.yaml',
         '0001-chart2.k8s.yaml',
@@ -328,12 +327,10 @@ test('apps with varying yamlOutputTypes; charts indirectly dependant, multiple o
     },
     {
       props: { yamlOutputType: YamlOutputType.FILE_PER_APP },
-      subFolders: false,
       result: ['app.k8s.yaml'],
     },
     {
       props: { yamlOutputType: YamlOutputType.FILE_PER_RESOURCE },
-      subFolders: false,
       result: [
         'Kind1.chart1-obj1-c818e77f.k8s.yaml',
         'Kind2.chart2-obj2-c8636f20.k8s.yaml',
@@ -342,14 +339,10 @@ test('apps with varying yamlOutputTypes; charts indirectly dependant, multiple o
     },
     {
       props: { yamlOutputType: YamlOutputType.FOLDER_PER_CHART_FILE_PER_RESOURCE },
-      subFolders: true,
       result: [
-        '0000-chart3',
-        'Kind3.chart3-obj3-c8abbfb5.k8s.yaml',
-        '0001-chart2',
-        'Kind2.chart2-obj2-c8636f20.k8s.yaml',
-        '0002-chart1',
-        'Kind1.chart1-obj1-c818e77f.k8s.yaml',
+        '0000-chart3/Kind3.chart3-obj3-c8abbfb5.k8s.yaml',
+        '0001-chart2/Kind2.chart2-obj2-c8636f20.k8s.yaml',
+        '0002-chart1/Kind1.chart1-obj1-c818e77f.k8s.yaml',
       ],
     },
   ];
@@ -373,7 +366,7 @@ test('apps with varying yamlOutputTypes; charts indirectly dependant, multiple o
     app.synth();
 
     // THEN
-    expect(getFilesAndFolders(app.outdir, testSpec.subFolders)).toEqual(testSpec.result);
+    expect(getFilesAndFolders(app.outdir)).toEqual(testSpec.result);
   }
 });
 
@@ -393,17 +386,14 @@ test('apps with varying yamlOutputTypes; chart dependencies via custom construct
   const testSpecs = [
     {
       props: { yamlOutputType: YamlOutputType.FILE_PER_CHART },
-      subFolders: false,
       result: ['0000-chart2.k8s.yaml', '0001-chart1.k8s.yaml'],
     },
     {
       props: { yamlOutputType: YamlOutputType.FILE_PER_APP },
-      subFolders: false,
       result: ['app.k8s.yaml'],
     },
     {
       props: { yamlOutputType: YamlOutputType.FILE_PER_RESOURCE },
-      subFolders: false,
       result: [
         'CustomConstruct.chart1-microservice-microserviceobj-c8e1164f.k8s.yaml',
         'CustomConstruct.chart2-database-databaseobj-c8b5eba3.k8s.yaml',
@@ -411,12 +401,9 @@ test('apps with varying yamlOutputTypes; chart dependencies via custom construct
     },
     {
       props: { yamlOutputType: YamlOutputType.FOLDER_PER_CHART_FILE_PER_RESOURCE },
-      subFolders: true,
       result: [
-        '0000-chart2',
-        'CustomConstruct.chart2-database-databaseobj-c8b5eba3.k8s.yaml',
-        '0001-chart1',
-        'CustomConstruct.chart1-microservice-microserviceobj-c8e1164f.k8s.yaml',
+        '0000-chart2/CustomConstruct.chart2-database-databaseobj-c8b5eba3.k8s.yaml',
+        '0001-chart1/CustomConstruct.chart1-microservice-microserviceobj-c8e1164f.k8s.yaml',
       ],
     },
   ];
@@ -433,26 +420,29 @@ test('apps with varying yamlOutputTypes; chart dependencies via custom construct
 
     app.synth();
 
-    expect(getFilesAndFolders(app.outdir, testSpec.subFolders)).toEqual(testSpec.result);
+    expect(getFilesAndFolders(app.outdir)).toEqual(testSpec.result);
   }
 });
 
 /**
  * Get the list of files and folders in the source folder and sub folders (one level deep)
  * @param sourceDir Folder in which to search for files and folders
- * @param checkSubFolders If set to true search folder and sub folders, otherwise just search the
  * main folder
  */
-function getFilesAndFolders(sourceDir: string, checkSubFolders: boolean) {
+function getFilesAndFolders(sourceDir: string) {
   let result = [];
-  if (checkSubFolders) {
-    let subFolders = fs.readdirSync(sourceDir);
-    for (let i in subFolders) {
-      result.push(subFolders[i]);
-      result.push( ...fs.readdirSync(path.join(sourceDir, subFolders[i])));
+  let items = fs.readdirSync(sourceDir);
+  for (let i in items) {
+    // result.push(items[i]);
+    if (fs.lstatSync(path.join(sourceDir, items[i])).isDirectory()) {
+      let subFoldersContents = fs.readdirSync(path.join(sourceDir, items[i]));
+      if (subFoldersContents.length > 0) {
+        result.push( ...subFoldersContents.map(file => items[i] + '/' + file));
+      }
+    } else {
+      result.push(items[i]);
     }
-    return result;
-  } else {
-    return fs.readdirSync(sourceDir);
   }
+  console.log(result);
+  return result;
 }
