@@ -5,7 +5,10 @@ pull_request_rules:
     actions:
       merge:
         method: squash
-        commit_message: title+body
+        commit_message_template: |-
+          {{ title }} (#{{ number }})
+
+          {{ body }}
         strict: smart
         strict_method: merge
       delete_head_branch: {}
@@ -13,3 +16,8 @@ pull_request_rules:
       - "#approved-reviews-by>=1"
       - -label~=(do-not-merge)
       - status-success=build
+      - status-success=package-js
+      - status-success=package-java
+      - status-success=package-python
+      - status-success=package-dotnet
+      - status-success=package-go

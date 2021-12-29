@@ -141,7 +141,91 @@
       "description": "Creates the distribution package",
       "steps": [
         {
-          "exec": "jsii-pacmak"
+          "exec": "mkdir -p dist"
+        },
+        {
+          "exec": "rsync -a . dist --exclude .git --exclude node_modules"
+        }
+      ]
+    },
+    "package-all": {
+      "name": "package-all",
+      "description": "Packages artifacts for all target languages",
+      "steps": [
+        {
+          "spawn": "package:js"
+        },
+        {
+          "spawn": "package:java"
+        },
+        {
+          "spawn": "package:python"
+        },
+        {
+          "spawn": "package:dotnet"
+        },
+        {
+          "spawn": "package:go"
+        }
+      ]
+    },
+    "package:dotnet": {
+      "name": "package:dotnet",
+      "description": "Create dotnet language bindings",
+      "steps": [
+        {
+          "exec": "jsii_version=$(node -p \"JSON.parse(fs.readFileSync('.jsii')).jsiiVersion.split(' ')[0]\")"
+        },
+        {
+          "exec": "npx jsii-pacmak@$jsii_version -v --target dotnet"
+        }
+      ]
+    },
+    "package:go": {
+      "name": "package:go",
+      "description": "Create go language bindings",
+      "steps": [
+        {
+          "exec": "jsii_version=$(node -p \"JSON.parse(fs.readFileSync('.jsii')).jsiiVersion.split(' ')[0]\")"
+        },
+        {
+          "exec": "npx jsii-pacmak@$jsii_version -v --target go"
+        }
+      ]
+    },
+    "package:java": {
+      "name": "package:java",
+      "description": "Create java language bindings",
+      "steps": [
+        {
+          "exec": "jsii_version=$(node -p \"JSON.parse(fs.readFileSync('.jsii')).jsiiVersion.split(' ')[0]\")"
+        },
+        {
+          "exec": "npx jsii-pacmak@$jsii_version -v --target java"
+        }
+      ]
+    },
+    "package:js": {
+      "name": "package:js",
+      "description": "Create js language bindings",
+      "steps": [
+        {
+          "exec": "jsii_version=$(node -p \"JSON.parse(fs.readFileSync('.jsii')).jsiiVersion.split(' ')[0]\")"
+        },
+        {
+          "exec": "npx jsii-pacmak@$jsii_version -v --target js"
+        }
+      ]
+    },
+    "package:python": {
+      "name": "package:python",
+      "description": "Create python language bindings",
+      "steps": [
+        {
+          "exec": "jsii_version=$(node -p \"JSON.parse(fs.readFileSync('.jsii')).jsiiVersion.split(' ')[0]\")"
+        },
+        {
+          "exec": "npx jsii-pacmak@$jsii_version -v --target python"
         }
       ]
     },
@@ -158,98 +242,37 @@
       "name": "pre-compile",
       "description": "Prepare the project for compilation"
     },
-    "publish:github": {
-      "name": "publish:github",
-      "description": "Publish this package to GitHub Releases",
-      "requiredEnv": [
-        "GITHUB_TOKEN",
-        "GITHUB_REPOSITORY",
-        "GITHUB_REF"
-      ],
-      "steps": [
-        {
-          "exec": "errout=$(mktemp); gh release create $(cat dist/releasetag.txt) -R $GITHUB_REPOSITORY -F dist/changelog.md -t $(cat dist/releasetag.txt) --target $GITHUB_REF 2> $errout && true; exitcode=$?; if [ $exitcode -ne 0 ] && ! grep -q \"Release.tag_name already exists\" $errout; then cat $errout; exit $exitcode; fi"
-        }
-      ]
-    },
-    "publish:golang": {
-      "name": "publish:golang",
-      "description": "Publish this package to GitHub",
+    "release:1.x": {
+      "name": "release:1.x",
+      "description": "Prepare a release from \"1.x\" branch",
       "env": {
-        "GIT_USER_NAME": "cdk8s-automation",
-        "GIT_USER_EMAIL": "cdk8s-team@amazon.com"
+        "RELEASE": "true",
+        "MAJOR": "1"
       },
-      "requiredEnv": [
-        "GITHUB_TOKEN"
-      ],
       "steps": [
         {
-          "exec": "npx -p jsii-release@latest jsii-release-golang"
+          "exec": "rm -fr dist"
+        },
+        {
+          "spawn": "bump"
+        },
+        {
+          "spawn": "build"
+        },
+        {
+          "spawn": "unbump"
+        },
+        {
+          "exec": "git diff --ignore-space-at-eol --exit-code"
         }
       ]
     },
-    "publish:maven": {
-      "name": "publish:maven",
-      "description": "Publish this package to Maven Central",
-      "requiredEnv": [
-        "MAVEN_GPG_PRIVATE_KEY",
-        "MAVEN_GPG_PRIVATE_KEY_PASSPHRASE",
-        "MAVEN_PASSWORD",
-        "MAVEN_USERNAME",
-        "MAVEN_STAGING_PROFILE_ID"
-      ],
-      "steps": [
-        {
-          "exec": "npx -p jsii-release@latest jsii-release-maven"
-        }
-      ]
-    },
-    "publish:npm": {
-      "name": "publish:npm",
-      "description": "Publish this package to npm",
+    "release:2.x": {
+      "name": "release:2.x",
+      "description": "Prepare a release from \"2.x\" branch",
       "env": {
-        "NPM_DIST_TAG": "latest",
-        "NPM_REGISTRY": "registry.npmjs.org"
-      },
-      "requiredEnv": [
-        "NPM_TOKEN"
-      ],
-      "steps": [
-        {
-          "exec": "npx -p jsii-release@latest jsii-release-npm"
-        }
-      ]
-    },
-    "publish:nuget": {
-      "name": "publish:nuget",
-      "description": "Publish this package to NuGet Gallery",
-      "requiredEnv": [
-        "NUGET_API_KEY"
-      ],
-      "steps": [
-        {
-          "exec": "npx -p jsii-release@latest jsii-release-nuget"
-        }
-      ]
-    },
-    "publish:pypi": {
-      "name": "publish:pypi",
-      "description": "Publish this package to PyPI",
-      "requiredEnv": [
-        "TWINE_USERNAME",
-        "TWINE_PASSWORD"
-      ],
-      "steps": [
-        {
-          "exec": "npx -p jsii-release@latest jsii-release-pypi"
-        }
-      ]
-    },
-    "release": {
-      "name": "release",
-      "description": "Prepare a release from \"main\" branch",
-      "env": {
-        "RELEASE": "true"
+        "RELEASE": "true",
+        "MAJOR": "2"
       },
       "steps": [
         {
@@ -343,7 +366,7 @@
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @types/follow-redirects @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser constructs eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit jsii jsii-diff jsii-docgen jsii-pacmak json-schema json-schema-to-typescript npm-check-updates projen standard-version ts-jest typescript fast-json-patch follow-redirects constructs"
+          "exec": "yarn upgrade @types/follow-redirects @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser constructs eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit jsii jsii-diff jsii-docgen json-schema json-schema-to-typescript npm-check-updates projen standard-version ts-jest typescript fast-json-patch follow-redirects constructs"
         },
         {
           "exec": "npx projen"
