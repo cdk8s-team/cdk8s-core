@@ -443,6 +443,5 @@ function getFilesAndFolders(sourceDir: string) {
       result.push(items[i]);
     }
   }
-  console.log(result);
   return result;
 }
