@@ -2209,13 +2209,12 @@ eslint-import-resolver-typescript@^2.5.0:
     tsconfig-paths "^3.9.0"
 
 eslint-module-utils@^2.7.1:
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/eslint-module-utils/-/eslint-module-utils-2.7.1.tgz#b435001c9f8dd4ab7f6d0efcae4b9696d4c24b7c"
-  integrity sha512-fjoetBXQZq2tSTWZ9yWVl2KuFrTZZH3V+9iD1V1RfpDgxzJR+mPd/KZmMiA8gbPqdBzpNiEHOuT7IYEWxrH0zQ==
+  version "2.7.2"
+  resolved "https://registry.yarnpkg.com/eslint-module-utils/-/eslint-module-utils-2.7.2.tgz#1d0aa455dcf41052339b63cada8ab5fd57577129"
+  integrity sha512-zquepFnWCY2ISMFwD/DqzaM++H+7PDzOpUvotJWm/y1BAFt5R4oeULgdrTejKqLkz7MA/tgstsUMNYc7wNdTrg==
   dependencies:
     debug "^3.2.7"
     find-up "^2.1.0"
-    pkg-dir "^2.0.0"
 
 eslint-plugin-import@^2.25.3:
   version "2.25.3"
@@ -4939,13 +4938,6 @@ pirates@^4.0.1:
   resolved "https://registry.yarnpkg.com/pirates/-/pirates-4.0.4.tgz#07df81e61028e402735cdd49db701e4885b4e6e6"
   integrity sha512-ZIrVPH+A52Dw84R0L3/VS9Op04PuQ2SEoJL6bkshmiTic/HldyW9Tf7oH5mhJZBK7NmDx27vSMrYEXPXclpDKw==
 
-pkg-dir@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/pkg-dir/-/pkg-dir-2.0.0.tgz#f6d5d1109e19d63edf428e0bd57e12777615334b"
-  integrity sha1-9tXREJ4Z1j7fQo4L1X4Sd3YVM0s=
-  dependencies:
-    find-up "^2.1.0"
-
 pkg-dir@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/pkg-dir/-/pkg-dir-4.2.0.tgz#f099133df7ede422e81d1d8448270eeb3e4261f3"
@@ -5003,10 +4995,10 @@ progress@^2.0.0, progress@^2.0.3:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@^0.47.14:
-  version "0.47.14"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.47.14.tgz#154bfc176dea3f39c19bdb4dd3e4b340060e9ee4"
-  integrity sha512-j99nTsxbfVj2yZIUtJuIedNwDywA8uXhKk5CdCKnSPbYqNv339b+qPS1INI0wVY/U2ckwOtovLmzdIhHzrCRCw==
+projen@^0.47.15:
+  version "0.47.15"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.47.15.tgz#fb021b1e5a6ae2e57f4b6935a1695e7886e09ce1"
+  integrity sha512-ymObMgwwbuNHJ71y8k/WGUh+Vz5wbz0atRexkX3rG9I4FOrpg6vxdrVtSR2/iuuLvLvpeeaUpAQ0+CSKoE8RUA==
   dependencies:
     "@iarna/toml" "^2.2.5"
     case "^1.6.3"
