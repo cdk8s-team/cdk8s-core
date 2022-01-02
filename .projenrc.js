@@ -63,6 +63,7 @@ const project = new cdk.JsiiProject({
   publishToGo: {
     gitUserName: 'cdk8s-automation',
     gitUserEmail: 'cdk8s-team@amazon.com',
+    gitBranch: '1.x',
     moduleName: 'github.com/cdk8s-team/cdk8s-core-go',
   },
   autoApproveOptions: {
