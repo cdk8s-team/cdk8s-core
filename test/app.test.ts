@@ -274,6 +274,10 @@ test('apps with varying yamlOutputTypes; two charts, no objects', () => {
       props: { yamlOutputType: YamlOutputType.FILE_PER_RESOURCE },
       result: [],
     },
+    {
+      props: { yamlOutputType: YamlOutputType.FOLDER_PER_CHART_FILE_PER_RESOURCE },
+      result: ['chart1', 'chart2'],
+    },
   ];
   for (const testSpec of testSpecs) {
     // GIVEN
@@ -333,6 +337,14 @@ test('apps with varying yamlOutputTypes; charts indirectly dependant, multiple o
         'Kind3.chart3-obj3-c8abbfb5.k8s.yaml',
       ],
     },
+    {
+      props: { yamlOutputType: YamlOutputType.FOLDER_PER_CHART_FILE_PER_RESOURCE },
+      result: [
+        '0000-chart3/Kind3.chart3-obj3-c8abbfb5.k8s.yaml',
+        '0001-chart2/Kind2.chart2-obj2-c8636f20.k8s.yaml',
+        '0002-chart1/Kind1.chart1-obj1-c818e77f.k8s.yaml',
+      ],
+    },
   ];
 
   for (const testSpec of testSpecs) {
@@ -354,7 +366,7 @@ test('apps with varying yamlOutputTypes; charts indirectly dependant, multiple o
     app.synth();
 
     // THEN
-    expect(fs.readdirSync(app.outdir)).toEqual(testSpec.result);
+    expect(getFilesAndFolders(app.outdir)).toEqual(testSpec.result);
   }
 });
 
@@ -387,6 +399,13 @@ test('apps with varying yamlOutputTypes; chart dependencies via custom construct
         'CustomConstruct.chart2-database-databaseobj-c8b5eba3.k8s.yaml',
       ],
     },
+    {
+      props: { yamlOutputType: YamlOutputType.FOLDER_PER_CHART_FILE_PER_RESOURCE },
+      result: [
+        '0000-chart2/CustomConstruct.chart2-database-databaseobj-c8b5eba3.k8s.yaml',
+        '0001-chart1/CustomConstruct.chart1-microservice-microserviceobj-c8e1164f.k8s.yaml',
+      ],
+    },
   ];
 
   for (const testSpec of testSpecs) {
@@ -401,6 +420,26 @@ test('apps with varying yamlOutputTypes; chart dependencies via custom construct
 
     app.synth();
 
-    expect(fs.readdirSync(app.outdir)).toEqual(testSpec.result);
+    expect(getFilesAndFolders(app.outdir)).toEqual(testSpec.result);
   }
 });
+
+/**
+ * Get the list of files and folders in the source folder and sub folders (one level deep)
+ * @param sourceDir Folder in which to search for files and folders
+ */
+function getFilesAndFolders(sourceDir: string) {
+  let result = [];
+  let items = fs.readdirSync(sourceDir);
+  for (const item of items) {
+    if (fs.lstatSync(path.join(sourceDir, item)).isDirectory()) {
+      let subFoldersContents = fs.readdirSync(path.join(sourceDir, item));
+      if (subFoldersContents.length > 0) {
+        result.push( ...subFoldersContents.map(file => item + '/' + file));
+      }
+    } else {
+      result.push(item);
+    }
+  }
+  return result;
+}
