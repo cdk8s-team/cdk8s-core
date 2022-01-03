@@ -430,9 +430,8 @@ test('apps with varying yamlOutputTypes; chart dependencies via custom construct
 function getFilesAndFolders(sourceDir: string) {
   let result = [];
   let items = fs.readdirSync(sourceDir);
-  for (let i in items) {
-    // result.push(items[i]);
-    if (fs.lstatSync(path.join(sourceDir, items[i])).isDirectory()) {
+  for (const item of items) {
+    if (fs.lstatSync(path.join(sourceDir, item)).isDirectory()) {
       let subFoldersContents = fs.readdirSync(path.join(sourceDir, items[i]));
       if (subFoldersContents.length > 0) {
         result.push( ...subFoldersContents.map(file => items[i] + '/' + file));
