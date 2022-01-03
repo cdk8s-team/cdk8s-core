@@ -426,7 +426,6 @@ test('apps with varying yamlOutputTypes; chart dependencies via custom construct
 /**
  * Get the list of files and folders in the source folder and sub folders (one level deep)
  * @param sourceDir Folder in which to search for files and folders
- * main folder
  */
 function getFilesAndFolders(sourceDir: string) {
   let result = [];
