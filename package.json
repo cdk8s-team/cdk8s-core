@@ -13,6 +13,7 @@
     "compile": "npx projen compile",
     "default": "npx projen default",
     "docgen": "npx projen docgen",
+    "eject": "npx projen eject",
     "eslint": "npx projen eslint",
     "install-helm": "npx projen install-helm",
     "package": "npx projen package",
@@ -46,7 +47,7 @@
     "@types/node": "^12",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
-    "constructs": "^3.3.198",
+    "constructs": "^3.3.199",
     "eslint": "^8",
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-import-resolver-typescript": "^2.5.0",
@@ -59,13 +60,13 @@
     "json-schema": "^0.4.0",
     "json-schema-to-typescript": "^10.1.5",
     "npm-check-updates": "^12",
-    "projen": "^0.51.14",
+    "projen": "^0.52.0",
     "standard-version": "^9",
     "ts-jest": "^27.1.3",
     "typescript": "^4.5.5"
   },
   "peerDependencies": {
-    "constructs": "^3.3.198"
+    "constructs": "^3.3.199"
   },
   "dependencies": {
     "fast-json-patch": "^2.2.1",
