@@ -423,6 +423,40 @@ test('apps with varying yamlOutputTypes; chart dependencies via custom construct
   }
 });
 
+test('Modified file extensions with varying output types; two charts, no objects', () => {
+  const testSpecs = [
+    {
+      props: { yamlOutputType: YamlOutputType.FILE_PER_CHART, outputFileExtension: '.yaml' },
+      result: ['chart1.yaml', 'chart2.yaml'],
+    },
+    {
+      props: { yamlOutputType: YamlOutputType.FILE_PER_APP, outputFileExtension: '.yaml' },
+      result: ['app.yaml'],
+    },
+    {
+      props: { yamlOutputType: YamlOutputType.FILE_PER_RESOURCE, outputFileExtension: '.yaml' },
+      result: [],
+    },
+    {
+      props: { yamlOutputType: YamlOutputType.FOLDER_PER_CHART_FILE_PER_RESOURCE, outputFileExtension: '.yaml' },
+      result: ['chart1', 'chart2'],
+    },
+  ];
+  for (const testSpec of testSpecs) {
+    // GIVEN
+    const app = Testing.app(testSpec.props);
+
+    // WHEN
+    new Chart(app, 'chart1');
+    new Chart(app, 'chart2');
+    app.synth();
+
+    // THEN
+    expect(fs.readdirSync(app.outdir)).toEqual(testSpec.result);
+  }
+});
+
+
 /**
  * Get the list of files and folders in the source folder and sub folders (one level deep)
  * @param sourceDir Folder in which to search for files and folders
