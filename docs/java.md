@@ -204,6 +204,7 @@ import org.cdk8s.App;
 
 App.Builder.create()
 //  .outdir(java.lang.String)
+//  .outputFileExtension(java.lang.String)
 //  .yamlOutputType(YamlOutputType)
     .build();
 ```
@@ -214,6 +215,15 @@ App.Builder.create()
 - *Default:* CDK8S_OUTDIR if defined, otherwise "dist"
 
 The directory to output Kubernetes manifests.
+
+---
+
+##### `outputFileExtension`<sup>Optional</sup> <a name="org.cdk8s.AppProps.parameter.outputFileExtension"></a>
+
+- *Type:* `java.lang.String`
+- *Default:* .k8s.yaml
+
+The file extension to use for rendered YAML files.
 
 ---
 
@@ -264,6 +274,19 @@ public java.lang.String getOutdir();
 - *Type:* `java.lang.String`
 
 The output directory into which manifests will be synthesized.
+
+---
+
+##### `outputFileExtension`<sup>Required</sup> <a name="org.cdk8s.App.property.outputFileExtension"></a>
+
+```java
+public java.lang.String getOutputFileExtension();
+```
+
+- *Type:* `java.lang.String`
+- *Default:* .k8s.yaml
+
+The file extension to use for rendered YAML files.
 
 ---
 
@@ -780,6 +803,7 @@ import org.cdk8s.AppProps;
 
 AppProps.builder()
 //  .outdir(java.lang.String)
+//  .outputFileExtension(java.lang.String)
 //  .yamlOutputType(YamlOutputType)
     .build();
 ```
@@ -794,6 +818,19 @@ public java.lang.String getOutdir();
 - *Default:* CDK8S_OUTDIR if defined, otherwise "dist"
 
 The directory to output Kubernetes manifests.
+
+---
+
+##### `outputFileExtension`<sup>Optional</sup> <a name="org.cdk8s.AppProps.property.outputFileExtension"></a>
+
+```java
+public java.lang.String getOutputFileExtension();
+```
+
+- *Type:* `java.lang.String`
+- *Default:* .k8s.yaml
+
+The file extension to use for rendered YAML files.
 
 ---
 
