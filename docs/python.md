@@ -212,6 +212,7 @@ import cdk8s
 
 cdk8s.App(
   outdir: str = None,
+  output_file_extension: str = None,
   yaml_output_type: YamlOutputType = None
 )
 ```
@@ -222,6 +223,15 @@ cdk8s.App(
 - *Default:* CDK8S_OUTDIR if defined, otherwise "dist"
 
 The directory to output Kubernetes manifests.
+
+---
+
+##### `output_file_extension`<sup>Optional</sup> <a name="cdk8s.AppProps.parameter.output_file_extension"></a>
+
+- *Type:* `str`
+- *Default:* .k8s.yaml
+
+The file extension to use for rendered YAML files.
 
 ---
 
@@ -272,6 +282,19 @@ outdir: str
 - *Type:* `str`
 
 The output directory into which manifests will be synthesized.
+
+---
+
+##### `output_file_extension`<sup>Required</sup> <a name="cdk8s.App.property.output_file_extension"></a>
+
+```python
+output_file_extension: str
+```
+
+- *Type:* `str`
+- *Default:* .k8s.yaml
+
+The file extension to use for rendered YAML files.
 
 ---
 
@@ -800,6 +823,7 @@ import cdk8s
 
 cdk8s.AppProps(
   outdir: str = None,
+  output_file_extension: str = None,
   yaml_output_type: YamlOutputType = None
 )
 ```
@@ -814,6 +838,19 @@ outdir: str
 - *Default:* CDK8S_OUTDIR if defined, otherwise "dist"
 
 The directory to output Kubernetes manifests.
+
+---
+
+##### `output_file_extension`<sup>Optional</sup> <a name="cdk8s.AppProps.property.output_file_extension"></a>
+
+```python
+output_file_extension: str
+```
+
+- *Type:* `str`
+- *Default:* .k8s.yaml
+
+The file extension to use for rendered YAML files.
 
 ---
 
@@ -2484,6 +2521,7 @@ import cdk8s
 
 cdk8s.Testing.app(
   outdir: str = None,
+  output_file_extension: str = None,
   yaml_output_type: YamlOutputType = None
 )
 ```
@@ -2494,6 +2532,15 @@ cdk8s.Testing.app(
 - *Default:* CDK8S_OUTDIR if defined, otherwise "dist"
 
 The directory to output Kubernetes manifests.
+
+---
+
+###### `output_file_extension`<sup>Optional</sup> <a name="cdk8s.AppProps.parameter.output_file_extension"></a>
+
+- *Type:* `str`
+- *Default:* .k8s.yaml
+
+The file extension to use for rendered YAML files.
 
 ---
 

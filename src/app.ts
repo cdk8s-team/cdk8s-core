@@ -26,7 +26,13 @@ export interface AppProps {
    * @default - CDK8S_OUTDIR if defined, otherwise "dist"
    */
   readonly outdir?: string;
-  /** How to divide the YAML output into files
+  /**
+   *  The file extension to use for rendered YAML files
+   * @default .k8s.yaml
+   */
+  readonly outputFileExtension?: string;
+  /**
+   *  How to divide the YAML output into files
    * @default YamlOutputType.FILE_PER_CHART
    */
   readonly yamlOutputType?: YamlOutputType;
@@ -82,6 +88,12 @@ export class App extends Construct {
    */
   public readonly outdir: string;
 
+  /**
+   *  The file extension to use for rendered YAML files
+   * @default .k8s.yaml
+   */
+  public readonly outputFileExtension: string;
+
   /** How to divide the YAML output into files
    * @default YamlOutputType.FILE_PER_CHART
    */
@@ -104,6 +116,7 @@ export class App extends Construct {
   constructor(props: AppProps = { }) {
     super(undefined as any, '');
     this.outdir = props.outdir ?? process.env.CDK8S_OUTDIR ?? 'dist';
+    this.outputFileExtension = props.outputFileExtension ?? '.k8s.yaml';
     this.yamlOutputType = props.yamlOutputType ?? YamlOutputType.FILE_PER_CHART;
   }
 
@@ -133,7 +146,7 @@ export class App extends Construct {
 
         if (charts.length > 0) {
           Yaml.save(
-            path.join(this.outdir, 'app.k8s.yaml'), // There is no "app name", so we just hardcode the file name
+            path.join(this.outdir, `app${this.outputFileExtension}`), // There is no "app name", so we just hardcode the file name
             apiObjectList.map((apiObject) => apiObject.toJson()),
           );
         }
@@ -146,7 +159,7 @@ export class App extends Construct {
           const chartName = namer.name(chart);
           const objects = chartToKube(chart);
 
-          Yaml.save(path.join(this.outdir, chartName), objects.map(obj => obj.toJson()));
+          Yaml.save(path.join(this.outdir, chartName+this.outputFileExtension), objects.map(obj => obj.toJson()));
         }
         break;
 
@@ -157,8 +170,8 @@ export class App extends Construct {
           apiObjects.forEach((apiObject) => {
             if (!(apiObject === undefined)) {
               const fileName = `${`${apiObject.kind}.${apiObject.metadata.name}`
-                .replace(/[^0-9a-zA-Z-_.]/g, '')}.k8s.yaml`;
-              Yaml.save(path.join(this.outdir, fileName), [apiObject.toJson()]);
+                .replace(/[^0-9a-zA-Z-_.]/g, '')}`;
+              Yaml.save(path.join(this.outdir, fileName+this.outputFileExtension), [apiObject.toJson()]);
             }
           });
         }
@@ -175,8 +188,8 @@ export class App extends Construct {
           apiObjects.forEach((apiObject) => {
             if (!(apiObject === undefined)) {
               const fileName = `${`${apiObject.kind}.${apiObject.metadata.name}`
-                .replace(/[^0-9a-zA-Z-_.]/g, '')}.k8s.yaml`;
-              Yaml.save(path.join(fullOutDir, fileName), [apiObject.toJson()]);
+                .replace(/[^0-9a-zA-Z-_.]/g, '')}`;
+              Yaml.save(path.join(fullOutDir, fileName+this.outputFileExtension), [apiObject.toJson()]);
             }
           });
         }
@@ -279,7 +292,7 @@ class SimpleChartNamer implements ChartNamer {
   }
 
   public name(chart: Chart) {
-    return `${Names.toDnsLabel(chart)}.k8s.yaml`;
+    return `${Names.toDnsLabel(chart)}`;
   }
 }
 
