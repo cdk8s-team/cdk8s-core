@@ -231,6 +231,19 @@ The output directory into which manifests will be synthesized.
 
 ---
 
+##### `outputFileExtension`<sup>Required</sup> <a name="cdk8s.App.property.outputFileExtension"></a>
+
+```typescript
+public readonly outputFileExtension: string;
+```
+
+- *Type:* `string`
+- *Default:* .k8s.yaml
+
+The file extension to use for rendered YAML files.
+
+---
+
 ##### `yamlOutputType`<sup>Required</sup> <a name="cdk8s.App.property.yamlOutputType"></a>
 
 ```typescript
@@ -674,6 +687,19 @@ public readonly outdir: string;
 - *Default:* CDK8S_OUTDIR if defined, otherwise "dist"
 
 The directory to output Kubernetes manifests.
+
+---
+
+##### `outputFileExtension`<sup>Optional</sup> <a name="cdk8s.AppProps.property.outputFileExtension"></a>
+
+```typescript
+public readonly outputFileExtension: string;
+```
+
+- *Type:* `string`
+- *Default:* .k8s.yaml
+
+The file extension to use for rendered YAML files.
 
 ---
 
