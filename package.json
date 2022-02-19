@@ -47,7 +47,7 @@
     "@types/node": "^12",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
-    "constructs": "^3.3.219",
+    "constructs": "^3.3.220",
     "eslint": "^8",
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-import-resolver-typescript": "^2.5.0",
@@ -60,17 +60,17 @@
     "json-schema": "^0.4.0",
     "json-schema-to-typescript": "^10.1.5",
     "npm-check-updates": "^12",
-    "projen": "^0.52.34",
+    "projen": "^0.52.35",
     "standard-version": "^9",
     "ts-jest": "^27.1.3",
     "typescript": "^4.5.5"
   },
   "peerDependencies": {
-    "constructs": "^3.3.219"
+    "constructs": "^3.3.220"
   },
   "dependencies": {
     "fast-json-patch": "^2.2.1",
-    "follow-redirects": "^1.14.8",
+    "follow-redirects": "^1.14.9",
     "yaml": "2.0.0-7"
   },
   "bundledDependencies": [
