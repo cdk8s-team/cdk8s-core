@@ -47,26 +47,26 @@
     "@types/node": "^12",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
-    "constructs": "^3.3.237",
+    "constructs": "^3.3.238",
     "eslint": "^8",
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-import": "^2.25.4",
     "jest": "^27.5.1",
     "jest-junit": "^13",
-    "jsii": "^1.54.0",
-    "jsii-diff": "^1.54.0",
+    "jsii": "^1.55.0",
+    "jsii-diff": "^1.55.0",
     "jsii-docgen": "^3.8.31",
     "json-schema": "^0.4.0",
     "json-schema-to-typescript": "^10.1.5",
     "npm-check-updates": "^12",
-    "projen": "^0.52.61",
+    "projen": "^0.52.65",
     "standard-version": "^9",
     "ts-jest": "^27.1.3",
     "typescript": "^4.6.2"
   },
   "peerDependencies": {
-    "constructs": "^3.3.237"
+    "constructs": "^3.3.238"
   },
   "dependencies": {
     "fast-json-patch": "^2.2.1",
