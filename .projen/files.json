@@ -8,7 +8,6 @@
     ".github/workflows/pull-request-lint.yml",
     ".github/workflows/release-1.x.yml",
     ".github/workflows/release.yml",
-    ".github/workflows/stale.yml",
     ".github/workflows/upgrade-1.x.yml",
     ".github/workflows/upgrade-2.x.yml",
     ".gitignore",
