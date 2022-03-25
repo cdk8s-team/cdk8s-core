@@ -3,6 +3,8 @@ import { ApiObject } from './api-object';
 import { App } from './app';
 import { Names } from './names';
 
+const CHART_SYMBOL = Symbol.for('cdk8s.Chart');
+
 export interface ChartProps {
   /**
    * The default namespace for all objects defined in this chart (directly or
@@ -22,13 +24,21 @@ export interface ChartProps {
 }
 
 export class Chart extends Construct {
+  /**
+   * Return whether the given object is a Chart.
+   *
+   * We do attribute detection since we can't reliably use 'instanceof'.
+   */
+  public static isChart(x: any): x is Chart {
+    return x !== null && typeof(x) === 'object' && CHART_SYMBOL in x;
+  }
 
   /**
    * Finds the chart in which a node is defined.
    * @param c a construct node
    */
   public static of(c: IConstruct): Chart {
-    if (c instanceof Chart) {
+    if (Chart.isChart(c)) {
       return c;
     }
 
@@ -54,6 +64,8 @@ export class Chart extends Construct {
     super(scope, id);
     this.namespace = props.namespace;
     this._labels = props.labels ?? {};
+
+    Object.defineProperty(this, CHART_SYMBOL, { value: true });
   }
 
   /**

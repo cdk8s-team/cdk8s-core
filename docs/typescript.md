@@ -324,6 +324,20 @@ public toJson()
 
 #### Static Functions <a name="Static Functions"></a>
 
+##### `isChart` <a name="cdk8s.Chart.isChart"></a>
+
+```typescript
+import { Chart } from 'cdk8s'
+
+Chart.isChart(x: any)
+```
+
+###### `x`<sup>Required</sup> <a name="cdk8s.Chart.parameter.x"></a>
+
+- *Type:* `any`
+
+---
+
 ##### `of` <a name="cdk8s.Chart.of"></a>
 
 ```typescript

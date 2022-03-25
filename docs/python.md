@@ -402,6 +402,22 @@ def to_json()
 
 #### Static Functions <a name="Static Functions"></a>
 
+##### `is_chart` <a name="cdk8s.Chart.is_chart"></a>
+
+```python
+import cdk8s
+
+cdk8s.Chart.is_chart(
+  x: typing.Any
+)
+```
+
+###### `x`<sup>Required</sup> <a name="cdk8s.Chart.parameter.x"></a>
+
+- *Type:* `typing.Any`
+
+---
+
 ##### `of` <a name="cdk8s.Chart.of"></a>
 
 ```python
