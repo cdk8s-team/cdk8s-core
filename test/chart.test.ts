@@ -118,6 +118,31 @@ test('addDependency', () => {
 
 });
 
+test('isChart distinguishes charts from non-charts', () => {
+  // GIVEN
+  const app = Testing.app();
+
+  class MyChart extends Chart {
+    constructor(scope: Construct, id: string, props?: any) {
+      super(scope, id, props);
+    }
+  }
+
+  // WHEN
+  const chart = new Chart(app, 'chart');
+  const childChart = new MyChart(app, 'my-chart');
+  const obj = new ApiObject(chart, 'api-object', {
+    apiVersion: 'v1',
+    kind: 'Foo',
+  });
+
+  // THEN
+  expect(Chart.isChart(chart)).toEqual(true);
+  expect(Chart.isChart(childChart)).toEqual(true);
+  expect(Chart.isChart(obj)).toEqual(false);
+  expect(Chart.isChart(app)).toEqual(false);
+});
+
 describe('toJson', () => {
 
   test('validates the chart', () => {

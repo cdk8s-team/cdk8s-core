@@ -388,6 +388,20 @@ public toJson()
 
 #### Static Functions <a name="Static Functions"></a>
 
+##### `isChart` <a name="org.cdk8s.Chart.isChart"></a>
+
+```java
+import org.cdk8s.Chart;
+
+Chart.isChart(java.lang.Object x)
+```
+
+###### `x`<sup>Required</sup> <a name="org.cdk8s.Chart.parameter.x"></a>
+
+- *Type:* `java.lang.Object`
+
+---
+
 ##### `of` <a name="org.cdk8s.Chart.of"></a>
 
 ```java
