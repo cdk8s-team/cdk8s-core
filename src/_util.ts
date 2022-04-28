@@ -27,13 +27,16 @@ export function sanitizeValue(obj: any, options: SanitizeOptions = { }): any {
     return obj;
   }
 
+  const sortKeys = options.sortKeys ?? true;
+
   if (Array.isArray(obj)) {
 
     if (options.filterEmptyArrays && obj.length === 0) {
       return undefined;
     }
 
-    return obj.map(x => sanitizeValue(x, options));
+    const newArray = obj.map(x => sanitizeValue(x, options));
+    return sortKeys ? newArray.sort() : newArray
   }
 
   if (obj.constructor.name !== 'Object') {
@@ -42,7 +45,6 @@ export function sanitizeValue(obj: any, options: SanitizeOptions = { }): any {
 
   const newObj: { [key: string]: any } = { };
 
-  const sortKeys = options.sortKeys ?? true;
   const keys = sortKeys ? Object.keys(obj).sort() : Object.keys(obj);
   for (const key of keys) {
     const value = obj[key];

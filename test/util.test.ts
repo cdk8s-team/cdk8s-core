@@ -14,8 +14,8 @@ describe('sanitizeValue', () => {
     expect(sanitizeValue({ xoo: { }, foo: { bar: { zoo: undefined, hey: { }, me: 123 } } }))
       .toStrictEqual({ xoo: { }, foo: { bar: { hey: { }, me: 123 } } });
     expect(sanitizeValue({ xoo: 123, foo: [1, 2, { foo: 123, bar: undefined, zoo: [] }, 3] }))
-      .toStrictEqual({ xoo: 123, foo: [1, 2, { foo: 123, zoo: [] }, 3] });
-    expect(sanitizeValue([1, 2, 3, [], { }, 4])).toStrictEqual([1, 2, 3, [], { }, 4]); // special case
+      .toStrictEqual({ xoo: 123, foo: [1, 2, 3, { foo: 123, zoo: [] }] });
+    expect(sanitizeValue([1, 2, 3, [], { }, 4])).toStrictEqual([[], 1, 2, 3, 4, { }]); // special case
 
     expect(() => sanitizeValue(new Dummy())).toThrow(/can't render non-simple object of type 'Dummy'/);
   });
@@ -41,7 +41,7 @@ describe('sanitizeValue', () => {
   });
 
   test('sortKeys', () => {
-    const input = { zzz: 999, aaa: 111, nested: { foo: { zag: [1, 2, 3], bar: '1111' } } };
+    const input = { zzz: 999, aaa: 111, nested: { foo: { zag: [3, 1, 2], bar: '1111' } } };
     expect(str(sanitizeValue(input))).toMatchSnapshot();
     expect(str(sanitizeValue(input, { sortKeys: false }))).toMatchSnapshot();
   });

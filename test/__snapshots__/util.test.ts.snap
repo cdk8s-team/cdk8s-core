@@ -24,9 +24,9 @@ exports[`sanitizeValue sortKeys 2`] = `
   \\"nested\\": {
     \\"foo\\": {
       \\"zag\\": [
+        3,
         1,
-        2,
-        3
+        2
       ],
       \\"bar\\": \\"1111\\"
     }
