@@ -54,3 +54,5 @@ junit.xml
 tsconfig.json
 !/API.md
 !/src/_loadurl.js
+!/.backportrc.json
+!/.github/workflows/backport.yml

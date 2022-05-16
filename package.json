@@ -6,6 +6,9 @@
     "url": "https://github.com/cdk8s-team/cdk8s-core.git"
   },
   "scripts": {
+    "backport": "npx projen backport",
+    "backport:1.x": "npx projen backport:1.x",
+    "backport:2.x": "npx projen backport:2.x",
     "build": "npx projen build",
     "bump": "npx projen bump",
     "clobber": "npx projen clobber",
@@ -57,7 +60,7 @@
     "jsii": "^1.57.0",
     "jsii-diff": "^1.57.0",
     "jsii-docgen": "^3.8.31",
-    "jsii-pacmak": "^1.57.0",
+    "jsii-pacmak": "^1.58.0",
     "json-schema": "^0.4.0",
     "json-schema-to-typescript": "^10.1.5",
     "npm-check-updates": "^12",
