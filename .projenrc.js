@@ -1,4 +1,4 @@
-const { cdk } = require('projen');
+const { cdk, JsonFile, github } = require('projen');
 
 const project = new cdk.JsiiProject({
   name: 'cdk8s',
@@ -99,5 +99,83 @@ docgenTask.reset();
 docgenTask.exec('jsii-docgen -l typescript -o docs/typescript.md');
 docgenTask.exec('jsii-docgen -l python -o docs/python.md');
 docgenTask.exec('jsii-docgen -l java -o docs/java.md');
+
+// run backport in clean directories every time.
+const backportHome = '/tmp/.backport/';
+const backportDir = `${backportHome}/repositories/cdk8s-team/cdk8s-plus`;
+const backportConfig = new JsonFile(project, '.backportrc.json', {
+  // see https://github.com/sqren/backport/blob/main/docs/config-file-options.md
+  obj: {
+    repoOwner: 'cdk8s-team',
+    repoName: 'cdk8s-core',
+    signoff: true,
+    branchLabelMapping: {
+      '^backport-to-(.+)$': '$1',
+    },
+    prTitle: '{commitMessages}',
+    fork: false,
+    publishStatusCommentOnFailure: true,
+    publishStatusCommentOnSuccess: true,
+    publishStatusCommentOnAbort: true,
+    targetPRLabels: [project.autoApprove.label],
+    dir: backportDir,
+  },
+});
+
+// backport task to branches based on pr labels
+const backportTask = createBackportTask();
+
+// backport tasks to the explicit release branches
+for (const branch of project.release.branches) {
+  createBackportTask(branch);
+}
+
+const backportWorkflow = project.github.addWorkflow('backport');
+backportWorkflow.on({ pullRequestTarget: { types: ['closed'] } });
+backportWorkflow.addJob('backport', {
+  runsOn: ['ubuntu-18.04'],
+  permissions: {
+    contents: github.workflows.JobPermission.WRITE,
+  },
+  steps: [
+    // needed in order to run the projen task as well
+    // as use the backport configuration in the repo.
+    {
+      name: 'checkout',
+      uses: 'actions/checkout@v3',
+      with: {
+        // required because we need the full history
+        // for proper backports.
+        'fetch-depth': 0,
+      },
+    },
+    {
+      name: 'backport',
+      if: 'github.event.pull_request.merged == true',
+      run: `npx projen ${backportTask.name}`,
+      env: {
+        GITHUB_TOKEN: '${{ secrets.PROJEN_GITHUB_TOKEN }}',
+        BACKPORT_PR_NUMBER: '${{ github.event.pull_request.number }}',
+      },
+    },
+  ],
+});
+
+function createBackportTask(branch) {
+  const name = branch ? `backport:${branch}` : 'backport';
+  const task = project.addTask(name, { requiredEnv: ['BACKPORT_PR_NUMBER', 'GITHUB_TOKEN'] });
+  task.exec(`rm -rf ${backportHome}`);
+  task.exec(`mkdir -p ${backportHome}`);
+  task.exec(`cp ${backportConfig.path} ${backportHome}`);
+
+  const command = ['npx', 'backport', '--accesstoken', '${GITHUB_TOKEN}', '--pr', '${BACKPORT_PR_NUMBER}'];
+  if (branch) {
+    command.push(...['--branch', branch]);
+  } else {
+    command.push('--non-interactive');
+  }
+  task.exec(command.join(' '), { cwd: backportHome });
+  return task;
+}
 
 project.synth();
