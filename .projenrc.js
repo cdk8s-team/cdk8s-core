@@ -102,7 +102,7 @@ docgenTask.exec('jsii-docgen -l java -o docs/java.md');
 
 // run backport in clean directories every time.
 const backportHome = '/tmp/.backport/';
-const backportDir = `${backportHome}/repositories/cdk8s-team/cdk8s-plus`;
+const backportDir = `${backportHome}/repositories/cdk8s-team/cdk8s-core`;
 const backportConfig = new JsonFile(project, '.backportrc.json', {
   // see https://github.com/sqren/backport/blob/main/docs/config-file-options.md
   obj: {
@@ -148,6 +148,10 @@ backportWorkflow.addJob('backport', {
         // for proper backports.
         'fetch-depth': 0,
       },
+    },
+    {
+      name: 'Set Git Identity',
+      run: 'git config --global user.name "github-actions" && git config --global user.email "github-actions@github.com"',
     },
     {
       name: 'backport',
