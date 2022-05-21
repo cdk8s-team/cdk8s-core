@@ -43,8 +43,7 @@ const project = new cdk.JsiiProject({
     },
   },
 
-  minNodeVersion: '12.13.0',
-  workflowNodeVersion: '12.22.0',
+  minNodeVersion: '14.17.0',
 
   // jsii configuration
   publishToMaven: {
