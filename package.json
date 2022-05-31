@@ -73,7 +73,7 @@
     "constructs": "^3.4.22"
   },
   "dependencies": {
-    "fast-json-patch": "^2.2.1",
+    "fast-json-patch": "^3.1.1",
     "follow-redirects": "^1.15.1",
     "yaml": "2.0.0-7"
   },
