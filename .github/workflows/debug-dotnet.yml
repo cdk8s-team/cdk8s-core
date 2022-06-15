@@ -8,8 +8,9 @@ on:
 jobs:
   debug:
     runs-on: ubuntu-latest
-    permissions: none
+    permissions: read
     steps:
       - uses: actions/setup-dotnet@v2
         with:
           dotnet-version: 3.x
+      - run: dotnet --version
