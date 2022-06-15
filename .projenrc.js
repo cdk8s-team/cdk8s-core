@@ -193,7 +193,7 @@ debugDotnet.addJob('debug', {
     {
       uses: 'actions/setup-dotnet@v2',
       with: {
-        'dotnet-version': '3.x',
+        'dotnet-version': '6.x',
       },
     },
     {
