@@ -7,6 +7,7 @@
     ".github/workflows/auto-approve.yml",
     ".github/workflows/backport.yml",
     ".github/workflows/build.yml",
+    ".github/workflows/debug-dotnet.yml",
     ".github/workflows/pull-request-lint.yml",
     ".github/workflows/release-1.x.yml",
     ".github/workflows/release.yml",

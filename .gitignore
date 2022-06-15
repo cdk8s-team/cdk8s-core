@@ -56,3 +56,4 @@ tsconfig.json
 !/src/_loadurl.js
 !/.backportrc.json
 !/.github/workflows/backport.yml
+!/.github/workflows/debug-dotnet.yml

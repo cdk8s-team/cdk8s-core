@@ -1,4 +1,5 @@
 const { cdk, JsonFile, github } = require('projen');
+const { JobPermission } = require('projen/lib/github/workflows-model');
 
 const project = new cdk.JsiiProject({
   name: 'cdk8s',
@@ -180,5 +181,18 @@ function createBackportTask(branch) {
   task.exec(command.join(' '), { cwd: backportHome });
   return task;
 }
+
+const debugDotnet = project.github.addWorkflow('debug-dotnet');
+debugDotnet.on({ push: { branches: ['epolon/debugging-dotnet-versions'] } });
+debugDotnet.addJob('debug', {
+  runsOn: ['ubuntu-latest'],
+  permissions: JobPermission.NONE,
+  steps: [{
+    uses: 'actions/setup-dotnet@v2',
+    with: {
+      'dotnet-version': '3.x',
+    },
+  }],
+});
 
 project.synth();
