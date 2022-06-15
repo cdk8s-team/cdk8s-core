@@ -186,7 +186,9 @@ const debugDotnet = project.github.addWorkflow('debug-dotnet');
 debugDotnet.on({ push: { branches: ['epolon/debugging-dotnet-versions'] } });
 debugDotnet.addJob('debug', {
   runsOn: ['ubuntu-latest'],
-  permissions: JobPermission.READ,
+  permissions: {
+    contents: JobPermission.READ,
+  },
   steps: [
     {
       uses: 'actions/setup-dotnet@v2',
