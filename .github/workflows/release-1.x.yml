@@ -47,7 +47,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      issues: write
     if: needs.release.outputs.latest_commit == github.sha
     steps:
       - uses: actions/setup-node@v3
@@ -68,26 +67,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_REF: ${{ github.ref }}
-      - name: Extract Version
-        if: ${{ failure() }}
-        id: extract-version
-        run: echo "::set-output name=VERSION::$(cat dist/version.txt)"
-      - name: Create Issue
-        if: ${{ failure() }}
-        uses: imjohnbo/issue-bot@v3
-        with:
-          labels: failed-release
-          title: Publishing v${{ steps.extract-version.outputs.VERSION }} to GitHub Releases failed
-          body: See https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   release_npm:
     name: Publish to npm
     needs: release
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      issues: write
     if: needs.release.outputs.latest_commit == github.sha
     steps:
       - uses: actions/setup-node@v3
@@ -112,26 +97,12 @@ jobs:
           NPM_DIST_TAG: latest-1
           NPM_REGISTRY: registry.npmjs.org
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Extract Version
-        if: ${{ failure() }}
-        id: extract-version
-        run: echo "::set-output name=VERSION::$(cat dist/version.txt)"
-      - name: Create Issue
-        if: ${{ failure() }}
-        uses: imjohnbo/issue-bot@v3
-        with:
-          labels: failed-release
-          title: Publishing v${{ steps.extract-version.outputs.VERSION }} to npm failed
-          body: See https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   release_maven:
     name: Publish to Maven Central
     needs: release
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      issues: write
     if: needs.release.outputs.latest_commit == github.sha
     steps:
       - uses: actions/setup-java@v3
@@ -162,26 +133,12 @@ jobs:
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
           MAVEN_STAGING_PROFILE_ID: ${{ secrets.MAVEN_STAGING_PROFILE_ID }}
-      - name: Extract Version
-        if: ${{ failure() }}
-        id: extract-version
-        run: echo "::set-output name=VERSION::$(cat dist/version.txt)"
-      - name: Create Issue
-        if: ${{ failure() }}
-        uses: imjohnbo/issue-bot@v3
-        with:
-          labels: failed-release
-          title: Publishing v${{ steps.extract-version.outputs.VERSION }} to Maven Central failed
-          body: See https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   release_pypi:
     name: Publish to PyPI
     needs: release
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      issues: write
     if: needs.release.outputs.latest_commit == github.sha
     steps:
       - uses: actions/setup-node@v3
@@ -208,26 +165,12 @@ jobs:
         env:
           TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
-      - name: Extract Version
-        if: ${{ failure() }}
-        id: extract-version
-        run: echo "::set-output name=VERSION::$(cat dist/version.txt)"
-      - name: Create Issue
-        if: ${{ failure() }}
-        uses: imjohnbo/issue-bot@v3
-        with:
-          labels: failed-release
-          title: Publishing v${{ steps.extract-version.outputs.VERSION }} to PyPI failed
-          body: See https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   release_nuget:
     name: Publish to NuGet Gallery
     needs: release
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      issues: write
     if: needs.release.outputs.latest_commit == github.sha
     steps:
       - uses: actions/setup-node@v3
@@ -253,26 +196,12 @@ jobs:
         run: npx -p publib@latest publib-nuget
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
-      - name: Extract Version
-        if: ${{ failure() }}
-        id: extract-version
-        run: echo "::set-output name=VERSION::$(cat dist/version.txt)"
-      - name: Create Issue
-        if: ${{ failure() }}
-        uses: imjohnbo/issue-bot@v3
-        with:
-          labels: failed-release
-          title: Publishing v${{ steps.extract-version.outputs.VERSION }} to NuGet Gallery failed
-          body: See https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   release_golang:
     name: Publish to GitHub Go Module Repository
     needs: release
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      issues: write
     if: needs.release.outputs.latest_commit == github.sha
     steps:
       - uses: actions/setup-node@v3
@@ -301,16 +230,3 @@ jobs:
           GIT_USER_NAME: cdk8s-automation
           GIT_USER_EMAIL: cdk8s-team@amazon.com
           GITHUB_TOKEN: ${{ secrets.GO_GITHUB_TOKEN }}
-      - name: Extract Version
-        if: ${{ failure() }}
-        id: extract-version
-        run: echo "::set-output name=VERSION::$(cat dist/version.txt)"
-      - name: Create Issue
-        if: ${{ failure() }}
-        uses: imjohnbo/issue-bot@v3
-        with:
-          labels: failed-release
-          title: Publishing v${{ steps.extract-version.outputs.VERSION }} to GitHub Go Module Repository failed
-          body: See https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

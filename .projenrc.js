@@ -70,9 +70,6 @@ const project = new cdk.JsiiProject({
     secret: 'GITHUB_TOKEN',
   },
   autoApproveUpgrades: true,
-
-  releaseFailureIssue: true,
-
   depsUpgradeOptions: {
     exclude: ['yaml'],
   },
