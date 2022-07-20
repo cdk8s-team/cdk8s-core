@@ -910,8 +910,6 @@ Options to configure a cron expression.
 All fields are strings so you can use complex expressions. Absence of
 a field implies '*' or '?', whichever one is appropriate.
 
-> https://docs.aws.amazon.com/eventbridge/latest/userguide/scheduled-events.html#cron-expressions
-
 #### Initializer <a name="[object Object].Initializer"></a>
 
 ```java
@@ -2234,11 +2232,9 @@ Name options.
 
 ### Schedule <a name="org.cdk8s.Schedule"></a>
 
-Schedule for scheduled event rules.
+Represents a schedule.
 
 Note that rates cannot be defined in fractions of minutes.
-
-> https://docs.aws.amazon.com/eventbridge/latest/userguide/scheduled-events.html
 
 #### Initializers <a name="org.cdk8s.Schedule.Initializer"></a>
 
@@ -2279,7 +2275,7 @@ Schedule.expression(java.lang.String expression)
 
 The expression to use.
 
-Must be in a format that EventBridge will recognize
+Must be in a format of 'value unit'
 
 ---
 

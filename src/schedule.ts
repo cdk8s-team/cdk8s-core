@@ -1,17 +1,15 @@
 import { Duration } from './duration';
 
 /**
- * Schedule for scheduled event rules
+ * Represents a schedule
  *
  * Note that rates cannot be defined in fractions of minutes.
- *
- * @see https://docs.aws.amazon.com/eventbridge/latest/userguide/scheduled-events.html
  */
 export abstract class Schedule {
   /**
    * Construct a schedule from a literal schedule expression
    *
-   * @param expression The expression to use. Must be in a format that EventBridge will recognize
+   * @param expression The expression to use. Must be in a format of 'value unit'
    */
   public static expression(expression: string): Schedule {
     return new LiteralSchedule(expression);
@@ -77,8 +75,6 @@ export abstract class Schedule {
  *
  * All fields are strings so you can use complex expressions. Absence of
  * a field implies '*' or '?', whichever one is appropriate.
- *
- * @see https://docs.aws.amazon.com/eventbridge/latest/userguide/scheduled-events.html#cron-expressions
  */
 export interface CronOptions {
   /**
@@ -150,6 +146,3 @@ function maybeRate(interval: number, singular: string) {
 function makeRate(interval: number, singular: string) {
   return interval === 1 ? `rate(1 ${singular})` : `rate(${interval} ${singular}s)`;
 }
-
-// For various duration values like 0
-// Annotations.of(scope).addWarning('cron: If you don\'t pass \'minute\', by default the event runs every minute. Pass \'minute: \'*\'\' if that\'s what you intend, or \'minute: 0\' to run once per hour instead.');
