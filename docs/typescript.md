@@ -769,6 +769,101 @@ This namespace will only apply to objects that don't have a
 
 ---
 
+### CronOptions <a name="cdk8s.CronOptions"></a>
+
+Options to configure a cron expression.
+
+All fields are strings so you can use complex expressions. Absence of
+a field implies '*' or '?', whichever one is appropriate.
+
+> https://docs.aws.amazon.com/eventbridge/latest/userguide/scheduled-events.html#cron-expressions
+
+#### Initializer <a name="[object Object].Initializer"></a>
+
+```typescript
+import { CronOptions } from 'cdk8s'
+
+const cronOptions: CronOptions = { ... }
+```
+
+##### `day`<sup>Optional</sup> <a name="cdk8s.CronOptions.property.day"></a>
+
+```typescript
+public readonly day: string;
+```
+
+- *Type:* `string`
+- *Default:* Every day of the month
+
+The day of the month to run this rule at.
+
+---
+
+##### `hour`<sup>Optional</sup> <a name="cdk8s.CronOptions.property.hour"></a>
+
+```typescript
+public readonly hour: string;
+```
+
+- *Type:* `string`
+- *Default:* Every hour
+
+The hour to run this rule at.
+
+---
+
+##### `minute`<sup>Optional</sup> <a name="cdk8s.CronOptions.property.minute"></a>
+
+```typescript
+public readonly minute: string;
+```
+
+- *Type:* `string`
+- *Default:* Every minute
+
+The minute to run this rule at.
+
+---
+
+##### `month`<sup>Optional</sup> <a name="cdk8s.CronOptions.property.month"></a>
+
+```typescript
+public readonly month: string;
+```
+
+- *Type:* `string`
+- *Default:* Every month
+
+The month to run this rule at.
+
+---
+
+##### `weekDay`<sup>Optional</sup> <a name="cdk8s.CronOptions.property.weekDay"></a>
+
+```typescript
+public readonly weekDay: string;
+```
+
+- *Type:* `string`
+- *Default:* Any day of the week
+
+The day of the week to run this rule at.
+
+---
+
+##### `year`<sup>Optional</sup> <a name="cdk8s.CronOptions.property.year"></a>
+
+```typescript
+public readonly year: string;
+```
+
+- *Type:* `string`
+- *Default:* Every year
+
+The year to run this rule at.
+
+---
+
 ### GroupVersionKind <a name="cdk8s.GroupVersionKind"></a>
 
 #### Initializer <a name="[object Object].Initializer"></a>
@@ -1506,6 +1601,12 @@ public toSeconds(opts?: TimeConversionOptions)
 
 ---
 
+##### `unitLabel` <a name="cdk8s.Duration.unitLabel"></a>
+
+```typescript
+public unitLabel()
+```
+
 #### Static Functions <a name="Static Functions"></a>
 
 ##### `days` <a name="cdk8s.Duration.days"></a>
@@ -1842,6 +1943,86 @@ Name options.
 
 ---
 
+
+
+### Schedule <a name="cdk8s.Schedule"></a>
+
+Schedule for scheduled event rules.
+
+Note that rates cannot be defined in fractions of minutes.
+
+> https://docs.aws.amazon.com/eventbridge/latest/userguide/scheduled-events.html
+
+#### Initializers <a name="cdk8s.Schedule.Initializer"></a>
+
+```typescript
+import { Schedule } from 'cdk8s'
+
+new Schedule()
+```
+
+
+#### Static Functions <a name="Static Functions"></a>
+
+##### `cron` <a name="cdk8s.Schedule.cron"></a>
+
+```typescript
+import { Schedule } from 'cdk8s'
+
+Schedule.cron(options: CronOptions)
+```
+
+###### `options`<sup>Required</sup> <a name="cdk8s.Schedule.parameter.options"></a>
+
+- *Type:* [`cdk8s.CronOptions`](#cdk8s.CronOptions)
+
+---
+
+##### `expression` <a name="cdk8s.Schedule.expression"></a>
+
+```typescript
+import { Schedule } from 'cdk8s'
+
+Schedule.expression(expression: string)
+```
+
+###### `expression`<sup>Required</sup> <a name="cdk8s.Schedule.parameter.expression"></a>
+
+- *Type:* `string`
+
+The expression to use.
+
+Must be in a format that EventBridge will recognize
+
+---
+
+##### `rate` <a name="cdk8s.Schedule.rate"></a>
+
+```typescript
+import { Schedule } from 'cdk8s'
+
+Schedule.rate(duration: Duration)
+```
+
+###### `duration`<sup>Required</sup> <a name="cdk8s.Schedule.parameter.duration"></a>
+
+- *Type:* [`cdk8s.Duration`](#cdk8s.Duration)
+
+---
+
+#### Properties <a name="Properties"></a>
+
+##### `expressionString`<sup>Required</sup> <a name="cdk8s.Schedule.property.expressionString"></a>
+
+```typescript
+public readonly expressionString: string;
+```
+
+- *Type:* `string`
+
+Retrieve the expression for this schedule.
+
+---
 
 
 ### Size <a name="cdk8s.Size"></a>

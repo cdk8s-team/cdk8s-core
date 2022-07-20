@@ -925,6 +925,108 @@ This namespace will only apply to objects that don't have a
 
 ---
 
+### CronOptions <a name="cdk8s.CronOptions"></a>
+
+Options to configure a cron expression.
+
+All fields are strings so you can use complex expressions. Absence of
+a field implies '*' or '?', whichever one is appropriate.
+
+> https://docs.aws.amazon.com/eventbridge/latest/userguide/scheduled-events.html#cron-expressions
+
+#### Initializer <a name="[object Object].Initializer"></a>
+
+```python
+import cdk8s
+
+cdk8s.CronOptions(
+  day: str = None,
+  hour: str = None,
+  minute: str = None,
+  month: str = None,
+  week_day: str = None,
+  year: str = None
+)
+```
+
+##### `day`<sup>Optional</sup> <a name="cdk8s.CronOptions.property.day"></a>
+
+```python
+day: str
+```
+
+- *Type:* `str`
+- *Default:* Every day of the month
+
+The day of the month to run this rule at.
+
+---
+
+##### `hour`<sup>Optional</sup> <a name="cdk8s.CronOptions.property.hour"></a>
+
+```python
+hour: str
+```
+
+- *Type:* `str`
+- *Default:* Every hour
+
+The hour to run this rule at.
+
+---
+
+##### `minute`<sup>Optional</sup> <a name="cdk8s.CronOptions.property.minute"></a>
+
+```python
+minute: str
+```
+
+- *Type:* `str`
+- *Default:* Every minute
+
+The minute to run this rule at.
+
+---
+
+##### `month`<sup>Optional</sup> <a name="cdk8s.CronOptions.property.month"></a>
+
+```python
+month: str
+```
+
+- *Type:* `str`
+- *Default:* Every month
+
+The month to run this rule at.
+
+---
+
+##### `week_day`<sup>Optional</sup> <a name="cdk8s.CronOptions.property.week_day"></a>
+
+```python
+week_day: str
+```
+
+- *Type:* `str`
+- *Default:* Any day of the week
+
+The day of the week to run this rule at.
+
+---
+
+##### `year`<sup>Optional</sup> <a name="cdk8s.CronOptions.property.year"></a>
+
+```python
+year: str
+```
+
+- *Type:* `str`
+- *Default:* Every year
+
+The year to run this rule at.
+
+---
+
 ### GroupVersionKind <a name="cdk8s.GroupVersionKind"></a>
 
 #### Initializer <a name="[object Object].Initializer"></a>
@@ -1903,6 +2005,12 @@ If `true`, conversions into a larger time unit (e.g. `Seconds` to `Minutes`) wil
 
 ---
 
+##### `unit_label` <a name="cdk8s.Duration.unit_label"></a>
+
+```python
+def unit_label()
+```
+
 #### Static Functions <a name="Static Functions"></a>
 
 ##### `days` <a name="cdk8s.Duration.days"></a>
@@ -2341,6 +2449,145 @@ Maximum allowed length for the name.
 
 ---
 
+
+
+### Schedule <a name="cdk8s.Schedule"></a>
+
+Schedule for scheduled event rules.
+
+Note that rates cannot be defined in fractions of minutes.
+
+> https://docs.aws.amazon.com/eventbridge/latest/userguide/scheduled-events.html
+
+#### Initializers <a name="cdk8s.Schedule.Initializer"></a>
+
+```python
+import cdk8s
+
+cdk8s.Schedule()
+```
+
+
+#### Static Functions <a name="Static Functions"></a>
+
+##### `cron` <a name="cdk8s.Schedule.cron"></a>
+
+```python
+import cdk8s
+
+cdk8s.Schedule.cron(
+  day: str = None,
+  hour: str = None,
+  minute: str = None,
+  month: str = None,
+  week_day: str = None,
+  year: str = None
+)
+```
+
+###### `day`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.day"></a>
+
+- *Type:* `str`
+- *Default:* Every day of the month
+
+The day of the month to run this rule at.
+
+---
+
+###### `hour`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.hour"></a>
+
+- *Type:* `str`
+- *Default:* Every hour
+
+The hour to run this rule at.
+
+---
+
+###### `minute`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.minute"></a>
+
+- *Type:* `str`
+- *Default:* Every minute
+
+The minute to run this rule at.
+
+---
+
+###### `month`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.month"></a>
+
+- *Type:* `str`
+- *Default:* Every month
+
+The month to run this rule at.
+
+---
+
+###### `week_day`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.week_day"></a>
+
+- *Type:* `str`
+- *Default:* Any day of the week
+
+The day of the week to run this rule at.
+
+---
+
+###### `year`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.year"></a>
+
+- *Type:* `str`
+- *Default:* Every year
+
+The year to run this rule at.
+
+---
+
+##### `expression` <a name="cdk8s.Schedule.expression"></a>
+
+```python
+import cdk8s
+
+cdk8s.Schedule.expression(
+  expression: str
+)
+```
+
+###### `expression`<sup>Required</sup> <a name="cdk8s.Schedule.parameter.expression"></a>
+
+- *Type:* `str`
+
+The expression to use.
+
+Must be in a format that EventBridge will recognize
+
+---
+
+##### `rate` <a name="cdk8s.Schedule.rate"></a>
+
+```python
+import cdk8s
+
+cdk8s.Schedule.rate(
+  duration: Duration
+)
+```
+
+###### `duration`<sup>Required</sup> <a name="cdk8s.Schedule.parameter.duration"></a>
+
+- *Type:* [`cdk8s.Duration`](#cdk8s.Duration)
+
+---
+
+#### Properties <a name="Properties"></a>
+
+##### `expression_string`<sup>Required</sup> <a name="cdk8s.Schedule.property.expression_string"></a>
+
+```python
+expression_string: str
+```
+
+- *Type:* `str`
+
+Retrieve the expression for this schedule.
+
+---
 
 
 ### Size <a name="cdk8s.Size"></a>

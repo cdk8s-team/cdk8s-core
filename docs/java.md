@@ -903,6 +903,108 @@ This namespace will only apply to objects that don't have a
 
 ---
 
+### CronOptions <a name="org.cdk8s.CronOptions"></a>
+
+Options to configure a cron expression.
+
+All fields are strings so you can use complex expressions. Absence of
+a field implies '*' or '?', whichever one is appropriate.
+
+> https://docs.aws.amazon.com/eventbridge/latest/userguide/scheduled-events.html#cron-expressions
+
+#### Initializer <a name="[object Object].Initializer"></a>
+
+```java
+import org.cdk8s.CronOptions;
+
+CronOptions.builder()
+//  .day(java.lang.String)
+//  .hour(java.lang.String)
+//  .minute(java.lang.String)
+//  .month(java.lang.String)
+//  .weekDay(java.lang.String)
+//  .year(java.lang.String)
+    .build();
+```
+
+##### `day`<sup>Optional</sup> <a name="org.cdk8s.CronOptions.property.day"></a>
+
+```java
+public java.lang.String getDay();
+```
+
+- *Type:* `java.lang.String`
+- *Default:* Every day of the month
+
+The day of the month to run this rule at.
+
+---
+
+##### `hour`<sup>Optional</sup> <a name="org.cdk8s.CronOptions.property.hour"></a>
+
+```java
+public java.lang.String getHour();
+```
+
+- *Type:* `java.lang.String`
+- *Default:* Every hour
+
+The hour to run this rule at.
+
+---
+
+##### `minute`<sup>Optional</sup> <a name="org.cdk8s.CronOptions.property.minute"></a>
+
+```java
+public java.lang.String getMinute();
+```
+
+- *Type:* `java.lang.String`
+- *Default:* Every minute
+
+The minute to run this rule at.
+
+---
+
+##### `month`<sup>Optional</sup> <a name="org.cdk8s.CronOptions.property.month"></a>
+
+```java
+public java.lang.String getMonth();
+```
+
+- *Type:* `java.lang.String`
+- *Default:* Every month
+
+The month to run this rule at.
+
+---
+
+##### `weekDay`<sup>Optional</sup> <a name="org.cdk8s.CronOptions.property.weekDay"></a>
+
+```java
+public java.lang.String getWeekDay();
+```
+
+- *Type:* `java.lang.String`
+- *Default:* Any day of the week
+
+The day of the week to run this rule at.
+
+---
+
+##### `year`<sup>Optional</sup> <a name="org.cdk8s.CronOptions.property.year"></a>
+
+```java
+public java.lang.String getYear();
+```
+
+- *Type:* `java.lang.String`
+- *Default:* Every year
+
+The year to run this rule at.
+
+---
+
 ### GroupVersionKind <a name="org.cdk8s.GroupVersionKind"></a>
 
 #### Initializer <a name="[object Object].Initializer"></a>
@@ -1784,6 +1886,12 @@ public toSeconds(TimeConversionOptions opts)
 
 ---
 
+##### `unitLabel` <a name="org.cdk8s.Duration.unitLabel"></a>
+
+```java
+public unitLabel()
+```
+
 #### Static Functions <a name="Static Functions"></a>
 
 ##### `days` <a name="org.cdk8s.Duration.days"></a>
@@ -2122,6 +2230,86 @@ Name options.
 
 ---
 
+
+
+### Schedule <a name="org.cdk8s.Schedule"></a>
+
+Schedule for scheduled event rules.
+
+Note that rates cannot be defined in fractions of minutes.
+
+> https://docs.aws.amazon.com/eventbridge/latest/userguide/scheduled-events.html
+
+#### Initializers <a name="org.cdk8s.Schedule.Initializer"></a>
+
+```java
+import org.cdk8s.Schedule;
+
+new Schedule();
+```
+
+
+#### Static Functions <a name="Static Functions"></a>
+
+##### `cron` <a name="org.cdk8s.Schedule.cron"></a>
+
+```java
+import org.cdk8s.Schedule;
+
+Schedule.cron(CronOptions options)
+```
+
+###### `options`<sup>Required</sup> <a name="org.cdk8s.Schedule.parameter.options"></a>
+
+- *Type:* [`org.cdk8s.CronOptions`](#org.cdk8s.CronOptions)
+
+---
+
+##### `expression` <a name="org.cdk8s.Schedule.expression"></a>
+
+```java
+import org.cdk8s.Schedule;
+
+Schedule.expression(java.lang.String expression)
+```
+
+###### `expression`<sup>Required</sup> <a name="org.cdk8s.Schedule.parameter.expression"></a>
+
+- *Type:* `java.lang.String`
+
+The expression to use.
+
+Must be in a format that EventBridge will recognize
+
+---
+
+##### `rate` <a name="org.cdk8s.Schedule.rate"></a>
+
+```java
+import org.cdk8s.Schedule;
+
+Schedule.rate(Duration duration)
+```
+
+###### `duration`<sup>Required</sup> <a name="org.cdk8s.Schedule.parameter.duration"></a>
+
+- *Type:* [`org.cdk8s.Duration`](#org.cdk8s.Duration)
+
+---
+
+#### Properties <a name="Properties"></a>
+
+##### `expressionString`<sup>Required</sup> <a name="org.cdk8s.Schedule.property.expressionString"></a>
+
+```java
+public java.lang.String getExpressionString();
+```
+
+- *Type:* `java.lang.String`
+
+Retrieve the expression for this schedule.
+
+---
 
 
 ### Size <a name="org.cdk8s.Size"></a>
