@@ -194,6 +194,13 @@ export class Duration {
     }
   }
 
+  /**
+   * Return unit of Duration
+   */
+  public unitLabel(): string {
+    return this.unit.toString();
+  }
+
   private fractionDuration(symbol: string, modulus: number, next: (amount: number) => Duration): string {
     if (this.amount < modulus) {
       return `${this.amount}${symbol}`;
@@ -238,7 +245,12 @@ class TimeUnit {
 }
 
 function convert(amount: number, fromUnit: TimeUnit, toUnit: TimeUnit, { integral = true }: TimeConversionOptions) {
-  if (fromUnit.inMillis === toUnit.inMillis) { return amount; }
+  if (fromUnit.inMillis === toUnit.inMillis) {
+    if (integral && !Number.isInteger(amount)) {
+      throw new Error(`${amount} must be a whole number of ${toUnit}.`);
+    }
+    return amount;
+  }
   const multiplier = fromUnit.inMillis / toUnit.inMillis;
 
   const value = amount * multiplier;
