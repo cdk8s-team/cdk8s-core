@@ -921,7 +921,6 @@ CronOptions.builder()
 //  .minute(java.lang.String)
 //  .month(java.lang.String)
 //  .weekDay(java.lang.String)
-//  .year(java.lang.String)
     .build();
 ```
 
@@ -987,19 +986,6 @@ public java.lang.String getWeekDay();
 - *Default:* Any day of the week
 
 The day of the week to run this rule at.
-
----
-
-##### `year`<sup>Optional</sup> <a name="org.cdk8s.CronOptions.property.year"></a>
-
-```java
-public java.lang.String getYear();
-```
-
-- *Type:* `java.lang.String`
-- *Default:* Every year
-
-The year to run this rule at.
 
 ---
 
@@ -1659,6 +1645,98 @@ The object's namespace.
 ---
 
 
+### CronSchedule <a name="org.cdk8s.CronSchedule"></a>
+
+Represents a cron schedule.
+
+#### Initializers <a name="org.cdk8s.CronSchedule.Initializer"></a>
+
+```java
+import org.cdk8s.CronSchedule;
+
+new CronSchedule();
+```
+
+
+#### Static Functions <a name="Static Functions"></a>
+
+##### `annually` <a name="org.cdk8s.CronSchedule.annually"></a>
+
+```java
+import org.cdk8s.CronSchedule;
+
+CronSchedule.annually()
+```
+
+##### `custom` <a name="org.cdk8s.CronSchedule.custom"></a>
+
+```java
+import org.cdk8s.CronSchedule;
+
+CronSchedule.custom(CronOptions options)
+```
+
+###### `options`<sup>Required</sup> <a name="org.cdk8s.CronSchedule.parameter.options"></a>
+
+- *Type:* [`org.cdk8s.CronOptions`](#org.cdk8s.CronOptions)
+
+---
+
+##### `daily` <a name="org.cdk8s.CronSchedule.daily"></a>
+
+```java
+import org.cdk8s.CronSchedule;
+
+CronSchedule.daily()
+```
+
+##### `everyMinute` <a name="org.cdk8s.CronSchedule.everyMinute"></a>
+
+```java
+import org.cdk8s.CronSchedule;
+
+CronSchedule.everyMinute()
+```
+
+##### `hourly` <a name="org.cdk8s.CronSchedule.hourly"></a>
+
+```java
+import org.cdk8s.CronSchedule;
+
+CronSchedule.hourly()
+```
+
+##### `monthly` <a name="org.cdk8s.CronSchedule.monthly"></a>
+
+```java
+import org.cdk8s.CronSchedule;
+
+CronSchedule.monthly()
+```
+
+##### `weekly` <a name="org.cdk8s.CronSchedule.weekly"></a>
+
+```java
+import org.cdk8s.CronSchedule;
+
+CronSchedule.weekly()
+```
+
+#### Properties <a name="Properties"></a>
+
+##### `expressionString`<sup>Required</sup> <a name="org.cdk8s.CronSchedule.property.expressionString"></a>
+
+```java
+public java.lang.String getExpressionString();
+```
+
+- *Type:* `java.lang.String`
+
+Retrieve the expression for this schedule.
+
+---
+
+
 ### DependencyGraph <a name="org.cdk8s.DependencyGraph"></a>
 
 Represents the dependency graph for a given Node.
@@ -2228,84 +2306,6 @@ Name options.
 
 ---
 
-
-
-### Schedule <a name="org.cdk8s.Schedule"></a>
-
-Represents a schedule.
-
-Note that rates cannot be defined in fractions of minutes.
-
-#### Initializers <a name="org.cdk8s.Schedule.Initializer"></a>
-
-```java
-import org.cdk8s.Schedule;
-
-new Schedule();
-```
-
-
-#### Static Functions <a name="Static Functions"></a>
-
-##### `cron` <a name="org.cdk8s.Schedule.cron"></a>
-
-```java
-import org.cdk8s.Schedule;
-
-Schedule.cron(CronOptions options)
-```
-
-###### `options`<sup>Required</sup> <a name="org.cdk8s.Schedule.parameter.options"></a>
-
-- *Type:* [`org.cdk8s.CronOptions`](#org.cdk8s.CronOptions)
-
----
-
-##### `expression` <a name="org.cdk8s.Schedule.expression"></a>
-
-```java
-import org.cdk8s.Schedule;
-
-Schedule.expression(java.lang.String expression)
-```
-
-###### `expression`<sup>Required</sup> <a name="org.cdk8s.Schedule.parameter.expression"></a>
-
-- *Type:* `java.lang.String`
-
-The expression to use.
-
-Must be in a format of 'value unit'
-
----
-
-##### `rate` <a name="org.cdk8s.Schedule.rate"></a>
-
-```java
-import org.cdk8s.Schedule;
-
-Schedule.rate(Duration duration)
-```
-
-###### `duration`<sup>Required</sup> <a name="org.cdk8s.Schedule.parameter.duration"></a>
-
-- *Type:* [`org.cdk8s.Duration`](#org.cdk8s.Duration)
-
----
-
-#### Properties <a name="Properties"></a>
-
-##### `expressionString`<sup>Required</sup> <a name="org.cdk8s.Schedule.property.expressionString"></a>
-
-```java
-public java.lang.String getExpressionString();
-```
-
-- *Type:* `java.lang.String`
-
-Retrieve the expression for this schedule.
-
----
 
 
 ### Size <a name="org.cdk8s.Size"></a>

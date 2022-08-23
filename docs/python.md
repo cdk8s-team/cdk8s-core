@@ -942,8 +942,7 @@ cdk8s.CronOptions(
   hour: str = None,
   minute: str = None,
   month: str = None,
-  week_day: str = None,
-  year: str = None
+  week_day: str = None
 )
 ```
 
@@ -1009,19 +1008,6 @@ week_day: str
 - *Default:* Any day of the week
 
 The day of the week to run this rule at.
-
----
-
-##### `year`<sup>Optional</sup> <a name="cdk8s.CronOptions.property.year"></a>
-
-```python
-year: str
-```
-
-- *Type:* `str`
-- *Default:* Every year
-
-The year to run this rule at.
 
 ---
 
@@ -1753,6 +1739,143 @@ The object's namespace.
 ---
 
 
+### CronSchedule <a name="cdk8s.CronSchedule"></a>
+
+Represents a cron schedule.
+
+#### Initializers <a name="cdk8s.CronSchedule.Initializer"></a>
+
+```python
+import cdk8s
+
+cdk8s.CronSchedule()
+```
+
+
+#### Static Functions <a name="Static Functions"></a>
+
+##### `annually` <a name="cdk8s.CronSchedule.annually"></a>
+
+```python
+import cdk8s
+
+cdk8s.CronSchedule.annually()
+```
+
+##### `custom` <a name="cdk8s.CronSchedule.custom"></a>
+
+```python
+import cdk8s
+
+cdk8s.CronSchedule.custom(
+  day: str = None,
+  hour: str = None,
+  minute: str = None,
+  month: str = None,
+  week_day: str = None
+)
+```
+
+###### `day`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.day"></a>
+
+- *Type:* `str`
+- *Default:* Every day of the month
+
+The day of the month to run this rule at.
+
+---
+
+###### `hour`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.hour"></a>
+
+- *Type:* `str`
+- *Default:* Every hour
+
+The hour to run this rule at.
+
+---
+
+###### `minute`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.minute"></a>
+
+- *Type:* `str`
+- *Default:* Every minute
+
+The minute to run this rule at.
+
+---
+
+###### `month`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.month"></a>
+
+- *Type:* `str`
+- *Default:* Every month
+
+The month to run this rule at.
+
+---
+
+###### `week_day`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.week_day"></a>
+
+- *Type:* `str`
+- *Default:* Any day of the week
+
+The day of the week to run this rule at.
+
+---
+
+##### `daily` <a name="cdk8s.CronSchedule.daily"></a>
+
+```python
+import cdk8s
+
+cdk8s.CronSchedule.daily()
+```
+
+##### `every_minute` <a name="cdk8s.CronSchedule.every_minute"></a>
+
+```python
+import cdk8s
+
+cdk8s.CronSchedule.every_minute()
+```
+
+##### `hourly` <a name="cdk8s.CronSchedule.hourly"></a>
+
+```python
+import cdk8s
+
+cdk8s.CronSchedule.hourly()
+```
+
+##### `monthly` <a name="cdk8s.CronSchedule.monthly"></a>
+
+```python
+import cdk8s
+
+cdk8s.CronSchedule.monthly()
+```
+
+##### `weekly` <a name="cdk8s.CronSchedule.weekly"></a>
+
+```python
+import cdk8s
+
+cdk8s.CronSchedule.weekly()
+```
+
+#### Properties <a name="Properties"></a>
+
+##### `expression_string`<sup>Required</sup> <a name="cdk8s.CronSchedule.property.expression_string"></a>
+
+```python
+expression_string: str
+```
+
+- *Type:* `str`
+
+Retrieve the expression for this schedule.
+
+---
+
+
 ### DependencyGraph <a name="cdk8s.DependencyGraph"></a>
 
 Represents the dependency graph for a given Node.
@@ -2447,143 +2570,6 @@ Maximum allowed length for the name.
 
 ---
 
-
-
-### Schedule <a name="cdk8s.Schedule"></a>
-
-Represents a schedule.
-
-Note that rates cannot be defined in fractions of minutes.
-
-#### Initializers <a name="cdk8s.Schedule.Initializer"></a>
-
-```python
-import cdk8s
-
-cdk8s.Schedule()
-```
-
-
-#### Static Functions <a name="Static Functions"></a>
-
-##### `cron` <a name="cdk8s.Schedule.cron"></a>
-
-```python
-import cdk8s
-
-cdk8s.Schedule.cron(
-  day: str = None,
-  hour: str = None,
-  minute: str = None,
-  month: str = None,
-  week_day: str = None,
-  year: str = None
-)
-```
-
-###### `day`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.day"></a>
-
-- *Type:* `str`
-- *Default:* Every day of the month
-
-The day of the month to run this rule at.
-
----
-
-###### `hour`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.hour"></a>
-
-- *Type:* `str`
-- *Default:* Every hour
-
-The hour to run this rule at.
-
----
-
-###### `minute`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.minute"></a>
-
-- *Type:* `str`
-- *Default:* Every minute
-
-The minute to run this rule at.
-
----
-
-###### `month`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.month"></a>
-
-- *Type:* `str`
-- *Default:* Every month
-
-The month to run this rule at.
-
----
-
-###### `week_day`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.week_day"></a>
-
-- *Type:* `str`
-- *Default:* Any day of the week
-
-The day of the week to run this rule at.
-
----
-
-###### `year`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.year"></a>
-
-- *Type:* `str`
-- *Default:* Every year
-
-The year to run this rule at.
-
----
-
-##### `expression` <a name="cdk8s.Schedule.expression"></a>
-
-```python
-import cdk8s
-
-cdk8s.Schedule.expression(
-  expression: str
-)
-```
-
-###### `expression`<sup>Required</sup> <a name="cdk8s.Schedule.parameter.expression"></a>
-
-- *Type:* `str`
-
-The expression to use.
-
-Must be in a format of 'value unit'
-
----
-
-##### `rate` <a name="cdk8s.Schedule.rate"></a>
-
-```python
-import cdk8s
-
-cdk8s.Schedule.rate(
-  duration: Duration
-)
-```
-
-###### `duration`<sup>Required</sup> <a name="cdk8s.Schedule.parameter.duration"></a>
-
-- *Type:* [`cdk8s.Duration`](#cdk8s.Duration)
-
----
-
-#### Properties <a name="Properties"></a>
-
-##### `expression_string`<sup>Required</sup> <a name="cdk8s.Schedule.property.expression_string"></a>
-
-```python
-expression_string: str
-```
-
-- *Type:* `str`
-
-Retrieve the expression for this schedule.
-
----
 
 
 ### Size <a name="cdk8s.Size"></a>

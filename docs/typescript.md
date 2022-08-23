@@ -849,19 +849,6 @@ The day of the week to run this rule at.
 
 ---
 
-##### `year`<sup>Optional</sup> <a name="cdk8s.CronOptions.property.year"></a>
-
-```typescript
-public readonly year: string;
-```
-
-- *Type:* `string`
-- *Default:* Every year
-
-The year to run this rule at.
-
----
-
 ### GroupVersionKind <a name="cdk8s.GroupVersionKind"></a>
 
 #### Initializer <a name="[object Object].Initializer"></a>
@@ -1376,6 +1363,98 @@ public readonly namespace: string;
 - *Type:* `string`
 
 The object's namespace.
+
+---
+
+
+### CronSchedule <a name="cdk8s.CronSchedule"></a>
+
+Represents a cron schedule.
+
+#### Initializers <a name="cdk8s.CronSchedule.Initializer"></a>
+
+```typescript
+import { CronSchedule } from 'cdk8s'
+
+new CronSchedule()
+```
+
+
+#### Static Functions <a name="Static Functions"></a>
+
+##### `annually` <a name="cdk8s.CronSchedule.annually"></a>
+
+```typescript
+import { CronSchedule } from 'cdk8s'
+
+CronSchedule.annually()
+```
+
+##### `custom` <a name="cdk8s.CronSchedule.custom"></a>
+
+```typescript
+import { CronSchedule } from 'cdk8s'
+
+CronSchedule.custom(options: CronOptions)
+```
+
+###### `options`<sup>Required</sup> <a name="cdk8s.CronSchedule.parameter.options"></a>
+
+- *Type:* [`cdk8s.CronOptions`](#cdk8s.CronOptions)
+
+---
+
+##### `daily` <a name="cdk8s.CronSchedule.daily"></a>
+
+```typescript
+import { CronSchedule } from 'cdk8s'
+
+CronSchedule.daily()
+```
+
+##### `everyMinute` <a name="cdk8s.CronSchedule.everyMinute"></a>
+
+```typescript
+import { CronSchedule } from 'cdk8s'
+
+CronSchedule.everyMinute()
+```
+
+##### `hourly` <a name="cdk8s.CronSchedule.hourly"></a>
+
+```typescript
+import { CronSchedule } from 'cdk8s'
+
+CronSchedule.hourly()
+```
+
+##### `monthly` <a name="cdk8s.CronSchedule.monthly"></a>
+
+```typescript
+import { CronSchedule } from 'cdk8s'
+
+CronSchedule.monthly()
+```
+
+##### `weekly` <a name="cdk8s.CronSchedule.weekly"></a>
+
+```typescript
+import { CronSchedule } from 'cdk8s'
+
+CronSchedule.weekly()
+```
+
+#### Properties <a name="Properties"></a>
+
+##### `expressionString`<sup>Required</sup> <a name="cdk8s.CronSchedule.property.expressionString"></a>
+
+```typescript
+public readonly expressionString: string;
+```
+
+- *Type:* `string`
+
+Retrieve the expression for this schedule.
 
 ---
 
@@ -1941,84 +2020,6 @@ Name options.
 
 ---
 
-
-
-### Schedule <a name="cdk8s.Schedule"></a>
-
-Represents a schedule.
-
-Note that rates cannot be defined in fractions of minutes.
-
-#### Initializers <a name="cdk8s.Schedule.Initializer"></a>
-
-```typescript
-import { Schedule } from 'cdk8s'
-
-new Schedule()
-```
-
-
-#### Static Functions <a name="Static Functions"></a>
-
-##### `cron` <a name="cdk8s.Schedule.cron"></a>
-
-```typescript
-import { Schedule } from 'cdk8s'
-
-Schedule.cron(options: CronOptions)
-```
-
-###### `options`<sup>Required</sup> <a name="cdk8s.Schedule.parameter.options"></a>
-
-- *Type:* [`cdk8s.CronOptions`](#cdk8s.CronOptions)
-
----
-
-##### `expression` <a name="cdk8s.Schedule.expression"></a>
-
-```typescript
-import { Schedule } from 'cdk8s'
-
-Schedule.expression(expression: string)
-```
-
-###### `expression`<sup>Required</sup> <a name="cdk8s.Schedule.parameter.expression"></a>
-
-- *Type:* `string`
-
-The expression to use.
-
-Must be in a format of 'value unit'
-
----
-
-##### `rate` <a name="cdk8s.Schedule.rate"></a>
-
-```typescript
-import { Schedule } from 'cdk8s'
-
-Schedule.rate(duration: Duration)
-```
-
-###### `duration`<sup>Required</sup> <a name="cdk8s.Schedule.parameter.duration"></a>
-
-- *Type:* [`cdk8s.Duration`](#cdk8s.Duration)
-
----
-
-#### Properties <a name="Properties"></a>
-
-##### `expressionString`<sup>Required</sup> <a name="cdk8s.Schedule.property.expressionString"></a>
-
-```typescript
-public readonly expressionString: string;
-```
-
-- *Type:* `string`
-
-Retrieve the expression for this schedule.
-
----
 
 
 ### Size <a name="cdk8s.Size"></a>
