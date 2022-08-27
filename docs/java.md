@@ -908,7 +908,7 @@ This namespace will only apply to objects that don't have a
 Options to configure a cron expression.
 
 All fields are strings so you can use complex expressions. Absence of
-a field implies '*' or '?', whichever one is appropriate.
+a field implies '*'
 
 #### Initializer <a name="[object Object].Initializer"></a>
 
@@ -1654,8 +1654,59 @@ Represents a cron schedule.
 ```java
 import org.cdk8s.CronSchedule;
 
-new CronSchedule();
+CronSchedule.Builder.create()
+//  .day(java.lang.String)
+//  .hour(java.lang.String)
+//  .minute(java.lang.String)
+//  .month(java.lang.String)
+//  .weekDay(java.lang.String)
+    .build();
 ```
+
+##### `day`<sup>Optional</sup> <a name="org.cdk8s.CronOptions.parameter.day"></a>
+
+- *Type:* `java.lang.String`
+- *Default:* Every day of the month
+
+The day of the month to run this rule at.
+
+---
+
+##### `hour`<sup>Optional</sup> <a name="org.cdk8s.CronOptions.parameter.hour"></a>
+
+- *Type:* `java.lang.String`
+- *Default:* Every hour
+
+The hour to run this rule at.
+
+---
+
+##### `minute`<sup>Optional</sup> <a name="org.cdk8s.CronOptions.parameter.minute"></a>
+
+- *Type:* `java.lang.String`
+- *Default:* Every minute
+
+The minute to run this rule at.
+
+---
+
+##### `month`<sup>Optional</sup> <a name="org.cdk8s.CronOptions.parameter.month"></a>
+
+- *Type:* `java.lang.String`
+- *Default:* Every month
+
+The month to run this rule at.
+
+---
+
+##### `weekDay`<sup>Optional</sup> <a name="org.cdk8s.CronOptions.parameter.weekDay"></a>
+
+- *Type:* `java.lang.String`
+- *Default:* Any day of the week
+
+The day of the week to run this rule at.
+
+---
 
 
 #### Static Functions <a name="Static Functions"></a>

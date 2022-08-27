@@ -930,7 +930,7 @@ This namespace will only apply to objects that don't have a
 Options to configure a cron expression.
 
 All fields are strings so you can use complex expressions. Absence of
-a field implies '*' or '?', whichever one is appropriate.
+a field implies '*'
 
 #### Initializer <a name="[object Object].Initializer"></a>
 
@@ -1748,8 +1748,59 @@ Represents a cron schedule.
 ```python
 import cdk8s
 
-cdk8s.CronSchedule()
+cdk8s.CronSchedule(
+  day: str = None,
+  hour: str = None,
+  minute: str = None,
+  month: str = None,
+  week_day: str = None
+)
 ```
+
+##### `day`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.day"></a>
+
+- *Type:* `str`
+- *Default:* Every day of the month
+
+The day of the month to run this rule at.
+
+---
+
+##### `hour`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.hour"></a>
+
+- *Type:* `str`
+- *Default:* Every hour
+
+The hour to run this rule at.
+
+---
+
+##### `minute`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.minute"></a>
+
+- *Type:* `str`
+- *Default:* Every minute
+
+The minute to run this rule at.
+
+---
+
+##### `month`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.month"></a>
+
+- *Type:* `str`
+- *Default:* Every month
+
+The month to run this rule at.
+
+---
+
+##### `week_day`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.week_day"></a>
+
+- *Type:* `str`
+- *Default:* Any day of the week
+
+The day of the week to run this rule at.
+
+---
 
 
 #### Static Functions <a name="Static Functions"></a>

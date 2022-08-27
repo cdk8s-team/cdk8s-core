@@ -774,7 +774,7 @@ This namespace will only apply to objects that don't have a
 Options to configure a cron expression.
 
 All fields are strings so you can use complex expressions. Absence of
-a field implies '*' or '?', whichever one is appropriate.
+a field implies '*'
 
 #### Initializer <a name="[object Object].Initializer"></a>
 
@@ -1376,8 +1376,14 @@ Represents a cron schedule.
 ```typescript
 import { CronSchedule } from 'cdk8s'
 
-new CronSchedule()
+new CronSchedule(cronOptions?: CronOptions)
 ```
+
+##### `cronOptions`<sup>Optional</sup> <a name="cdk8s.CronSchedule.parameter.cronOptions"></a>
+
+- *Type:* [`cdk8s.CronOptions`](#cdk8s.CronOptions)
+
+---
 
 
 #### Static Functions <a name="Static Functions"></a>
