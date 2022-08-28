@@ -48,11 +48,7 @@ export class CronSchedule {
    * Create a custom cron schedule from a set of cron fields
    */
   public static custom(options: CronOptions): CronSchedule {
-    return new class extends CronSchedule {
-      constructor() {
-        super(options);
-      }
-    };
+    return new CronSchedule(options);
   };
 
   /**

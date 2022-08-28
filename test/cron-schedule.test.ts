@@ -1,4 +1,4 @@
-import { CronSchedule } from '../src';
+import { CronOptions, CronSchedule } from '../src';
 
 describe('CronSchedule', () => {
   test('cron expression for running every minute', () => {
@@ -25,28 +25,32 @@ describe('CronSchedule', () => {
     expect(CronSchedule.annually().expressionString).toEqual('0 0 1 1 *');
   });
 
-  test('cron expressions day and dow are mutex: given weekday', () => {
-    // Run every 10 minutes Monday through Friday
-    expect(CronSchedule.custom({
-      minute: '0/10',
-      weekDay: 'MON-FRI',
-    }).expressionString).toEqual('0/10 * * * MON-FRI');
+  test('custom cron expression', () => {
+    const expression: CronOptions = {
+      minute: '5',
+      hour: '*',
+      day: '2',
+      month: '*',
+      weekDay: '*',
+    };
+    expect(CronSchedule.custom(expression).expressionString).toEqual('5 * 2 * *');
   });
 
-  test('cron expressions day and dow are mutex: given month day', () => {
-    // Run at 8:00 am (UTC) every 1st day of the month
-    expect(CronSchedule.custom({
-      minute: '0',
-      hour: '8',
-      day: '1',
-    }).expressionString).toEqual('0 8 1 * *');
+  test('custom cron expression using default initialization', () => {
+    const cronSchedule = new CronSchedule();
+    expect(cronSchedule.expressionString).toEqual('* * * * *');
   });
 
-  test('cron expressions day and dow are mutex: given neither', () => {
-    // Run at 10:00 am (UTC) every day
-    expect(CronSchedule.custom({
-      minute: '0',
-      hour: '10',
-    }).expressionString).toEqual('0 10 * * *');
+  test('custom cron expression using initialization', () => {
+    const expression: CronOptions = {
+      minute: '5',
+      hour: '*',
+      day: '2',
+      month: '*',
+      weekDay: '*',
+    };
+
+    const cronSchedule = new CronSchedule(expression);
+    expect(cronSchedule.expressionString).toEqual('5 * 2 * *');
   });
 });
