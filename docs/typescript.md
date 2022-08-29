@@ -774,7 +774,7 @@ This namespace will only apply to objects that don't have a
 Options to configure a cron expression.
 
 All fields are strings so you can use complex expressions. Absence of
-a field implies '*' or '?', whichever one is appropriate.
+a field implies '*'
 
 #### Initializer <a name="[object Object].Initializer"></a>
 
@@ -846,19 +846,6 @@ public readonly weekDay: string;
 - *Default:* Any day of the week
 
 The day of the week to run this rule at.
-
----
-
-##### `year`<sup>Optional</sup> <a name="cdk8s.CronOptions.property.year"></a>
-
-```typescript
-public readonly year: string;
-```
-
-- *Type:* `string`
-- *Default:* Every year
-
-The year to run this rule at.
 
 ---
 
@@ -1376,6 +1363,104 @@ public readonly namespace: string;
 - *Type:* `string`
 
 The object's namespace.
+
+---
+
+
+### Cron <a name="cdk8s.Cron"></a>
+
+Represents a cron schedule.
+
+#### Initializers <a name="cdk8s.Cron.Initializer"></a>
+
+```typescript
+import { Cron } from 'cdk8s'
+
+new Cron(cronOptions?: CronOptions)
+```
+
+##### `cronOptions`<sup>Optional</sup> <a name="cdk8s.Cron.parameter.cronOptions"></a>
+
+- *Type:* [`cdk8s.CronOptions`](#cdk8s.CronOptions)
+
+---
+
+
+#### Static Functions <a name="Static Functions"></a>
+
+##### `annually` <a name="cdk8s.Cron.annually"></a>
+
+```typescript
+import { Cron } from 'cdk8s'
+
+Cron.annually()
+```
+
+##### `daily` <a name="cdk8s.Cron.daily"></a>
+
+```typescript
+import { Cron } from 'cdk8s'
+
+Cron.daily()
+```
+
+##### `everyMinute` <a name="cdk8s.Cron.everyMinute"></a>
+
+```typescript
+import { Cron } from 'cdk8s'
+
+Cron.everyMinute()
+```
+
+##### `hourly` <a name="cdk8s.Cron.hourly"></a>
+
+```typescript
+import { Cron } from 'cdk8s'
+
+Cron.hourly()
+```
+
+##### `monthly` <a name="cdk8s.Cron.monthly"></a>
+
+```typescript
+import { Cron } from 'cdk8s'
+
+Cron.monthly()
+```
+
+##### `schedule` <a name="cdk8s.Cron.schedule"></a>
+
+```typescript
+import { Cron } from 'cdk8s'
+
+Cron.schedule(options: CronOptions)
+```
+
+###### `options`<sup>Required</sup> <a name="cdk8s.Cron.parameter.options"></a>
+
+- *Type:* [`cdk8s.CronOptions`](#cdk8s.CronOptions)
+
+---
+
+##### `weekly` <a name="cdk8s.Cron.weekly"></a>
+
+```typescript
+import { Cron } from 'cdk8s'
+
+Cron.weekly()
+```
+
+#### Properties <a name="Properties"></a>
+
+##### `expressionString`<sup>Required</sup> <a name="cdk8s.Cron.property.expressionString"></a>
+
+```typescript
+public readonly expressionString: string;
+```
+
+- *Type:* `string`
+
+Retrieve the expression for this schedule.
 
 ---
 
@@ -1941,84 +2026,6 @@ Name options.
 
 ---
 
-
-
-### Schedule <a name="cdk8s.Schedule"></a>
-
-Represents a schedule.
-
-Note that rates cannot be defined in fractions of minutes.
-
-#### Initializers <a name="cdk8s.Schedule.Initializer"></a>
-
-```typescript
-import { Schedule } from 'cdk8s'
-
-new Schedule()
-```
-
-
-#### Static Functions <a name="Static Functions"></a>
-
-##### `cron` <a name="cdk8s.Schedule.cron"></a>
-
-```typescript
-import { Schedule } from 'cdk8s'
-
-Schedule.cron(options: CronOptions)
-```
-
-###### `options`<sup>Required</sup> <a name="cdk8s.Schedule.parameter.options"></a>
-
-- *Type:* [`cdk8s.CronOptions`](#cdk8s.CronOptions)
-
----
-
-##### `expression` <a name="cdk8s.Schedule.expression"></a>
-
-```typescript
-import { Schedule } from 'cdk8s'
-
-Schedule.expression(expression: string)
-```
-
-###### `expression`<sup>Required</sup> <a name="cdk8s.Schedule.parameter.expression"></a>
-
-- *Type:* `string`
-
-The expression to use.
-
-Must be in a format of 'value unit'
-
----
-
-##### `rate` <a name="cdk8s.Schedule.rate"></a>
-
-```typescript
-import { Schedule } from 'cdk8s'
-
-Schedule.rate(duration: Duration)
-```
-
-###### `duration`<sup>Required</sup> <a name="cdk8s.Schedule.parameter.duration"></a>
-
-- *Type:* [`cdk8s.Duration`](#cdk8s.Duration)
-
----
-
-#### Properties <a name="Properties"></a>
-
-##### `expressionString`<sup>Required</sup> <a name="cdk8s.Schedule.property.expressionString"></a>
-
-```typescript
-public readonly expressionString: string;
-```
-
-- *Type:* `string`
-
-Retrieve the expression for this schedule.
-
----
 
 
 ### Size <a name="cdk8s.Size"></a>
