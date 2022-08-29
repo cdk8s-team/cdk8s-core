@@ -1,54 +1,54 @@
 /**
  * Represents a cron schedule
  */
-export class CronSchedule {
+export class Cron {
   /**
    * Create a cron schedule which runs every minute
    */
-  public static everyMinute(): CronSchedule {
-    return CronSchedule.custom({ minute: '*', hour: '*', day: '*', month: '*', weekDay: '*' });
+  public static everyMinute(): Cron {
+    return Cron.schedule({ minute: '*', hour: '*', day: '*', month: '*', weekDay: '*' });
   }
 
   /**
    * Create a cron schedule which runs every hour
    */
-  public static hourly(): CronSchedule {
-    return CronSchedule.custom({ minute: '0', hour: '*', day: '*', month: '*', weekDay: '*' });
+  public static hourly(): Cron {
+    return Cron.schedule({ minute: '0', hour: '*', day: '*', month: '*', weekDay: '*' });
   }
 
   /**
    * Create a cron schedule which runs every day at midnight
    */
-  public static daily(): CronSchedule {
-    return CronSchedule.custom({ minute: '0', hour: '0', day: '*', month: '*', weekDay: '*' });
+  public static daily(): Cron {
+    return Cron.schedule({ minute: '0', hour: '0', day: '*', month: '*', weekDay: '*' });
   }
 
   /**
    * Create a cron schedule which runs every week on Sunday
    */
-  public static weekly(): CronSchedule {
-    return CronSchedule.custom({ minute: '0', hour: '0', day: '*', month: '*', weekDay: '0' });
+  public static weekly(): Cron {
+    return Cron.schedule({ minute: '0', hour: '0', day: '*', month: '*', weekDay: '0' });
   }
 
   /**
    * Create a cron schedule which runs first day of every month
    */
-  public static monthly(): CronSchedule {
-    return CronSchedule.custom({ minute: '0', hour: '0', day: '1', month: '*', weekDay: '*' });
+  public static monthly(): Cron {
+    return Cron.schedule({ minute: '0', hour: '0', day: '1', month: '*', weekDay: '*' });
   }
 
   /**
    * Create a cron schedule which runs first day of January every year
    */
-  public static annually(): CronSchedule {
-    return CronSchedule.custom({ minute: '0', hour: '0', day: '1', month: '1', weekDay: '*' });
+  public static annually(): Cron {
+    return Cron.schedule({ minute: '0', hour: '0', day: '1', month: '1', weekDay: '*' });
   }
 
   /**
    * Create a custom cron schedule from a set of cron fields
    */
-  public static custom(options: CronOptions): CronSchedule {
-    return new CronSchedule(options);
+  public static schedule(options: CronOptions): Cron {
+    return new Cron(options);
   };
 
   /**

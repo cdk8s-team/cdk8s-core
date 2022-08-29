@@ -1367,19 +1367,19 @@ The object's namespace.
 ---
 
 
-### CronSchedule <a name="cdk8s.CronSchedule"></a>
+### Cron <a name="cdk8s.Cron"></a>
 
 Represents a cron schedule.
 
-#### Initializers <a name="cdk8s.CronSchedule.Initializer"></a>
+#### Initializers <a name="cdk8s.Cron.Initializer"></a>
 
 ```typescript
-import { CronSchedule } from 'cdk8s'
+import { Cron } from 'cdk8s'
 
-new CronSchedule(cronOptions?: CronOptions)
+new Cron(cronOptions?: CronOptions)
 ```
 
-##### `cronOptions`<sup>Optional</sup> <a name="cdk8s.CronSchedule.parameter.cronOptions"></a>
+##### `cronOptions`<sup>Optional</sup> <a name="cdk8s.Cron.parameter.cronOptions"></a>
 
 - *Type:* [`cdk8s.CronOptions`](#cdk8s.CronOptions)
 
@@ -1388,71 +1388,71 @@ new CronSchedule(cronOptions?: CronOptions)
 
 #### Static Functions <a name="Static Functions"></a>
 
-##### `annually` <a name="cdk8s.CronSchedule.annually"></a>
+##### `annually` <a name="cdk8s.Cron.annually"></a>
 
 ```typescript
-import { CronSchedule } from 'cdk8s'
+import { Cron } from 'cdk8s'
 
-CronSchedule.annually()
+Cron.annually()
 ```
 
-##### `custom` <a name="cdk8s.CronSchedule.custom"></a>
+##### `daily` <a name="cdk8s.Cron.daily"></a>
 
 ```typescript
-import { CronSchedule } from 'cdk8s'
+import { Cron } from 'cdk8s'
 
-CronSchedule.custom(options: CronOptions)
+Cron.daily()
 ```
 
-###### `options`<sup>Required</sup> <a name="cdk8s.CronSchedule.parameter.options"></a>
+##### `everyMinute` <a name="cdk8s.Cron.everyMinute"></a>
+
+```typescript
+import { Cron } from 'cdk8s'
+
+Cron.everyMinute()
+```
+
+##### `hourly` <a name="cdk8s.Cron.hourly"></a>
+
+```typescript
+import { Cron } from 'cdk8s'
+
+Cron.hourly()
+```
+
+##### `monthly` <a name="cdk8s.Cron.monthly"></a>
+
+```typescript
+import { Cron } from 'cdk8s'
+
+Cron.monthly()
+```
+
+##### `schedule` <a name="cdk8s.Cron.schedule"></a>
+
+```typescript
+import { Cron } from 'cdk8s'
+
+Cron.schedule(options: CronOptions)
+```
+
+###### `options`<sup>Required</sup> <a name="cdk8s.Cron.parameter.options"></a>
 
 - *Type:* [`cdk8s.CronOptions`](#cdk8s.CronOptions)
 
 ---
 
-##### `daily` <a name="cdk8s.CronSchedule.daily"></a>
+##### `weekly` <a name="cdk8s.Cron.weekly"></a>
 
 ```typescript
-import { CronSchedule } from 'cdk8s'
+import { Cron } from 'cdk8s'
 
-CronSchedule.daily()
-```
-
-##### `everyMinute` <a name="cdk8s.CronSchedule.everyMinute"></a>
-
-```typescript
-import { CronSchedule } from 'cdk8s'
-
-CronSchedule.everyMinute()
-```
-
-##### `hourly` <a name="cdk8s.CronSchedule.hourly"></a>
-
-```typescript
-import { CronSchedule } from 'cdk8s'
-
-CronSchedule.hourly()
-```
-
-##### `monthly` <a name="cdk8s.CronSchedule.monthly"></a>
-
-```typescript
-import { CronSchedule } from 'cdk8s'
-
-CronSchedule.monthly()
-```
-
-##### `weekly` <a name="cdk8s.CronSchedule.weekly"></a>
-
-```typescript
-import { CronSchedule } from 'cdk8s'
-
-CronSchedule.weekly()
+Cron.weekly()
 ```
 
 #### Properties <a name="Properties"></a>
 
-##### `expressionString`<sup>Required</sup> <a name="cdk8s.CronSchedule.property.expressionString"></a>
+##### `expressionString`<sup>Required</sup> <a name="cdk8s.Cron.property.expressionString"></a>
 
 ```typescript
 public readonly expressionString: string;

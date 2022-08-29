@@ -1739,16 +1739,16 @@ The object's namespace.
 ---
 
 
-### CronSchedule <a name="cdk8s.CronSchedule"></a>
+### Cron <a name="cdk8s.Cron"></a>
 
 Represents a cron schedule.
 
-#### Initializers <a name="cdk8s.CronSchedule.Initializer"></a>
+#### Initializers <a name="cdk8s.Cron.Initializer"></a>
 
 ```python
 import cdk8s
 
-cdk8s.CronSchedule(
+cdk8s.Cron(
   day: str = None,
   hour: str = None,
   minute: str = None,
@@ -1805,20 +1805,52 @@ The day of the week to run this rule at.
 
 #### Static Functions <a name="Static Functions"></a>
 
-##### `annually` <a name="cdk8s.CronSchedule.annually"></a>
+##### `annually` <a name="cdk8s.Cron.annually"></a>
 
 ```python
 import cdk8s
 
-cdk8s.CronSchedule.annually()
+cdk8s.Cron.annually()
 ```
 
-##### `custom` <a name="cdk8s.CronSchedule.custom"></a>
+##### `daily` <a name="cdk8s.Cron.daily"></a>
 
 ```python
 import cdk8s
 
-cdk8s.CronSchedule.custom(
+cdk8s.Cron.daily()
+```
+
+##### `every_minute` <a name="cdk8s.Cron.every_minute"></a>
+
+```python
+import cdk8s
+
+cdk8s.Cron.every_minute()
+```
+
+##### `hourly` <a name="cdk8s.Cron.hourly"></a>
+
+```python
+import cdk8s
+
+cdk8s.Cron.hourly()
+```
+
+##### `monthly` <a name="cdk8s.Cron.monthly"></a>
+
+```python
+import cdk8s
+
+cdk8s.Cron.monthly()
+```
+
+##### `schedule` <a name="cdk8s.Cron.schedule"></a>
+
+```python
+import cdk8s
+
+cdk8s.Cron.schedule(
   day: str = None,
   hour: str = None,
   minute: str = None,
@@ -1872,49 +1904,17 @@ The day of the week to run this rule at.
 
 ---
 
-##### `daily` <a name="cdk8s.CronSchedule.daily"></a>
+##### `weekly` <a name="cdk8s.Cron.weekly"></a>
 
 ```python
 import cdk8s
 
-cdk8s.CronSchedule.daily()
-```
-
-##### `every_minute` <a name="cdk8s.CronSchedule.every_minute"></a>
-
-```python
-import cdk8s
-
-cdk8s.CronSchedule.every_minute()
-```
-
-##### `hourly` <a name="cdk8s.CronSchedule.hourly"></a>
-
-```python
-import cdk8s
-
-cdk8s.CronSchedule.hourly()
-```
-
-##### `monthly` <a name="cdk8s.CronSchedule.monthly"></a>
-
-```python
-import cdk8s
-
-cdk8s.CronSchedule.monthly()
-```
-
-##### `weekly` <a name="cdk8s.CronSchedule.weekly"></a>
-
-```python
-import cdk8s
-
-cdk8s.CronSchedule.weekly()
+cdk8s.Cron.weekly()
 ```
 
 #### Properties <a name="Properties"></a>
 
-##### `expression_string`<sup>Required</sup> <a name="cdk8s.CronSchedule.property.expression_string"></a>
+##### `expression_string`<sup>Required</sup> <a name="cdk8s.Cron.property.expression_string"></a>
 
 ```python
 expression_string: str

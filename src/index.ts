@@ -11,5 +11,5 @@ export * from './names';
 export * from './helm';
 export * from './json-patch';
 export * from './duration';
-export * from './cron-schedule';
+export * from './cron';
 export * from './size';

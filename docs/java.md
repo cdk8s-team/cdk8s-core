@@ -1645,16 +1645,16 @@ The object's namespace.
 ---
 
 
-### CronSchedule <a name="org.cdk8s.CronSchedule"></a>
+### Cron <a name="org.cdk8s.Cron"></a>
 
 Represents a cron schedule.
 
-#### Initializers <a name="org.cdk8s.CronSchedule.Initializer"></a>
+#### Initializers <a name="org.cdk8s.Cron.Initializer"></a>
 
 ```java
-import org.cdk8s.CronSchedule;
+import org.cdk8s.Cron;
 
-CronSchedule.Builder.create()
+Cron.Builder.create()
 //  .day(java.lang.String)
 //  .hour(java.lang.String)
 //  .minute(java.lang.String)
@@ -1711,71 +1711,71 @@ The day of the week to run this rule at.
 
 #### Static Functions <a name="Static Functions"></a>
 
-##### `annually` <a name="org.cdk8s.CronSchedule.annually"></a>
+##### `annually` <a name="org.cdk8s.Cron.annually"></a>
 
 ```java
-import org.cdk8s.CronSchedule;
+import org.cdk8s.Cron;
 
-CronSchedule.annually()
+Cron.annually()
 ```
 
-##### `custom` <a name="org.cdk8s.CronSchedule.custom"></a>
+##### `daily` <a name="org.cdk8s.Cron.daily"></a>
 
 ```java
-import org.cdk8s.CronSchedule;
+import org.cdk8s.Cron;
 
-CronSchedule.custom(CronOptions options)
+Cron.daily()
 ```
 
-###### `options`<sup>Required</sup> <a name="org.cdk8s.CronSchedule.parameter.options"></a>
+##### `everyMinute` <a name="org.cdk8s.Cron.everyMinute"></a>
+
+```java
+import org.cdk8s.Cron;
+
+Cron.everyMinute()
+```
+
+##### `hourly` <a name="org.cdk8s.Cron.hourly"></a>
+
+```java
+import org.cdk8s.Cron;
+
+Cron.hourly()
+```
+
+##### `monthly` <a name="org.cdk8s.Cron.monthly"></a>
+
+```java
+import org.cdk8s.Cron;
+
+Cron.monthly()
+```
+
+##### `schedule` <a name="org.cdk8s.Cron.schedule"></a>
+
+```java
+import org.cdk8s.Cron;
+
+Cron.schedule(CronOptions options)
+```
+
+###### `options`<sup>Required</sup> <a name="org.cdk8s.Cron.parameter.options"></a>
 
 - *Type:* [`org.cdk8s.CronOptions`](#org.cdk8s.CronOptions)
 
 ---
 
-##### `daily` <a name="org.cdk8s.CronSchedule.daily"></a>
+##### `weekly` <a name="org.cdk8s.Cron.weekly"></a>
 
 ```java
-import org.cdk8s.CronSchedule;
+import org.cdk8s.Cron;
 
-CronSchedule.daily()
-```
-
-##### `everyMinute` <a name="org.cdk8s.CronSchedule.everyMinute"></a>
-
-```java
-import org.cdk8s.CronSchedule;
-
-CronSchedule.everyMinute()
-```
-
-##### `hourly` <a name="org.cdk8s.CronSchedule.hourly"></a>
-
-```java
-import org.cdk8s.CronSchedule;
-
-CronSchedule.hourly()
-```
-
-##### `monthly` <a name="org.cdk8s.CronSchedule.monthly"></a>
-
-```java
-import org.cdk8s.CronSchedule;
-
-CronSchedule.monthly()
-```
-
-##### `weekly` <a name="org.cdk8s.CronSchedule.weekly"></a>
-
-```java
-import org.cdk8s.CronSchedule;
-
-CronSchedule.weekly()
+Cron.weekly()
 ```
 
 #### Properties <a name="Properties"></a>
 
-##### `expressionString`<sup>Required</sup> <a name="org.cdk8s.CronSchedule.property.expressionString"></a>
+##### `expressionString`<sup>Required</sup> <a name="org.cdk8s.Cron.property.expressionString"></a>
 
 ```java
 public java.lang.String getExpressionString();
