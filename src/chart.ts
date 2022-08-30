@@ -21,6 +21,25 @@ export interface ChartProps {
    * @default - no common labels
    */
   readonly labels?: { [name: string]: string };
+
+  /**
+   * When set to true, the chart will include a special `ConfigMap` resource
+   * that contains construct metadata about all other resources in the chart.
+   * For example, it will contain a mapping between a resource name and the path
+   * of the construct that created it:
+   *
+   * ```yaml
+   * kind: ConfigMap
+   * apiVersion: v1
+   * data:
+   *   myresource__path: Chart/MyResource
+   * ```
+   *
+   * Can also be turned on by setting the `CDK8S_CONSTRUCT_METADATA` environment variable to 'true'.
+   *
+   * @default false
+   */
+  readonly constructMetadata?: boolean;
 }
 
 export class Chart extends Construct {
@@ -60,12 +79,32 @@ export class Chart extends Construct {
    */
   private readonly _labels?: { [name: string]: string };
 
+  /**
+   * Whether or not this chart includes construct metadata.
+   */
+  public readonly includesConstructMetadata: boolean;
+
   constructor(scope: Construct, id: string, props: ChartProps = { }) {
     super(scope, id);
     this.namespace = props.namespace;
     this._labels = props.labels ?? {};
 
     Object.defineProperty(this, CHART_SYMBOL, { value: true });
+
+    this.includesConstructMetadata = props.constructMetadata ?? (process.env.CDK8S_CONSTRUCT_METADATA === 'true' ? true : false);
+
+    if (this.includesConstructMetadata) {
+      new ApiObject(this, 'ConstructMetadata', {
+        kind: 'ConfigMap',
+        apiVersion: 'v1',
+        metadata: {
+        // this annotation is used by the cli to identify this
+        // special resource.
+          annotations: { 'cdk8s.io/chart-metadata': 'true' },
+        },
+        data: {},
+      });
+    }
   }
 
   /**

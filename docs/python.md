@@ -322,6 +322,7 @@ import cdk8s
 cdk8s.Chart(
   scope: Construct,
   id: str,
+  construct_metadata: bool = None,
   labels: typing.Mapping[str] = None,
   namespace: str = None
 )
@@ -336,6 +337,27 @@ cdk8s.Chart(
 ##### `id`<sup>Required</sup> <a name="cdk8s.Chart.parameter.id"></a>
 
 - *Type:* `str`
+
+---
+
+##### `construct_metadata`<sup>Optional</sup> <a name="cdk8s.ChartProps.parameter.construct_metadata"></a>
+
+- *Type:* `bool`
+- *Default:* false
+
+When set to true, the chart will include a special `ConfigMap` resource that contains construct metadata about all other resources in the chart.
+
+For example, it will contain a mapping between a resource name and the path
+of the construct that created it:
+
+```yaml
+kind: ConfigMap
+apiVersion: v1
+data:
+   myresource__path: Chart/MyResource
+```
+
+Can also be turned on by setting the `CDK8S_CONSTRUCT_METADATA` environment variable to 'true'.
 
 ---
 
@@ -437,6 +459,18 @@ a construct node.
 ---
 
 #### Properties <a name="Properties"></a>
+
+##### `includes_construct_metadata`<sup>Required</sup> <a name="cdk8s.Chart.property.includes_construct_metadata"></a>
+
+```python
+includes_construct_metadata: bool
+```
+
+- *Type:* `bool`
+
+Whether or not this chart includes construct metadata.
+
+---
 
 ##### `labels`<sup>Required</sup> <a name="cdk8s.Chart.property.labels"></a>
 
@@ -891,10 +925,36 @@ How to divide the YAML output into files.
 import cdk8s
 
 cdk8s.ChartProps(
+  construct_metadata: bool = None,
   labels: typing.Mapping[str] = None,
   namespace: str = None
 )
 ```
+
+##### `construct_metadata`<sup>Optional</sup> <a name="cdk8s.ChartProps.property.construct_metadata"></a>
+
+```python
+construct_metadata: bool
+```
+
+- *Type:* `bool`
+- *Default:* false
+
+When set to true, the chart will include a special `ConfigMap` resource that contains construct metadata about all other resources in the chart.
+
+For example, it will contain a mapping between a resource name and the path
+of the construct that created it:
+
+```yaml
+kind: ConfigMap
+apiVersion: v1
+data:
+   myresource__path: Chart/MyResource
+```
+
+Can also be turned on by setting the `CDK8S_CONSTRUCT_METADATA` environment variable to 'true'.
+
+---
 
 ##### `labels`<sup>Optional</sup> <a name="cdk8s.ChartProps.property.labels"></a>
 

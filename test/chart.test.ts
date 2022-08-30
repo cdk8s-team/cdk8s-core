@@ -306,6 +306,26 @@ describe('toJson', () => {
 
 });
 
+test('construct metadata is added to every resource when requested', () => {
+
+  const app = Testing.app();
+  const chart = new Chart(app, 'chart1', { constructMetadata: true });
+
+  new ApiObject(chart, 'obj1', {
+    kind: 'Deployment',
+    apiVersion: 'v1',
+  });
+
+  const constructMetadata = chart.toJson().filter(r => r.metadata.annotations && r.metadata.annotations['cdk8s.io/chart-metadata'] === 'true');
+  expect(constructMetadata.length).toEqual(1);
+
+  expect(constructMetadata[0].data).toMatchObject({
+    'chart1-constructmetadata-c8ec59d6__path': 'chart1/ConstructMetadata',
+    'chart1-obj1-c818e77f__path': 'chart1/obj1',
+  });
+
+});
+
 function createImplictToken(value: any) {
   const implicit = {};
   Object.defineProperty(implicit, 'resolve', { value: () => value });

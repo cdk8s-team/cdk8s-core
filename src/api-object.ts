@@ -136,6 +136,12 @@ export class ApiObject extends Construct {
         ...props.metadata?.labels,
       },
     });
+
+    if (this.chart.includesConstructMetadata) {
+      const constrctMetadata = this.chart.node.findChild('ConstructMetadata') as ApiObject;
+      constrctMetadata.addJsonPatch(JsonPatch.add(`/data/${this.name}__path`, this.node.path ));
+    }
+
   }
 
   /**

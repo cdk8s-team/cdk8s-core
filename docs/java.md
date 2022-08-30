@@ -312,6 +312,7 @@ How to divide the YAML output into files.
 import org.cdk8s.Chart;
 
 Chart.Builder.create(Construct scope, java.lang.String id)
+//  .constructMetadata(java.lang.Boolean)
 //  .labels(java.util.Map<java.lang.String, java.lang.String>)
 //  .namespace(java.lang.String)
     .build();
@@ -326,6 +327,27 @@ Chart.Builder.create(Construct scope, java.lang.String id)
 ##### `id`<sup>Required</sup> <a name="org.cdk8s.Chart.parameter.id"></a>
 
 - *Type:* `java.lang.String`
+
+---
+
+##### `constructMetadata`<sup>Optional</sup> <a name="org.cdk8s.ChartProps.parameter.constructMetadata"></a>
+
+- *Type:* `java.lang.Boolean`
+- *Default:* false
+
+When set to true, the chart will include a special `ConfigMap` resource that contains construct metadata about all other resources in the chart.
+
+For example, it will contain a mapping between a resource name and the path
+of the construct that created it:
+
+```yaml
+kind: ConfigMap
+apiVersion: v1
+data:
+   myresource__path: Chart/MyResource
+```
+
+Can also be turned on by setting the `CDK8S_CONSTRUCT_METADATA` environment variable to 'true'.
 
 ---
 
@@ -419,6 +441,18 @@ a construct node.
 ---
 
 #### Properties <a name="Properties"></a>
+
+##### `includesConstructMetadata`<sup>Required</sup> <a name="org.cdk8s.Chart.property.includesConstructMetadata"></a>
+
+```java
+public java.lang.Boolean getIncludesConstructMetadata();
+```
+
+- *Type:* `java.lang.Boolean`
+
+Whether or not this chart includes construct metadata.
+
+---
 
 ##### `labels`<sup>Required</sup> <a name="org.cdk8s.Chart.property.labels"></a>
 
@@ -869,10 +903,36 @@ How to divide the YAML output into files.
 import org.cdk8s.ChartProps;
 
 ChartProps.builder()
+//  .constructMetadata(java.lang.Boolean)
 //  .labels(java.util.Map<java.lang.String, java.lang.String>)
 //  .namespace(java.lang.String)
     .build();
 ```
+
+##### `constructMetadata`<sup>Optional</sup> <a name="org.cdk8s.ChartProps.property.constructMetadata"></a>
+
+```java
+public java.lang.Boolean getConstructMetadata();
+```
+
+- *Type:* `java.lang.Boolean`
+- *Default:* false
+
+When set to true, the chart will include a special `ConfigMap` resource that contains construct metadata about all other resources in the chart.
+
+For example, it will contain a mapping between a resource name and the path
+of the construct that created it:
+
+```yaml
+kind: ConfigMap
+apiVersion: v1
+data:
+   myresource__path: Chart/MyResource
+```
+
+Can also be turned on by setting the `CDK8S_CONSTRUCT_METADATA` environment variable to 'true'.
+
+---
 
 ##### `labels`<sup>Optional</sup> <a name="org.cdk8s.ChartProps.property.labels"></a>
 
