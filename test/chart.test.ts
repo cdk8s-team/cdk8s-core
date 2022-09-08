@@ -316,12 +316,12 @@ test('construct metadata is added to every resource when requested by api', () =
     apiVersion: 'v1',
   });
 
-  const constructMetadata = chart.toJson().filter(r => r.metadata.annotations && r.metadata.annotations['cdk8s.io/chart-metadata'] === 'true');
+  const constructMetadata = chart.toJson().filter(r => r.metadata.annotations && r.metadata.annotations['cdk8s.io/construct-metadata'] === 'true');
   expect(constructMetadata.length).toEqual(1);
 
   expect(constructMetadata[0].data).toMatchObject({
-    'chart1-constructmetadata-c8ec59d6__path': 'chart1/ConstructMetadata',
-    'chart1-obj1-c818e77f__path': 'chart1/obj1',
+    'chart1-constructmetadata-c8ec59d6.path': 'chart1/ConstructMetadata',
+    'chart1-obj1-c818e77f.path': 'chart1/obj1',
   });
 
 });
@@ -339,12 +339,12 @@ test('construct metadata is added to every resource when requested by env variab
       apiVersion: 'v1',
     });
 
-    const constructMetadata = chart.toJson().filter(r => r.metadata.annotations && r.metadata.annotations['cdk8s.io/chart-metadata'] === 'true');
+    const constructMetadata = chart.toJson().filter(r => r.metadata.annotations && r.metadata.annotations['cdk8s.io/construct-metadata'] === 'true');
     expect(constructMetadata.length).toEqual(1);
 
     expect(constructMetadata[0].data).toMatchObject({
-      'chart1-constructmetadata-c8ec59d6__path': 'chart1/ConstructMetadata',
-      'chart1-obj1-c818e77f__path': 'chart1/obj1',
+      'chart1-constructmetadata-c8ec59d6.path': 'chart1/ConstructMetadata',
+      'chart1-obj1-c818e77f.path': 'chart1/obj1',
     });
   } finally {
     delete process.env.CDK8S_CONSTRUCT_METADATA;

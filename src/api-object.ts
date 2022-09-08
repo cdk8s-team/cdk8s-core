@@ -137,9 +137,9 @@ export class ApiObject extends Construct {
       },
     });
 
-    if (this.chart.includesConstructMetadata) {
-      const constrctMetadata = this.chart.node.findChild('ConstructMetadata') as ApiObject;
-      constrctMetadata.addJsonPatch(JsonPatch.add(`/data/${this.name}__path`, this.node.path ));
+    const constrctMetadata = this.chart.node.tryFindChild('ConstructMetadata') as ApiObject;
+    if (constrctMetadata) {
+      constrctMetadata.addJsonPatch(JsonPatch.add(`/data/${this.name}.path`, this.node.path ));
     }
 
   }

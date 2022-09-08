@@ -79,11 +79,6 @@ export class Chart extends Construct {
    */
   private readonly _labels?: { [name: string]: string };
 
-  /**
-   * Whether or not this chart includes construct metadata.
-   */
-  public readonly includesConstructMetadata: boolean;
-
   constructor(scope: Construct, id: string, props: ChartProps = { }) {
     super(scope, id);
     this.namespace = props.namespace;
@@ -91,16 +86,16 @@ export class Chart extends Construct {
 
     Object.defineProperty(this, CHART_SYMBOL, { value: true });
 
-    this.includesConstructMetadata = props.constructMetadata ?? (process.env.CDK8S_CONSTRUCT_METADATA === 'true' ? true : false);
+    const constructMetadata = props.constructMetadata ?? (process.env.CDK8S_CONSTRUCT_METADATA === 'true' ? true : false);
 
-    if (this.includesConstructMetadata) {
+    if (constructMetadata) {
       new ApiObject(this, 'ConstructMetadata', {
         kind: 'ConfigMap',
         apiVersion: 'v1',
         metadata: {
         // this annotation is used by the cli to identify this
         // special resource.
-          annotations: { 'cdk8s.io/chart-metadata': 'true' },
+          annotations: { 'cdk8s.io/construct-metadata': 'true' },
         },
         data: {},
       });
