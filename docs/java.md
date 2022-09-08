@@ -442,18 +442,6 @@ a construct node.
 
 #### Properties <a name="Properties"></a>
 
-##### `includesConstructMetadata`<sup>Required</sup> <a name="org.cdk8s.Chart.property.includesConstructMetadata"></a>
-
-```java
-public java.lang.Boolean getIncludesConstructMetadata();
-```
-
-- *Type:* `java.lang.Boolean`
-
-Whether or not this chart includes construct metadata.
-
----
-
 ##### `labels`<sup>Required</sup> <a name="org.cdk8s.Chart.property.labels"></a>
 
 ```java

@@ -356,18 +356,6 @@ a construct node.
 
 #### Properties <a name="Properties"></a>
 
-##### `includesConstructMetadata`<sup>Required</sup> <a name="cdk8s.Chart.property.includesConstructMetadata"></a>
-
-```typescript
-public readonly includesConstructMetadata: boolean;
-```
-
-- *Type:* `boolean`
-
-Whether or not this chart includes construct metadata.
-
----
-
 ##### `labels`<sup>Required</sup> <a name="cdk8s.Chart.property.labels"></a>
 
 ```typescript

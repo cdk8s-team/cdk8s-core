@@ -460,18 +460,6 @@ a construct node.
 
 #### Properties <a name="Properties"></a>
 
-##### `includes_construct_metadata`<sup>Required</sup> <a name="cdk8s.Chart.property.includes_construct_metadata"></a>
-
-```python
-includes_construct_metadata: bool
-```
-
-- *Type:* `bool`
-
-Whether or not this chart includes construct metadata.
-
----
-
 ##### `labels`<sup>Required</sup> <a name="cdk8s.Chart.property.labels"></a>
 
 ```python
