@@ -213,6 +213,7 @@ import cdk8s
 cdk8s.App(
   outdir: str = None,
   output_file_extension: str = None,
+  record_construct_metadata: bool = None,
   yaml_output_type: YamlOutputType = None
 )
 ```
@@ -232,6 +233,15 @@ The directory to output Kubernetes manifests.
 - *Default:* .k8s.yaml
 
 The file extension to use for rendered YAML files.
+
+---
+
+##### `record_construct_metadata`<sup>Optional</sup> <a name="cdk8s.AppProps.parameter.record_construct_metadata"></a>
+
+- *Type:* `bool`
+- *Default:* false
+
+When set to true, the output directory will contain a `construct-metadata.json` file that holds construct related metadata on every resource in the app.
 
 ---
 
@@ -322,7 +332,6 @@ import cdk8s
 cdk8s.Chart(
   scope: Construct,
   id: str,
-  construct_metadata: bool = None,
   labels: typing.Mapping[str] = None,
   namespace: str = None
 )
@@ -337,27 +346,6 @@ cdk8s.Chart(
 ##### `id`<sup>Required</sup> <a name="cdk8s.Chart.parameter.id"></a>
 
 - *Type:* `str`
-
----
-
-##### `construct_metadata`<sup>Optional</sup> <a name="cdk8s.ChartProps.parameter.construct_metadata"></a>
-
-- *Type:* `bool`
-- *Default:* false
-
-When set to true, the chart will include a special `ConfigMap` resource that contains construct metadata about all other resources in the chart.
-
-For example, it will contain a mapping between a resource name and the path
-of the construct that created it:
-
-```yaml
-kind: ConfigMap
-apiVersion: v1
-data:
-   myresource__path: Chart/MyResource
-```
-
-Can also be turned on by setting the `CDK8S_CONSTRUCT_METADATA` environment variable to 'true'.
 
 ---
 
@@ -862,6 +850,7 @@ import cdk8s
 cdk8s.AppProps(
   outdir: str = None,
   output_file_extension: str = None,
+  record_construct_metadata: bool = None,
   yaml_output_type: YamlOutputType = None
 )
 ```
@@ -892,6 +881,19 @@ The file extension to use for rendered YAML files.
 
 ---
 
+##### `record_construct_metadata`<sup>Optional</sup> <a name="cdk8s.AppProps.property.record_construct_metadata"></a>
+
+```python
+record_construct_metadata: bool
+```
+
+- *Type:* `bool`
+- *Default:* false
+
+When set to true, the output directory will contain a `construct-metadata.json` file that holds construct related metadata on every resource in the app.
+
+---
+
 ##### `yaml_output_type`<sup>Optional</sup> <a name="cdk8s.AppProps.property.yaml_output_type"></a>
 
 ```python
@@ -913,36 +915,10 @@ How to divide the YAML output into files.
 import cdk8s
 
 cdk8s.ChartProps(
-  construct_metadata: bool = None,
   labels: typing.Mapping[str] = None,
   namespace: str = None
 )
 ```
-
-##### `construct_metadata`<sup>Optional</sup> <a name="cdk8s.ChartProps.property.construct_metadata"></a>
-
-```python
-construct_metadata: bool
-```
-
-- *Type:* `bool`
-- *Default:* false
-
-When set to true, the chart will include a special `ConfigMap` resource that contains construct metadata about all other resources in the chart.
-
-For example, it will contain a mapping between a resource name and the path
-of the construct that created it:
-
-```yaml
-kind: ConfigMap
-apiVersion: v1
-data:
-   myresource__path: Chart/MyResource
-```
-
-Can also be turned on by setting the `CDK8S_CONSTRUCT_METADATA` environment variable to 'true'.
-
----
 
 ##### `labels`<sup>Optional</sup> <a name="cdk8s.ChartProps.property.labels"></a>
 
@@ -2866,6 +2842,7 @@ import cdk8s
 cdk8s.Testing.app(
   outdir: str = None,
   output_file_extension: str = None,
+  record_construct_metadata: bool = None,
   yaml_output_type: YamlOutputType = None
 )
 ```
@@ -2885,6 +2862,15 @@ The directory to output Kubernetes manifests.
 - *Default:* .k8s.yaml
 
 The file extension to use for rendered YAML files.
+
+---
+
+###### `record_construct_metadata`<sup>Optional</sup> <a name="cdk8s.AppProps.parameter.record_construct_metadata"></a>
+
+- *Type:* `bool`
+- *Default:* false
+
+When set to true, the output directory will contain a `construct-metadata.json` file that holds construct related metadata on every resource in the app.
 
 ---
 

@@ -1,3 +1,5 @@
+import * as fs from 'fs';
+import * as path from 'path';
 import { Construct, Node } from 'constructs';
 import { Chart, ApiObject, Testing } from '../src';
 import { Lazy } from '../src/lazy';
@@ -306,32 +308,36 @@ describe('toJson', () => {
 
 });
 
-test('construct metadata is added to every resource when requested by api', () => {
+test('construct metadata is recorded when requested by api', () => {
 
-  const app = Testing.app();
-  const chart = new Chart(app, 'chart1', { constructMetadata: true });
+  const app = Testing.app({ recordConstructMetadata: true });
+  const chart = new Chart(app, 'chart1');
 
   new ApiObject(chart, 'obj1', {
     kind: 'Deployment',
     apiVersion: 'v1',
   });
 
-  const constructMetadata = chart.toJson().filter(r => r.metadata.annotations && r.metadata.annotations['cdk8s.io/construct-metadata'] === 'true');
-  expect(constructMetadata.length).toEqual(1);
+  app.synth();
 
-  expect(constructMetadata[0].data).toMatchObject({
-    'chart1-constructmetadata-c8ec59d6.path': 'chart1/ConstructMetadata',
-    'chart1-obj1-c818e77f.path': 'chart1/obj1',
+  const constructMetadata = JSON.parse(fs.readFileSync(path.join(app.outdir, 'construct-metadata.json'), { encoding: 'utf-8' }));
+  expect(constructMetadata).toEqual({
+    version: '1.0.0',
+    resources: {
+      'chart1-obj1-c818e77f': {
+        path: 'chart1/obj1',
+      },
+    },
   });
+
 
 });
 
-test('construct metadata is added to every resource when requested by env variable', () => {
-
-  const app = Testing.app();
+test('construct metadata is recoreded when requested by env variable', () => {
 
   try {
-    process.env.CDK8S_CONSTRUCT_METADATA = 'true';
+    process.env.CDK8S_RECORD_CONSTRUCT_METADATA = 'true';
+    const app = Testing.app();
     const chart = new Chart(app, 'chart1');
 
     new ApiObject(chart, 'obj1', {
@@ -339,16 +345,36 @@ test('construct metadata is added to every resource when requested by env variab
       apiVersion: 'v1',
     });
 
-    const constructMetadata = chart.toJson().filter(r => r.metadata.annotations && r.metadata.annotations['cdk8s.io/construct-metadata'] === 'true');
-    expect(constructMetadata.length).toEqual(1);
+    app.synth();
 
-    expect(constructMetadata[0].data).toMatchObject({
-      'chart1-constructmetadata-c8ec59d6.path': 'chart1/ConstructMetadata',
-      'chart1-obj1-c818e77f.path': 'chart1/obj1',
+    const constructMetadata = JSON.parse(fs.readFileSync(path.join(app.outdir, 'construct-metadata.json'), { encoding: 'utf-8' }));
+    expect(constructMetadata).toEqual({
+      version: '1.0.0',
+      resources: {
+        'chart1-obj1-c818e77f': {
+          path: 'chart1/obj1',
+        },
+      },
     });
   } finally {
-    delete process.env.CDK8S_CONSTRUCT_METADATA;
+    delete process.env.CDK8S_RECORD_CONSTRUCT_METADATA;
   }
+
+});
+
+test('construct metadata is not recorded when not requested', () => {
+
+  const app = Testing.app();
+  const chart = new Chart(app, 'chart1');
+
+  new ApiObject(chart, 'obj1', {
+    kind: 'Deployment',
+    apiVersion: 'v1',
+  });
+
+  app.synth();
+
+  expect(fs.existsSync(path.join(app.outdir, 'construct-metadata.json'))).toBeFalsy();
 
 });
 

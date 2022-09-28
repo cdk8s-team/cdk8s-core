@@ -717,6 +717,19 @@ The file extension to use for rendered YAML files.
 
 ---
 
+##### `recordConstructMetadata`<sup>Optional</sup> <a name="cdk8s.AppProps.property.recordConstructMetadata"></a>
+
+```typescript
+public readonly recordConstructMetadata: boolean;
+```
+
+- *Type:* `boolean`
+- *Default:* false
+
+When set to true, the output directory will contain a `construct-metadata.json` file that holds construct related metadata on every resource in the app.
+
+---
+
 ##### `yamlOutputType`<sup>Optional</sup> <a name="cdk8s.AppProps.property.yamlOutputType"></a>
 
 ```typescript
@@ -739,31 +752,6 @@ import { ChartProps } from 'cdk8s'
 
 const chartProps: ChartProps = { ... }
 ```
-
-##### `constructMetadata`<sup>Optional</sup> <a name="cdk8s.ChartProps.property.constructMetadata"></a>
-
-```typescript
-public readonly constructMetadata: boolean;
-```
-
-- *Type:* `boolean`
-- *Default:* false
-
-When set to true, the chart will include a special `ConfigMap` resource that contains construct metadata about all other resources in the chart.
-
-For example, it will contain a mapping between a resource name and the path
-of the construct that created it:
-
-```yaml
-kind: ConfigMap
-apiVersion: v1
-data:
-   myresource__path: Chart/MyResource
-```
-
-Can also be turned on by setting the `CDK8S_CONSTRUCT_METADATA` environment variable to 'true'.
-
----
 
 ##### `labels`<sup>Optional</sup> <a name="cdk8s.ChartProps.property.labels"></a>
 
