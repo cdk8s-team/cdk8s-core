@@ -239,7 +239,7 @@ export class App extends Construct {
   private writeConstructMetadata(apiObjects: ApiObject[]) {
     const resources: { [key: string]: any } = {};
     for (const apiObject of apiObjects) {
-      resources[apiObject.name] = { path: apiObject.node.path };
+      resources[apiObject.name] = { path: Node.of(apiObject).path };
     }
     fs.writeFileSync(path.join(this.outdir, 'construct-metadata.json'), JSON.stringify({
       version: '1.0.0',
