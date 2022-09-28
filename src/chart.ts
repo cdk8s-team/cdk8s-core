@@ -21,6 +21,7 @@ export interface ChartProps {
    * @default - no common labels
    */
   readonly labels?: { [name: string]: string };
+
 }
 
 export class Chart extends Construct {

@@ -717,6 +717,19 @@ The file extension to use for rendered YAML files.
 
 ---
 
+##### `recordConstructMetadata`<sup>Optional</sup> <a name="cdk8s.AppProps.property.recordConstructMetadata"></a>
+
+```typescript
+public readonly recordConstructMetadata: boolean;
+```
+
+- *Type:* `boolean`
+- *Default:* false
+
+When set to true, the output directory will contain a `construct-metadata.json` file that holds construct related metadata on every resource in the app.
+
+---
+
 ##### `yamlOutputType`<sup>Optional</sup> <a name="cdk8s.AppProps.property.yamlOutputType"></a>
 
 ```typescript

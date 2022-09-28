@@ -205,6 +205,7 @@ import org.cdk8s.App;
 App.Builder.create()
 //  .outdir(java.lang.String)
 //  .outputFileExtension(java.lang.String)
+//  .recordConstructMetadata(java.lang.Boolean)
 //  .yamlOutputType(YamlOutputType)
     .build();
 ```
@@ -224,6 +225,15 @@ The directory to output Kubernetes manifests.
 - *Default:* .k8s.yaml
 
 The file extension to use for rendered YAML files.
+
+---
+
+##### `recordConstructMetadata`<sup>Optional</sup> <a name="org.cdk8s.AppProps.parameter.recordConstructMetadata"></a>
+
+- *Type:* `java.lang.Boolean`
+- *Default:* false
+
+When set to true, the output directory will contain a `construct-metadata.json` file that holds construct related metadata on every resource in the app.
 
 ---
 
@@ -818,6 +828,7 @@ import org.cdk8s.AppProps;
 AppProps.builder()
 //  .outdir(java.lang.String)
 //  .outputFileExtension(java.lang.String)
+//  .recordConstructMetadata(java.lang.Boolean)
 //  .yamlOutputType(YamlOutputType)
     .build();
 ```
@@ -845,6 +856,19 @@ public java.lang.String getOutputFileExtension();
 - *Default:* .k8s.yaml
 
 The file extension to use for rendered YAML files.
+
+---
+
+##### `recordConstructMetadata`<sup>Optional</sup> <a name="org.cdk8s.AppProps.property.recordConstructMetadata"></a>
+
+```java
+public java.lang.Boolean getRecordConstructMetadata();
+```
+
+- *Type:* `java.lang.Boolean`
+- *Default:* false
+
+When set to true, the output directory will contain a `construct-metadata.json` file that holds construct related metadata on every resource in the app.
 
 ---
 
