@@ -213,6 +213,7 @@ import cdk8s
 cdk8s.App(
   outdir: str = None,
   output_file_extension: str = None,
+  record_construct_metadata: bool = None,
   yaml_output_type: YamlOutputType = None
 )
 ```
@@ -232,6 +233,15 @@ The directory to output Kubernetes manifests.
 - *Default:* .k8s.yaml
 
 The file extension to use for rendered YAML files.
+
+---
+
+##### `record_construct_metadata`<sup>Optional</sup> <a name="cdk8s.AppProps.parameter.record_construct_metadata"></a>
+
+- *Type:* `bool`
+- *Default:* false
+
+When set to true, the output directory will contain a `construct-metadata.json` file that holds construct related metadata on every resource in the app.
 
 ---
 
@@ -840,6 +850,7 @@ import cdk8s
 cdk8s.AppProps(
   outdir: str = None,
   output_file_extension: str = None,
+  record_construct_metadata: bool = None,
   yaml_output_type: YamlOutputType = None
 )
 ```
@@ -867,6 +878,19 @@ output_file_extension: str
 - *Default:* .k8s.yaml
 
 The file extension to use for rendered YAML files.
+
+---
+
+##### `record_construct_metadata`<sup>Optional</sup> <a name="cdk8s.AppProps.property.record_construct_metadata"></a>
+
+```python
+record_construct_metadata: bool
+```
+
+- *Type:* `bool`
+- *Default:* false
+
+When set to true, the output directory will contain a `construct-metadata.json` file that holds construct related metadata on every resource in the app.
 
 ---
 
@@ -2818,6 +2842,7 @@ import cdk8s
 cdk8s.Testing.app(
   outdir: str = None,
   output_file_extension: str = None,
+  record_construct_metadata: bool = None,
   yaml_output_type: YamlOutputType = None
 )
 ```
@@ -2837,6 +2862,15 @@ The directory to output Kubernetes manifests.
 - *Default:* .k8s.yaml
 
 The file extension to use for rendered YAML files.
+
+---
+
+###### `record_construct_metadata`<sup>Optional</sup> <a name="cdk8s.AppProps.parameter.record_construct_metadata"></a>
+
+- *Type:* `bool`
+- *Default:* false
+
+When set to true, the output directory will contain a `construct-metadata.json` file that holds construct related metadata on every resource in the app.
 
 ---
 
