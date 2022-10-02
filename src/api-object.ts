@@ -136,6 +136,7 @@ export class ApiObject extends Construct {
         ...props.metadata?.labels,
       },
     });
+
   }
 
   /**

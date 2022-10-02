@@ -43,6 +43,14 @@ export interface AppProps {
    * @default YamlOutputType.FILE_PER_CHART
    */
   readonly yamlOutputType?: YamlOutputType;
+
+  /**
+   * When set to true, the output directory will contain a `construct-metadata.json` file
+   * that holds construct related metadata on every resource in the app.
+   *
+   * @default false
+   */
+  readonly recordConstructMetadata?: boolean;
 }
 
 /**
@@ -106,6 +114,8 @@ export class App extends Construct {
    */
   public readonly yamlOutputType: YamlOutputType;
 
+  private readonly recordConstructMetadata: boolean;
+
   /**
    * Returns all the charts in this app, sorted topologically.
    */
@@ -125,6 +135,9 @@ export class App extends Construct {
     this.outdir = props.outdir ?? process.env.CDK8S_OUTDIR ?? 'dist';
     this.outputFileExtension = props.outputFileExtension ?? '.k8s.yaml';
     this.yamlOutputType = props.yamlOutputType ?? YamlOutputType.FILE_PER_CHART;
+
+    this.recordConstructMetadata = props.recordConstructMetadata ?? (process.env.CDK8S_RECORD_CONSTRUCT_METADATA === 'true' ? true : false);
+
   }
 
   /**
@@ -161,11 +174,9 @@ export class App extends Construct {
 
       case YamlOutputType.FILE_PER_CHART:
         const namer: ChartNamer = hasDependantCharts ? new IndexedChartNamer() : new SimpleChartNamer();
-
         for (const chart of charts) {
           const chartName = namer.name(chart);
           const objects = chartToKube(chart);
-
           Yaml.save(path.join(this.outdir, chartName+this.outputFileExtension), objects.map(obj => obj.toJson()));
         }
         break;
@@ -206,6 +217,11 @@ export class App extends Construct {
         break;
     }
 
+    if (this.recordConstructMetadata) {
+      const allObjects = this.charts.flatMap(chartToKube);
+      this.writeConstructMetadata(allObjects);
+    }
+
   }
 
   /**
@@ -225,6 +241,17 @@ export class App extends Construct {
     }
 
     return Yaml.stringify(...docs);
+  }
+
+  private writeConstructMetadata(apiObjects: ApiObject[]) {
+    const resources: { [key: string]: any } = {};
+    for (const apiObject of apiObjects) {
+      resources[apiObject.name] = { path: apiObject.node.path };
+    }
+    fs.writeFileSync(path.join(this.outdir, 'construct-metadata.json'), JSON.stringify({
+      version: '1.0.0',
+      resources: resources,
+    }));
   }
 }
 
