@@ -217,6 +217,13 @@ App.Builder.create()
 
 The directory to output Kubernetes manifests.
 
+By default, the value you pass to the CDK8s CLI's `--output` flag
+or in the `output` property of cdk8s.yaml file will be used,
+and if you change it to a different directory the CLI will fail
+to pick up the new output directory.
+
+This property is intended for internal and testing use.
+
 ---
 
 ##### `outputFileExtension`<sup>Optional</sup> <a name="org.cdk8s.AppProps.parameter.outputFileExtension"></a>
@@ -843,6 +850,13 @@ public java.lang.String getOutdir();
 - *Default:* CDK8S_OUTDIR if defined, otherwise "dist"
 
 The directory to output Kubernetes manifests.
+
+By default, the value you pass to the CDK8s CLI's `--output` flag
+or in the `output` property of cdk8s.yaml file will be used,
+and if you change it to a different directory the CLI will fail
+to pick up the new output directory.
+
+This property is intended for internal and testing use.
 
 ---
 
