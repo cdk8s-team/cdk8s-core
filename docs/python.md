@@ -225,6 +225,14 @@ cdk8s.App(
 
 The directory to output Kubernetes manifests.
 
+If you synthesize your application using `cdk8s synth`, you must
+also pass this value to the CLI using the `--output` option or
+the `output` property in the `cdk8s.yaml` configuration file.
+Otherwise, the CLI will not know about the output directory,
+and synthesis will fail.
+
+This property is intended for internal and testing use.
+
 ---
 
 ##### `output_file_extension`<sup>Optional</sup> <a name="cdk8s.AppProps.parameter.output_file_extension"></a>
@@ -865,6 +873,14 @@ outdir: str
 - *Default:* CDK8S_OUTDIR if defined, otherwise "dist"
 
 The directory to output Kubernetes manifests.
+
+If you synthesize your application using `cdk8s synth`, you must
+also pass this value to the CLI using the `--output` option or
+the `output` property in the `cdk8s.yaml` configuration file.
+Otherwise, the CLI will not know about the output directory,
+and synthesis will fail.
+
+This property is intended for internal and testing use.
 
 ---
 
@@ -2853,6 +2869,14 @@ cdk8s.Testing.app(
 - *Default:* CDK8S_OUTDIR if defined, otherwise "dist"
 
 The directory to output Kubernetes manifests.
+
+If you synthesize your application using `cdk8s synth`, you must
+also pass this value to the CLI using the `--output` option or
+the `output` property in the `cdk8s.yaml` configuration file.
+Otherwise, the CLI will not know about the output directory,
+and synthesis will fail.
+
+This property is intended for internal and testing use.
 
 ---
 
