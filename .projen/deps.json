@@ -82,7 +82,7 @@
     },
     {
       "name": "npm-check-updates",
-      "version": "^15",
+      "version": "^16",
       "type": "build"
     },
     {
