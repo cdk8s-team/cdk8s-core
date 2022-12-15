@@ -49,7 +49,7 @@
     "@types/node": "^14",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
-    "constructs": "^3.4.183",
+    "constructs": "^3.4.184",
     "eslint": "^8",
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-import-resolver-typescript": "^2.7.1",
@@ -63,13 +63,13 @@
     "json-schema": "^0.4.0",
     "json-schema-to-typescript": "^10.1.5",
     "npm-check-updates": "^16",
-    "projen": "^0.65.58",
+    "projen": "^0.65.59",
     "standard-version": "^9",
     "ts-jest": "^27",
     "typescript": "^4.9.4"
   },
   "peerDependencies": {
-    "constructs": "^3.4.183"
+    "constructs": "^3.4.184"
   },
   "dependencies": {
     "fast-json-patch": "^3.1.1",
