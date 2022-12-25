@@ -131,6 +131,41 @@ test('helmFlags can be used to specify additional helm options', () => {
   expect(spawnMock).toHaveBeenCalledWith('helm', expectedArgs, { maxBuffer: 10485760 });
 });
 
+test('repo can be used to specify helm repo', () => {
+  // GIVEN
+  const spawnMock = jest.spyOn(_child_process, 'spawnSync').mockReturnValue({
+    status: 0,
+    stderr: Buffer.from(''),
+    stdout: Buffer.from(''),
+    pid: 123,
+    output: [Buffer.from('stdout', 'utf8'), Buffer.from('stderr', 'utf8')],
+    signal: null,
+  });
+
+  const chart = Testing.chart();
+
+  // WHEN
+  new Helm(chart, 'sample', {
+    chart: SAMPLE_CHART_PATH,
+    repo: 'foo-repo',
+    version: 'foo-version',
+    namespace: 'foo-namespace',
+  });
+
+  // THEN
+  const expectedArgs: string[] = [
+    'template',
+    '--repo', 'foo-repo',
+    '--version', 'foo-version',
+    '--namespace', 'foo-namespace',
+    'test-sample-c8e2763d',
+    SAMPLE_CHART_PATH,
+  ];
+
+  expect(spawnMock).toHaveBeenCalledTimes(1);
+  expect(spawnMock).toHaveBeenCalledWith('helm', expectedArgs, { maxBuffer: 10485760 });
+});
+
 test('propagates helm failures', () => {
   // GIVEN
   const chart = Testing.chart();

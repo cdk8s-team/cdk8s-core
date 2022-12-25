@@ -24,6 +24,29 @@ export interface HelmProps {
   readonly chart: string;
 
   /**
+   * Chart repository url where to locate the requested chart
+   */
+  readonly repo?: string;
+
+  /**
+   * Version constraint for the chart version to use.
+   * This constraint can be a specific tag (e.g. 1.1.1)
+   * or it may reference a valid range (e.g. ^2.0.0).
+   * If this is not specified, the latest version is used
+   *
+   * This name is passed to `helm template --version` and has all the relevant semantics.
+   *
+   * @example "1.1.1"
+   * @example "^2.0.0"
+   */
+  readonly version?: string;
+
+  /**
+   * Scope all resources in to a given namespace.
+   */
+  readonly namespace?: string;
+
+  /**
    * The release name.
    *
    * @see https://helm.sh/docs/intro/using_helm/#three-big-concepts
@@ -75,6 +98,18 @@ export class Helm extends Include {
       const valuesPath = path.join(workdir, 'overrides.yaml');
       fs.writeFileSync(valuesPath, yaml.stringify(props.values));
       args.push('-f', valuesPath);
+    }
+
+    if (props.repo) {
+      args.push('--repo', props.repo);
+    }
+
+    if (props.version) {
+      args.push('--version', props.version);
+    }
+
+    if (props.namespace) {
+      args.push('--namespace', props.namespace);
     }
 
     // custom flags
