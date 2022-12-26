@@ -1706,10 +1706,10 @@ console-control-strings@^1.1.0:
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
   integrity sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==
 
-constructs@^3.4.194:
-  version "3.4.194"
-  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.4.194.tgz#db81a66379fe55f5a981f77ee8d2e603c356166d"
-  integrity sha512-iTDp/u7dwc6Q258qyhuTEWQct7BHF/9xYRv4G5enC84Y8dGW2YkO9R5ZFAXrH72RnLsY0kEftUqefZily6aClQ==
+constructs@^3.4.195:
+  version "3.4.195"
+  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.4.195.tgz#8e8c05f2d3bf2febce17b341d1282c3926e04cfd"
+  integrity sha512-/9dO8S3jtjuVDJS+6nQ/CsX6ZxkkII466T+DuwyAjNtKjH8m0k5EIc/xGRfW20MA0h8A8bczBjIvpYzhXVK/DA==
 
 conventional-changelog-angular@^5.0.12:
   version "5.0.13"
