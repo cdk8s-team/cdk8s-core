@@ -956,6 +956,18 @@ Additional flags to add to the `helm` execution.
 
 ---
 
+##### `namespace`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.namespace"></a>
+
+```typescript
+public readonly namespace: string;
+```
+
+- *Type:* `string`
+
+Scope all resources in to a given namespace.
+
+---
+
 ##### `releaseName`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.releaseName"></a>
 
 ```typescript
@@ -971,6 +983,18 @@ The release name.
 
 ---
 
+##### `repo`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.repo"></a>
+
+```typescript
+public readonly repo: string;
+```
+
+- *Type:* `string`
+
+Chart repository url where to locate the requested chart.
+
+---
+
 ##### `values`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.values"></a>
 
 ```typescript
@@ -981,6 +1005,24 @@ public readonly values: {[ key: string ]: any};
 - *Default:* If no values are specified, chart will use the defaults.
 
 Values to pass to the chart.
+
+---
+
+##### `version`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.version"></a>
+
+```typescript
+public readonly version: string;
+```
+
+- *Type:* `string`
+
+Version constraint for the chart version to use.
+
+This constraint can be a specific tag (e.g. 1.1.1)
+or it may reference a valid range (e.g. ^2.0.0).
+If this is not specified, the latest version is used
+
+This name is passed to `helm template --version` and has all the relevant semantics.
 
 ---
 
