@@ -500,8 +500,11 @@ cdk8s.Helm(
   chart: str,
   helm_executable: str = None,
   helm_flags: typing.List[str] = None,
+  namespace: str = None,
   release_name: str = None,
-  values: typing.Mapping[typing.Any] = None
+  repo: str = None,
+  values: typing.Mapping[typing.Any] = None,
+  version: str = None
 )
 ```
 
@@ -545,6 +548,14 @@ Additional flags to add to the `helm` execution.
 
 ---
 
+##### `namespace`<sup>Optional</sup> <a name="cdk8s.HelmProps.parameter.namespace"></a>
+
+- *Type:* `str`
+
+Scope all resources in to a given namespace.
+
+---
+
 ##### `release_name`<sup>Optional</sup> <a name="cdk8s.HelmProps.parameter.release_name"></a>
 
 - *Type:* `str`
@@ -556,12 +567,34 @@ The release name.
 
 ---
 
+##### `repo`<sup>Optional</sup> <a name="cdk8s.HelmProps.parameter.repo"></a>
+
+- *Type:* `str`
+
+Chart repository url where to locate the requested chart.
+
+---
+
 ##### `values`<sup>Optional</sup> <a name="cdk8s.HelmProps.parameter.values"></a>
 
 - *Type:* typing.Mapping[`typing.Any`]
 - *Default:* If no values are specified, chart will use the defaults.
 
 Values to pass to the chart.
+
+---
+
+##### `version`<sup>Optional</sup> <a name="cdk8s.HelmProps.parameter.version"></a>
+
+- *Type:* `str`
+
+Version constraint for the chart version to use.
+
+This constraint can be a specific tag (e.g. 1.1.1)
+or it may reference a valid range (e.g. ^2.0.0).
+If this is not specified, the latest version is used
+
+This name is passed to `helm template --version` and has all the relevant semantics.
 
 ---
 
@@ -1101,8 +1134,11 @@ cdk8s.HelmProps(
   chart: str,
   helm_executable: str = None,
   helm_flags: typing.List[str] = None,
+  namespace: str = None,
   release_name: str = None,
-  values: typing.Mapping[typing.Any] = None
+  repo: str = None,
+  values: typing.Mapping[typing.Any] = None,
+  version: str = None
 )
 ```
 
@@ -1146,6 +1182,18 @@ Additional flags to add to the `helm` execution.
 
 ---
 
+##### `namespace`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.namespace"></a>
+
+```python
+namespace: str
+```
+
+- *Type:* `str`
+
+Scope all resources in to a given namespace.
+
+---
+
 ##### `release_name`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.release_name"></a>
 
 ```python
@@ -1161,6 +1209,18 @@ The release name.
 
 ---
 
+##### `repo`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.repo"></a>
+
+```python
+repo: str
+```
+
+- *Type:* `str`
+
+Chart repository url where to locate the requested chart.
+
+---
+
 ##### `values`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.values"></a>
 
 ```python
@@ -1171,6 +1231,24 @@ values: typing.Mapping[typing.Any]
 - *Default:* If no values are specified, chart will use the defaults.
 
 Values to pass to the chart.
+
+---
+
+##### `version`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.version"></a>
+
+```python
+version: str
+```
+
+- *Type:* `str`
+
+Version constraint for the chart version to use.
+
+This constraint can be a specific tag (e.g. 1.1.1)
+or it may reference a valid range (e.g. ^2.0.0).
+If this is not specified, the latest version is used
+
+This name is passed to `helm template --version` and has all the relevant semantics.
 
 ---
 
