@@ -480,8 +480,11 @@ Helm.Builder.create(Construct scope, java.lang.String id)
     .chart(java.lang.String)
 //  .helmExecutable(java.lang.String)
 //  .helmFlags(java.util.List<java.lang.String>)
+//  .namespace(java.lang.String)
 //  .releaseName(java.lang.String)
+//  .repo(java.lang.String)
 //  .values(java.util.Map<java.lang.String, java.lang.Object>)
+//  .version(java.lang.String)
     .build();
 ```
 
@@ -525,6 +528,14 @@ Additional flags to add to the `helm` execution.
 
 ---
 
+##### `namespace`<sup>Optional</sup> <a name="org.cdk8s.HelmProps.parameter.namespace"></a>
+
+- *Type:* `java.lang.String`
+
+Scope all resources in to a given namespace.
+
+---
+
 ##### `releaseName`<sup>Optional</sup> <a name="org.cdk8s.HelmProps.parameter.releaseName"></a>
 
 - *Type:* `java.lang.String`
@@ -536,12 +547,34 @@ The release name.
 
 ---
 
+##### `repo`<sup>Optional</sup> <a name="org.cdk8s.HelmProps.parameter.repo"></a>
+
+- *Type:* `java.lang.String`
+
+Chart repository url where to locate the requested chart.
+
+---
+
 ##### `values`<sup>Optional</sup> <a name="org.cdk8s.HelmProps.parameter.values"></a>
 
 - *Type:* java.util.Map<java.lang.String, `java.lang.Object`>
 - *Default:* If no values are specified, chart will use the defaults.
 
 Values to pass to the chart.
+
+---
+
+##### `version`<sup>Optional</sup> <a name="org.cdk8s.HelmProps.parameter.version"></a>
+
+- *Type:* `java.lang.String`
+
+Version constraint for the chart version to use.
+
+This constraint can be a specific tag (e.g. 1.1.1)
+or it may reference a valid range (e.g. ^2.0.0).
+If this is not specified, the latest version is used
+
+This name is passed to `helm template --version` and has all the relevant semantics.
 
 ---
 
@@ -1079,8 +1112,11 @@ HelmProps.builder()
     .chart(java.lang.String)
 //  .helmExecutable(java.lang.String)
 //  .helmFlags(java.util.List<java.lang.String>)
+//  .namespace(java.lang.String)
 //  .releaseName(java.lang.String)
+//  .repo(java.lang.String)
 //  .values(java.util.Map<java.lang.String, java.lang.Object>)
+//  .version(java.lang.String)
     .build();
 ```
 
@@ -1124,6 +1160,18 @@ Additional flags to add to the `helm` execution.
 
 ---
 
+##### `namespace`<sup>Optional</sup> <a name="org.cdk8s.HelmProps.property.namespace"></a>
+
+```java
+public java.lang.String getNamespace();
+```
+
+- *Type:* `java.lang.String`
+
+Scope all resources in to a given namespace.
+
+---
+
 ##### `releaseName`<sup>Optional</sup> <a name="org.cdk8s.HelmProps.property.releaseName"></a>
 
 ```java
@@ -1139,6 +1187,18 @@ The release name.
 
 ---
 
+##### `repo`<sup>Optional</sup> <a name="org.cdk8s.HelmProps.property.repo"></a>
+
+```java
+public java.lang.String getRepo();
+```
+
+- *Type:* `java.lang.String`
+
+Chart repository url where to locate the requested chart.
+
+---
+
 ##### `values`<sup>Optional</sup> <a name="org.cdk8s.HelmProps.property.values"></a>
 
 ```java
@@ -1149,6 +1209,24 @@ public java.util.Map<java.lang.String, java.lang.Object> getValues();
 - *Default:* If no values are specified, chart will use the defaults.
 
 Values to pass to the chart.
+
+---
+
+##### `version`<sup>Optional</sup> <a name="org.cdk8s.HelmProps.property.version"></a>
+
+```java
+public java.lang.String getVersion();
+```
+
+- *Type:* `java.lang.String`
+
+Version constraint for the chart version to use.
+
+This constraint can be a specific tag (e.g. 1.1.1)
+or it may reference a valid range (e.g. ^2.0.0).
+If this is not specified, the latest version is used
+
+This name is passed to `helm template --version` and has all the relevant semantics.
 
 ---
 
