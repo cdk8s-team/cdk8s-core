@@ -52,3 +52,18 @@ test('apply()', () => {
     },
   });
 });
+
+test('apply() does not mutate the patches', () => {
+  const input = {
+    world: {},
+  };
+
+  const patches = [
+    JsonPatch.add('/world/foo', []),
+    JsonPatch.add('/world/foo/-', 'boom'),
+  ];
+
+  JsonPatch.apply(input, ...patches);
+
+  expect(patches[0]._toJson()).toEqual(JsonPatch.add('/world/foo', [])._toJson());
+});
