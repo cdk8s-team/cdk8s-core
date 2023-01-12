@@ -1,5 +1,5 @@
-import { NameOptions, Names } from '../src/names';
 import { createTree } from './util';
+import { NameOptions, Names } from '../src/names';
 
 const toDnsName = (path: string, options: NameOptions = { }) => Names.toDnsLabel(createTree(path), options);
 const toLabelValue = (path: string, options: NameOptions = { }) => Names.toLabelValue(createTree(path), options);
