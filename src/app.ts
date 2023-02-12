@@ -277,9 +277,7 @@ function validate(app: App) {
   }
 }
 
-function resolveDependencies(app: App) {
-
-  let hasDependantCharts = false;
+function buildDependencies(app: App) {
 
   const deps = [];
   for (const child of app.node.findAll()) {
@@ -288,19 +286,23 @@ function resolveDependencies(app: App) {
     }
   }
 
-  for (const dep of deps) {
+  return deps;
 
-    // create explicit api object dependencies from implicit construct dependencies
-    const targetApiObjects = dep.target.node.findAll().filter(c => c instanceof ApiObject);
-    const sourceApiObjects = dep.source.node.findAll().filter(c => c instanceof ApiObject);
+}
 
-    for (const target of targetApiObjects) {
-      for (const source of sourceApiObjects) {
-        if (target !== source) {
-          source.node.addDependency(target);
-        }
-      }
+function resolveDependencies(app: App) {
+
+  let hasDependantCharts = false;
+
+  for (const parentChart of app.node.findAll().filter(x => x instanceof Chart)) {
+    for (const childChart of parentChart.node.children.filter(x => x instanceof Chart)) {
+      // create an explicit chart dependency from nested chart relationships
+      parentChart.node.addDependency(childChart);
+      hasDependantCharts = true;
     }
+  }
+
+  for (const dep of buildDependencies(app)) {
 
     // create an explicit chart dependency from implicit construct dependencies
     const sourceChart = Chart.of(dep.source);
@@ -313,12 +315,23 @@ function resolveDependencies(app: App) {
 
   }
 
-  for (const parentChart of app.node.findAll().filter(x => x instanceof Chart)) {
-    for (const childChart of parentChart.node.children.filter(x => x instanceof Chart)) {
-      // create an explicit chart dependency from nested chart relationships
-      parentChart.node.addDependency(childChart);
-      hasDependantCharts = true;
+  for (const dep of buildDependencies(app)) {
+
+    const sourceChart = Chart.of(dep.source);
+    const targetChart = Chart.of(dep.target);
+
+    // create explicit api object dependencies from implicit construct dependencies
+    const targetApiObjects = dep.target.node.findAll().filter(c => c instanceof ApiObject).filter(x => Chart.of(x) === targetChart);
+    const sourceApiObjects = dep.source.node.findAll().filter(c => c instanceof ApiObject).filter(x => Chart.of(x) === sourceChart);
+
+    for (const target of targetApiObjects) {
+      for (const source of sourceApiObjects) {
+        if (target !== source) {
+          source.node.addDependency(target);
+        }
+      }
     }
+
   }
 
   return hasDependantCharts;
