@@ -1,9 +1,27 @@
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
-import { Node, Construct } from 'constructs';
+import { Construct } from 'constructs';
 import * as YAML from 'yaml';
 import { Testing, Chart, App, ApiObject, YamlOutputType } from '../src';
+
+test('synthYaml considers dependencies', () => {
+
+  const app = Testing.app();
+
+  const chart = new Chart(app, 'Chart');
+
+  const c1 = new Construct(chart, 'C1');
+  const c2 = new Construct(chart, 'C2');
+
+  new ApiObject(c1, 'ApiObject1', { kind: 'Kind1', apiVersion: 'v1' });
+  new ApiObject(c2, 'ApiObject2', { kind: 'Kind2', apiVersion: 'v1' });
+
+  c1.node.addDependency(c2);
+
+  expect(app.synthYaml()).toMatchSnapshot();
+
+});
 
 test('can hook into chart synthesis with during synthYaml', () => {
 
@@ -100,8 +118,8 @@ test('app with charts directly dependant', () => {
   const chart2 = new Chart(app, 'chart2');
   const chart3 = new Chart(app, 'chart3');
 
-  Node.of(chart1).addDependency(chart2);
-  Node.of(chart2).addDependency(chart3);
+  chart1.node.addDependency(chart2);
+  chart2.node.addDependency(chart3);
 
   app.synth();
 
@@ -128,8 +146,8 @@ test('app with charts indirectly dependant', () => {
   const obj2 = new ApiObject(chart2, 'obj2', { apiVersion: 'v1', kind: 'Kind2' });
   const obj3 = new ApiObject(chart3, 'obj3', { apiVersion: 'v1', kind: 'Kind3' });
 
-  Node.of(obj1).addDependency(obj2);
-  Node.of(obj2).addDependency(obj3);
+  obj1.node.addDependency(obj2);
+  obj2.node.addDependency(obj3);
 
   app.synth();
 
@@ -177,7 +195,7 @@ test('app with dependent and independent charts', () => {
   const chart3 = new Chart(app, 'chart3');
   new Chart(app, 'chart4');
 
-  Node.of(chart1).addDependency(chart3);
+  chart1.node.addDependency(chart3);
 
   app.synth();
 
@@ -211,7 +229,7 @@ test('app with chart dependencies via custom constructs', () => {
   const microService = new CustomConstruct(chart1, 'MicroService');
   const dataBase = new CustomConstruct(chart2, 'DataBase');
 
-  Node.of(microService).addDependency(dataBase);
+  microService.node.addDependency(dataBase);
 
   app.synth();
 
@@ -418,8 +436,8 @@ test('apps with varying yamlOutputTypes; charts indirectly dependant, multiple o
     const obj2 = new ApiObject(chart2, 'obj2', { apiVersion: 'v1', kind: 'Kind2' });
     const obj3 = new ApiObject(chart3, 'obj3', { apiVersion: 'v1', kind: 'Kind3' });
 
-    Node.of(obj1).addDependency(obj2);
-    Node.of(obj2).addDependency(obj3);
+    obj1.node.addDependency(obj2);
+    obj2.node.addDependency(obj3);
 
     app.synth();
 
@@ -474,7 +492,7 @@ test('apps with varying yamlOutputTypes; chart dependencies via custom construct
     const microService = new CustomConstruct(chart1, 'MicroService');
     const dataBase = new CustomConstruct(chart2, 'DataBase');
 
-    Node.of(microService).addDependency(dataBase);
+    microService.node.addDependency(dataBase);
 
     app.synth();
 

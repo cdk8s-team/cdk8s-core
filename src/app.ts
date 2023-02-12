@@ -229,7 +229,10 @@ export class App extends Construct {
    *
    * @returns A string with all YAML objects across all charts in this app.
    */
-  public synthYaml(): any {
+  public synthYaml(): string {
+
+    resolveDependencies(this);
+
     validate(this);
 
     const charts = this.charts;

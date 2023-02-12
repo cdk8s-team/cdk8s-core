@@ -70,3 +70,16 @@ metadata:
   name: chart3-obj4-c8da728e
 "
 `;
+
+exports[`synthYaml considers dependencies 1`] = `
+"apiVersion: v1
+kind: Kind2
+metadata:
+  name: chart-c2-apiobject2-c8a49d62
+---
+apiVersion: v1
+kind: Kind1
+metadata:
+  name: chart-c1-apiobject1-c8f49fa2
+"
+`;

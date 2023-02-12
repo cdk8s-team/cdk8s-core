@@ -1,4 +1,4 @@
-import { Construct, Node } from 'constructs';
+import { Construct } from 'constructs';
 import { ApiObject, Chart, JsonPatch, Testing } from '../src';
 
 test('minimal configuration', () => {
@@ -78,7 +78,7 @@ test('addDependency', () => {
 
   obj1.addDependency(obj2, obj3);
 
-  const dependencies = Node.of(obj1).dependencies;
+  const dependencies = obj1.node.dependencies;
 
   expect(dependencies).toEqual([
     obj2,
