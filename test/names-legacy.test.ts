@@ -1,5 +1,5 @@
-import { createTree } from './util';
 import { Names } from '../src/names';
+import { createTree } from './util';
 
 const toDnsName = (path: string, maxLen?: number) => Names.toDnsLabel(createTree(path), { maxLen });
 const toLabelValue = (path: string, delimiter?: string, maxLen?: number) => Names.toLabelValue(createTree(path), { maxLen, delimiter });
