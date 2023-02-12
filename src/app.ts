@@ -148,14 +148,14 @@ export class App extends Construct {
 
     fs.mkdirSync(this.outdir, { recursive: true });
 
-    let charts = this.node.findAll().filter(x => x instanceof Chart) as Chart[];
-    for (const chart of charts) {
-      for (const apiObject of chart.node.findAll().filter(x => x instanceof ApiObject)) {
-        if (Chart.of(apiObject) !== chart) {
-          apiObject.node.scope!.node.tryRemoveChild(apiObject.node.id);
-        }
-      }
-    }
+    // let charts = this.node.findAll().filter(x => x instanceof Chart) as Chart[];
+    // for (const chart of charts) {
+    //   for (const apiObject of chart.node.findAll().filter(x => x instanceof ApiObject)) {
+    //     if (Chart.of(apiObject) !== chart) {
+    //       apiObject.node.scope!.node.tryRemoveChild(apiObject.node.id);
+    //     }
+    //   }
+    // }
 
     // Since we plan on removing the distributed synth mechanism, we no longer call `Node.synthesize`, but rather simply implement
     // the necessary operations. We do however want to preserve the distributed validation.
@@ -164,7 +164,7 @@ export class App extends Construct {
     // this is kind of sucky, eventually I would like the DependencyGraph
     // to be able to answer this question.
     const hasDependantCharts = resolveDependencies(this);
-    charts = this.charts;
+    const charts = this.charts;
 
     switch (this.yamlOutputType) {
       case YamlOutputType.FILE_PER_APP:
