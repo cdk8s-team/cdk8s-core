@@ -32,6 +32,37 @@ test('can hook into chart synthesis with during synthYaml', () => {
 
 });
 
+test('can hook into chart synthesis with during synth', () => {
+
+  const app = Testing.app();
+
+  class MyChart extends Chart {
+
+    constructor(scope: Construct, id: string) {
+      super(scope, id);
+
+      new ApiObject(this, 'ApiObject1', { kind: 'Kind1', apiVersion: 'v1' });
+      new ApiObject(this, 'ApiObject2', { kind: 'Kind2', apiVersion: 'v1' });
+
+    }
+
+    public toJson(): any[] {
+      this.node.tryRemoveChild('ApiObject1');
+      return super.toJson();
+    }
+  }
+
+  new MyChart(app, 'Chart');
+
+  app.synth();
+
+  expect(fs.readdirSync(app.outdir)).toEqual([
+    'chart-c86185a7.k8s.yaml',
+  ]);
+  expect(fs.readFileSync(path.join(app.outdir, 'chart-c86185a7.k8s.yaml'), 'utf8')).toMatchSnapshot();
+
+});
+
 test('empty app emits no files', () => {
   // GIVEN
   const app = Testing.app();

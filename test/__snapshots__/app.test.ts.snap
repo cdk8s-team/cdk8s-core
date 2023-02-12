@@ -40,6 +40,14 @@ metadata:
 "
 `;
 
+exports[`can hook into chart synthesis with during synth 1`] = `
+"apiVersion: v1
+kind: Kind2
+metadata:
+  name: chart-apiobject2-c81f1ca2
+"
+`;
+
 exports[`return app as yaml string 1`] = `
 "apiVersion: v1
 kind: Kind1

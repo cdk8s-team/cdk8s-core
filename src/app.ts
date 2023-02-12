@@ -148,15 +148,6 @@ export class App extends Construct {
 
     fs.mkdirSync(this.outdir, { recursive: true });
 
-    // let charts = this.node.findAll().filter(x => x instanceof Chart) as Chart[];
-    // for (const chart of charts) {
-    //   for (const apiObject of chart.node.findAll().filter(x => x instanceof ApiObject)) {
-    //     if (Chart.of(apiObject) !== chart) {
-    //       apiObject.node.scope!.node.tryRemoveChild(apiObject.node.id);
-    //     }
-    //   }
-    // }
-
     // Since we plan on removing the distributed synth mechanism, we no longer call `Node.synthesize`, but rather simply implement
     // the necessary operations. We do however want to preserve the distributed validation.
     validate(this);
@@ -294,17 +285,17 @@ function resolveDependencies(app: App) {
 
   let hasDependantCharts = false;
 
+  // create an explicit chart dependency from nested chart relationships
   for (const parentChart of app.node.findAll().filter(x => x instanceof Chart)) {
     for (const childChart of parentChart.node.children.filter(x => x instanceof Chart)) {
-      // create an explicit chart dependency from nested chart relationships
       parentChart.node.addDependency(childChart);
       hasDependantCharts = true;
     }
   }
 
+  // create an explicit chart dependency from implicit construct dependencies
   for (const dep of buildDependencies(app)) {
 
-    // create an explicit chart dependency from implicit construct dependencies
     const sourceChart = Chart.of(dep.source);
     const targetChart = Chart.of(dep.target);
 
@@ -315,12 +306,12 @@ function resolveDependencies(app: App) {
 
   }
 
+  // create explicit api object dependencies from implicit construct dependencies
   for (const dep of buildDependencies(app)) {
 
     const sourceChart = Chart.of(dep.source);
     const targetChart = Chart.of(dep.target);
 
-    // create explicit api object dependencies from implicit construct dependencies
     const targetApiObjects = dep.target.node.findAll().filter(c => c instanceof ApiObject).filter(x => Chart.of(x) === targetChart);
     const sourceApiObjects = dep.source.node.findAll().filter(c => c instanceof ApiObject).filter(x => Chart.of(x) === sourceChart);
 
@@ -331,7 +322,6 @@ function resolveDependencies(app: App) {
         }
       }
     }
-
   }
 
   return hasDependantCharts;
