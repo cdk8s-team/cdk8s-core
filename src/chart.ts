@@ -1,4 +1,4 @@
-import { Construct, Node, IConstruct } from 'constructs';
+import { Construct, IConstruct, Node } from 'constructs';
 import { ApiObject } from './api-object';
 import { App } from './app';
 import { Names } from './names';

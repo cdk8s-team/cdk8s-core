@@ -1,8 +1,85 @@
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
-import { Node, Construct } from 'constructs';
+import { Construct, Node } from 'constructs';
+import * as YAML from 'yaml';
 import { Testing, Chart, App, ApiObject, YamlOutputType } from '../src';
+
+test('synthYaml considers dependencies', () => {
+
+  const app = Testing.app();
+
+  const chart = new Chart(app, 'Chart');
+
+  const c1 = new Construct(chart, 'C1');
+  const c2 = new Construct(chart, 'C2');
+
+  new ApiObject(c1, 'ApiObject1', { kind: 'Kind1', apiVersion: 'v1' });
+  new ApiObject(c2, 'ApiObject2', { kind: 'Kind2', apiVersion: 'v1' });
+
+  Node.of(c1).addDependency(c2);
+
+  expect(app.synthYaml()).toMatchSnapshot();
+
+});
+
+test('can hook into chart synthesis with during synthYaml', () => {
+
+  const app = Testing.app();
+
+  class MyChart extends Chart {
+
+    constructor(scope: Construct, id: string) {
+      super(scope, id);
+
+      new ApiObject(this, 'ApiObject1', { kind: 'Kind1', apiVersion: 'v1' });
+      new ApiObject(this, 'ApiObject2', { kind: 'Kind2', apiVersion: 'v1' });
+
+    }
+
+    public toJson(): any[] {
+      Node.of(this).tryRemoveChild('ApiObject1');
+      return super.toJson();
+    }
+  }
+
+  new MyChart(app, 'Chart');
+  const manifest = YAML.parseAllDocuments(app.synthYaml());
+  expect(manifest.length).toEqual(1);
+  expect(manifest[0].get('kind')).toEqual('Kind2');
+
+});
+
+test('can hook into chart synthesis with during synth', () => {
+
+  const app = Testing.app();
+
+  class MyChart extends Chart {
+
+    constructor(scope: Construct, id: string) {
+      super(scope, id);
+
+      new ApiObject(this, 'ApiObject1', { kind: 'Kind1', apiVersion: 'v1' });
+      new ApiObject(this, 'ApiObject2', { kind: 'Kind2', apiVersion: 'v1' });
+
+    }
+
+    public toJson(): any[] {
+      Node.of(this).tryRemoveChild('ApiObject1');
+      return super.toJson();
+    }
+  }
+
+  new MyChart(app, 'Chart');
+
+  app.synth();
+
+  expect(fs.readdirSync(app.outdir)).toEqual([
+    'chart-c86185a7.k8s.yaml',
+  ]);
+  expect(fs.readFileSync(path.join(app.outdir, 'chart-c86185a7.k8s.yaml'), 'utf8')).toMatchSnapshot();
+
+});
 
 test('empty app emits no files', () => {
   // GIVEN
@@ -463,7 +540,7 @@ test('Modified file extensions with varying output types; two charts, no objects
  * @param sourceDir Folder in which to search for files and folders
  */
 function getFilesAndFolders(sourceDir: string) {
-  let result = [];
+  let result: string[] = [];
   let items = fs.readdirSync(sourceDir);
   for (const item of items) {
     if (fs.lstatSync(path.join(sourceDir, item)).isDirectory()) {

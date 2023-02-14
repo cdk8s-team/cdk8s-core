@@ -1,4 +1,4 @@
-import { Node, IConstruct, Construct } from 'constructs';
+import { IConstruct, Construct, Node } from 'constructs';
 import { DependencyGraph } from '../src/dependency';
 
 test('topology returns correct order', () => {
