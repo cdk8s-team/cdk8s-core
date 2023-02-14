@@ -1,4 +1,4 @@
-import { Construct, IConstruct, Node } from 'constructs';
+import { Construct, IConstruct } from 'constructs';
 import { resolve } from './_resolve';
 import { sanitizeValue } from './_util';
 import { Chart } from './chart';
@@ -59,9 +59,9 @@ export class ApiObject extends Construct {
       return c;
     }
 
-    const child = Node.of(c).defaultChild;
+    const child = c.node.defaultChild;
     if (!child) {
-      throw new Error(`cannot find a (direct or indirect) child of type ApiObject for construct ${Node.of(c).path}`);
+      throw new Error(`cannot find a (direct or indirect) child of type ApiObject for construct ${c.node.path}`);
     }
 
     return ApiObject.of(child);
@@ -146,7 +146,7 @@ export class ApiObject extends Construct {
    * @param dependencies the dependencies to add.
    */
   public addDependency(...dependencies: IConstruct[]) {
-    Node.of(this).addDependency(...dependencies);
+    this.node.addDependency(...dependencies);
   }
 
   /**

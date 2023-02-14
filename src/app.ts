@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { Construct, Node, IConstruct } from 'constructs';
+import { Construct, IConstruct } from 'constructs';
 import { ApiObject } from './api-object';
 import { Chart } from './chart';
 import { DependencyGraph } from './dependency';
@@ -89,7 +89,7 @@ export class App extends Construct {
 
   private static of(c: IConstruct): App {
 
-    const scope = Node.of(c).scope;
+    const scope = c.node.scope;
 
     if (!scope) {
       // the app is the only construct without a scope.
@@ -122,7 +122,7 @@ export class App extends Construct {
    */
   public get charts(): Chart[] {
     const isChart = (x: IConstruct): x is Chart => x instanceof Chart;
-    return new DependencyGraph(Node.of(this))
+    return new DependencyGraph(this.node)
       .topology()
       .filter(isChart);
   }
@@ -159,17 +159,16 @@ export class App extends Construct {
 
     switch (this.yamlOutputType) {
       case YamlOutputType.FILE_PER_APP:
-        let apiObjectList: ApiObject[] = [];
+        let apiObjectsList: ApiObject[] = [];
 
         for (const chart of charts) {
-          apiObjectList.push(...chartToKube(chart));
+          apiObjectsList.push(...Object.values(chart.toJson()));
         }
 
         if (charts.length > 0) {
           Yaml.save(
             path.join(this.outdir, `app${this.outputFileExtension}`), // There is no "app name", so we just hardcode the file name
-            apiObjectList.map((apiObject) => apiObject.toJson()),
-          );
+            apiObjectsList);
         }
         break;
 
@@ -177,20 +176,20 @@ export class App extends Construct {
         const namer: ChartNamer = hasDependantCharts ? new IndexedChartNamer() : new SimpleChartNamer();
         for (const chart of charts) {
           const chartName = namer.name(chart);
-          const objects = chartToKube(chart);
-          Yaml.save(path.join(this.outdir, chartName+this.outputFileExtension), objects.map(obj => obj.toJson()));
+          const objects = Object.values(chart.toJson());
+          Yaml.save(path.join(this.outdir, chartName+this.outputFileExtension), objects);
         }
         break;
 
       case YamlOutputType.FILE_PER_RESOURCE:
         for (const chart of charts) {
-          const apiObjects = chartToKube(chart);
+          const apiObjects = Object.values(chart.toJson());
 
           apiObjects.forEach((apiObject) => {
             if (!(apiObject === undefined)) {
               const fileName = `${`${apiObject.kind}.${apiObject.metadata.name}`
                 .replace(/[^0-9a-zA-Z-_.]/g, '')}`;
-              Yaml.save(path.join(this.outdir, fileName+this.outputFileExtension), [apiObject.toJson()]);
+              Yaml.save(path.join(this.outdir, fileName+this.outputFileExtension), [apiObject]);
             }
           });
         }
@@ -230,15 +229,17 @@ export class App extends Construct {
    *
    * @returns A string with all YAML objects across all charts in this app.
    */
-  public synthYaml(): any {
+  public synthYaml(): string {
+
+    resolveDependencies(this);
+
     validate(this);
 
     const charts = this.charts;
     const docs: any[] = [];
 
     for (const chart of charts) {
-      const apiObjects = chartToKube(chart);
-      docs.push(...apiObjects.map(apiObject => apiObject.toJson()));
+      docs.push(...Object.values(chart.toJson()));
     }
 
     return Yaml.stringify(...docs);
@@ -270,9 +271,7 @@ function validate(app: App) {
   }
 }
 
-function resolveDependencies(app: App) {
-
-  let hasDependantCharts = false;
+function buildDependencies(app: App) {
 
   const deps = [];
   for (const child of app.node.findAll()) {
@@ -281,39 +280,50 @@ function resolveDependencies(app: App) {
     }
   }
 
-  for (const dep of deps) {
+  return deps;
 
-    // create explicit api object dependencies from implicit construct dependencies
-    const targetApiObjects = Node.of(dep.target).findAll().filter(c => c instanceof ApiObject);
-    const sourceApiObjects = Node.of(dep.source).findAll().filter(c => c instanceof ApiObject);
+}
 
-    for (const target of targetApiObjects) {
-      for (const source of sourceApiObjects) {
-        if (target !== source) {
-          Node.of(source).addDependency(target);
-        }
-      }
+function resolveDependencies(app: App) {
+
+  let hasDependantCharts = false;
+
+  // create an explicit chart dependency from nested chart relationships
+  for (const parentChart of app.node.findAll().filter(x => x instanceof Chart)) {
+    for (const childChart of parentChart.node.children.filter(x => x instanceof Chart)) {
+      parentChart.node.addDependency(childChart);
+      hasDependantCharts = true;
     }
+  }
 
-    // create an explicit chart dependency from implicit construct dependencies
+  // create an explicit chart dependency from implicit construct dependencies
+  for (const dep of buildDependencies(app)) {
+
     const sourceChart = Chart.of(dep.source);
     const targetChart = Chart.of(dep.target);
 
     if (sourceChart !== targetChart) {
-      Node.of(sourceChart).addDependency(targetChart);
+      sourceChart.node.addDependency(targetChart);
       hasDependantCharts = true;
     }
 
   }
 
-  const charts = new DependencyGraph(Node.of(app)).topology()
-    .filter(x => x instanceof Chart);
+  // create explicit api object dependencies from implicit construct dependencies
+  for (const dep of buildDependencies(app)) {
 
-  for (const parentChart of charts) {
-    for (const childChart of Node.of(parentChart).children.filter(x => x instanceof Chart)) {
-      // create an explicit chart dependency from nested chart relationships
-      Node.of(parentChart).addDependency(childChart);
-      hasDependantCharts = true;
+    const sourceChart = Chart.of(dep.source);
+    const targetChart = Chart.of(dep.target);
+
+    const targetApiObjects = dep.target.node.findAll().filter(c => c instanceof ApiObject).filter(x => Chart.of(x) === targetChart);
+    const sourceApiObjects = dep.source.node.findAll().filter(c => c instanceof ApiObject).filter(x => Chart.of(x) === sourceChart);
+
+    for (const target of targetApiObjects) {
+      for (const source of sourceApiObjects) {
+        if (target !== source) {
+          source.node.addDependency(target);
+        }
+      }
     }
   }
 
@@ -322,7 +332,7 @@ function resolveDependencies(app: App) {
 }
 
 function chartToKube(chart: Chart) {
-  return new DependencyGraph(Node.of(chart)).topology()
+  return new DependencyGraph(chart.node).topology()
     .filter(x => x instanceof ApiObject)
     .filter(x => Chart.of(x) === chart) // include an object only in its closest parent chart
     .map(x => (x as ApiObject));

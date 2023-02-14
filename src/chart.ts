@@ -1,4 +1,4 @@
-import { Construct, Node, IConstruct } from 'constructs';
+import { Construct, IConstruct } from 'constructs';
 import { ApiObject } from './api-object';
 import { App } from './app';
 import { Names } from './names';
@@ -43,7 +43,7 @@ export class Chart extends Construct {
       return c;
     }
 
-    const parent = Node.of(c).scope as Construct;
+    const parent = c.node.scope as Construct;
     if (!parent) {
       throw new Error('cannot find a parent chart (directly or indirectly)');
     }
@@ -109,7 +109,7 @@ export class Chart extends Construct {
    * @param dependencies the dependencies to add.
    */
   public addDependency(...dependencies: IConstruct[]) {
-    Node.of(this).addDependency(...dependencies);
+    this.node.addDependency(...dependencies);
   }
 
   /**

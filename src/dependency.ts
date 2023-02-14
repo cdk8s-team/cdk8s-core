@@ -25,11 +25,11 @@ export class DependencyGraph {
     const nodes: Record<string, DependencyVertex> = {};
 
     function putVertex(construct: IConstruct) {
-      nodes[Node.of(construct).path] = new DependencyVertex(construct);
+      nodes[construct.node.path] = new DependencyVertex(construct);
     }
 
     function getVertex(construct: IConstruct): DependencyVertex {
-      return nodes[Node.of(construct).path];
+      return nodes[construct.node.path];
     }
 
     // create all vertices of the graph.
@@ -165,7 +165,7 @@ export class DependencyVertex {
     const cycle: DependencyVertex[] = dep.findRoute(this);
     if (cycle.length !== 0) {
       cycle.push(dep);
-      throw new Error(`Dependency cycle detected: ${cycle.filter(d => d.value).map(d => Node.of(d.value!).path).join(' => ')}`);
+      throw new Error(`Dependency cycle detected: ${cycle.filter(d => d.value).map(d => d.value!.node.path).join(' => ')}`);
     }
 
     this._children.add(dep);

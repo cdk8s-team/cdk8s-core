@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { Construct, Node } from 'constructs';
+import { Construct } from 'constructs';
 import { Chart, ApiObject, Testing } from '../src';
 import { Lazy } from '../src/lazy';
 
@@ -105,7 +105,7 @@ test('addDependency', () => {
 
   chart1.addDependency(chart2, chart3);
 
-  const dependencies = Node.of(chart1).dependencies;
+  const dependencies = chart1.node.dependencies;
 
   expect(dependencies).toEqual([
     chart2,
@@ -229,7 +229,7 @@ describe('toJson', () => {
     const microService = new CustomConstruct(chart, 'MicroService');
     const dataBase = new CustomConstruct(chart, 'Database');
 
-    Node.of(microService).addDependency(dataBase);
+    microService.node.addDependency(dataBase);
 
     expect(chart.toJson()).toEqual([
       dataBase.obj.toJson(),
@@ -246,7 +246,7 @@ describe('toJson', () => {
     const microService = new CustomConstruct(chart, 'MicroService');
     const dataBase = new CustomNestedConstruct(chart, 'Database');
 
-    Node.of(microService).addDependency(dataBase);
+    microService.node.addDependency(dataBase);
 
     expect(chart.toJson()).toEqual([
       dataBase.obj.obj.toJson(),
@@ -280,7 +280,7 @@ describe('toJson', () => {
     const database = new ApiObject(chart, 'MicroService', { apiVersion: 'v1', kind: 'MicroService' });
     const microService = new CustomConstruct(chart, 'Database');
 
-    Node.of(microService).addDependency(database);
+    microService.node.addDependency(database);
 
     expect(chart.toJson()).toEqual([
       database.toJson(),

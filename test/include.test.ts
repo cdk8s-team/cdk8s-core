@@ -1,5 +1,4 @@
 import * as fs from 'fs';
-import { Node } from 'constructs';
 import * as yaml from 'yaml';
 import { Testing, Include, Yaml } from '../src';
 
@@ -26,7 +25,7 @@ test('skips empty documents', () => {
   const inc = new Include(chart, 'empty', { url: file });
 
   // THEN
-  expect(Node.of(inc).children.length).toEqual(0);
+  expect(inc.node.children.length).toEqual(0);
 });
 
 test('multiple resources with the same k8s name can be included so long as their kind is different', () => {
@@ -53,7 +52,7 @@ test('multiple resources with the same k8s name can be included so long as their
   ]);
 
   const inc = new Include(chart, 'foo', { url: file });
-  const ids = Node.of(inc).children.map(x => Node.of(x).id);
+  const ids = inc.node.children.map(x => x.node.id);
   expect(ids).toStrictEqual(['resource1-foo', 'resource1-bar']);
 });
 

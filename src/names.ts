@@ -74,7 +74,7 @@ export class Names {
       throw new Error(`minimum max length for object names is ${HASH_LEN} (required for hash)`);
     }
 
-    const node = Node.of(scope);
+    const node = scope.node;
 
     let components = node.path.split('/');
     components.push(...options.extra ?? []);
@@ -134,7 +134,7 @@ export class Names {
       throw new Error('delim should not contain "[^0-9a-zA-Z-_.]"');
     }
 
-    const node = Node.of(scope);
+    const node = scope.node;
     let components = node.path.split('/');
     components.push(...options.extra ?? []);
 
