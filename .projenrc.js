@@ -1,18 +1,13 @@
-const { cdk, JsonFile, github } = require('projen');
+const { Cdk8sTeamJsiiProject } = require('@cdk8s/projen-common');
+const { JsonFile, github } = require('projen');
 
-const project = new cdk.JsiiProject({
+const project = new Cdk8sTeamJsiiProject({
   name: 'cdk8s',
   description: 'This is the core library of Cloud Development Kit (CDK) for Kubernetes (cdk8s). cdk8s apps synthesize into standard Kubernetes manifests which can be applied to any Kubernetes cluster.',
-  repositoryUrl: 'https://github.com/cdk8s-team/cdk8s-core.git',
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
-
-  authorName: 'Amazon Web Services',
-  authorUrl: 'https://aws.amazon.com',
-
   peerDeps: [
     'constructs',
   ],
-
   bundledDeps: [
     'yaml@2.0.0-7',
     'follow-redirects',
@@ -22,6 +17,7 @@ const project = new cdk.JsiiProject({
     'constructs',
     '@types/follow-redirects',
     'json-schema-to-typescript',
+    '@cdk8s/projen-common',
   ],
 
   keywords: [
@@ -42,34 +38,7 @@ const project = new cdk.JsiiProject({
       npmDistTag: 'latest-1',
     },
   },
-
-  minNodeVersion: '14.17.0',
-
-  // jsii configuration
-  publishToMaven: {
-    javaPackage: 'org.cdk8s',
-    mavenGroupId: 'org.cdk8s',
-    mavenArtifactId: 'cdk8s',
-  },
-  publishToPypi: {
-    distName: 'cdk8s',
-    module: 'cdk8s',
-  },
-  publishToNuget: {
-    dotNetNamespace: 'Org.Cdk8s',
-    packageId: 'Org.Cdk8s',
-  },
-  publishToGo: {
-    gitUserName: 'cdk8s-automation',
-    gitUserEmail: 'cdk8s-team@amazon.com',
-    gitBranch: '1.x',
-    moduleName: 'github.com/cdk8s-team/cdk8s-core-go',
-  },
-  autoApproveOptions: {
-    allowedUsernames: ['cdk8s-automation'],
-    secret: 'GITHUB_TOKEN',
-  },
-  autoApproveUpgrades: true,
+  golangBranch: '1.x',
   depsUpgradeOptions: {
     exclude: ['yaml'],
   },
