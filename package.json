@@ -3,7 +3,7 @@
   "description": "This is the core library of Cloud Development Kit (CDK) for Kubernetes (cdk8s). cdk8s apps synthesize into standard Kubernetes manifests which can be applied to any Kubernetes cluster.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cdk8s-team/cdk8s-core.git"
+    "url": "https://github.com/cdk8s-team/cdk8s.git"
   },
   "scripts": {
     "backport": "npx projen backport",
@@ -44,6 +44,7 @@
     "organization": false
   },
   "devDependencies": {
+    "@cdk8s/projen-common": "^0.0.252",
     "@types/follow-redirects": "^1.14.1",
     "@types/jest": "^27",
     "@types/node": "^14",
@@ -156,7 +157,7 @@
         "packageId": "Org.Cdk8s"
       },
       "go": {
-        "moduleName": "github.com/cdk8s-team/cdk8s-core-go"
+        "moduleName": "github.com/cdk8s-team/cdk8s-go"
       }
     },
     "tsc": {
