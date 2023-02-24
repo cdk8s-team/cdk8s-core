@@ -15,6 +15,25 @@ test('empty stack', () => {
   expect(Testing.synth(chart)).toMatchSnapshot();
 });
 
+test('disabling resource name hashes at chart level', () => {
+  // GIVEN
+  const app = Testing.app();
+  const chart = new Chart(app, 'test', {
+    enableResourceNameHashes: false,
+  });
+
+  // WHEN
+  const ob1 = new ApiObject(chart, 'resource1', { kind: 'Resource1', apiVersion: 'v1' });
+  const ob2 = new ApiObject(chart, 'resource2', { kind: 'Resource3', apiVersion: 'v1' });
+
+  // also, subscopes
+
+  // THEN
+  expect(ob1.name).toEqual('test-resource1');
+  expect(ob2.name).toEqual('test-resource2');
+  expect(Testing.synth(chart)).toMatchSnapshot();
+});
+
 test('output includes all synthesized resources', () => {
   // GIVEN
   const app = Testing.app();
