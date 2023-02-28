@@ -78,7 +78,7 @@ export class Chart extends Construct {
     super(scope, id);
     this.namespace = props.namespace;
     this._labels = props.labels ?? {};
-    this._enableResourceNameHashes = props.enableResourceNameHashes;
+    this._enableResourceNameHashes = props.enableResourceNameHashes ?? true;
 
     Object.defineProperty(this, CHART_SYMBOL, { value: true });
   }
