@@ -61,6 +61,25 @@ Array [
 ]
 `;
 
+exports[`resource name hashes work by default 1`] = `
+Array [
+  Object {
+    "apiVersion": "v1",
+    "kind": "Resource1",
+    "metadata": Object {
+      "name": "test-resource1-c85cb0fc",
+    },
+  },
+  Object {
+    "apiVersion": "v1",
+    "kind": "Resource3",
+    "metadata": Object {
+      "name": "test-resource2-c8c6bd27",
+    },
+  },
+]
+`;
+
 exports[`synthesizeManifest() can be used to synthesize a specific chart 1`] = `
 Array [
   Object {
