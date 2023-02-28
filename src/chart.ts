@@ -72,7 +72,7 @@ export class Chart extends Construct {
   /**
    * Determines if resource names in the chart have the suffixed hash.
    */
-  private _enableResourceNameHashes?: boolean;
+  private readonly _enableResourceNameHashes?: boolean;
 
   constructor(scope: Construct, id: string, props: ChartProps = { }) {
     super(scope, id);
