@@ -64,5 +64,6 @@ tsconfig.json
 !/SECURITY.md
 !/.github/workflows/triage.yml
 !/src/_loadurl.js
+cdk.out
 !/.backportrc.json
 !/.github/workflows/backport.yml

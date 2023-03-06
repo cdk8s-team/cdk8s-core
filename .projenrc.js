@@ -7,6 +7,9 @@ const project = new Cdk8sTeamJsiiProject({
   description: 'This is the core library of Cloud Development Kit (CDK) for Kubernetes (cdk8s). cdk8s apps synthesize into standard Kubernetes manifests which can be applied to any Kubernetes cluster.',
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
 
+  deps: [
+    '@aws-sdk/client-cloudcontrol',
+  ],
   peerDeps: [
     'constructs@^10',
     'aws-cdk-lib',
@@ -16,12 +19,14 @@ const project = new Cdk8sTeamJsiiProject({
     'yaml@2.0.0-7',
     'follow-redirects',
     'fast-json-patch',
+    '@aws-sdk/client-cloudcontrol',
   ],
   devDeps: [
     'constructs',
     '@types/follow-redirects',
     'json-schema-to-typescript',
     '@cdk8s/projen-common',
+    'ts-node',
   ],
 
   keywords: [
@@ -60,6 +65,8 @@ const installHelm = project.addTask('install-helm', {
   // will exit with non-zero if helm is not installed or has the wrong version
   condition: '! (helm version | grep "v3.")',
 });
+
+project.gitignore.exclude('cdk.out');
 
 project.testTask.prependSpawn(installHelm);
 
