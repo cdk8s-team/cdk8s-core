@@ -42,8 +42,8 @@ test('resource name hashes work by default', () => {
   const ob2 = new ApiObject(chart, 'resource2', { kind: 'Resource3', apiVersion: 'v1' });
 
   // THEN
-  expect(ob1.name).not.toEqual('test-resouce1');
-  expect(ob2.name).not.toEqual('test-resource2');
+  expect(ob1.name).toEqual('test-resouce1-c85cb0fc');
+  expect(ob2.name).toEqual('test-resource2-c8c6bd27');
   expect(Testing.synth(chart)).toMatchSnapshot();
 });
 
