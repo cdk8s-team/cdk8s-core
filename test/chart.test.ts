@@ -19,7 +19,7 @@ test('disabling resource name hashes at chart level', () => {
   // GIVEN
   const app = Testing.app();
   const chart = new Chart(app, 'test', {
-    enableResourceNameHashes: false,
+    disableResourceNameHashes: true,
   });
 
   // WHEN
