@@ -28,7 +28,7 @@ export interface ChartProps {
    *
    * @default true
    */
-  readonly enableResourceNameHashes?: boolean;
+  readonly disableResourceNameHashes?: boolean;
 
 }
 
