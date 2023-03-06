@@ -9,6 +9,7 @@ const project = new Cdk8sTeamJsiiProject({
 
   peerDeps: [
     'constructs@^10',
+    'aws-cdk-lib',
   ],
 
   bundledDeps: [

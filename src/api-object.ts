@@ -1,6 +1,7 @@
 import { Construct, IConstruct } from 'constructs';
 import { resolve } from './_resolve';
 import { sanitizeValue } from './_util';
+import { App } from './app';
 import { Chart } from './chart';
 import { JsonPatch } from './json-patch';
 import { ApiObjectMetadata, ApiObjectMetadataDefinition } from './metadata';
@@ -177,7 +178,7 @@ export class ApiObject extends Construct {
     };
 
     const sortKeys = process.env.CDK8S_DISABLE_SORT ? false : true;
-    const json = sanitizeValue(resolve(data), { sortKeys });
+    const json = sanitizeValue(resolve(data, App.of(this).stack), { sortKeys });
     const patched = JsonPatch.apply(json, ...this.patches);
 
     // reorder top-level keys so that we first have "apiVersion", "kind" and

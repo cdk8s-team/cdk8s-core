@@ -1,5 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Stack } from 'aws-cdk-lib';
 import { Construct, IConstruct } from 'constructs';
 import { ApiObject } from './api-object';
 import { Chart } from './chart';
@@ -52,6 +54,8 @@ export interface AppProps {
    * @default false
    */
   readonly recordConstructMetadata?: boolean;
+
+  readonly stack?: Stack;
 }
 
 /**
@@ -87,7 +91,7 @@ export class App extends Construct {
     return chartToKube(chart).map(obj => obj.toJson());
   }
 
-  private static of(c: IConstruct): App {
+  public static of(c: IConstruct): App {
 
     const scope = c.node.scope;
 
@@ -117,6 +121,8 @@ export class App extends Construct {
 
   private readonly recordConstructMetadata: boolean;
 
+  public readonly stack?: Stack;
+
   /**
    * Returns all the charts in this app, sorted topologically.
    */
@@ -138,7 +144,7 @@ export class App extends Construct {
     this.yamlOutputType = props.yamlOutputType ?? YamlOutputType.FILE_PER_CHART;
 
     this.recordConstructMetadata = props.recordConstructMetadata ?? (process.env.CDK8S_RECORD_CONSTRUCT_METADATA === 'true' ? true : false);
-
+    this.stack = props.stack;
   }
 
   /**

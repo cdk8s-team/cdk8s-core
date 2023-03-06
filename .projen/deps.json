@@ -29,6 +29,10 @@
       "type": "build"
     },
     {
+      "name": "aws-cdk-lib",
+      "type": "build"
+    },
+    {
       "name": "constructs",
       "version": "10.0.0",
       "type": "build"
@@ -125,6 +129,10 @@
       "name": "@types/prettier",
       "version": "2.6.0",
       "type": "override"
+    },
+    {
+      "name": "aws-cdk-lib",
+      "type": "peer"
     },
     {
       "name": "constructs",
