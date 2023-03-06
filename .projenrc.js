@@ -99,7 +99,7 @@ for (const branch of project.release.branches) {
 const backportWorkflow = project.github.addWorkflow('backport');
 backportWorkflow.on({ pullRequestTarget: { types: ['closed'] } });
 backportWorkflow.addJob('backport', {
-  runsOn: ['ubuntu-18.04'],
+  runsOn: ['ubuntu-latest'],
   permissions: {
     contents: github.workflows.JobPermission.WRITE,
   },
