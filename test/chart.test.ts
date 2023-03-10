@@ -66,7 +66,7 @@ test('output includes all synthesized resources', () => {
   expect(Testing.synth(chart)).toMatchSnapshot();
 });
 
-test('CronJob names are less than 52 characters', () => {
+test('CronJob names are at most 52 characters', () => {
   // GIVEN
   const app = Testing.app();
   const chart = new Chart(app, 'test');
