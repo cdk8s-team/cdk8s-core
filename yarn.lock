@@ -302,10 +302,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cdk8s/projen-common@^0.0.274":
-  version "0.0.274"
-  resolved "https://registry.yarnpkg.com/@cdk8s/projen-common/-/projen-common-0.0.274.tgz#707b61a75fa2f739a79afb1cdfd75644a44df7a7"
-  integrity sha512-bsLZR9rlVbTeSShRLzz2JfWOetE6rTbrSyynX/BPAcEowGVSQoiLLXgJdpKk/nn+xPk/Jd88AGoDDLrvNQDVJw==
+"@cdk8s/projen-common@^0.0.275":
+  version "0.0.275"
+  resolved "https://registry.yarnpkg.com/@cdk8s/projen-common/-/projen-common-0.0.275.tgz#c98ca2bc2bc3ac8154194ad647a97f3f41359816"
+  integrity sha512-VSsHe40Rbg78+/jrjT0yWhDhwqUZho1C/HXeFcBVXtDtS4OITT2S6/3+0XiulE+ACH8yFBWOs2MkfdBrej/fvw==
   dependencies:
     codemaker "^1.77.0"
 
@@ -1766,10 +1766,10 @@ console-control-strings@^1.1.0:
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
   integrity sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==
 
-constructs@^3.4.268:
-  version "3.4.268"
-  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.4.268.tgz#5d9eebe5eff72ba7608435d01a3631e0d31f360c"
-  integrity sha512-MqM1u35nLAt4IbV2L1le/4svB/Rw/reBEAeI3ibT7vObUIqNxjpKc+3SYgpt0yEGageugtroNJWpYjp/ic4Idw==
+constructs@^3.4.269:
+  version "3.4.269"
+  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.4.269.tgz#a5e8d74da911dd8d535cb277412d2042f4823647"
+  integrity sha512-kKXB9IF5e+4i4BwDJJpV2BsLmy/ILXQDIBwu3RUieL+9/pB1+o14sfdcaJiV7R/Fr+0hmNrwmYGDLvm+kf6twA==
 
 conventional-changelog-angular@^5.0.12:
   version "5.0.13"
@@ -4680,9 +4680,9 @@ minipass@^3.0.0, minipass@^3.1.1, minipass@^3.1.6:
     yallist "^4.0.0"
 
 minipass@^4.0.0, minipass@^4.0.2, minipass@^4.2.4:
-  version "4.2.4"
-  resolved "https://registry.yarnpkg.com/minipass/-/minipass-4.2.4.tgz#7d0d97434b6a19f59c5c3221698b48bbf3b2cd06"
-  integrity sha512-lwycX3cBMTvcejsHITUgYj6Gy6A7Nh4Q6h9NP4sTHY1ccJlC7yKzDmiShEHsJ16Jf1nKGDEaiHxiltsJEvk0nQ==
+  version "4.2.5"
+  resolved "https://registry.yarnpkg.com/minipass/-/minipass-4.2.5.tgz#9e0e5256f1e3513f8c34691dd68549e85b2c8ceb"
+  integrity sha512-+yQl7SX3bIT83Lhb4BVorMAHVuqsskxRdlmO9kTpyukp8vsm2Sn/fUOV9xlnG8/a5JsypJzap21lz/y3FBMJ8Q==
 
 minizlib@^2.1.1, minizlib@^2.1.2:
   version "2.1.2"
@@ -5269,10 +5269,10 @@ progress@^2.0.3:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@^0.67.80:
-  version "0.67.80"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.67.80.tgz#a112c9b283a0852e613bf2ac16083d26d9a80a00"
-  integrity sha512-7J2p3KbTKvkCk5NO9mH0pgx4M8SM1kbyRBloZbdZheBrKd/uhgC5meX/KDgS8WsmJwcvKrdPu5vLUo83nSxU1Q==
+projen@^0.67.82:
+  version "0.67.82"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.67.82.tgz#6fa526982d5a5d57f1b87675928b058dde4f66a1"
+  integrity sha512-+MHgf1PZpQ/2Gffgy8QAI5gAXtJ1CYaFi1ord7vISQDUlyiXjQjKh6b7x98oXgrotXchmS5NOHQGqwuIvijAdQ==
   dependencies:
     "@iarna/toml" "^2.2.5"
     case "^1.6.3"
