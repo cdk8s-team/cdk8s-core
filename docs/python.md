@@ -103,6 +103,24 @@ def to_json()
 
 #### Static Functions <a name="Static Functions"></a>
 
+##### `is_api_object` <a name="cdk8s.ApiObject.is_api_object"></a>
+
+```python
+import cdk8s
+
+cdk8s.ApiObject.is_api_object(
+  o: typing.Any
+)
+```
+
+###### `o`<sup>Required</sup> <a name="cdk8s.ApiObject.parameter.o"></a>
+
+- *Type:* `typing.Any`
+
+The object to check.
+
+---
+
 ##### `of` <a name="cdk8s.ApiObject.of"></a>
 
 ```python
