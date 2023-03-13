@@ -4,6 +4,7 @@ import { App } from './app';
 import { Names } from './names';
 
 const CHART_SYMBOL = Symbol.for('cdk8s.Chart');
+const CRONJOB = 'CronJob';
 
 export interface ChartProps {
   /**
@@ -125,6 +126,7 @@ export class Chart extends Construct {
   public generateObjectName(apiObject: ApiObject) {
     return Names.toDnsLabel(apiObject, {
       includeHash: !this._disableResourceNameHashes,
+      maxLen: apiObject.kind == CRONJOB ? 52 : undefined,
     });
   }
 
