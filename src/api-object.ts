@@ -56,8 +56,8 @@ export class ApiObject extends Construct {
 
    * @param o The object to check
    */
-  static isApiObject(o: unknown): o is ApiObject {
-    return o != null && typeof o === 'object' && API_OBJECT_SYMBOL in o;
+  static isApiObject(o: any): o is ApiObject {
+    return o !== null && typeof o === 'object' && API_OBJECT_SYMBOL in o;
   }
 
   /**

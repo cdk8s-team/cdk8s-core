@@ -97,6 +97,22 @@ public toJson()
 
 #### Static Functions <a name="Static Functions"></a>
 
+##### `isApiObject` <a name="org.cdk8s.ApiObject.isApiObject"></a>
+
+```java
+import org.cdk8s.ApiObject;
+
+ApiObject.isApiObject(java.lang.Object o)
+```
+
+###### `o`<sup>Required</sup> <a name="org.cdk8s.ApiObject.parameter.o"></a>
+
+- *Type:* `java.lang.Object`
+
+The object to check.
+
+---
+
 ##### `of` <a name="org.cdk8s.ApiObject.of"></a>
 
 ```java
