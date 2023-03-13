@@ -64,6 +64,7 @@ export class ApiObject extends Construct {
    * Implements `instanceof ApiObject` using the more reliable `ApiObject.isApiObject` static method
    *
    * @param o The object to check
+   * @internal
    */
   static [Symbol.hasInstance](o: unknown) {
     return ApiObject.isApiObject(o);
