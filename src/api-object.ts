@@ -45,7 +45,30 @@ export interface GroupVersionKind {
   readonly kind: string;
 }
 
+const API_OBJECT_SYMBOL = Symbol.for('cdk8s.ApiObject');
+
 export class ApiObject extends Construct {
+
+  /**
+   * Return whether the given object is an `ApiObject`.
+   *
+   * We do attribute detection since we can't reliably use 'instanceof'.
+
+   * @param o The object to check
+   */
+  static isApiObject(o: any): o is ApiObject {
+    return o !== null && typeof o === 'object' && API_OBJECT_SYMBOL in o;
+  }
+
+  /**
+   * Implements `instanceof ApiObject` using the more reliable `ApiObject.isApiObject` static method
+   *
+   * @param o The object to check
+   * @internal
+   */
+  static [Symbol.hasInstance](o: unknown) {
+    return ApiObject.isApiObject(o);
+  }
   /**
    * Returns the `ApiObject` named `Resource` which is a child of the given
    * construct. If `c` is an `ApiObject`, it is returned directly. Throws an
@@ -137,6 +160,7 @@ export class ApiObject extends Construct {
       },
     });
 
+    Object.defineProperty(this, API_OBJECT_SYMBOL, { value: true });
   }
 
   /**
