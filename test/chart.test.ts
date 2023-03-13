@@ -66,6 +66,19 @@ test('output includes all synthesized resources', () => {
   expect(Testing.synth(chart)).toMatchSnapshot();
 });
 
+test('CronJob names are at most 52 characters', () => {
+  // GIVEN
+  const app = Testing.app();
+  const chart = new Chart(app, 'test');
+
+  // WHEN
+  const ob1 = new ApiObject(chart, 'cj1', { kind: 'CronJob', apiVersion: 'v1' });
+  const ob2 = new ApiObject(chart, 'resourceNameThatIsLongerThan52Charactersssssssssssss', { kind: 'CronJob', apiVersion: 'v1' });
+
+  // THEN
+  expect(ob1.name.length).toBeLessThanOrEqual(52);
+  expect(ob2.name.length).toBeLessThanOrEqual(52);
+});
 
 test('tokens are resolved during synth', () => {
   // GIVEN
