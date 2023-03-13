@@ -74,6 +74,22 @@ public toJson()
 
 #### Static Functions <a name="Static Functions"></a>
 
+##### `isApiObject` <a name="cdk8s.ApiObject.isApiObject"></a>
+
+```typescript
+import { ApiObject } from 'cdk8s'
+
+ApiObject.isApiObject(o: any)
+```
+
+###### `o`<sup>Required</sup> <a name="cdk8s.ApiObject.parameter.o"></a>
+
+- *Type:* `any`
+
+The object to check.
+
+---
+
 ##### `of` <a name="cdk8s.ApiObject.of"></a>
 
 ```typescript

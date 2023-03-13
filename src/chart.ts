@@ -44,6 +44,16 @@ export class Chart extends Construct {
   }
 
   /**
+   * Implements `instanceof Chart` using the more reliable `Chart.isChart` static method
+   *
+   * @param o The object to check
+   * @internal
+   */
+  static [Symbol.hasInstance](o: unknown) {
+    return Chart.isChart(o);
+  }
+
+  /**
    * Finds the chart in which a node is defined.
    * @param c a construct node
    */
