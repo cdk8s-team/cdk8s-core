@@ -205,6 +205,15 @@
         }
       ]
     },
+    "install": {
+      "name": "install",
+      "description": "Install project dependencies and update lockfile (non-frozen)",
+      "steps": [
+        {
+          "exec": "yarn install --check-files"
+        }
+      ]
+    },
     "install-helm": {
       "name": "install-helm",
       "description": "Install helm3",
@@ -214,6 +223,15 @@
         }
       ],
       "condition": "! (helm version | grep \"v3.\")"
+    },
+    "install:ci": {
+      "name": "install:ci",
+      "description": "Install project dependencies using frozen lockfile",
+      "steps": [
+        {
+          "exec": "yarn install --check-files --frozen-lockfile"
+        }
+      ]
     },
     "package": {
       "name": "package",
