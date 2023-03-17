@@ -365,7 +365,7 @@ test('construct metadata is recorded when requested by api', () => {
 
   app.synth();
 
-  const constructMetadata = JSON.parse(fs.readFileSync(path.join(app.outdir, 'construct-metadata.json'), { encoding: 'utf-8' }));
+  const constructMetadata = JSON.parse(fs.readFileSync(path.join(app.outdir, 'validation/construct-metadata.json'), { encoding: 'utf-8' }));
   expect(constructMetadata).toEqual({
     version: '1.0.0',
     resources: {
@@ -392,7 +392,7 @@ test('construct metadata is recoreded when requested by env variable', () => {
 
     app.synth();
 
-    const constructMetadata = JSON.parse(fs.readFileSync(path.join(app.outdir, 'construct-metadata.json'), { encoding: 'utf-8' }));
+    const constructMetadata = JSON.parse(fs.readFileSync(path.join(app.outdir, 'validation/construct-metadata.json'), { encoding: 'utf-8' }));
     expect(constructMetadata).toEqual({
       version: '1.0.0',
       resources: {
@@ -419,7 +419,7 @@ test('construct metadata is not recorded when not requested', () => {
 
   app.synth();
 
-  expect(fs.existsSync(path.join(app.outdir, 'construct-metadata.json'))).toBeFalsy();
+  expect(fs.existsSync(path.join(app.outdir, 'validation/construct-metadata.json'))).toBeFalsy();
 
 });
 
