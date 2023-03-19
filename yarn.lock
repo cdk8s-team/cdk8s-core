@@ -302,10 +302,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cdk8s/projen-common@^0.0.287":
-  version "0.0.287"
-  resolved "https://registry.yarnpkg.com/@cdk8s/projen-common/-/projen-common-0.0.287.tgz#3e58283610eadd7fbea2978c1bb3164207e269db"
-  integrity sha512-n6R1Y77NWG5feoUctY3aLNQS3FAGm1LZWH+LczNwy1kjr3lNQKvwzEcTSyoYQualxJJwNJWc0db6snxv4iz7WA==
+"@cdk8s/projen-common@^0.0.288":
+  version "0.0.288"
+  resolved "https://registry.yarnpkg.com/@cdk8s/projen-common/-/projen-common-0.0.288.tgz#4039df6a9435b2ee5256bc6a73c848a5a7de0485"
+  integrity sha512-zf4Ht9ijbhp7uBJLcn6LP/4ALOalDBRzVYOaWoP4JkPgHVxs5UIgInhFH2h9YuAoTn6NhKjV56LBSDqTyEyKNw==
   dependencies:
     codemaker "^1.78.1"
 
@@ -2195,9 +2195,9 @@ eastasianwidth@^0.2.0:
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
 electron-to-chromium@^1.4.284:
-  version "1.4.332"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.332.tgz#b981fcf61587abe03c24b301b2cfbdcc2b70e8a5"
-  integrity sha512-c1Vbv5tuUlBFp0mb3mCIjw+REEsgthRgNE8BlbEDKmvzb8rxjcVki6OkQP83vLN34s0XCxpSkq7AZNep1a6xhw==
+  version "1.4.333"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.333.tgz#ebb21f860f8a29923717b06ec0cb54e77ed34c04"
+  integrity sha512-YyE8+GKyGtPEP1/kpvqsdhD6rA/TP1DUFDN4uiU/YI52NzDxmwHkEb3qjId8hLBa5siJvG0sfC3O66501jMruQ==
 
 emittery@^0.8.1:
   version "0.8.1"
@@ -5276,10 +5276,10 @@ progress@^2.0.3:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@^0.68.10:
-  version "0.68.10"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.68.10.tgz#67f2549bdb8a9b2ee6cced68c537e65e57044ed8"
-  integrity sha512-VdFaikxq7ILuxGXoT9tgjIgMAo+Sm0BmtN4oxgVwYfqe356V/KPO2PlSQCudkElLlEABDN1Wys7UdafybyANRg==
+projen@^0.68.12:
+  version "0.68.12"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.68.12.tgz#8be597e7d3bbcdf0059851d5c086d858d38bda7f"
+  integrity sha512-p9OBtH8x/PtoGZ+vthB8ZeMw4s2LJrzbsQPrYwTWPIoPvvoTMALWGwxrUtI7eE9HMNPJyReXmxHrEuC231plow==
   dependencies:
     "@iarna/toml" "^2.2.5"
     case "^1.6.3"
