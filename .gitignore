@@ -63,6 +63,7 @@ tsconfig.json
 !/.github/ISSUE_TEMPLATE/feature-request.md
 !/SECURITY.md
 !/.github/workflows/triage.yml
+!/.github/workflows/dependabot-security-alerts.yml
 !/src/_loadurl.js
 !/.backportrc.json
 !/.github/workflows/backport.yml
