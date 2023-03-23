@@ -67,6 +67,39 @@ test('the CDK8S_DISABLE_SORT environment variable can be used to disable key sor
   }
 });
 
+test('the CDK8S_DISABLE_SORT environment variable disables metadata key sorting', () => {
+  const obj = new ApiObject(Testing.chart(), 'my-api-object', {
+    apiVersion: 'v1',
+    kind: 'Dummy',
+    hello: {
+      zzz: 123,
+      aaa: 333,
+      nested: {
+        yyy: 'hello',
+        bbb: 123,
+      },
+    },
+    metadata: {
+      zzz: 'test-zzz',
+      aaa: 'test-aaa',
+      labels: { 'test-label': 'hello-label' },
+      namespace: 'test-namespace',
+      name: 'test-name',
+    },
+  });
+
+  // default behavior - sorted
+  // expect(JSON.stringify(obj.toJson())).toStrictEqual('{"apiVersion":"v1","kind":"Dummy","metadata":{"aaa":"test-aaa","labels":{"test-label":"hello-label"},"name":"test-name","namespace":"test-namespace","zzz":"test-zzz"},"hello":{"aaa":333,"nested":{"bbb":123,"yyy":"hello"},"zzz":123}}');
+
+  // with CDK8S_DISABLE_SORT set at the chart level
+  process.env.CDK8S_DISABLE_SORT = '1';
+  try {
+    expect(JSON.stringify(obj.toJson())).toStrictEqual('{"apiVersion":"v1","kind":"Dummy","metadata":{"zzz":"test-zzz","aaa":"test-aaa","labels":{"test-label":"hello-label"},"namespace":"test-namespace","name":"test-name"},"hello":{"zzz":123,"aaa":333,"nested":{"yyy":"hello","bbb":123}}}');
+  } finally {
+    delete process.env.CDK8S_DISABLE_SORT;
+  }
+});
+
 test('addDependency', () => {
 
   const app = Testing.app();
