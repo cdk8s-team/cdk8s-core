@@ -15,6 +15,38 @@ test('empty stack', () => {
   expect(Testing.synth(chart)).toMatchSnapshot();
 });
 
+test('disabling resource name hashes at chart level', () => {
+  // GIVEN
+  const app = Testing.app();
+  const chart = new Chart(app, 'test', {
+    disableResourceNameHashes: true,
+  });
+
+  // WHEN
+  const ob1 = new ApiObject(chart, 'resource1', { kind: 'Resource1', apiVersion: 'v1' });
+  const ob2 = new ApiObject(chart, 'resource2', { kind: 'Resource3', apiVersion: 'v1' });
+
+  // THEN
+  expect(ob1.name).toEqual('test-resource1');
+  expect(ob2.name).toEqual('test-resource2');
+  expect(Testing.synth(chart)).toMatchSnapshot();
+});
+
+test('resource name hashes work by default', () => {
+  // GIVEN
+  const app = Testing.app();
+  const chart = new Chart(app, 'test');
+
+  // WHEN
+  const ob1 = new ApiObject(chart, 'resource1', { kind: 'Resource1', apiVersion: 'v1' });
+  const ob2 = new ApiObject(chart, 'resource2', { kind: 'Resource3', apiVersion: 'v1' });
+
+  // THEN
+  expect(ob1.name).toEqual('test-resource1-c85cb0fc');
+  expect(ob2.name).toEqual('test-resource2-c8c6bd27');
+  expect(Testing.synth(chart)).toMatchSnapshot();
+});
+
 test('output includes all synthesized resources', () => {
   // GIVEN
   const app = Testing.app();
@@ -34,6 +66,19 @@ test('output includes all synthesized resources', () => {
   expect(Testing.synth(chart)).toMatchSnapshot();
 });
 
+test('CronJob names are at most 52 characters', () => {
+  // GIVEN
+  const app = Testing.app();
+  const chart = new Chart(app, 'test');
+
+  // WHEN
+  const ob1 = new ApiObject(chart, 'cj1', { kind: 'CronJob', apiVersion: 'v1' });
+  const ob2 = new ApiObject(chart, 'resourceNameThatIsLongerThan52Charactersssssssssssss', { kind: 'CronJob', apiVersion: 'v1' });
+
+  // THEN
+  expect(ob1.name.length).toBeLessThanOrEqual(52);
+  expect(ob2.name.length).toBeLessThanOrEqual(52);
+});
 
 test('tokens are resolved during synth', () => {
   // GIVEN

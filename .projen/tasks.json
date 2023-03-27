@@ -205,6 +205,15 @@
         }
       ]
     },
+    "install": {
+      "name": "install",
+      "description": "Install project dependencies and update lockfile (non-frozen)",
+      "steps": [
+        {
+          "exec": "yarn install --check-files"
+        }
+      ]
+    },
     "install-helm": {
       "name": "install-helm",
       "description": "Install helm3",
@@ -214,6 +223,15 @@
         }
       ],
       "condition": "! (helm version | grep \"v3.\")"
+    },
+    "install:ci": {
+      "name": "install:ci",
+      "description": "Install project dependencies using frozen lockfile",
+      "steps": [
+        {
+          "exec": "yarn install --check-files --frozen-lockfile"
+        }
+      ]
     },
     "package": {
       "name": "package",
@@ -409,25 +427,25 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='constructs,yaml'"
+          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='constructs,jsii,yaml'"
         },
         {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='constructs,yaml'"
+          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='constructs,jsii,yaml'"
         },
         {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='constructs,yaml'"
+          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='constructs,jsii,yaml'"
         },
         {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='constructs,yaml'"
+          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='constructs,jsii,yaml'"
         },
         {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='constructs,yaml'"
+          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='constructs,jsii,yaml'"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @cdk8s/projen-common @types/follow-redirects @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk-lib constructs eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jest-junit jest jsii jsii-diff jsii-docgen jsii-pacmak json-schema-to-typescript npm-check-updates projen standard-version ts-jest ts-node typescript @aws-sdk/client-cloudcontrol fast-json-patch follow-redirects aws-cdk-lib constructs @aws-sdk/client-cloudcontrol"
+          "exec": "yarn upgrade @cdk8s/projen-common @types/follow-redirects @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk-lib constructs eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jest-junit jest jsii-diff jsii-docgen jsii-pacmak jsii json-schema-to-typescript npm-check-updates projen standard-version ts-jest ts-node typescript @aws-sdk/client-cloudcontrol fast-json-patch follow-redirects aws-cdk-lib constructs @aws-sdk/client-cloudcontrol"
         },
         {
           "exec": "npx projen"
