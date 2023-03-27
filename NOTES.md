@@ -57,6 +57,25 @@ Also how is "QueueUrl" the same as "QueueName"...? URL should be `https://sqs.us
 - whaaat: https://docs.aws.amazon.com/cloudcontrolapi/latest/userguide/resource-operations-list.html#resource-operations-list-containers
 - CloudFormation `Ref` not mapped.
 
+
+CloudControl GetResource API doesn't return tags for s3 buckets? I see the tags exist on the resource but cloud control doesn't fetch them
+
+Not all stack-level tags propagate to all resources, from [docs](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html):
+
+> In addition to any tags you define, CloudFormation automatically creates the following stack-level tags with the prefix aws::
+>
+> aws:cloudformation:logical-id
+>
+> aws:cloudformation:stack-id
+>
+> aws:cloudformation:stack-name
+>
+> The aws: prefix is reserved for AWS use. This prefix is case-insensitive. If you use this prefix in the Key or Value property, you can't update or delete the tag. Tags with this prefix don't count toward the number of tags per resource.
+> 
+> Propagation of stack-level tags to resources, including automatically created tags, can vary by resource. For example, tags aren't propagated to Amazon EBS volumes that are created from block device mappings.
+
+
+
 ### AWS CloudFormation
 
 - should provide a way to query resource attributes without defining a stack output.

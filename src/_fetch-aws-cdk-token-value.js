@@ -1,62 +1,48 @@
 const { CloudControlClient, ListResourcesCommand, GetResourceCommand } = require("@aws-sdk/client-cloudcontrol");
+const { CloudFormationClient, DescribeStackResourceCommand } = require("@aws-sdk/client-cloudformation");
 
 const logicalId = process.argv[2];
 const attribute = process.argv[3];
 const typeName = process.argv[4];
 const stackName = process.argv[5];
 
-const client = new CloudControlClient({ region: process.env.AWS_DEFAULT_REGION });
+const cloudcontrol = new CloudControlClient({ region: process.env.AWS_DEFAULT_REGION });
+const cloudformation = new CloudFormationClient({ region: process.env.AWS_DEFAULT_REGION });
 
 async function fetch() {
 
-  const list = new ListResourcesCommand({
-    TypeName: typeName,
-  });
+  const cfnResource = await cloudformation.send(new DescribeStackResourceCommand({
+    StackName: stackName,
+    LogicalResourceId: logicalId,
+  }));
 
-  const resources = await client.send(list);
+  const identifier = cfnResource.StackResourceDetail?.PhysicalResourceId;
+  const typeName = cfnResource.StackResourceDetail.ResourceType;
 
-  for (const short of resources['ResourceDescriptions']) {
-    const get = new GetResourceCommand({
-      TypeName: typeName,
-      Identifier: short.Identifier
-    })
-    const long = await client.send(get)
-    const resource = long['ResourceDescription']
-    const properties = JSON.parse(resource.Properties);
-    const tags = properties.Tags ?? [];
-    if (findStackName(tags) === stackName && findLogicalId(tags) === logicalId) {
-
-      if (attribute === 'Ref') {
-        // Refs aren't mapped in Cloud Control...
-        // Assuming its the idenitifier is probably wrong but we don't have
-        // a choice.
-        return short.Identifier
-      }
-
-      value = properties[attribute]
-      if (!value) {
-        throw new Error(`Attribute '${attribute}' not found on resource with id '${logicalId}' in stack '${stackName}'`);
-      }
-      return value;
-    }
+  if (!identifier) {
+    throw new Error(`Resource with logical id '${logicalId}' in stack '${stackName}' does not have a physical resource id`);
   }
 
-  // TODO better errors based on the actual scenario
-  throw new Error(`Resource with id '${logicalId}' not found in stack '${stackName}'`);
+  const resource = await cloudcontrol.send(new GetResourceCommand({
+    TypeName: typeName,
+    Identifier: identifier
+  }))
 
-}
+  if (attribute === 'Ref') {
+    // Refs aren't mapped in Cloud Control...
+    // Assuming its the idenitifier is probably wrong but we don't have
+    // a choice.
+    return identifier
+  }  
 
-function findStackName(tags) {
-  return findKey(tags, 'aws:cloudformation:stack-name');
-}
+  const properties = JSON.parse(resource.ResourceDescription?.Properties ?? '{}')
 
-function findLogicalId(tags) {
-  return findKey(tags, 'aws:cloudformation:logical-id');
-}
-
-function findKey(tags, key) {
-  filtered = tags.filter(tag => tag.Key === key);
-  return filtered.length === 1 ? filtered[0].Value : undefined
+  // is it true that cloudcontrol properties map to cloudformation attributes?
+  const value = properties[attribute]
+  if (!value) {
+    throw new Error(`Attribute '${attribute}' not found on resource with logical id '${logicalId}' of type '${typeName}' in stack '${stackName}'`);
+  }
+  return value;
 }
 
 fetch()

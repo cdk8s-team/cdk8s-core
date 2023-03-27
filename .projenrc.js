@@ -9,6 +9,7 @@ const project = new Cdk8sTeamJsiiProject({
 
   deps: [
     '@aws-sdk/client-cloudcontrol',
+    '@aws-sdk/client-cloudformation',
   ],
   peerDeps: [
     'constructs@^10',
@@ -20,6 +21,7 @@ const project = new Cdk8sTeamJsiiProject({
     'follow-redirects',
     'fast-json-patch',
     '@aws-sdk/client-cloudcontrol',
+    '@aws-sdk/client-cloudformation',
   ],
   devDeps: [
     'constructs',
@@ -57,6 +59,11 @@ const project = new Cdk8sTeamJsiiProject({
 // after compilation to the `lib/` directory.
 project.gitignore.include('/src/_loadurl.js');
 project.compileTask.exec('cp src/_loadurl.js lib/');
+
+// _fetch-aws-cdk-token-value.js.js is written in javascript so we need to commit it and also copy it
+// after compilation to the `lib/` directory.
+project.gitignore.include('/src/_fetch-aws-cdk-token-value.js');
+project.compileTask.exec('cp src/_fetch-aws-cdk-token-value.js lib/');
 
 const installHelm = project.addTask('install-helm', {
   exec: 'curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash',

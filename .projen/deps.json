@@ -117,6 +117,10 @@
       "type": "bundled"
     },
     {
+      "name": "@aws-sdk/client-cloudformation",
+      "type": "bundled"
+    },
+    {
       "name": "fast-json-patch",
       "type": "bundled"
     },
@@ -150,6 +154,10 @@
     },
     {
       "name": "@aws-sdk/client-cloudcontrol",
+      "type": "runtime"
+    },
+    {
+      "name": "@aws-sdk/client-cloudformation",
       "type": "runtime"
     }
   ],

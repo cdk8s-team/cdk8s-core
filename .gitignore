@@ -66,6 +66,7 @@ tsconfig.json
 !/.github/workflows/triage.yml
 !/.github/workflows/stale.yml
 !/src/_loadurl.js
+!/src/_fetch-aws-cdk-token-value.js
 cdk.out
 !/.backportrc.json
 !/.github/workflows/backport.yml
