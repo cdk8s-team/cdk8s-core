@@ -49,6 +49,8 @@ fetch()
     console.log(data);
   })
   .catch((error) => {
-    console.error(error)
+    if (process.env.RESOLVE_CLOUD_TOKENS_POC_DEBUG == '1') {
+      console.error(`cdk8s.resolve | Failed fetching AWS CDK token value for ${logicalId}.${attribute} (stack: ${stackName}): ${error}`)
+    }
     process.exit(1)
   });

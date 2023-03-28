@@ -25,7 +25,7 @@ export function resolve(value: any, awscdkStack?: AWSCDKStack, cdktfStack?: Terr
       return fetchAwsCdkTokenValue(token, awscdkStack);
     } catch (error) {
       // maybe the CDK deployment didn't happen yet
-      return value;
+      return resolved;
     }
   }
   if (cdktfStack && CDKTFToken.isUnresolved(value)) {
@@ -40,7 +40,7 @@ export function resolve(value: any, awscdkStack?: AWSCDKStack, cdktfStack?: Terr
       return fetchCdktfTokenValue(token, cdktfStack);
     } catch (error) {
       // maybe the CDKTF deployment didn't happen yet
-      return value;
+      return resolved;
     }
 
   }
