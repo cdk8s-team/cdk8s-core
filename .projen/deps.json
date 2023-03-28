@@ -33,6 +33,10 @@
       "type": "build"
     },
     {
+      "name": "cdktf",
+      "type": "build"
+    },
+    {
       "name": "constructs",
       "version": "10.0.0",
       "type": "build"
@@ -145,6 +149,10 @@
     },
     {
       "name": "aws-cdk-lib",
+      "type": "peer"
+    },
+    {
+      "name": "cdktf",
       "type": "peer"
     },
     {

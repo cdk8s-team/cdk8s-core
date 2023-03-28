@@ -160,6 +160,9 @@
         },
         {
           "exec": "cp src/_fetch-aws-cdk-token-value.js lib/"
+        },
+        {
+          "exec": "cp src/_fetch-cdktf-token-value.js lib/"
         }
       ]
     },
@@ -448,7 +451,7 @@
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @cdk8s/projen-common @types/follow-redirects @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk-lib constructs eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jest-junit jest jsii-diff jsii-docgen jsii-pacmak jsii json-schema-to-typescript npm-check-updates projen standard-version ts-jest ts-node typescript @aws-sdk/client-cloudcontrol @aws-sdk/client-cloudformation fast-json-patch follow-redirects aws-cdk-lib constructs @aws-sdk/client-cloudcontrol @aws-sdk/client-cloudformation"
+          "exec": "yarn upgrade @cdk8s/projen-common @types/follow-redirects @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk-lib cdktf constructs eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jest-junit jest jsii-diff jsii-docgen jsii-pacmak jsii json-schema-to-typescript npm-check-updates projen standard-version ts-jest ts-node typescript @aws-sdk/client-cloudcontrol @aws-sdk/client-cloudformation fast-json-patch follow-redirects aws-cdk-lib cdktf constructs @aws-sdk/client-cloudcontrol @aws-sdk/client-cloudformation"
         },
         {
           "exec": "npx projen"

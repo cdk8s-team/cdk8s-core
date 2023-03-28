@@ -1,7 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { Stack } from 'aws-cdk-lib';
+import { Stack as AWSCDKStack } from 'aws-cdk-lib';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { TerraformStack } from 'cdktf';
 import { Construct, IConstruct } from 'constructs';
 import { ApiObject } from './api-object';
 import { Chart } from './chart';
@@ -55,7 +57,9 @@ export interface AppProps {
    */
   readonly recordConstructMetadata?: boolean;
 
-  readonly stack?: Stack;
+  readonly awscdkStack?: AWSCDKStack;
+
+  readonly cdktfStack?: TerraformStack;
 }
 
 /**
@@ -121,7 +125,8 @@ export class App extends Construct {
 
   private readonly recordConstructMetadata: boolean;
 
-  public readonly stack?: Stack;
+  public readonly awscdkStack?: AWSCDKStack;
+  public readonly cdktfStack?: TerraformStack;
 
   /**
    * Returns all the charts in this app, sorted topologically.
@@ -144,7 +149,8 @@ export class App extends Construct {
     this.yamlOutputType = props.yamlOutputType ?? YamlOutputType.FILE_PER_CHART;
 
     this.recordConstructMetadata = props.recordConstructMetadata ?? (process.env.CDK8S_RECORD_CONSTRUCT_METADATA === 'true' ? true : false);
-    this.stack = props.stack;
+    this.awscdkStack = props.awscdkStack;
+    this.cdktfStack = props.cdktfStack;
   }
 
   /**

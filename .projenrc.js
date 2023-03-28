@@ -14,6 +14,7 @@ const project = new Cdk8sTeamJsiiProject({
   peerDeps: [
     'constructs@^10',
     'aws-cdk-lib',
+    'cdktf',
   ],
 
   bundledDeps: [
@@ -60,10 +61,15 @@ const project = new Cdk8sTeamJsiiProject({
 project.gitignore.include('/src/_loadurl.js');
 project.compileTask.exec('cp src/_loadurl.js lib/');
 
-// _fetch-aws-cdk-token-value.js.js is written in javascript so we need to commit it and also copy it
+// _fetch-aws-cdk-token-value.js is written in javascript so we need to commit it and also copy it
 // after compilation to the `lib/` directory.
 project.gitignore.include('/src/_fetch-aws-cdk-token-value.js');
 project.compileTask.exec('cp src/_fetch-aws-cdk-token-value.js lib/');
+
+// _fetch-cdktf-token-value.js is written in javascript so we need to commit it and also copy it
+// after compilation to the `lib/` directory.
+project.gitignore.include('/src/_fetch-cdktf-token-value.js');
+project.compileTask.exec('cp src/_fetch-cdktf-token-value.js lib/');
 
 const installHelm = project.addTask('install-helm', {
   exec: 'curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash',

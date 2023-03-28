@@ -1,10 +1,9 @@
-const { CloudControlClient, ListResourcesCommand, GetResourceCommand } = require("@aws-sdk/client-cloudcontrol");
+const { CloudControlClient, GetResourceCommand } = require("@aws-sdk/client-cloudcontrol");
 const { CloudFormationClient, DescribeStackResourceCommand } = require("@aws-sdk/client-cloudformation");
 
 const logicalId = process.argv[2];
 const attribute = process.argv[3];
-const typeName = process.argv[4];
-const stackName = process.argv[5];
+const stackName = process.argv[4];
 
 const cloudcontrol = new CloudControlClient({ region: process.env.AWS_DEFAULT_REGION });
 const cloudformation = new CloudFormationClient({ region: process.env.AWS_DEFAULT_REGION });

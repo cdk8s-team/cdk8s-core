@@ -75,10 +75,19 @@ Not all stack-level tags propagate to all resources, from [docs](https://docs.aw
 > Propagation of stack-level tags to resources, including automatically created tags, can vary by resource. For example, tags aren't propagated to Amazon EBS volumes that are created from block device mappings.
 
 
-
 ### AWS CloudFormation
 
 - should provide a way to query resource attributes without defining a stack output.
+
+### CDKTF
+
+terraform state show 'address' doesn't have a JSON formatting option!
+
+terraform doesn't have a command to install providers (?)
+
+terraform state JSON format differs between backends...?
+
+cdktf should download a state snapshot and store in cdktf.out so that automation running afterwards can consume the deployment information
 
 ### AWS SDK V3
 

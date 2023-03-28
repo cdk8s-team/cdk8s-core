@@ -5,7 +5,7 @@ import * as k8s from '.';
 const awsApp = new aws.App();
 const stack = new aws.Stack(awsApp, 'Stack');
 
-const k8sApp = new k8s.App({ stack });
+const k8sApp = new k8s.App({ awscdkStack: stack });
 const manifest = new k8s.Chart(k8sApp, 'Manifest');
 
 const topic = new aws.aws_sns.Topic(stack, 'Topic');
