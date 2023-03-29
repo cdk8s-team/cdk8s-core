@@ -44,13 +44,13 @@
     "organization": false
   },
   "devDependencies": {
-    "@cdk8s/projen-common": "^0.0.303",
+    "@cdk8s/projen-common": "^0.0.304",
     "@types/follow-redirects": "^1.14.1",
     "@types/jest": "^27",
     "@types/node": "^14",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
-    "constructs": "^3.4.285",
+    "constructs": "^3.4.286",
     "eslint": "^8",
     "eslint-import-resolver-node": "^0.3.7",
     "eslint-import-resolver-typescript": "^2.7.1",
@@ -63,13 +63,13 @@
     "jsii-pacmak": "^1.79.0",
     "json-schema-to-typescript": "^10.1.5",
     "npm-check-updates": "^16",
-    "projen": "^0.69.11",
+    "projen": "^0.69.15",
     "standard-version": "^9",
     "ts-jest": "^27",
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
-    "constructs": "^3.4.285"
+    "constructs": "^3.4.286"
   },
   "dependencies": {
     "fast-json-patch": "^3.1.1",
