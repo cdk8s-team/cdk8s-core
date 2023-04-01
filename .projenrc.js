@@ -21,7 +21,6 @@ const project = new Cdk8sTeamJsiiProject({
     '@types/follow-redirects',
     'json-schema-to-typescript',
     '@cdk8s/projen-common',
-    'ts-node',
   ],
 
   keywords: [
@@ -60,8 +59,6 @@ const installHelm = project.addTask('install-helm', {
   // will exit with non-zero if helm is not installed or has the wrong version
   condition: '! (helm version | grep "v3.")',
 });
-
-project.gitignore.exclude('cdk.out');
 
 project.testTask.prependSpawn(installHelm);
 
