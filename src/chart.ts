@@ -1,6 +1,7 @@
 import { Construct, IConstruct } from 'constructs';
 import { ApiObject } from './api-object';
 import { App } from './app';
+import { ITokenResolver } from './external-token';
 import { Names } from './names';
 
 const CHART_SYMBOL = Symbol.for('cdk8s.Chart');
@@ -31,6 +32,8 @@ export interface ChartProps {
    */
   readonly disableResourceNameHashes?: boolean;
 
+  readonly externalTokenResolver?: ITokenResolver;
+
 }
 
 export class Chart extends Construct {
@@ -40,7 +43,7 @@ export class Chart extends Construct {
    * We do attribute detection since we can't reliably use 'instanceof'.
    */
   public static isChart(x: any): x is Chart {
-    return x !== null && typeof(x) === 'object' && CHART_SYMBOL in x;
+    return x !== null && typeof (x) === 'object' && CHART_SYMBOL in x;
   }
 
   /**
@@ -85,11 +88,14 @@ export class Chart extends Construct {
    */
   private readonly _disableResourceNameHashes?: boolean;
 
-  constructor(scope: Construct, id: string, props: ChartProps = { }) {
+  public readonly externalTokenResolver?: ITokenResolver;
+
+  constructor(scope: Construct, id: string, props: ChartProps = {}) {
     super(scope, id);
     this.namespace = props.namespace;
     this._labels = props.labels ?? {};
     this._disableResourceNameHashes = props.disableResourceNameHashes ?? false;
+    this.externalTokenResolver = props.externalTokenResolver;
 
     Object.defineProperty(this, CHART_SYMBOL, { value: true });
   }

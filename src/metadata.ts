@@ -144,14 +144,14 @@ export class ApiObjectMetadataDefinition {
    */
   private readonly _additionalAttributes: { [key: string]: any };
 
-  constructor(options: ApiObjectMetadata = { }) {
+  constructor(options: ApiObjectMetadata = {}) {
     this.name = options.name;
-    this.labels = options.labels ?? { };
-    this.annotations = options.annotations ?? { };
+    this.labels = options.labels ?? {};
+    this.annotations = options.annotations ?? {};
     this.namespace = options.namespace;
     this.finalizers = options.finalizers ?? [];
     this.ownerReferences = options.ownerReferences ?? [];
-    this._additionalAttributes = options ?? { };
+    this._additionalAttributes = options ?? {};
   }
 
   /**
@@ -214,6 +214,7 @@ export class ApiObjectMetadataDefinition {
    */
   public toJson() {
     const sanitize = (x: any) => sanitizeValue(x, { filterEmptyArrays: true, filterEmptyObjects: true });
+    // TODO - pass the resolver here somehow...
     return sanitize(resolve({
       ...this._additionalAttributes,
       name: this.name,

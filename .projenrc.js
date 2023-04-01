@@ -7,22 +7,14 @@ const project = new Cdk8sTeamJsiiProject({
   description: 'This is the core library of Cloud Development Kit (CDK) for Kubernetes (cdk8s). cdk8s apps synthesize into standard Kubernetes manifests which can be applied to any Kubernetes cluster.',
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
 
-  deps: [
-    '@aws-sdk/client-cloudcontrol',
-    '@aws-sdk/client-cloudformation',
-  ],
   peerDeps: [
     'constructs@^10',
-    'aws-cdk-lib',
-    'cdktf',
   ],
 
   bundledDeps: [
     'yaml@2.0.0-7',
     'follow-redirects',
     'fast-json-patch',
-    '@aws-sdk/client-cloudcontrol',
-    '@aws-sdk/client-cloudformation',
   ],
   devDeps: [
     'constructs',
@@ -60,16 +52,6 @@ const project = new Cdk8sTeamJsiiProject({
 // after compilation to the `lib/` directory.
 project.gitignore.include('/src/_loadurl.js');
 project.compileTask.exec('cp src/_loadurl.js lib/');
-
-// _fetch-aws-cdk-token-value.js is written in javascript so we need to commit it and also copy it
-// after compilation to the `lib/` directory.
-project.gitignore.include('/src/_fetch-aws-cdk-token-value.js');
-project.compileTask.exec('cp src/_fetch-aws-cdk-token-value.js lib/');
-
-// _fetch-cdktf-token-value.js is written in javascript so we need to commit it and also copy it
-// after compilation to the `lib/` directory.
-project.gitignore.include('/src/_fetch-cdktf-token-value.js');
-project.compileTask.exec('cp src/_fetch-cdktf-token-value.js lib/');
 
 const installHelm = project.addTask('install-helm', {
   exec: 'curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash',

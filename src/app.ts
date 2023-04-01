@@ -1,9 +1,5 @@
 import * as fs from 'fs';
 import * as path from 'path';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { Stack as AWSCDKStack } from 'aws-cdk-lib';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { TerraformStack } from 'cdktf';
 import { Construct, IConstruct } from 'constructs';
 import { ApiObject } from './api-object';
 import { Chart } from './chart';
@@ -57,9 +53,6 @@ export interface AppProps {
    */
   readonly recordConstructMetadata?: boolean;
 
-  readonly awscdkStack?: AWSCDKStack;
-
-  readonly cdktfStack?: TerraformStack;
 }
 
 /**
@@ -125,9 +118,6 @@ export class App extends Construct {
 
   private readonly recordConstructMetadata: boolean;
 
-  public readonly awscdkStack?: AWSCDKStack;
-  public readonly cdktfStack?: TerraformStack;
-
   /**
    * Returns all the charts in this app, sorted topologically.
    */
@@ -142,15 +132,13 @@ export class App extends Construct {
    * Defines an app
    * @param props configuration options
    */
-  constructor(props: AppProps = { }) {
+  constructor(props: AppProps = {}) {
     super(undefined as any, '');
     this.outdir = props.outdir ?? process.env.CDK8S_OUTDIR ?? 'dist';
     this.outputFileExtension = props.outputFileExtension ?? '.k8s.yaml';
     this.yamlOutputType = props.yamlOutputType ?? YamlOutputType.FILE_PER_CHART;
 
     this.recordConstructMetadata = props.recordConstructMetadata ?? (process.env.CDK8S_RECORD_CONSTRUCT_METADATA === 'true' ? true : false);
-    this.awscdkStack = props.awscdkStack;
-    this.cdktfStack = props.cdktfStack;
   }
 
   /**
@@ -189,7 +177,7 @@ export class App extends Construct {
         for (const chart of charts) {
           const chartName = namer.name(chart);
           const objects = Object.values(chart.toJson());
-          Yaml.save(path.join(this.outdir, chartName+this.outputFileExtension), objects);
+          Yaml.save(path.join(this.outdir, chartName + this.outputFileExtension), objects);
         }
         break;
 
@@ -201,7 +189,7 @@ export class App extends Construct {
             if (!(apiObject === undefined)) {
               const fileName = `${`${apiObject.kind}.${apiObject.metadata.name}`
                 .replace(/[^0-9a-zA-Z-_.]/g, '')}`;
-              Yaml.save(path.join(this.outdir, fileName+this.outputFileExtension), [apiObject]);
+              Yaml.save(path.join(this.outdir, fileName + this.outputFileExtension), [apiObject]);
             }
           });
         }
@@ -219,7 +207,7 @@ export class App extends Construct {
             if (!(apiObject === undefined)) {
               const fileName = `${`${apiObject.kind}.${apiObject.metadata.name}`
                 .replace(/[^0-9a-zA-Z-_.]/g, '')}`;
-              Yaml.save(path.join(fullOutDir, fileName+this.outputFileExtension), [apiObject.toJson()]);
+              Yaml.save(path.join(fullOutDir, fileName + this.outputFileExtension), [apiObject.toJson()]);
             }
           });
         }
