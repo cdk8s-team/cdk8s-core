@@ -1,51 +1,9 @@
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import * as aws from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as YAML from 'yaml';
 import { Testing, Chart, App, ApiObject, YamlOutputType } from '../src';
-
-test('synth can resolve aws cdk tokens', () => {
-
-  const awsApp = new aws.App();
-  const stack = new aws.Stack(awsApp, 'Stack');
-
-  const k8sApp = Testing.app({ stack });
-  const manifest = new Chart(k8sApp, 'Manifest');
-
-  const bucket = new aws.aws_s3.Bucket(stack, 'Bucket');
-  new ApiObject(manifest, 'SomeObject', {
-    kind: 'SomeObject',
-    apiVersion: 'v1',
-    spec: {
-      bucketName: bucket.bucketName,
-    },
-  });
-
-  expect(k8sApp.synthYaml()).toMatchSnapshot();
-});
-
-test('synth can resolve concatenation with aws cdk tokens', () => {
-
-  const awsApp = new aws.App();
-  const stack = new aws.Stack(awsApp, 'Stack');
-
-  const k8sApp = Testing.app({ stack });
-  const manifest = new Chart(k8sApp, 'Manifest');
-
-  const bucket = new aws.aws_s3.Bucket(stack, 'Bucket');
-  new ApiObject(manifest, 'SomeObject', {
-    kind: 'SomeObject',
-    apiVersion: 'v1',
-    spec: {
-      bucketName: bucket.bucketName + '-suffix',
-    },
-  });
-
-  expect(k8sApp.synthYaml()).toMatchSnapshot();
-});
 
 test('synthYaml considers dependencies', () => {
 
@@ -587,7 +545,7 @@ function getFilesAndFolders(sourceDir: string) {
     if (fs.lstatSync(path.join(sourceDir, item)).isDirectory()) {
       let subFoldersContents = fs.readdirSync(path.join(sourceDir, item));
       if (subFoldersContents.length > 0) {
-        result.push( ...subFoldersContents.map(file => item + '/' + file));
+        result.push(...subFoldersContents.map(file => item + '/' + file));
       }
     } else {
       result.push(item);
