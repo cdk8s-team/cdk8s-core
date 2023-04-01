@@ -71,17 +71,6 @@ metadata:
 "
 `;
 
-exports[`synth can resolve aws cdk tokens 1`] = `
-"apiVersion: v1
-kind: SomeObject
-metadata:
-  name: manifest-someobject-c8ccd131
-spec:
-  bucketName:
-    Ref: Bucket83908E77
-"
-`;
-
 exports[`synthYaml considers dependencies 1`] = `
 "apiVersion: v1
 kind: Kind2
