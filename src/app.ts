@@ -52,7 +52,6 @@ export interface AppProps {
    * @default false
    */
   readonly recordConstructMetadata?: boolean;
-
 }
 
 /**
@@ -88,7 +87,7 @@ export class App extends Construct {
     return chartToKube(chart).map(obj => obj.toJson());
   }
 
-  public static of(c: IConstruct): App {
+  private static of(c: IConstruct): App {
 
     const scope = c.node.scope;
 
