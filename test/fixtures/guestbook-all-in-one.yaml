@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
       - name: master
-        image: k8s.gcr.io/redis:e2e  # or just image: redis
+        image: registry.k8s.io/redis:e2e  # or just image: redis
         resources:
           requests:
             cpu: 100m
@@ -104,7 +104,7 @@ metadata:
     tier: frontend
 spec:
   # comment or delete the following line if you want to use a LoadBalancer
-  type: NodePort 
+  type: NodePort
   # if your cluster supports it, uncomment the following to automatically create
   # an external load-balanced IP for the frontend service.
   # type: LoadBalancer
