@@ -150,4 +150,7 @@ function createBackportTask(branch) {
   return task;
 }
 
+// https://github.com/DefinitelyTyped/DefinitelyTyped/pull/64924
+project.package.addPackageResolutions('@types/lodash@4.14.192');
+
 project.synth();
