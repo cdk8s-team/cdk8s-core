@@ -20,6 +20,7 @@
     ".github/workflows/upgrade-2.x.yml",
     ".gitignore",
     ".mergify.yml",
+    ".npmrc",
     ".projen/deps.json",
     ".projen/files.json",
     ".projen/tasks.json",
