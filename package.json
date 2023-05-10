@@ -83,7 +83,8 @@
   ],
   "resolutions": {
     "@types/prettier": "2.6.0",
-    "@types/babel__traverse": "7.18.2"
+    "@types/babel__traverse": "7.18.2",
+    "@types/lodash": "4.14.192"
   },
   "keywords": [
     "cdk",

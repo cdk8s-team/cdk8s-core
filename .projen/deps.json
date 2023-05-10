@@ -122,6 +122,11 @@
       "type": "override"
     },
     {
+      "name": "@types/lodash",
+      "version": "4.14.192",
+      "type": "override"
+    },
+    {
       "name": "@types/prettier",
       "version": "2.6.0",
       "type": "override"
