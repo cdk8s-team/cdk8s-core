@@ -307,7 +307,7 @@ hello:
 `;
 
 exports[`save strings are quoted 1`] = `
-"foo: \\"on\\"
+"foo: on
 bar: this has a \\"big quote\\"
 not_a_string: true
 "

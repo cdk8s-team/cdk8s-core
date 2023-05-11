@@ -11,7 +11,9 @@ test('Include can be used to load from YAML', () => {
   new Include(chart, 'guestbook', { url: source });
 
   // THEN
-  const expected = yaml.parseAllDocuments(fs.readFileSync(source, 'utf-8')).map(x => x.toJSON());
+  const expected = yaml.parseAllDocuments(fs.readFileSync(source, 'utf-8'), {
+    version: '1.1',
+  }).map(x => x.toJSON());
   const actual = Testing.synth(chart);
   expect(actual).toStrictEqual(expected);
 });
