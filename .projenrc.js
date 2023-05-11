@@ -12,7 +12,7 @@ const project = new Cdk8sTeamJsiiProject({
   ],
 
   bundledDeps: [
-    'yaml@2.0.0-7',
+    'yaml@2.2.2',
     'follow-redirects',
     'fast-json-patch',
   ],
