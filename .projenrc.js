@@ -12,7 +12,7 @@ const project = new Cdk8sTeamJsiiProject({
   ],
 
   bundledDeps: [
-    'yaml@2.0.0-7',
+    'yaml',
     'follow-redirects',
     'fast-json-patch',
   ],
@@ -42,9 +42,6 @@ const project = new Cdk8sTeamJsiiProject({
     },
   },
   golangBranch: '2.x',
-  depsUpgradeOptions: {
-    exclude: ['yaml'],
-  },
 });
 
 // _loadurl.js is written in javascript so we need to commit it and also copy it
@@ -149,5 +146,8 @@ function createBackportTask(branch) {
   task.exec(command.join(' '), { cwd: backportHome });
   return task;
 }
+
+// https://github.com/DefinitelyTyped/DefinitelyTyped/pull/64924
+project.package.addPackageResolutions('@types/lodash@4.14.192');
 
 project.synth();
