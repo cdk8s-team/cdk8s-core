@@ -10,7 +10,7 @@ const project = new Cdk8sTeamJsiiProject({
     'constructs',
   ],
   bundledDeps: [
-    'yaml@2.0.0-7',
+    'yaml',
     'follow-redirects',
     'fast-json-patch',
   ],
@@ -40,9 +40,6 @@ const project = new Cdk8sTeamJsiiProject({
     },
   },
   golangBranch: '1.x',
-  depsUpgradeOptions: {
-    exclude: ['yaml'],
-  },
 });
 
 // _loadurl.js is written in javascript so we need to commit it and also copy it
