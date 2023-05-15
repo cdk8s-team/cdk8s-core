@@ -427,25 +427,25 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='jsii,yaml'"
+          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='jsii'"
         },
         {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='jsii,yaml'"
+          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='jsii'"
         },
         {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='jsii,yaml'"
+          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='jsii'"
         },
         {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='jsii,yaml'"
+          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='jsii'"
         },
         {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='jsii,yaml'"
+          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='jsii'"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @cdk8s/projen-common @types/follow-redirects @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser constructs eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jest-junit jest jsii-diff jsii-docgen jsii-pacmak jsii json-schema-to-typescript npm-check-updates projen standard-version ts-jest typescript fast-json-patch follow-redirects constructs"
+          "exec": "yarn upgrade"
         },
         {
           "exec": "npx projen"
