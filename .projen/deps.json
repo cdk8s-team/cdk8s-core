@@ -114,7 +114,6 @@
     },
     {
       "name": "yaml",
-      "version": "2.2.2",
       "type": "bundled"
     },
     {
