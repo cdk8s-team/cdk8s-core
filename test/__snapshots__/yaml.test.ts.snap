@@ -37,221 +37,511 @@ Array [
 exports[`load from url 1`] = `
 Array [
   Object {
-    "apiVersion": "v1",
-    "kind": "Service",
-    "metadata": Object {
-      "labels": Object {
-        "app": "redis",
-        "role": "master",
-        "tier": "backend",
-      },
-      "name": "redis-master",
-    },
-    "spec": Object {
-      "ports": Array [
-        Object {
-          "port": 6379,
-          "targetPort": 6379,
-        },
-      ],
-      "selector": Object {
-        "app": "redis",
-        "role": "master",
-        "tier": "backend",
-      },
-    },
-  },
-  Object {
-    "apiVersion": "apps/v1",
-    "kind": "Deployment",
-    "metadata": Object {
-      "name": "redis-master",
-    },
-    "spec": Object {
-      "replicas": 1,
-      "selector": Object {
-        "matchLabels": Object {
-          "app": "redis",
-          "role": "master",
-          "tier": "backend",
-        },
-      },
-      "template": Object {
-        "metadata": Object {
-          "labels": Object {
-            "app": "redis",
-            "role": "master",
-            "tier": "backend",
-          },
-        },
-        "spec": Object {
-          "containers": Array [
-            Object {
-              "image": "k8s.gcr.io/redis:e2e",
-              "name": "master",
-              "ports": Array [
-                Object {
-                  "containerPort": 6379,
-                },
-              ],
-              "resources": Object {
-                "requests": Object {
-                  "cpu": "100m",
-                  "memory": "100Mi",
+    "": Object {
+      "": Object {
+        "": Object {
+          "": Object {
+            "true, &quot;sdkKey&quot;": Object {
+              "": Object {
+                "false, &quot;accountId&quot;": Object {
+                  "": null,
+                  ", &quot;events&quot;": Array [
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                    Object {
+                      "": null,
+                      "[]": null,
+                    },
+                  ],
                 },
               },
+              ", &quot;attributes&quot;": Array [
+                Object {
+                  "": null,
+                },
+                Object {
+                  "": null,
+                },
+                Object {
+                  "": null,
+                },
+                Object {
+                  "": null,
+                },
+                Object {
+                  "": null,
+                },
+                Object {
+                  "": null,
+                },
+                Object {
+                  "": null,
+                },
+                Object {
+                  "": null,
+                },
+              ],
+            },
+          },
+          ", &quot;audiences&quot;": Array [
+            Object {
+              "": null,
+              "Audience for Backwards Compatibility&quot;": null,
+              "[
+  \\\\&quot;or\\\\&quot;,
+  {
+      \\\\&quot;match\\\\&quot;: \\\\&quot;exact\\\\&quot;,
+      \\\\&quot;name\\\\&quot;: \\\\&quot;$opt_dummy_attribute\\\\&quot;,
+      \\\\&quot;type\\\\&quot;: \\\\&quot;custom_attribute\\\\&quot;,
+      \\\\&quot;value\\\\&quot;: \\\\&quot;$opt_dummy_value\\\\&quot;
+    }
+]": null,
             },
           ],
         },
+        ", &quot;variables&quot;": Array [],
       },
+      ", &quot;rollouts&quot;": Array [],
     },
-  },
-  Object {
-    "apiVersion": "v1",
-    "kind": "Service",
-    "metadata": Object {
-      "labels": Object {
-        "app": "redis",
-        "role": "slave",
-        "tier": "backend",
-      },
-      "name": "redis-slave",
-    },
-    "spec": Object {
-      "ports": Array [
-        Object {
-          "port": 6379,
-        },
-      ],
-      "selector": Object {
-        "app": "redis",
-        "role": "slave",
-        "tier": "backend",
-      },
-    },
-  },
-  Object {
-    "apiVersion": "apps/v1",
-    "kind": "Deployment",
-    "metadata": Object {
-      "name": "redis-slave",
-    },
-    "spec": Object {
-      "replicas": 2,
-      "selector": Object {
-        "matchLabels": Object {
-          "app": "redis",
-          "role": "slave",
-          "tier": "backend",
-        },
-      },
-      "template": Object {
-        "metadata": Object {
-          "labels": Object {
-            "app": "redis",
-            "role": "slave",
-            "tier": "backend",
-          },
-        },
-        "spec": Object {
-          "containers": Array [
-            Object {
-              "env": Array [
-                Object {
-                  "name": "GET_HOSTS_FROM",
-                  "value": "dns",
-                },
-              ],
-              "image": "gcr.io/google_samples/gb-redisslave:v1",
-              "name": "slave",
-              "ports": Array [
-                Object {
-                  "containerPort": 6379,
-                },
-              ],
-              "resources": Object {
-                "requests": Object {
-                  "cpu": "100m",
-                  "memory": "100Mi",
-                },
-              },
-            },
-          ],
-        },
-      },
-    },
-  },
-  Object {
-    "apiVersion": "v1",
-    "kind": "Service",
-    "metadata": Object {
-      "labels": Object {
-        "app": "guestbook",
-        "tier": "frontend",
-      },
-      "name": "frontend",
-    },
-    "spec": Object {
-      "ports": Array [
-        Object {
-          "port": 80,
-        },
-      ],
-      "selector": Object {
-        "app": "guestbook",
-        "tier": "frontend",
-      },
-      "type": "NodePort",
-    },
-  },
-  Object {
-    "apiVersion": "apps/v1",
-    "kind": "Deployment",
-    "metadata": Object {
-      "name": "frontend",
-    },
-    "spec": Object {
-      "replicas": 3,
-      "selector": Object {
-        "matchLabels": Object {
-          "app": "guestbook",
-          "tier": "frontend",
-        },
-      },
-      "template": Object {
-        "metadata": Object {
-          "labels": Object {
-            "app": "guestbook",
-            "tier": "frontend",
-          },
-        },
-        "spec": Object {
-          "containers": Array [
-            Object {
-              "env": Array [
-                Object {
-                  "name": "GET_HOSTS_FROM",
-                  "value": "dns",
-                },
-              ],
-              "image": "gcr.io/google-samples/gb-frontend:v4",
-              "name": "php-redis",
-              "ports": Array [
-                Object {
-                  "containerPort": 80,
-                },
-              ],
-              "resources": Object {
-                "requests": Object {
-                  "cpu": "100m",
-                  "memory": "100Mi",
-                },
-              },
-            },
-          ],
-        },
-      },
-    },
+    "<!DOCTYPE html> <html lang=\\"en\\" data-color-mode=\\"auto\\" data-light-theme=\\"light\\" data-dark-theme=\\"dark\\" data-a11y-animated-images=\\"system\\"> <head> <meta charset=\\"utf-8\\"> <link rel=\\"dns-prefetch\\" href=\\"https://github.githubassets.com\\"> <link rel=\\"dns-prefetch\\" href=\\"https://avatars.githubusercontent.com\\"> <link rel=\\"dns-prefetch\\" href=\\"https://github-cloud.s3.amazonaws.com\\"> <link rel=\\"dns-prefetch\\" href=\\"https://user-images.githubusercontent.com/\\"> <link rel=\\"preconnect\\" href=\\"https://github.githubassets.com\\" crossorigin> <link rel=\\"preconnect\\" href=\\"https://avatars.githubusercontent.com\\">
+
+
+<link crossorigin=\\"anonymous\\" media=\\"all\\" rel=\\"stylesheet\\" href=\\"https://github.githubassets.com/assets/light-0946cdc16f15.css\\" /><link crossorigin=\\"anonymous\\" media=\\"all\\" rel=\\"stylesheet\\" href=\\"https://github.githubassets.com/assets/dark-3946c959759a.css\\" /><link data-color-theme=\\"dark_dimmed\\" crossorigin=\\"anonymous\\" media=\\"all\\" rel=\\"stylesheet\\" data-href=\\"https://github.githubassets.com/assets/dark_dimmed-9b9a8c91acc5.css\\" /><link data-color-theme=\\"dark_high_contrast\\" crossorigin=\\"anonymous\\" media=\\"all\\" rel=\\"stylesheet\\" data-href=\\"https://github.githubassets.com/assets/dark_high_contrast-11302a585e33.css\\" /><link data-color-theme=\\"dark_colorblind\\" crossorigin=\\"anonymous\\" media=\\"all\\" rel=\\"stylesheet\\" data-href=\\"https://github.githubassets.com/assets/dark_colorblind-1a4564ab0fbf.css\\" /><link data-color-theme=\\"light_colorblind\\" crossorigin=\\"anonymous\\" media=\\"all\\" rel=\\"stylesheet\\" data-href=\\"https://github.githubassets.com/assets/light_colorblind-12a8b2aa9101.css\\" /><link data-color-theme=\\"light_high_contrast\\" crossorigin=\\"anonymous\\" media=\\"all\\" rel=\\"stylesheet\\" data-href=\\"https://github.githubassets.com/assets/light_high_contrast-5924a648f3e7.css\\" /><link data-color-theme=\\"light_tritanopia\\" crossorigin=\\"anonymous\\" media=\\"all\\" rel=\\"stylesheet\\" data-href=\\"https://github.githubassets.com/assets/light_tritanopia-05358496cb79.css\\" /><link data-color-theme=\\"dark_tritanopia\\" crossorigin=\\"anonymous\\" media=\\"all\\" rel=\\"stylesheet\\" data-href=\\"https://github.githubassets.com/assets/dark_tritanopia-aad6b801a158.css\\" /> <link crossorigin=\\"anonymous\\" media=\\"all\\" rel=\\"stylesheet\\" href=\\"https://github.githubassets.com/assets/primer-primitives-fb1d51d1ef66.css\\" /> <link crossorigin=\\"anonymous\\" media=\\"all\\" rel=\\"stylesheet\\" href=\\"https://github.githubassets.com/assets/primer-57c312e484b2.css\\" /> <link crossorigin=\\"anonymous\\" media=\\"all\\" rel=\\"stylesheet\\" href=\\"https://github.githubassets.com/assets/global-0d04dfcdc794.css\\" /> <link crossorigin=\\"anonymous\\" media=\\"all\\" rel=\\"stylesheet\\" href=\\"https://github.githubassets.com/assets/github-c7a3a0ac71d4.css\\" /> <link crossorigin=\\"anonymous\\" media=\\"all\\" rel=\\"stylesheet\\" href=\\"https://github.githubassets.com/assets/code-536dffbfff5a.css\\" />
+<meta name=\\"optimizely-datafile\\" content=\\"{&quot;groups&quot;": Array [],
   },
 ]
 `;
