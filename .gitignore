@@ -66,6 +66,6 @@ tsconfig.json
 !/.github/workflows/security.yml
 !/.github/workflows/triage.yml
 !/.github/workflows/stale.yml
-!/src/_loadurl.js
 !/.backportrc.json
 !/.github/workflows/backport.yml
+!/src/_loadurl.js
