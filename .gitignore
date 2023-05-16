@@ -41,8 +41,8 @@ junit.xml
 !/.github/workflows/release.yml
 !/.github/workflows/release-1.x.yml
 !/.mergify.yml
-!/.github/workflows/upgrade-2.x.yml
-!/.github/workflows/upgrade-1.x.yml
+!/.github/workflows/upgrade-dependencies-2.x.yml
+!/.github/workflows/upgrade-dependencies-1.x.yml
 !/.github/pull_request_template.md
 !/.npmrc
 !/test/
@@ -66,6 +66,8 @@ tsconfig.json
 !/.github/workflows/security.yml
 !/.github/workflows/triage.yml
 !/.github/workflows/stale.yml
+!/.github/workflows/upgrade-configuration-2.x.yml
+!/.github/workflows/upgrade-configuration-1.x.yml
 !/.backportrc.json
 !/.github/workflows/backport.yml
 !/src/_loadurl.js
