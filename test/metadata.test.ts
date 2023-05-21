@@ -11,6 +11,7 @@ test('Can add a label', () => {
   expect(actual.labels).toEqual({
     key: 'value',
   });
+
 });
 
 test('Can add an annotation', () => {
@@ -24,6 +25,7 @@ test('Can add an annotation', () => {
   expect(actual.annotations).toEqual({
     key: 'value',
   });
+
 });
 
 test('Can add a finalizer', () => {
@@ -35,6 +37,7 @@ test('Can add a finalizer', () => {
   const actual = meta.toJson();
 
   expect(actual.finalizers).toEqual(['my-finalizer']);
+
 });
 
 test('Can add an owner reference', () => {
@@ -56,6 +59,7 @@ test('Can add an owner reference', () => {
     name: 'mypod',
     uid: 'abcdef12-3456-7890-abcd-ef1234567890',
   }]);
+
 });
 
 test('Instantiation properties are all respected', () => {
@@ -81,6 +85,7 @@ test('Instantiation properties are all respected', () => {
   };
 
   expect(actual).toStrictEqual(expected);
+
 });
 
 test('ensure Lazy properties are resolved', () => {
