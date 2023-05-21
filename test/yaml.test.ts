@@ -9,7 +9,7 @@ describe('load', () => {
   });
 
   test('from url', () => {
-    expect(Yaml.load('https://raw.githubusercontent.com/kubernetes/examples/52158f68ddc508eac9f15a9bb7260b838e644c9f/guestbook/all-in-one/guestbook-all-in-one.yaml')).toMatchSnapshot();
+    expect(Yaml.load('https://raw.githubusercontent.com/kubernetes/examples/33dfad21f4f4364c9eb7d48741b954915552ca0a/guestbook/all-in-one/guestbook-all-in-one.yaml')).toMatchSnapshot();
   });
 
   test('empty documents are filtered out', () => {
