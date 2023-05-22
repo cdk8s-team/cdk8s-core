@@ -1,4 +1,4 @@
-import { ApiObjectMetadataDefinition, Lazy } from '../src';
+import { ApiObjectMetadataDefinition, Lazy, OwnerReference } from '../src';
 
 test('Can add a label', () => {
 
@@ -134,4 +134,100 @@ test('Can include arbirary key/value options', () => {
     bar: 'baz',
     foo: 123,
   });
+});
+
+test('labels are cloned', () => {
+  const shared = { foo: 'bar' };
+  const met1 = new ApiObjectMetadataDefinition({
+    labels: shared,
+  });
+
+  met1.addLabel('bar', 'baz');
+
+  const met2 = new ApiObjectMetadataDefinition({
+    labels: shared,
+  });
+
+  expect(met2.toJson()).toMatchInlineSnapshot(`
+    Object {
+      "labels": Object {
+        "foo": "bar",
+      },
+    }
+  `);
+});
+
+test('annotations are cloned', () => {
+  const shared = { foo: 'bar' };
+  const met1 = new ApiObjectMetadataDefinition({
+    annotations: shared,
+  });
+
+  met1.addAnnotation('bar', 'baz');
+
+  const met2 = new ApiObjectMetadataDefinition({
+    annotations: shared,
+  });
+
+  expect(met2.toJson()).toMatchInlineSnapshot(`
+    Object {
+      "annotations": Object {
+        "foo": "bar",
+      },
+    }
+  `);
+});
+
+test('finalizers are cloned', () => {
+  const shared = ['foo'];
+  const met1 = new ApiObjectMetadataDefinition({
+    finalizers: shared,
+  });
+
+  met1.addFinalizers('bar', 'baz');
+
+  const met2 = new ApiObjectMetadataDefinition({
+    finalizers: shared,
+  });
+
+  expect(met2.toJson()).toMatchInlineSnapshot(`
+    Object {
+      "finalizers": Array [
+        "foo",
+      ],
+    }
+  `);
+});
+
+test('ownerReferences are cloned', () => {
+  const shared: OwnerReference[] = [
+    { apiVersion: 'v1', kind: 'Kind', name: 'name1', uid: 'uid1' },
+  ];
+  const met1 = new ApiObjectMetadataDefinition({
+    ownerReferences: shared,
+  });
+
+  met1.addOwnerReference({
+    apiVersion: 'v1',
+    kind: 'Kind',
+    name: 'name2',
+    uid: 'uid2',
+  });
+
+  const met2 = new ApiObjectMetadataDefinition({
+    ownerReferences: shared,
+  });
+
+  expect(met2.toJson()).toMatchInlineSnapshot(`
+    Object {
+      "ownerReferences": Array [
+        Object {
+          "apiVersion": "v1",
+          "kind": "Kind",
+          "name": "name1",
+          "uid": "uid1",
+        },
+      ],
+    }
+  `);
 });

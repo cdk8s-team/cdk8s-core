@@ -146,11 +146,11 @@ export class ApiObjectMetadataDefinition {
 
   constructor(options: ApiObjectMetadata = { }) {
     this.name = options.name;
-    this.labels = options.labels ?? { };
-    this.annotations = options.annotations ?? { };
+    this.labels = { ...options.labels } ?? { };
+    this.annotations = { ...options.annotations } ?? { };
     this.namespace = options.namespace;
-    this.finalizers = options.finalizers ?? [];
-    this.ownerReferences = options.ownerReferences ?? [];
+    this.finalizers = options.finalizers ? [...options.finalizers] : [];
+    this.ownerReferences = options.ownerReferences ? [...options.ownerReferences] : [];
     this._additionalAttributes = options ?? { };
   }
 
