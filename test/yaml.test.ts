@@ -120,3 +120,14 @@ test('stringify() accepts multiple documents', () => {
     '',
   ].join('\n'));
 });
+
+test("strings don't become booleans", () => {
+  const actual = Yaml.stringify({ a_yes: 'yes', a_no: 'no', a_true: 'true', a_false: 'false' });
+  expect(actual).toStrictEqual([
+    'a_yes: "yes"',
+    'a_no: "no"',
+    'a_true: "true"',
+    'a_false: "false"',
+    '',
+  ].join('\n'));
+});

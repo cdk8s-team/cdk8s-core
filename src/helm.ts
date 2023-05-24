@@ -2,10 +2,10 @@ import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
 import { Construct } from 'constructs';
-import * as yaml from 'yaml';
 import { _child_process } from './_child_process';
 import { Include } from './include';
 import { Names } from './names';
+import { Yaml } from './yaml';
 
 const MAX_HELM_BUFFER = 10 * 1024 * 1024;
 
@@ -96,7 +96,7 @@ export class Helm extends Include {
     // values
     if (props.values && Object.keys(props.values).length > 0) {
       const valuesPath = path.join(workdir, 'overrides.yaml');
-      fs.writeFileSync(valuesPath, yaml.stringify(props.values));
+      fs.writeFileSync(valuesPath, Yaml.stringify(props.values));
       args.push('-f', valuesPath);
     }
 
