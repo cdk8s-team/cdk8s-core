@@ -43,7 +43,7 @@ export class Yaml {
    */
   public static stringify(...docs: any[]) {
     return docs.map(
-      r => r === undefined ? '\n' : YAML.stringify(r, { keepUndefined: true, lineWidth: 0 }),
+      r => r === undefined ? '\n' : YAML.stringify(r, { keepUndefined: true, lineWidth: 0, version: yamlSchemaVersion }),
     ).join('---\n');
   }
 
