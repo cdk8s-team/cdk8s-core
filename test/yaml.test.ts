@@ -108,6 +108,17 @@ test('multi-line text block with long line keep line break', () => {
   expect(Yaml.stringify(yamlString)).toMatchSnapshot();
 });
 
+test("strings don't become booleans", () => {
+  const actual = Yaml.stringify({ a_yes: 'yes', a_no: 'no', a_true: 'true', a_false: 'false' });
+  expect(actual).toStrictEqual([
+    'a_yes: "yes"',
+    'a_no: "no"',
+    'a_true: "true"',
+    'a_false: "false"',
+    '',
+  ].join('\n'));
+});
+
 test('stringify() accepts multiple documents', () => {
   const actual = Yaml.stringify({ foo: 123 }, { bar: ['hi', 'there'], jam: 12 });
   expect(actual).toStrictEqual([
