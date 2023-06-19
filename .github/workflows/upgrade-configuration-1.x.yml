@@ -77,6 +77,7 @@ jobs:
             *Automatically created by projen via the "upgrade-configuration-1.x" workflow*
           branch: github-actions/upgrade-configuration-1.x
           title: "chore(deps): upgrade configuration"
+          labels: auto-approve
           body: |-
             Upgrades project dependencies. See details in [workflow run].
 
