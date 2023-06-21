@@ -58,9 +58,9 @@
     "jest": "^27",
     "jest-junit": "^15",
     "jsii": "1.x",
-    "jsii-diff": "^1.81.0",
+    "jsii-diff": "^1.84.0",
     "jsii-docgen": "^3.8.31",
-    "jsii-pacmak": "^1.81.0",
+    "jsii-pacmak": "^1.84.0",
     "json-schema-to-typescript": "^10.1.5",
     "npm-check-updates": "^16",
     "projen": "^0.71.101",
@@ -74,7 +74,7 @@
   "dependencies": {
     "fast-json-patch": "^3.1.1",
     "follow-redirects": "^1.15.2",
-    "yaml": "2.2.2"
+    "yaml": "2.3.1"
   },
   "bundledDependencies": [
     "fast-json-patch",
