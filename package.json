@@ -44,7 +44,7 @@
     "organization": false
   },
   "devDependencies": {
-    "@cdk8s/projen-common": "^0.0.385",
+    "@cdk8s/projen-common": "^0.0.386",
     "@types/follow-redirects": "^1.14.1",
     "@types/jest": "^27",
     "@types/node": "^16",
@@ -63,7 +63,7 @@
     "jsii-pacmak": "^1.81.0",
     "json-schema-to-typescript": "^10.1.5",
     "npm-check-updates": "^16",
-    "projen": "^0.71.110",
+    "projen": "^0.71.111",
     "standard-version": "^9",
     "ts-jest": "^27",
     "typescript": "^4.9.5"
