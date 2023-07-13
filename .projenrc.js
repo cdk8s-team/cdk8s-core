@@ -42,6 +42,7 @@ const project = new Cdk8sTeamJsiiProject({
   golangBranch: '1.x',
   backport: true,
   backportBranches: ['1.x'],
+  jsiiVersion: '^5',
 });
 
 // _loadurl.js is written in javascript so we need to commit it and also copy it

@@ -96,6 +96,8 @@ export interface ApiObjectMetadata {
 
   /**
    * Additional metadata attributes.
+   * @jsii ignore
+   * @see https://github.com/cdk8s-team/cdk8s-core/issues/1297
    */
   readonly [key: string]: any;
 }
