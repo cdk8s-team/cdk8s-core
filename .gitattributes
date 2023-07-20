@@ -19,8 +19,10 @@
 /.github/workflows/triage.yml linguist-generated
 /.github/workflows/upgrade-configuration-1.x.yml linguist-generated
 /.github/workflows/upgrade-configuration-2.x.yml linguist-generated
-/.github/workflows/upgrade-dependencies-1.x.yml linguist-generated
-/.github/workflows/upgrade-dependencies-2.x.yml linguist-generated
+/.github/workflows/upgrade-dev-dependencies-1.x.yml linguist-generated
+/.github/workflows/upgrade-dev-dependencies-2.x.yml linguist-generated
+/.github/workflows/upgrade-runtime-dependencies-1.x.yml linguist-generated
+/.github/workflows/upgrade-runtime-dependencies-2.x.yml linguist-generated
 /.gitignore linguist-generated
 /.mergify.yml linguist-generated
 /.npmignore linguist-generated

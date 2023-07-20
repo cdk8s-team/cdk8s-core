@@ -34,7 +34,8 @@
     "test:watch": "npx projen test:watch",
     "unbump": "npx projen unbump",
     "upgrade-configuration": "npx projen upgrade-configuration",
-    "upgrade-dependencies": "npx projen upgrade-dependencies",
+    "upgrade-dev-dependencies": "npx projen upgrade-dev-dependencies",
+    "upgrade-runtime-dependencies": "npx projen upgrade-runtime-dependencies",
     "watch": "npx projen watch",
     "projen": "npx projen"
   },
@@ -44,7 +45,7 @@
     "organization": false
   },
   "devDependencies": {
-    "@cdk8s/projen-common": "^0.0.409",
+    "@cdk8s/projen-common": "^0.0.411",
     "@types/follow-redirects": "^1.14.1",
     "@types/jest": "^27",
     "@types/node": "^16",
@@ -64,7 +65,7 @@
     "jsii-rosetta": "^5",
     "json-schema-to-typescript": "^10.1.5",
     "npm-check-updates": "^16",
-    "projen": "^0.71.142",
+    "projen": "^0.71.144",
     "standard-version": "^9",
     "ts-jest": "^27",
     "typescript": "~5.1.6"
