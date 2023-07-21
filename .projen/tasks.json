@@ -376,6 +376,33 @@
         }
       ]
     },
+    "upgrade-compiler-dependencies": {
+      "name": "upgrade-compiler-dependencies",
+      "description": "upgrade compiler dependencies",
+      "env": {
+        "CI": "0"
+      },
+      "steps": [
+        {
+          "exec": "yarn upgrade npm-check-updates"
+        },
+        {
+          "exec": "npm-check-updates --dep dev --upgrade --target=minor --filter='jsii,jsii-docgen,jsii-pacmak,jsii-rosetta,typescript'"
+        },
+        {
+          "exec": "yarn install --check-files"
+        },
+        {
+          "exec": "yarn upgrade jsii-docgen jsii-pacmak jsii-rosetta jsii typescript"
+        },
+        {
+          "exec": "npx projen"
+        },
+        {
+          "spawn": "post-upgrade"
+        }
+      ]
+    },
     "upgrade-configuration": {
       "name": "upgrade-configuration",
       "description": "upgrade configuration",
@@ -426,16 +453,16 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='constructs,projen,@cdk8s/projen-common'"
+          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='constructs,projen,@cdk8s/projen-common,jsii,jsii-docgen,jsii-pacmak,jsii-rosetta,typescript'"
         },
         {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='constructs,projen,@cdk8s/projen-common'"
+          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='constructs,projen,@cdk8s/projen-common,jsii,jsii-docgen,jsii-pacmak,jsii-rosetta,typescript'"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @types/follow-redirects @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser constructs eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit jsii-diff jsii-docgen jsii-pacmak jsii-rosetta jsii json-schema-to-typescript npm-check-updates standard-version ts-jest typescript fast-json-patch follow-redirects yaml constructs"
+          "exec": "yarn upgrade @types/follow-redirects @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser constructs eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit jsii-diff json-schema-to-typescript npm-check-updates standard-version ts-jest fast-json-patch follow-redirects yaml constructs"
         },
         {
           "exec": "npx projen"
