@@ -17,6 +17,8 @@
 /.github/workflows/security.yml linguist-generated
 /.github/workflows/stale.yml linguist-generated
 /.github/workflows/triage.yml linguist-generated
+/.github/workflows/upgrade-compiler-dependencies-1.x.yml linguist-generated
+/.github/workflows/upgrade-compiler-dependencies-2.x.yml linguist-generated
 /.github/workflows/upgrade-configuration-1.x.yml linguist-generated
 /.github/workflows/upgrade-configuration-2.x.yml linguist-generated
 /.github/workflows/upgrade-dev-dependencies-1.x.yml linguist-generated

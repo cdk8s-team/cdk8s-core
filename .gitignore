@@ -70,6 +70,8 @@ tsconfig.json
 !/.github/workflows/upgrade-configuration-1.x.yml
 !/.github/workflows/upgrade-dev-dependencies-2.x.yml
 !/.github/workflows/upgrade-dev-dependencies-1.x.yml
+!/.github/workflows/upgrade-compiler-dependencies-2.x.yml
+!/.github/workflows/upgrade-compiler-dependencies-1.x.yml
 !/.backportrc.json
 !/.github/workflows/backport.yml
 !/src/_loadurl.js
