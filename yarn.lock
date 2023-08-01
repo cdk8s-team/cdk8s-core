@@ -6911,9 +6911,9 @@ typedarray@^0.0.6:
   integrity sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==
 
 typescript@next:
-  version "5.2.0-dev.20230730"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.2.0-dev.20230730.tgz#cff28cdba02037eb45f5426a3a959af99b2dea1e"
-  integrity sha512-Un+AAI0hEctoChFvndwcw3Ygv9FxR/DkfohcAQu9bipcFWkCS2QqOHtFNO2r6mu+BAQ23QwArto2GSLp6I6Y7w==
+  version "5.2.0-dev.20230731"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.2.0-dev.20230731.tgz#a72083c07043568ab856dd8ca0d8f3a708c3e3a6"
+  integrity sha512-RJVLgnDgu67ZrohYy0aBea+5TICfRod36+24zw0bR/KJDQJO9mlIjTC0k+/PKw87fXP5JuUHqepEk15PvFya7A==
 
 typescript@~3.9.10:
   version "3.9.10"
