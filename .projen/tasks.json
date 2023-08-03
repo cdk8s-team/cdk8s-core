@@ -387,13 +387,13 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --filter='jsii,jsii-docgen,jsii-pacmak,jsii-rosetta,typescript'"
+          "exec": "npm-check-updates --upgrade --target=minor --filter=jsii,jsii-docgen,jsii-pacmak,jsii-rosetta,typescript"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade jsii-docgen jsii-pacmak jsii-rosetta jsii typescript"
+          "exec": "yarn upgrade jsii jsii-docgen jsii-pacmak jsii-rosetta typescript"
         },
         {
           "exec": "npx projen"
@@ -414,25 +414,13 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --filter='projen,@cdk8s/projen-common'"
-        },
-        {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --filter='projen,@cdk8s/projen-common'"
-        },
-        {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --filter='projen,@cdk8s/projen-common'"
-        },
-        {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --filter='projen,@cdk8s/projen-common'"
-        },
-        {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --filter='projen,@cdk8s/projen-common'"
+          "exec": "npm-check-updates --upgrade --target=minor --filter=projen,@cdk8s/projen-common"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @cdk8s/projen-common projen"
+          "exec": "yarn upgrade projen @cdk8s/projen-common"
         },
         {
           "exec": "npx projen"
@@ -453,10 +441,7 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='projen,@cdk8s/projen-common,jsii,jsii-docgen,jsii-pacmak,jsii-rosetta,typescript'"
-        },
-        {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='projen,@cdk8s/projen-common,jsii,jsii-docgen,jsii-pacmak,jsii-rosetta,typescript'"
+          "exec": "npm-check-updates --upgrade --target=minor --filter=@types/follow-redirects,@types/jest,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,constructs,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint,jest,jest-junit,jsii-diff,json-schema-to-typescript,npm-check-updates,standard-version,ts-jest,fast-json-patch,follow-redirects,yaml"
         },
         {
           "exec": "yarn install --check-files"
@@ -483,16 +468,7 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor"
-        },
-        {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor"
-        },
-        {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor"
-        },
-        {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --filter constructs"
+          "exec": "npm-check-updates --upgrade --target=minor --filter=constructs"
         },
         {
           "exec": "yarn install --check-files"
