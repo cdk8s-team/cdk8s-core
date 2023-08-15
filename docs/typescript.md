@@ -1244,7 +1244,7 @@ If true, this reference points to the managing controller.
 
 ### SizeConversionOptions <a name="cdk8s.SizeConversionOptions"></a>
 
-Options for how to convert time to a different unit.
+Options for how to convert size to a different unit.
 
 #### Initializer <a name="[object Object].Initializer"></a>
 
@@ -2180,6 +2180,12 @@ public toPebibytes(opts?: SizeConversionOptions)
 - *Type:* [`cdk8s.SizeConversionOptions`](#cdk8s.SizeConversionOptions)
 
 ---
+
+##### `toString` <a name="cdk8s.Size.toString"></a>
+
+```typescript
+public toString()
+```
 
 ##### `toTebibytes` <a name="cdk8s.Size.toTebibytes"></a>
 

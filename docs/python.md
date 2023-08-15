@@ -1499,7 +1499,7 @@ If true, this reference points to the managing controller.
 
 ### SizeConversionOptions <a name="cdk8s.SizeConversionOptions"></a>
 
-Options for how to convert time to a different unit.
+Options for how to convert size to a different unit.
 
 #### Initializer <a name="[object Object].Initializer"></a>
 
@@ -2865,6 +2865,12 @@ def to_pebibytes(
 How conversions should behave when it encounters a non-integer result.
 
 ---
+
+##### `to_string` <a name="cdk8s.Size.to_string"></a>
+
+```python
+def to_string()
+```
 
 ##### `to_tebibytes` <a name="cdk8s.Size.to_tebibytes"></a>
 
