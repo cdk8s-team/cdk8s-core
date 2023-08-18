@@ -71,4 +71,9 @@ docgenTask.exec('jsii-docgen -l java -o docs/java.md');
 // https://github.com/DefinitelyTyped/DefinitelyTyped/pull/64924
 project.package.addPackageResolutions('@types/lodash@4.14.192');
 
+// not sure why this is needed, but some dependencies have a transient dependency
+// on wrap-ansi@8 which is an ESM module. When performing `yarn upgrade npm-check-updates`
+// yarn gets confused somehow and uses the @8 one which causes things to break
+project.package.addPackageResolutions('wrap-ansi@7.0.0');
+
 project.synth();
