@@ -85,7 +85,8 @@
     "yaml"
   ],
   "resolutions": {
-    "@types/lodash": "4.14.192"
+    "@types/lodash": "4.14.192",
+    "wrap-ansi": "7.0.0"
   },
   "keywords": [
     "cdk",
