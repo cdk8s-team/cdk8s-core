@@ -123,6 +123,11 @@
       "type": "override"
     },
     {
+      "name": "wrap-ansi",
+      "version": "7.0.0",
+      "type": "override"
+    },
+    {
       "name": "constructs",
       "type": "peer"
     }
