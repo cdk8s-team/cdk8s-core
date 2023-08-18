@@ -5273,9 +5273,9 @@ npm-bundled@^3.0.0:
     npm-normalize-package-bin "^3.0.0"
 
 npm-check-updates@^16:
-  version "16.12.1"
-  resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-16.12.1.tgz#d7407dcc22e3bfe59dfebbd246d46773d1371323"
-  integrity sha512-zY5Z7rAlhekCZfvCuB0jcablWB0VxdnmZF5pJTfUUZUsE65cr0AzGMKjtVEiUFaHslIiYbdXvf67GEJoVMYEXg==
+  version "16.12.2"
+  resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-16.12.2.tgz#37d226da69b93b4d9aec820a6442b572e6a9f264"
+  integrity sha512-N0jeEcak3/+PS1O5JzwJ2+fvmQVv+084O4iRnDtcMBLcr9S7vPOBxwWgsEuNfj3shKFZRYOuh4NHB9nMenCHXA==
   dependencies:
     chalk "^5.3.0"
     cli-table3 "^0.6.3"
@@ -7226,6 +7226,7 @@ workerpool@^6.4.0:
   integrity sha512-i3KR1mQMNwY2wx20ozq2EjISGtQWDIfV56We+yGJ5yDs8jTwQiLLaqHlkBHITlCuJnYlVRmXegxFxZg7gqI++A==
 
 "wrap-ansi-cjs@npm:wrap-ansi@^7.0.0", wrap-ansi@^7.0.0:
+  name wrap-ansi-cjs
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
   integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
