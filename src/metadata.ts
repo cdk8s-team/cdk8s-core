@@ -97,10 +97,8 @@ export interface ApiObjectMetadata {
 
   /**
    * Additional metadata attributes.
-   * @jsii ignore
-   * @see https://github.com/cdk8s-team/cdk8s-core/issues/1297
    */
-  readonly [key: string]: any;
+  readonly additionalAttributes?: { [key: string]: any };
 }
 
 export interface ApiObjectMetadataDefinitionOptions extends ApiObjectMetadata {
@@ -166,7 +164,7 @@ export class ApiObjectMetadataDefinition {
     this.finalizers = options.finalizers ? [...options.finalizers] : [];
     this.ownerReferences = options.ownerReferences ? [...options.ownerReferences] : [];
     this.apiObject = options.apiObject;
-    this._additionalAttributes = options ?? { };
+    this._additionalAttributes = options.additionalAttributes ?? { };
   }
 
   /**
@@ -238,7 +236,6 @@ export class ApiObjectMetadataDefinition {
       ownerReferences: this.ownerReferences,
       labels: this.labels,
     };
-    delete value.apiObject;
     return sanitize(resolve([], value, this.apiObject));
   }
 }

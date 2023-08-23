@@ -125,9 +125,11 @@ test('ensure Lazy properties are resolved', () => {
 test('Can include arbirary key/value options', () => {
   const meta = new ApiObjectMetadataDefinition({
     apiObject: createApiObject(),
-    foo: 123,
-    bar: {
-      helloL: 'world',
+    additionalAttributes: {
+      foo: 123,
+      bar: {
+        helloL: 'world',
+      },
     },
   });
 
