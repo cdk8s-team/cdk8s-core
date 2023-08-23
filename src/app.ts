@@ -5,7 +5,7 @@ import { ApiObject } from './api-object';
 import { Chart } from './chart';
 import { DependencyGraph } from './dependency';
 import { Names } from './names';
-import { IValueResolver } from './value-resolver';
+import { IResolver, ImplicitTokenResolver, LazyResolver } from './resolve';
 import { Yaml } from './yaml';
 
 /** The method to divide YAML output into files */
@@ -54,7 +54,7 @@ export interface AppProps {
    */
   readonly recordConstructMetadata?: boolean;
 
-  readonly resolver?: IValueResolver;
+  readonly resolvers?: IResolver[];
 }
 
 /**
@@ -118,7 +118,7 @@ export class App extends Construct {
    */
   public readonly yamlOutputType: YamlOutputType;
 
-  public readonly resolver?: IValueResolver;
+  public readonly resolvers: IResolver[];
 
   private readonly recordConstructMetadata: boolean;
 
@@ -141,7 +141,11 @@ export class App extends Construct {
     this.outdir = props.outdir ?? process.env.CDK8S_OUTDIR ?? 'dist';
     this.outputFileExtension = props.outputFileExtension ?? '.k8s.yaml';
     this.yamlOutputType = props.yamlOutputType ?? YamlOutputType.FILE_PER_CHART;
-    this.resolver = props.resolver;
+    this.resolvers = [new LazyResolver(), new ImplicitTokenResolver()];
+
+    for (const resolver of props.resolvers ?? []) {
+      this.resolvers.push(resolver);
+    }
 
     this.recordConstructMetadata = props.recordConstructMetadata ?? (process.env.CDK8S_RECORD_CONSTRUCT_METADATA === 'true' ? true : false);
   }
