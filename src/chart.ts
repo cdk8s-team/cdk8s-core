@@ -1,7 +1,6 @@
 import { Construct, IConstruct } from 'constructs';
 import { ApiObject } from './api-object';
 import { App } from './app';
-import { ITokenResolver } from './external-token';
 import { Names } from './names';
 
 const CHART_SYMBOL = Symbol.for('cdk8s.Chart');
@@ -31,8 +30,6 @@ export interface ChartProps {
    * @default false
    */
   readonly disableResourceNameHashes?: boolean;
-
-  readonly externalTokenResolver?: ITokenResolver;
 
 }
 
@@ -88,14 +85,11 @@ export class Chart extends Construct {
    */
   private readonly _disableResourceNameHashes?: boolean;
 
-  public readonly externalTokenResolver?: ITokenResolver;
-
   constructor(scope: Construct, id: string, props: ChartProps = {}) {
     super(scope, id);
     this.namespace = props.namespace;
     this._labels = props.labels ?? {};
     this._disableResourceNameHashes = props.disableResourceNameHashes ?? false;
-    this.externalTokenResolver = props.externalTokenResolver;
 
     Object.defineProperty(this, CHART_SYMBOL, { value: true });
   }

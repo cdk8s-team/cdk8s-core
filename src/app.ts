@@ -5,6 +5,7 @@ import { ApiObject } from './api-object';
 import { Chart } from './chart';
 import { DependencyGraph } from './dependency';
 import { Names } from './names';
+import { IValueResolver } from './value-resolver';
 import { Yaml } from './yaml';
 
 /** The method to divide YAML output into files */
@@ -52,6 +53,8 @@ export interface AppProps {
    * @default false
    */
   readonly recordConstructMetadata?: boolean;
+
+  readonly resolver?: IValueResolver;
 }
 
 /**
@@ -87,7 +90,7 @@ export class App extends Construct {
     return chartToKube(chart).map(obj => obj.toJson());
   }
 
-  private static of(c: IConstruct): App {
+  public static of(c: IConstruct): App {
 
     const scope = c.node.scope;
 
@@ -115,6 +118,8 @@ export class App extends Construct {
    */
   public readonly yamlOutputType: YamlOutputType;
 
+  public readonly resolver?: IValueResolver;
+
   private readonly recordConstructMetadata: boolean;
 
   /**
@@ -136,6 +141,7 @@ export class App extends Construct {
     this.outdir = props.outdir ?? process.env.CDK8S_OUTDIR ?? 'dist';
     this.outputFileExtension = props.outputFileExtension ?? '.k8s.yaml';
     this.yamlOutputType = props.yamlOutputType ?? YamlOutputType.FILE_PER_CHART;
+    this.resolver = props.resolver;
 
     this.recordConstructMetadata = props.recordConstructMetadata ?? (process.env.CDK8S_RECORD_CONSTRUCT_METADATA === 'true' ? true : false);
   }
