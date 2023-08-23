@@ -87,7 +87,7 @@ Array [
         "spec": Object {
           "containers": Array [
             Object {
-              "image": "k8s.gcr.io/redis:e2e",
+              "image": "registry.k8s.io/redis:e2e",
               "name": "master",
               "ports": Array [
                 Object {
@@ -112,10 +112,10 @@ Array [
     "metadata": Object {
       "labels": Object {
         "app": "redis",
-        "role": "slave",
+        "role": "replica",
         "tier": "backend",
       },
-      "name": "redis-slave",
+      "name": "redis-replica",
     },
     "spec": Object {
       "ports": Array [
@@ -125,7 +125,7 @@ Array [
       ],
       "selector": Object {
         "app": "redis",
-        "role": "slave",
+        "role": "replica",
         "tier": "backend",
       },
     },
@@ -134,14 +134,14 @@ Array [
     "apiVersion": "apps/v1",
     "kind": "Deployment",
     "metadata": Object {
-      "name": "redis-slave",
+      "name": "redis-replica",
     },
     "spec": Object {
       "replicas": 2,
       "selector": Object {
         "matchLabels": Object {
           "app": "redis",
-          "role": "slave",
+          "role": "replica",
           "tier": "backend",
         },
       },
@@ -149,7 +149,7 @@ Array [
         "metadata": Object {
           "labels": Object {
             "app": "redis",
-            "role": "slave",
+            "role": "replica",
             "tier": "backend",
           },
         },
@@ -163,7 +163,7 @@ Array [
                 },
               ],
               "image": "gcr.io/google_samples/gb-redisslave:v1",
-              "name": "slave",
+              "name": "replica",
               "ports": Array [
                 Object {
                   "containerPort": 6379,

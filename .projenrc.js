@@ -12,7 +12,7 @@ const project = new Cdk8sTeamJsiiProject({
   ],
 
   bundledDeps: [
-    'yaml@2.0.0-7',
+    'yaml',
     'follow-redirects',
     'fast-json-patch',
   ],
@@ -42,9 +42,9 @@ const project = new Cdk8sTeamJsiiProject({
     },
   },
   golangBranch: '2.x',
-  depsUpgradeOptions: {
-    exclude: ['yaml'],
-  },
+  backport: true,
+  backportBranches: ['1.x'],
+  jsiiVersion: '^5',
 });
 
 // _loadurl.js is written in javascript so we need to commit it and also copy it
@@ -68,86 +68,12 @@ docgenTask.exec('jsii-docgen -l typescript -o docs/typescript.md');
 docgenTask.exec('jsii-docgen -l python -o docs/python.md');
 docgenTask.exec('jsii-docgen -l java -o docs/java.md');
 
-// run backport in clean directories every time.
-const backportHome = '/tmp/.backport/';
-const backportDir = `${backportHome}/repositories/cdk8s-team/cdk8s-core`;
-const backportConfig = new JsonFile(project, '.backportrc.json', {
-  // see https://github.com/sqren/backport/blob/main/docs/config-file-options.md
-  obj: {
-    repoOwner: 'cdk8s-team',
-    repoName: 'cdk8s-core',
-    signoff: true,
-    branchLabelMapping: {
-      '^backport-to-(.+)$': '$1',
-    },
-    prTitle: '{commitMessages}',
-    fork: false,
-    publishStatusCommentOnFailure: true,
-    publishStatusCommentOnSuccess: true,
-    publishStatusCommentOnAbort: true,
-    targetPRLabels: [project.autoApprove.label],
-    dir: backportDir,
-  },
-});
+// https://github.com/DefinitelyTyped/DefinitelyTyped/pull/64924
+project.package.addPackageResolutions('@types/lodash@4.14.192');
 
-// backport task to branches based on pr labels
-const backportTask = createBackportTask();
-
-// backport tasks to the explicit release branches
-for (const branch of project.release.branches) {
-  createBackportTask(branch);
-}
-
-const backportWorkflow = project.github.addWorkflow('backport');
-backportWorkflow.on({ pullRequestTarget: { types: ['closed'] } });
-backportWorkflow.addJob('backport', {
-  runsOn: ['ubuntu-latest'],
-  permissions: {
-    contents: github.workflows.JobPermission.WRITE,
-  },
-  steps: [
-    // needed in order to run the projen task as well
-    // as use the backport configuration in the repo.
-    {
-      name: 'checkout',
-      uses: 'actions/checkout@v3',
-      with: {
-        // required because we need the full history
-        // for proper backports.
-        'fetch-depth': 0,
-      },
-    },
-    {
-      name: 'Set Git Identity',
-      run: 'git config --global user.name "github-actions" && git config --global user.email "github-actions@github.com"',
-    },
-    {
-      name: 'backport',
-      if: 'github.event.pull_request.merged == true',
-      run: `npx projen ${backportTask.name}`,
-      env: {
-        GITHUB_TOKEN: '${{ secrets.PROJEN_GITHUB_TOKEN }}',
-        BACKPORT_PR_NUMBER: '${{ github.event.pull_request.number }}',
-      },
-    },
-  ],
-});
-
-function createBackportTask(branch) {
-  const name = branch ? `backport:${branch}` : 'backport';
-  const task = project.addTask(name, { requiredEnv: ['BACKPORT_PR_NUMBER', 'GITHUB_TOKEN'] });
-  task.exec(`rm -rf ${backportHome}`);
-  task.exec(`mkdir -p ${backportHome}`);
-  task.exec(`cp ${backportConfig.path} ${backportHome}`);
-
-  const command = ['npx', 'backport', '--accesstoken', '${GITHUB_TOKEN}', '--pr', '${BACKPORT_PR_NUMBER}'];
-  if (branch) {
-    command.push(...['--branch', branch]);
-  } else {
-    command.push('--non-interactive');
-  }
-  task.exec(command.join(' '), { cwd: backportHome });
-  return task;
-}
+// not sure why this is needed, but some dependencies have a transient dependency
+// on wrap-ansi@8 which is an ESM module. When performing `yarn upgrade npm-check-updates`
+// yarn gets confused somehow and uses the @8 one which causes things to break
+project.package.addPackageResolutions('wrap-ansi@7.0.0');
 
 project.synth();

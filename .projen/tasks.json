@@ -8,17 +8,7 @@
       ],
       "steps": [
         {
-          "exec": "rm -rf /tmp/.backport/"
-        },
-        {
-          "exec": "mkdir -p /tmp/.backport/"
-        },
-        {
-          "exec": "cp .backportrc.json /tmp/.backport/"
-        },
-        {
-          "exec": "npx backport --accesstoken ${GITHUB_TOKEN} --pr ${BACKPORT_PR_NUMBER} --non-interactive",
-          "cwd": "/tmp/.backport/"
+          "exec": "BACKPORT_HOME=$(mktemp -d) && mkdir -p ${BACKPORT_HOME} && cp .backportrc.json ${BACKPORT_HOME} && cd ${BACKPORT_HOME} && backport --dir ${BACKPORT_HOME}/cdk8s-core --accesstoken ${GITHUB_TOKEN} --pr ${BACKPORT_PR_NUMBER} --non-interactive"
         }
       ]
     },
@@ -30,39 +20,7 @@
       ],
       "steps": [
         {
-          "exec": "rm -rf /tmp/.backport/"
-        },
-        {
-          "exec": "mkdir -p /tmp/.backport/"
-        },
-        {
-          "exec": "cp .backportrc.json /tmp/.backport/"
-        },
-        {
-          "exec": "npx backport --accesstoken ${GITHUB_TOKEN} --pr ${BACKPORT_PR_NUMBER} --branch 1.x",
-          "cwd": "/tmp/.backport/"
-        }
-      ]
-    },
-    "backport:2.x": {
-      "name": "backport:2.x",
-      "requiredEnv": [
-        "BACKPORT_PR_NUMBER",
-        "GITHUB_TOKEN"
-      ],
-      "steps": [
-        {
-          "exec": "rm -rf /tmp/.backport/"
-        },
-        {
-          "exec": "mkdir -p /tmp/.backport/"
-        },
-        {
-          "exec": "cp .backportrc.json /tmp/.backport/"
-        },
-        {
-          "exec": "npx backport --accesstoken ${GITHUB_TOKEN} --pr ${BACKPORT_PR_NUMBER} --branch 2.x",
-          "cwd": "/tmp/.backport/"
+          "exec": "BACKPORT_HOME=$(mktemp -d) && mkdir -p ${BACKPORT_HOME} && cp .backportrc.json ${BACKPORT_HOME} && cd ${BACKPORT_HOME} && backport --dir ${BACKPORT_HOME}/cdk8s-core --accesstoken ${GITHUB_TOKEN} --pr ${BACKPORT_PR_NUMBER} --branch 1.x"
         }
       ]
     },
@@ -98,7 +56,8 @@
         "CHANGELOG": "dist/changelog.md",
         "BUMPFILE": "dist/version.txt",
         "RELEASETAG": "dist/releasetag.txt",
-        "RELEASE_TAG_PREFIX": ""
+        "RELEASE_TAG_PREFIX": "",
+        "RELEASABLE_COMMITS": "git log --no-merges --oneline $LATEST_TAG..HEAD -E --grep '^(feat|fix){1}(\\([^()[:space:]]+\\))?(!)?:[[:blank:]]+.+'"
       },
       "steps": [
         {
@@ -408,7 +367,8 @@
         "CHANGELOG": "dist/changelog.md",
         "BUMPFILE": "dist/version.txt",
         "RELEASETAG": "dist/releasetag.txt",
-        "RELEASE_TAG_PREFIX": ""
+        "RELEASE_TAG_PREFIX": "",
+        "RELEASABLE_COMMITS": "git log --no-merges --oneline $LATEST_TAG..HEAD -E --grep '^(feat|fix){1}(\\([^()[:space:]]+\\))?(!)?:[[:blank:]]+.+'"
       },
       "steps": [
         {
@@ -416,9 +376,9 @@
         }
       ]
     },
-    "upgrade": {
-      "name": "upgrade",
-      "description": "upgrade dependencies",
+    "upgrade-compiler-dependencies": {
+      "name": "upgrade-compiler-dependencies",
+      "description": "upgrade compiler dependencies",
       "env": {
         "CI": "0"
       },
@@ -427,25 +387,94 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='constructs,jsii,yaml'"
-        },
-        {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='constructs,jsii,yaml'"
-        },
-        {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='constructs,jsii,yaml'"
-        },
-        {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='constructs,jsii,yaml'"
-        },
-        {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='constructs,jsii,yaml'"
+          "exec": "npm-check-updates --upgrade --target=minor --filter=jsii,jsii-docgen,jsii-pacmak,jsii-rosetta,typescript"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @cdk8s/projen-common @types/follow-redirects @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser constructs eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jest-junit jest jsii-diff jsii-docgen jsii-pacmak jsii json-schema-to-typescript npm-check-updates projen standard-version ts-jest typescript fast-json-patch follow-redirects constructs"
+          "exec": "yarn upgrade jsii jsii-docgen jsii-pacmak jsii-rosetta typescript"
+        },
+        {
+          "exec": "npx projen"
+        },
+        {
+          "spawn": "post-upgrade"
+        }
+      ]
+    },
+    "upgrade-configuration": {
+      "name": "upgrade-configuration",
+      "description": "upgrade configuration",
+      "env": {
+        "CI": "0"
+      },
+      "steps": [
+        {
+          "exec": "yarn upgrade npm-check-updates"
+        },
+        {
+          "exec": "npm-check-updates --upgrade --target=minor --filter=projen,@cdk8s/projen-common"
+        },
+        {
+          "exec": "yarn install --check-files"
+        },
+        {
+          "exec": "yarn upgrade projen @cdk8s/projen-common"
+        },
+        {
+          "exec": "npx projen"
+        },
+        {
+          "spawn": "post-upgrade"
+        }
+      ]
+    },
+    "upgrade-dev-dependencies": {
+      "name": "upgrade-dev-dependencies",
+      "description": "upgrade dev dependencies",
+      "env": {
+        "CI": "0"
+      },
+      "steps": [
+        {
+          "exec": "yarn upgrade npm-check-updates"
+        },
+        {
+          "exec": "npm-check-updates --upgrade --target=minor --filter=@types/follow-redirects,@types/jest,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint,jest,jest-junit,jsii-diff,json-schema-to-typescript,npm-check-updates,standard-version,ts-jest,fast-json-patch,follow-redirects,yaml"
+        },
+        {
+          "exec": "yarn install --check-files"
+        },
+        {
+          "exec": "yarn upgrade @types/follow-redirects @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit jsii-diff json-schema-to-typescript npm-check-updates standard-version ts-jest fast-json-patch follow-redirects yaml"
+        },
+        {
+          "exec": "npx projen"
+        },
+        {
+          "spawn": "post-upgrade"
+        }
+      ]
+    },
+    "upgrade-runtime-dependencies": {
+      "name": "upgrade-runtime-dependencies",
+      "description": "upgrade runtime dependencies",
+      "env": {
+        "CI": "0"
+      },
+      "steps": [
+        {
+          "exec": "yarn upgrade npm-check-updates"
+        },
+        {
+          "exec": "npm-check-updates --upgrade --target=minor --filter=constructs"
+        },
+        {
+          "exec": "yarn install --check-files"
+        },
+        {
+          "exec": "yarn upgrade constructs"
         },
         {
           "exec": "npx projen"
@@ -466,7 +495,7 @@
     }
   },
   "env": {
-    "PATH": "$(npx -c \"node -e \\\"console.log(process.env.PATH)\\\"\")"
+    "PATH": "$(npx -c \"node --print process.env.PATH\")"
   },
   "//": "~~ Generated by projen. To modify, edit .projenrc.js and run \"npx projen\"."
 }

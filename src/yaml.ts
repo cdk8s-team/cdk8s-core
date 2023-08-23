@@ -9,7 +9,7 @@ const MAX_DOWNLOAD_BUFFER = 10 * 1024 * 1024;
 // Set default YAML schema to 1.1. This ensures saved YAML is backward compatible with other parsers, such as PyYAML
 // It also ensures that octal numbers in the form `0775` will be parsed
 // correctly on YAML load. (see https://github.com/eemeli/yaml/issues/205)
-YAML.defaultOptions.version = '1.1';
+const yamlSchemaVersion = '1.1';
 
 /**
  * YAML utilities.
@@ -43,7 +43,7 @@ export class Yaml {
    */
   public static stringify(...docs: any[]) {
     return docs.map(
-      r => r === undefined ? '\n' : YAML.stringify(r, { keepUndefined: true, lineWidth: 0 }),
+      r => r === undefined ? '\n' : YAML.stringify(r, { keepUndefined: true, lineWidth: 0, version: yamlSchemaVersion }),
     ).join('---\n');
   }
 
@@ -72,7 +72,9 @@ export class Yaml {
   public static load(urlOrFile: string): any[] {
     const body = loadurl(urlOrFile);
 
-    const objects = YAML.parseAllDocuments(body);
+    const objects = YAML.parseAllDocuments(body, {
+      version: yamlSchemaVersion,
+    });
     const result = new Array<any>();
 
     for (const obj of objects.map(x => x.toJSON())) {

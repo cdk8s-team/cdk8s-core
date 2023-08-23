@@ -30,6 +30,8 @@ export interface ApiObjectProps {
 
   /**
    * Additional attributes for this API object.
+   * @jsii ignore
+   * @see https://github.com/cdk8s-team/cdk8s-core/issues/1297
    */
   readonly [key: string]: any;
 }

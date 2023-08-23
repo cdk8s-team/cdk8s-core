@@ -44,7 +44,9 @@ test('can hook into chart synthesis with during synthYaml', () => {
   }
 
   new MyChart(app, 'Chart');
-  const manifest = YAML.parseAllDocuments(app.synthYaml());
+  const manifest = YAML.parseAllDocuments(app.synthYaml(), {
+    version: '1.1',
+  });
   expect(manifest.length).toEqual(1);
   expect(manifest[0].get('kind')).toEqual('Kind2');
 
