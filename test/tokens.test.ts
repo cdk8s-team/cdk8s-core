@@ -1,7 +1,18 @@
 import { ApiObject, Lazy, Testing } from '../src';
-import { resolve } from '../src/_resolve';
+import { resolve } from '../src/resolve';
 
 test('lazy', () => {
+
+  const chart = Testing.chart();
+
+  const apiObject = new ApiObject(chart, 'Pod', {
+    apiVersion: 'v1',
+    kind: 'Pod',
+    metadata: {
+      name: 'mypod',
+    },
+  });
+
   // GIVEN
   const hello = {
     number: Lazy.any({ produce: () => 1234 }),
@@ -9,7 +20,7 @@ test('lazy', () => {
     implicit: createImplictToken(908),
   };
 
-  expect(resolve(hello)).toStrictEqual({
+  expect(resolve([], hello, apiObject)).toStrictEqual({
     number: 1234,
     string: 'hello',
     implicit: 908,

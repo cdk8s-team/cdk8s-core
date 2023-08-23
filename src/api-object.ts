@@ -1,10 +1,9 @@
 import { Construct, IConstruct } from 'constructs';
 import { sanitizeValue } from './_util';
-import { App } from './app';
 import { Chart } from './chart';
 import { JsonPatch } from './json-patch';
 import { ApiObjectMetadata, ApiObjectMetadataDefinition } from './metadata';
-import { ResolutionContext } from './resolve';
+import { resolve } from './resolve';
 
 /**
  * Options for defining API objects.
@@ -161,6 +160,7 @@ export class ApiObject extends Construct {
         ...this.chart.labels,
         ...props.metadata?.labels,
       },
+      apiObject: this,
     });
 
     Object.defineProperty(this, API_OBJECT_SYMBOL, { value: true });
@@ -205,7 +205,7 @@ export class ApiObject extends Construct {
     };
 
     const sortKeys = process.env.CDK8S_DISABLE_SORT ? false : true;
-    const json = sanitizeValue(this.resolve([], data), { sortKeys });
+    const json = sanitizeValue(resolve([], data, this), { sortKeys });
     const patched = JsonPatch.apply(json, ...this.patches);
 
     // reorder top-level keys so that we first have "apiVersion", "kind" and
@@ -219,34 +219,6 @@ export class ApiObject extends Construct {
     }
 
     return result;
-  }
-
-  private resolve(key: string[], value: any): any {
-
-    const resolvers = App.of(this).resolvers;
-
-    if (value == null) {
-      return value;
-    }
-
-    if (Array.isArray(value)) {
-      return value.map((x, i) => this.resolve([...key, `${i}`], x));
-    }
-
-    if (typeof(value) === 'object') {
-      const result: any = {};
-      for (const [k, v] of Object.entries(value)) {
-        result[k] = this.resolve([...key, k], v);
-      }
-      return result;
-    }
-
-    const context = new ResolutionContext(this, key, value);
-    for (const resolver of resolvers) {
-      resolver.resolve(context);
-      if (context.newValue !== value) return context.newValue;
-    }
-    return value;
   }
 
 }
