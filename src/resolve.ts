@@ -62,7 +62,7 @@ export function resolve(key: string[], value: any, apiObject: ApiObject): any {
   const context = new ResolutionContext(apiObject, key, value);
   for (const resolver of resolvers) {
     resolver.resolve(context);
-    if (context.newValue !== value) return context.newValue;
+    if (context.newValue !== value) return resolve(key, context.newValue, apiObject);
   }
 
   if (typeof(value) !== 'object') {

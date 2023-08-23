@@ -1,10 +1,5 @@
 import { Construct } from 'constructs';
-import {
-  ApiObject,
-  Chart,
-  JsonPatch,
-  Testing,
-} from '../src';
+import { ApiObject, Chart, JsonPatch, Lazy, Testing } from '../src';
 
 test('minimal configuration', () => {
   const app = Testing.app();
@@ -387,6 +382,39 @@ describe('addJsonPatch()', () => {
     ]);
   });
 });
+
+test('compound resolution', () => {
+  const app = Testing.app();
+  const chart = new Chart(app, 'test');
+
+  // WHEN
+  const apiObject = new ApiObject(chart, 'resource1', {
+    kind: 'Resource1',
+    apiVersion: 'v1',
+    spec: {
+      foo: Lazy.any({ produce: () => createImplictToken(123) }),
+    },
+  });
+
+  expect(apiObject.toJson()).toMatchInlineSnapshot(`
+    Object {
+      "apiVersion": "v1",
+      "kind": "Resource1",
+      "metadata": Object {
+        "name": "test-resource1-c85cb0fc",
+      },
+      "spec": Object {
+        "foo": 123,
+      },
+    }
+  `);
+});
+
+function createImplictToken(value: any) {
+  const implicit = {};
+  Object.defineProperty(implicit, 'resolve', { value: () => value });
+  return implicit;
+}
 
 // test('custom resolver', () => {
 //   class Resolver implements IResolver {
