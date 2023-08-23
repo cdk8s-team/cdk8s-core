@@ -1,5 +1,13 @@
 import { Construct } from 'constructs';
-import { ApiObject, Chart, JsonPatch, Lazy, Testing } from '../src';
+import {
+  ApiObject,
+  Chart,
+  IResolver,
+  JsonPatch,
+  Lazy,
+  ResolutionContext,
+  Testing,
+} from '../src';
 
 test('minimal configuration', () => {
   const app = Testing.app();
@@ -416,56 +424,97 @@ function createImplictToken(value: any) {
   return implicit;
 }
 
-// test('custom resolver', () => {
-//   class Resolver implements IResolver {
-//     public readonly invokedKeys: string[][] = [];
+test('custom resolver', () => {
+  class Resolver implements IResolver {
+    public resolve(context: ResolutionContext) {
+      context.replaceValue('newValue');
+    }
+  }
 
-//     public resolve(context: ResolutionContext) {
-//       this.invokedKeys.push(context.key);
-//       context.replaceValue('newValue');
-//     }
-//   }
+  const resolver = new Resolver();
+  const app = Testing.app({ resolvers: [resolver] });
+  const chart = new Chart(app, 'Chart');
 
-//   const resolver = new Resolver();
-//   const app = Testing.app({ resolvers: [resolver] });
-//   const chart = new Chart(app, 'Chart');
+  const apiObject = new ApiObject(chart, 'ApiObject', {
+    kind: 'Service',
+    apiVersion: 'v1',
+    metadata: {
+      foo: 'bar',
+    },
+    spec: {
+      type: 'LoadBalancer',
+      someArray: [1, 2],
+    },
+  });
 
-//   const apiObject = new ApiObject(chart, 'ApiObject', {
-//     kind: 'Service',
-//     apiVersion: 'v1',
-//     metadata: {
-//       foo: 'bar',
-//     },
-//     spec: {
-//       type: 'LoadBalancer',
-//       someArray: [1, 2],
-//     },
-//   });
+  expect(apiObject.toJson()).toMatchInlineSnapshot(`
+    Object {
+      "apiVersion": "newValue",
+      "kind": "newValue",
+      "metadata": Object {
+        "annotations": "newValue",
+        "foo": "newValue",
+        "labels": "newValue",
+        "name": "newValue",
+      },
+      "spec": Object {
+        "someArray": Array [
+          "newValue",
+          "newValue",
+        ],
+        "type": "newValue",
+      },
+    }
+  `);
+});
 
-//   expect(apiObject.toJson()).toMatchInlineSnapshot(`
-//     Object {
-//       "apiVersion": "newValue",
-//       "kind": "newValue",
-//       "metadata": Object {
-//         "foo": "newValue",
-//         "name": "newValue",
-//       },
-//       "spec": Object {
-//         "someArray": Array [
-//           "newValue",
-//           "newValue",
-//         ],
-//         "type": "newValue",
-//       },
-//     }
-//   `);
-//   expect(resolver.invokedKeys).toEqual([
-//     ['kind'],
-//     ['apiVersion'],
-//     ['metadata', 'foo'],
-//     ['metadata', 'name'],
-//     ['spec', 'type'],
-//     ['spec', 'someArray', '0'],
-//     ['spec', 'someArray', '1'],
-//   ]);
-// });
+test('multiple custom resolvers', () => {
+  class Resolver1 implements IResolver {
+    public resolve(context: ResolutionContext) {
+      if (context.key.includes('type')) {
+        context.replaceValue('newValue1');
+      }
+    }
+  }
+
+  class Resolver2 implements IResolver {
+    public resolve(context: ResolutionContext) {
+      if (context.key.includes('someArray')) {
+        context.replaceValue('newValue2');
+      }
+    }
+  }
+
+  const app = Testing.app({ resolvers: [new Resolver1(), new Resolver2()] });
+  const chart = new Chart(app, 'Chart');
+
+  const apiObject = new ApiObject(chart, 'ApiObject', {
+    kind: 'Service',
+    apiVersion: 'v1',
+    metadata: {
+      foo: 'bar',
+    },
+    spec: {
+      type: 'LoadBalancer',
+      someArray: [1, 2],
+    },
+  });
+
+  expect(apiObject.toJson()).toMatchInlineSnapshot(`
+    Object {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": Object {
+        "foo": "bar",
+        "name": "chart-apiobject-c830d7bd",
+      },
+      "spec": Object {
+        "someArray": Array [
+          "newValue2",
+          "newValue2",
+        ],
+        "type": "newValue1",
+      },
+    }
+  `);
+});

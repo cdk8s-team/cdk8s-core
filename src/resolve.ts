@@ -59,24 +59,24 @@ export function resolve(key: string[], value: any, apiObject: ApiObject): any {
     return value;
   }
 
+  if (Array.isArray(value)) {
+    return value.map((x, i) => resolve([...key, `${i}`], x, apiObject));
+  }
+
+  if (value.constructor == Object && Object.entries(value).length > 0) {
+    const result: any = {};
+    for (const [k, v] of Object.entries(value)) {
+      result[k] = resolve([...key, k], v, apiObject);
+    }
+    return result;
+  }
+
   const context = new ResolutionContext(apiObject, key, value);
   for (const resolver of resolvers) {
     resolver.resolve(context);
     if (context.newValue !== value) return resolve(key, context.newValue, apiObject);
   }
 
-  if (typeof(value) !== 'object') {
-    return value;
-  }
-
-  if (Array.isArray(value)) {
-    return value.map((x, i) => resolve([...key, `${i}`], x, apiObject));
-  }
-
-  const result: any = {};
-  for (const [k, v] of Object.entries(value)) {
-    result[k] = resolve([...key, k], v, apiObject);
-  }
-  return result;
+  return value;
 
 }
