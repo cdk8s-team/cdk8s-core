@@ -220,6 +220,21 @@ public synth()
 public synthYaml()
 ```
 
+#### Static Functions <a name="Static Functions"></a>
+
+##### `of` <a name="cdk8s.App.of"></a>
+
+```typescript
+import { App } from 'cdk8s'
+
+App.of(c: IConstruct)
+```
+
+###### `c`<sup>Required</sup> <a name="cdk8s.App.parameter.c"></a>
+
+- *Type:* [`constructs.IConstruct`](#constructs.IConstruct)
+
+---
 
 #### Properties <a name="Properties"></a>
 
@@ -257,6 +272,16 @@ public readonly outputFileExtension: string;
 - *Default:* .k8s.yaml
 
 The file extension to use for rendered YAML files.
+
+---
+
+##### `resolvers`<sup>Required</sup> <a name="cdk8s.App.property.resolvers"></a>
+
+```typescript
+public readonly resolvers: IResolver[];
+```
+
+- *Type:* [`cdk8s.IResolver`](#cdk8s.IResolver)[]
 
 ---
 
@@ -386,16 +411,6 @@ This is an immutable copy.
 
 ---
 
-##### `externalTokenResolver`<sup>Optional</sup> <a name="cdk8s.Chart.property.externalTokenResolver"></a>
-
-```typescript
-public readonly externalTokenResolver: ITokenResolver;
-```
-
-- *Type:* [`cdk8s.ITokenResolver`](#cdk8s.ITokenResolver)
-
----
-
 ##### `namespace`<sup>Optional</sup> <a name="cdk8s.Chart.property.namespace"></a>
 
 ```typescript
@@ -521,6 +536,18 @@ import { ApiObjectMetadata } from 'cdk8s'
 
 const apiObjectMetadata: ApiObjectMetadata = { ... }
 ```
+
+##### `additionalAttributes`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.additionalAttributes"></a>
+
+```typescript
+public readonly additionalAttributes: {[ key: string ]: any};
+```
+
+- *Type:* {[ key: string ]: `any`}
+
+Additional metadata attributes.
+
+---
 
 ##### `annotations`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.annotations"></a>
 
@@ -656,6 +683,172 @@ relationships.
 
 ---
 
+### ApiObjectMetadataDefinitionOptions <a name="cdk8s.ApiObjectMetadataDefinitionOptions"></a>
+
+#### Initializer <a name="[object Object].Initializer"></a>
+
+```typescript
+import { ApiObjectMetadataDefinitionOptions } from 'cdk8s'
+
+const apiObjectMetadataDefinitionOptions: ApiObjectMetadataDefinitionOptions = { ... }
+```
+
+##### `additionalAttributes`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.additionalAttributes"></a>
+
+```typescript
+public readonly additionalAttributes: {[ key: string ]: any};
+```
+
+- *Type:* {[ key: string ]: `any`}
+
+Additional metadata attributes.
+
+---
+
+##### `annotations`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.annotations"></a>
+
+```typescript
+public readonly annotations: {[ key: string ]: string};
+```
+
+- *Type:* {[ key: string ]: `string`}
+- *Default:* No annotations.
+
+Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+
+They are not queryable and should be
+preserved when modifying objects.
+
+> http://kubernetes.io/docs/user-guide/annotations
+
+---
+
+##### `finalizers`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.finalizers"></a>
+
+```typescript
+public readonly finalizers: string[];
+```
+
+- *Type:* `string`[]
+- *Default:* No finalizers.
+
+Namespaced keys that tell Kubernetes to wait until specific conditions are met before it fully deletes resources marked for deletion.
+
+Must be empty before the object is deleted from the registry. Each entry is
+an identifier for the responsible component that will remove the entry from
+the list. If the deletionTimestamp of the object is non-nil, entries in
+this list can only be removed. Finalizers may be processed and removed in
+any order.  Order is NOT enforced because it introduces significant risk of
+stuck finalizers. finalizers is a shared field, any actor with permission
+can reorder it. If the finalizer list is processed in order, then this can
+lead to a situation in which the component responsible for the first
+finalizer in the list is waiting for a signal (field value, external
+system, or other) produced by a component responsible for a finalizer later
+in the list, resulting in a deadlock. Without enforced ordering finalizers
+are free to order amongst themselves and are not vulnerable to ordering
+changes in the list.
+
+> https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/
+
+---
+
+##### `labels`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.labels"></a>
+
+```typescript
+public readonly labels: {[ key: string ]: string};
+```
+
+- *Type:* {[ key: string ]: `string`}
+- *Default:* No labels.
+
+Map of string keys and values that can be used to organize and categorize (scope and select) objects.
+
+May match selectors of replication controllers and services.
+
+> http://kubernetes.io/docs/user-guide/labels
+
+---
+
+##### `name`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.name"></a>
+
+```typescript
+public readonly name: string;
+```
+
+- *Type:* `string`
+- *Default:* an app-unique name generated by the chart
+
+The unique, namespace-global, name of this object inside the Kubernetes cluster.
+
+Normally, you shouldn't specify names for objects and let the CDK generate
+a name for you that is application-unique. The names CDK generates are
+composed from the construct path components, separated by dots and a suffix
+that is based on a hash of the entire path, to ensure uniqueness.
+
+You can supply custom name allocation logic by overriding the
+`chart.generateObjectName` method.
+
+If you use an explicit name here, bear in mind that this reduces the
+composability of your construct because it won't be possible to include
+more than one instance in any app. Therefore it is highly recommended to
+leave this unspecified.
+
+---
+
+##### `namespace`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.namespace"></a>
+
+```typescript
+public readonly namespace: string;
+```
+
+- *Type:* `string`
+- *Default:* undefined (will be assigned to the 'default' namespace)
+
+Namespace defines the space within each name must be unique.
+
+An empty namespace is equivalent to the "default" namespace, but "default" is the canonical representation.
+Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces
+
+---
+
+##### `ownerReferences`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.ownerReferences"></a>
+
+```typescript
+public readonly ownerReferences: OwnerReference[];
+```
+
+- *Type:* [`cdk8s.OwnerReference`](#cdk8s.OwnerReference)[]
+- *Default:* automatically set by Kubernetes
+
+List of objects depended by this object.
+
+If ALL objects in the list have
+been deleted, this object will be garbage collected. If this object is
+managed by a controller, then an entry in this list will point to this
+controller, with the controller field set to true. There cannot be more
+than one managing controller.
+
+Kubernetes sets the value of this field automatically for objects that are
+dependents of other objects like ReplicaSets, DaemonSets, Deployments, Jobs
+and CronJobs, and ReplicationControllers. You can also configure these
+relationships manually by changing the value of this field. However, you
+usually don't need to and can allow Kubernetes to automatically manage the
+relationships.
+
+> https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/
+
+---
+
+##### `apiObject`<sup>Required</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.apiObject"></a>
+
+```typescript
+public readonly apiObject: ApiObject;
+```
+
+- *Type:* [`cdk8s.ApiObject`](#cdk8s.ApiObject)
+
+---
+
 ### ApiObjectProps <a name="cdk8s.ApiObjectProps"></a>
 
 Options for defining API objects.
@@ -764,6 +957,16 @@ When set to true, the output directory will contain a `construct-metadata.json` 
 
 ---
 
+##### `resolvers`<sup>Optional</sup> <a name="cdk8s.AppProps.property.resolvers"></a>
+
+```typescript
+public readonly resolvers: IResolver[];
+```
+
+- *Type:* [`cdk8s.IResolver`](#cdk8s.IResolver)[]
+
+---
+
 ##### `yamlOutputType`<sup>Optional</sup> <a name="cdk8s.AppProps.property.yamlOutputType"></a>
 
 ```typescript
@@ -799,16 +1002,6 @@ public readonly disableResourceNameHashes: boolean;
 The autogenerated resource name by default is suffixed with a stable hash of the construct path.
 
 Setting this property to true drops the hash suffix.
-
----
-
-##### `externalTokenResolver`<sup>Optional</sup> <a name="cdk8s.ChartProps.property.externalTokenResolver"></a>
-
-```typescript
-public readonly externalTokenResolver: ITokenResolver;
-```
-
-- *Type:* [`cdk8s.ITokenResolver`](#cdk8s.ITokenResolver)
 
 ---
 
@@ -1323,12 +1516,12 @@ Object metadata.
 ```typescript
 import { ApiObjectMetadataDefinition } from 'cdk8s'
 
-new ApiObjectMetadataDefinition(options?: ApiObjectMetadata)
+new ApiObjectMetadataDefinition(options: ApiObjectMetadataDefinitionOptions)
 ```
 
-##### `options`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinition.parameter.options"></a>
+##### `options`<sup>Required</sup> <a name="cdk8s.ApiObjectMetadataDefinition.parameter.options"></a>
 
-- *Type:* [`cdk8s.ApiObjectMetadata`](#cdk8s.ApiObjectMetadata)
+- *Type:* [`cdk8s.ApiObjectMetadataDefinitionOptions`](#cdk8s.ApiObjectMetadataDefinitionOptions)
 
 ---
 
@@ -1904,6 +2097,35 @@ the amount of Seconds the `Duration` will represent.
 
 
 
+### ImplicitTokenResolver <a name="cdk8s.ImplicitTokenResolver"></a>
+
+- *Implements:* [`cdk8s.IResolver`](#cdk8s.IResolver)
+
+#### Initializers <a name="cdk8s.ImplicitTokenResolver.Initializer"></a>
+
+```typescript
+import { ImplicitTokenResolver } from 'cdk8s'
+
+new ImplicitTokenResolver()
+```
+
+#### Methods <a name="Methods"></a>
+
+##### `resolve` <a name="cdk8s.ImplicitTokenResolver.resolve"></a>
+
+```typescript
+public resolve(context: ResolutionContext)
+```
+
+###### `context`<sup>Required</sup> <a name="cdk8s.ImplicitTokenResolver.parameter.context"></a>
+
+- *Type:* [`cdk8s.ResolutionContext`](#cdk8s.ResolutionContext)
+
+---
+
+
+
+
 ### JsonPatch <a name="cdk8s.JsonPatch"></a>
 
 Utility for applying RFC-6902 JSON-Patch to a document.
@@ -2085,6 +2307,35 @@ Lazy.any(producer: IAnyProducer)
 
 
 
+### LazyResolver <a name="cdk8s.LazyResolver"></a>
+
+- *Implements:* [`cdk8s.IResolver`](#cdk8s.IResolver)
+
+#### Initializers <a name="cdk8s.LazyResolver.Initializer"></a>
+
+```typescript
+import { LazyResolver } from 'cdk8s'
+
+new LazyResolver()
+```
+
+#### Methods <a name="Methods"></a>
+
+##### `resolve` <a name="cdk8s.LazyResolver.resolve"></a>
+
+```typescript
+public resolve(context: ResolutionContext)
+```
+
+###### `context`<sup>Required</sup> <a name="cdk8s.LazyResolver.parameter.context"></a>
+
+- *Type:* [`cdk8s.ResolutionContext`](#cdk8s.ResolutionContext)
+
+---
+
+
+
+
 ### Names <a name="cdk8s.Names"></a>
 
 Utilities for generating unique and stable names.
@@ -2140,6 +2391,92 @@ Name options.
 
 ---
 
+
+
+### ResolutionContext <a name="cdk8s.ResolutionContext"></a>
+
+#### Initializers <a name="cdk8s.ResolutionContext.Initializer"></a>
+
+```typescript
+import { ResolutionContext } from 'cdk8s'
+
+new ResolutionContext(obj: ApiObject, key: string[], value: any)
+```
+
+##### `obj`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.obj"></a>
+
+- *Type:* [`cdk8s.ApiObject`](#cdk8s.ApiObject)
+
+---
+
+##### `key`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.key"></a>
+
+- *Type:* `string`[]
+
+---
+
+##### `value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.value"></a>
+
+- *Type:* `any`
+
+---
+
+#### Methods <a name="Methods"></a>
+
+##### `replaceValue` <a name="cdk8s.ResolutionContext.replaceValue"></a>
+
+```typescript
+public replaceValue(newValue: any)
+```
+
+###### `newValue`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.newValue"></a>
+
+- *Type:* `any`
+
+---
+
+
+#### Properties <a name="Properties"></a>
+
+##### `key`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.key"></a>
+
+```typescript
+public readonly key: string[];
+```
+
+- *Type:* `string`[]
+
+---
+
+##### `newValue`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.newValue"></a>
+
+```typescript
+public readonly newValue: any;
+```
+
+- *Type:* `any`
+
+---
+
+##### `obj`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.obj"></a>
+
+```typescript
+public readonly obj: ApiObject;
+```
+
+- *Type:* [`cdk8s.ApiObject`](#cdk8s.ApiObject)
+
+---
+
+##### `value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.value"></a>
+
+```typescript
+public readonly value: any;
+```
+
+- *Type:* `any`
+
+---
 
 
 ### Size <a name="cdk8s.Size"></a>
@@ -2442,21 +2779,21 @@ public produce()
 ```
 
 
-### ITokenResolver <a name="cdk8s.ITokenResolver"></a>
+### IResolver <a name="cdk8s.IResolver"></a>
 
-- *Implemented By:* [`cdk8s.ITokenResolver`](#cdk8s.ITokenResolver)
+- *Implemented By:* [`cdk8s.ImplicitTokenResolver`](#cdk8s.ImplicitTokenResolver), [`cdk8s.LazyResolver`](#cdk8s.LazyResolver), [`cdk8s.IResolver`](#cdk8s.IResolver)
 
 #### Methods <a name="Methods"></a>
 
-##### `resolve` <a name="cdk8s.ITokenResolver.resolve"></a>
+##### `resolve` <a name="cdk8s.IResolver.resolve"></a>
 
 ```typescript
-public resolve(value: any)
+public resolve(context: ResolutionContext)
 ```
 
-###### `value`<sup>Required</sup> <a name="cdk8s.ITokenResolver.parameter.value"></a>
+###### `context`<sup>Required</sup> <a name="cdk8s.IResolver.parameter.context"></a>
 
-- *Type:* `any`
+- *Type:* [`cdk8s.ResolutionContext`](#cdk8s.ResolutionContext)
 
 ---
 
