@@ -214,13 +214,13 @@ test('default namespace can be defined at the chart level', () => {
   // THEN
   expect(Testing.synth(chart)).toStrictEqual([{
     apiVersion: 'v1',
-    kind: 'Kind1',
+    kind:
+     'Kind1',
     metadata: {
       name: 'chart-group1-obj1-c885aeec',
       namespace: 'ns1',
     },
-  },
-  {
+  }, {
     apiVersion: 'v2',
     kind: 'Kind2',
     metadata: {
@@ -308,10 +308,7 @@ describe('ApiObject.of()', () => {
     const parent = new Construct(chart, 'l2');
 
     // WHEN
-    const obj = new ApiObject(parent, 'Default', {
-      apiVersion: 'v1',
-      kind: 'Foo',
-    });
+    const obj = new ApiObject(parent, 'Default', { apiVersion: 'v1', kind: 'Foo' });
 
     // THEN
     expect(ApiObject.of(parent)).toBe(obj);
