@@ -157,6 +157,7 @@ export class App extends Construct {
     this.yamlOutputType = props.yamlOutputType ?? YamlOutputType.FILE_PER_CHART;
     this.resolvers = [new LazyResolver(), new ImplicitTokenResolver(), ...(props.resolvers ?? [])];
     this.recordConstructMetadata = props.recordConstructMetadata ?? (process.env.CDK8S_RECORD_CONSTRUCT_METADATA === 'true' ? true : false);
+
   }
 
   /**
