@@ -283,6 +283,11 @@ public readonly resolvers: IResolver[];
 
 - *Type:* [`cdk8s.IResolver`](#cdk8s.IResolver)[]
 
+Resolvers used by this app.
+
+This includes both custom resolvers
+passed by the `resolvers` property, as well as built-in resolvers.
+
 ---
 
 ##### `yamlOutputType`<sup>Required</sup> <a name="cdk8s.App.property.yamlOutputType"></a>
@@ -964,6 +969,15 @@ public readonly resolvers: IResolver[];
 ```
 
 - *Type:* [`cdk8s.IResolver`](#cdk8s.IResolver)[]
+- *Default:* no resolvers.
+
+A list of resolvers that can be used to replace property values before they are written to the manifest file.
+
+When multiple resolvers are passed,
+they are invoked by order in the list, and only the first one that applies
+(e.g calls `context.replaceValue`) is invoked.
+
+> https://cdk8s.io/docs/latest/basics/app/#resolvers
 
 ---
 

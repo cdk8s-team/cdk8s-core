@@ -265,6 +265,15 @@ When set to true, the output directory will contain a `construct-metadata.json` 
 ##### `resolvers`<sup>Optional</sup> <a name="org.cdk8s.AppProps.parameter.resolvers"></a>
 
 - *Type:* java.util.List<[`org.cdk8s.IResolver`](#org.cdk8s.IResolver)>
+- *Default:* no resolvers.
+
+A list of resolvers that can be used to replace property values before they are written to the manifest file.
+
+When multiple resolvers are passed,
+they are invoked by order in the list, and only the first one that applies
+(e.g calls `context.replaceValue`) is invoked.
+
+> https://cdk8s.io/docs/latest/basics/app/#resolvers
 
 ---
 
@@ -353,6 +362,11 @@ public java.util.List<IResolver> getResolvers();
 ```
 
 - *Type:* java.util.List<[`org.cdk8s.IResolver`](#org.cdk8s.IResolver)>
+
+Resolvers used by this app.
+
+This includes both custom resolvers
+passed by the `resolvers` property, as well as built-in resolvers.
 
 ---
 
@@ -1177,6 +1191,15 @@ public java.util.List<IResolver> getResolvers();
 ```
 
 - *Type:* java.util.List<[`org.cdk8s.IResolver`](#org.cdk8s.IResolver)>
+- *Default:* no resolvers.
+
+A list of resolvers that can be used to replace property values before they are written to the manifest file.
+
+When multiple resolvers are passed,
+they are invoked by order in the list, and only the first one that applies
+(e.g calls `context.replaceValue`) is invoked.
+
+> https://cdk8s.io/docs/latest/basics/app/#resolvers
 
 ---
 
