@@ -547,7 +547,7 @@ function getFilesAndFolders(sourceDir: string) {
     if (fs.lstatSync(path.join(sourceDir, item)).isDirectory()) {
       let subFoldersContents = fs.readdirSync(path.join(sourceDir, item));
       if (subFoldersContents.length > 0) {
-        result.push(...subFoldersContents.map(file => item + '/' + file));
+        result.push( ...subFoldersContents.map(file => item + '/' + file));
       }
     } else {
       result.push(item);

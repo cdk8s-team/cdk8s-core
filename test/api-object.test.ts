@@ -78,6 +78,7 @@ test('the CDK8S_DISABLE_SORT environment variable can be used to disable key sor
 });
 
 test('addDependency', () => {
+
   const app = Testing.app();
   const chart = new Chart(app, 'chart1');
 
@@ -93,6 +94,7 @@ test('addDependency', () => {
     obj2,
     obj3,
   ]);
+
 });
 
 test('synthesized resource name is based on path', () => {
@@ -207,31 +209,25 @@ test('default namespace can be defined at the chart level', () => {
 
   // WHEN
   new ApiObject(group1, 'obj1', { apiVersion: 'v1', kind: 'Kind1' });
-  new ApiObject(group1, 'obj2', {
-    apiVersion: 'v2',
-    kind: 'Kind2',
-    metadata: { namespace: 'foobar' },
-  });
+  new ApiObject(group1, 'obj2', { apiVersion: 'v2', kind: 'Kind2', metadata: { namespace: 'foobar' } });
 
   // THEN
-  expect(Testing.synth(chart)).toStrictEqual([
-    {
-      apiVersion: 'v1',
-      kind: 'Kind1',
-      metadata: {
-        name: 'chart-group1-obj1-c885aeec',
-        namespace: 'ns1',
-      },
+  expect(Testing.synth(chart)).toStrictEqual([{
+    apiVersion: 'v1',
+    kind: 'Kind1',
+    metadata: {
+      name: 'chart-group1-obj1-c885aeec',
+      namespace: 'ns1',
     },
-    {
-      apiVersion: 'v2',
-      kind: 'Kind2',
-      metadata: {
-        name: 'chart-group1-obj2-c81931d8',
-        namespace: 'foobar',
-      },
+  },
+  {
+    apiVersion: 'v2',
+    kind: 'Kind2',
+    metadata: {
+      name: 'chart-group1-obj2-c81931d8',
+      namespace: 'foobar',
     },
-  ]);
+  }]);
 });
 
 test('chart labels are applied to all api objects in the chart', () => {
@@ -288,23 +284,19 @@ test('chart labels are applied to all api objects in the chart', () => {
 });
 
 describe('ApiObject.of()', () => {
+
   test('fails if there is no default child', () => {
     // GIVEN
     const chart = Testing.chart();
 
     // THEN
-    expect(() => ApiObject.of(new Construct(chart, 'hello'))).toThrow(
-      /cannot find a \(direct or indirect\) child of type ApiObject/,
-    );
+    expect(() => ApiObject.of(new Construct(chart, 'hello'))).toThrow(/cannot find a \(direct or indirect\) child of type ApiObject/);
   });
 
   test('returns the object if it is an API object', () => {
     // GIVEN
     const chart = Testing.chart();
-    const obj = new ApiObject(chart, 'my-obj', {
-      apiVersion: 'v1',
-      kind: 'Foo',
-    });
+    const obj = new ApiObject(chart, 'my-obj', { apiVersion: 'v1', kind: 'Foo' });
 
     // THEN
     expect(ApiObject.of(obj)).toBe(obj);
@@ -332,17 +324,16 @@ describe('ApiObject.of()', () => {
 
     // WHEN
     const parent2 = new Construct(parent1, 'Default');
-    const obj = new ApiObject(parent2, 'Default', {
-      apiVersion: 'v1',
-      kind: 'Foo',
-    });
+    const obj = new ApiObject(parent2, 'Default', { apiVersion: 'v1', kind: 'Foo' });
 
     // THEN
     expect(ApiObject.of(parent1)).toBe(obj);
   });
+
 });
 
 describe('addJsonPatch()', () => {
+
   test('applied after the object has been synthesized', () => {
     // GIVEN
     const chart = Testing.chart();

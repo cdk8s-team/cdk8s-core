@@ -198,7 +198,6 @@ export class ApiObject extends Construct {
    * `CDK8S_DISABLE_SORT` environment variable to any non-empty value.
    */
   public toJson(): any {
-
     const data: any = {
       ...this.props,
       metadata: this.metadata.toJson(),
@@ -220,7 +219,6 @@ export class ApiObject extends Construct {
 
     return result;
   }
-
 }
 
 function parseApiGroup(apiVersion: string) {
