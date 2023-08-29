@@ -54,6 +54,16 @@ export interface AppProps {
    */
   readonly recordConstructMetadata?: boolean;
 
+  /**
+   * A list of resolvers that can be used to replace property values before
+   * they are written to the manifest file. When multiple resolvers are passed,
+   * they are invoked by order in the list, and only the first one that applies
+   * (e.g calls `context.replaceValue`) is invoked.
+   *
+   * @see https://cdk8s.io/docs/latest/basics/app/#resolvers
+   *
+   * @default - no resolvers.
+   */
   readonly resolvers?: IResolver[];
 }
 
@@ -118,6 +128,10 @@ export class App extends Construct {
    */
   public readonly yamlOutputType: YamlOutputType;
 
+  /**
+   * Resolvers used by this app. This includes both custom resolvers
+   * passed by the `resolvers` property, as well as built-in resolvers.
+   */
   public readonly resolvers: IResolver[];
 
   private readonly recordConstructMetadata: boolean;
@@ -141,12 +155,7 @@ export class App extends Construct {
     this.outdir = props.outdir ?? process.env.CDK8S_OUTDIR ?? 'dist';
     this.outputFileExtension = props.outputFileExtension ?? '.k8s.yaml';
     this.yamlOutputType = props.yamlOutputType ?? YamlOutputType.FILE_PER_CHART;
-    this.resolvers = [new LazyResolver(), new ImplicitTokenResolver()];
-
-    for (const resolver of props.resolvers ?? []) {
-      this.resolvers.push(resolver);
-    }
-
+    this.resolvers = [new LazyResolver(), new ImplicitTokenResolver(), ...(props.resolvers ?? [])];
     this.recordConstructMetadata = props.recordConstructMetadata ?? (process.env.CDK8S_RECORD_CONSTRUCT_METADATA === 'true' ? true : false);
   }
 
@@ -186,7 +195,7 @@ export class App extends Construct {
         for (const chart of charts) {
           const chartName = namer.name(chart);
           const objects = Object.values(chart.toJson());
-          Yaml.save(path.join(this.outdir, chartName + this.outputFileExtension), objects);
+          Yaml.save(path.join(this.outdir, chartName+this.outputFileExtension), objects);
         }
         break;
 
@@ -198,7 +207,7 @@ export class App extends Construct {
             if (!(apiObject === undefined)) {
               const fileName = `${`${apiObject.kind}.${apiObject.metadata.name}`
                 .replace(/[^0-9a-zA-Z-_.]/g, '')}`;
-              Yaml.save(path.join(this.outdir, fileName + this.outputFileExtension), [apiObject]);
+              Yaml.save(path.join(this.outdir, fileName+this.outputFileExtension), [apiObject]);
             }
           });
         }
@@ -216,7 +225,7 @@ export class App extends Construct {
             if (!(apiObject === undefined)) {
               const fileName = `${`${apiObject.kind}.${apiObject.metadata.name}`
                 .replace(/[^0-9a-zA-Z-_.]/g, '')}`;
-              Yaml.save(path.join(fullOutDir, fileName + this.outputFileExtension), [apiObject.toJson()]);
+              Yaml.save(path.join(fullOutDir, fileName+this.outputFileExtension), [apiObject.toJson()]);
             }
           });
         }
