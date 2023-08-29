@@ -1,13 +1,5 @@
 import { Construct } from 'constructs';
-import {
-  ApiObject,
-  Chart,
-  IResolver,
-  JsonPatch,
-  Lazy,
-  ResolutionContext,
-  Testing,
-} from '../src';
+import { ApiObject, Chart, IResolver, JsonPatch, Lazy, ResolutionContext, Testing } from '../src';
 
 test('minimal configuration', () => {
   const app = Testing.app();
