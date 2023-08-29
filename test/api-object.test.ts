@@ -66,16 +66,12 @@ test('the CDK8S_DISABLE_SORT environment variable can be used to disable key sor
   });
 
   // default behavior - sorted
-  expect(JSON.stringify(obj.toJson())).toStrictEqual(
-    '{"apiVersion":"v1","kind":"Dummy","metadata":{"name":"test-my-api-object-c8e6fbed"},"hello":{"aaa":333,"nested":{"bbb":123,"yyy":"hello"},"zzz":123}}',
-  );
+  expect(JSON.stringify(obj.toJson())).toStrictEqual('{"apiVersion":"v1","kind":"Dummy","metadata":{"name":"test-my-api-object-c8e6fbed"},"hello":{"aaa":333,"nested":{"bbb":123,"yyy":"hello"},"zzz":123}}');
 
   // with CDK8S_DISABLE_SORT set at the chart level
   process.env.CDK8S_DISABLE_SORT = '1';
   try {
-    expect(JSON.stringify(obj.toJson())).toStrictEqual(
-      '{"apiVersion":"v1","kind":"Dummy","metadata":{"name":"test-my-api-object-c8e6fbed"},"hello":{"zzz":123,"aaa":333,"nested":{"yyy":"hello","bbb":123}}}',
-    );
+    expect(JSON.stringify(obj.toJson())).toStrictEqual('{"apiVersion":"v1","kind":"Dummy","metadata":{"name":"test-my-api-object-c8e6fbed"},"hello":{"zzz":123,"aaa":333,"nested":{"yyy":"hello","bbb":123}}}');
   } finally {
     delete process.env.CDK8S_DISABLE_SORT;
   }
@@ -85,24 +81,18 @@ test('addDependency', () => {
   const app = Testing.app();
   const chart = new Chart(app, 'chart1');
 
-  const obj1 = new ApiObject(chart, 'obj1', {
-    apiVersion: 'v1',
-    kind: 'Kind1',
-  });
-  const obj2 = new ApiObject(chart, 'obj2', {
-    apiVersion: 'v1',
-    kind: 'Kind2',
-  });
-  const obj3 = new ApiObject(chart, 'obj3', {
-    apiVersion: 'v1',
-    kind: 'Kind3',
-  });
+  const obj1 = new ApiObject(chart, 'obj1', { apiVersion: 'v1', kind: 'Kind1' });
+  const obj2 = new ApiObject(chart, 'obj2', { apiVersion: 'v1', kind: 'Kind2' });
+  const obj3 = new ApiObject(chart, 'obj3', { apiVersion: 'v1', kind: 'Kind3' });
 
   obj1.addDependency(obj2, obj3);
 
   const dependencies = obj1.node.dependencies;
 
-  expect(dependencies).toEqual([obj2, obj3]);
+  expect(dependencies).toEqual([
+    obj2,
+    obj3,
+  ]);
 });
 
 test('synthesized resource name is based on path', () => {
@@ -202,13 +192,11 @@ test('object naming logic can be overridden at the chart level', () => {
 
   // THEN
   expect(object.name).toEqual('fixed!');
-  expect(Testing.synth(chart)).toStrictEqual([
-    {
-      apiVersion: 'v1',
-      kind: 'MyKind',
-      metadata: { name: 'fixed!' },
-    },
-  ]);
+  expect(Testing.synth(chart)).toStrictEqual([{
+    apiVersion: 'v1',
+    kind: 'MyKind',
+    metadata: { name: 'fixed!' },
+  }]);
 });
 
 test('default namespace can be defined at the chart level', () => {
