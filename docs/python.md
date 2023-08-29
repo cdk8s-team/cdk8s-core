@@ -919,6 +919,8 @@ relationships.
 
 ### ApiObjectMetadataDefinitionOptions <a name="cdk8s.ApiObjectMetadataDefinitionOptions"></a>
 
+Options for `ApiObjectMetadataDefinition`.
+
 #### Initializer <a name="[object Object].Initializer"></a>
 
 ```python
@@ -1089,6 +1091,8 @@ api_object: ApiObject
 ```
 
 - *Type:* [`cdk8s.ApiObject`](#cdk8s.ApiObject)
+
+Which ApiObject instance is the metadata attached to.
 
 ---
 
@@ -1952,6 +1956,8 @@ relationships.
 
 - *Type:* [`cdk8s.ApiObject`](#cdk8s.ApiObject)
 
+Which ApiObject instance is the metadata attached to.
+
 ---
 
 #### Methods <a name="Methods"></a>
@@ -2735,6 +2741,8 @@ the amount of Seconds the `Duration` will represent.
 
 - *Implements:* [`cdk8s.IResolver`](#cdk8s.IResolver)
 
+Resolves implicit tokens.
+
 #### Initializers <a name="cdk8s.ImplicitTokenResolver.Initializer"></a>
 
 ```python
@@ -2969,6 +2977,8 @@ cdk8s.Lazy.any(
 
 - *Implements:* [`cdk8s.IResolver`](#cdk8s.IResolver)
 
+Resolvers instanecs of `Lazy`.
+
 #### Initializers <a name="cdk8s.LazyResolver.Initializer"></a>
 
 ```python
@@ -3123,6 +3133,8 @@ Maximum allowed length for the name.
 
 ### ResolutionContext <a name="cdk8s.ResolutionContext"></a>
 
+Context object for a specific resolution process.
+
 #### Initializers <a name="cdk8s.ResolutionContext.Initializer"></a>
 
 ```python
@@ -3131,7 +3143,7 @@ import cdk8s
 cdk8s.ResolutionContext(
   obj: ApiObject,
   key: typing.List[str],
-  value: typing.Any
+  original_value: typing.Any
 )
 ```
 
@@ -3139,17 +3151,23 @@ cdk8s.ResolutionContext(
 
 - *Type:* [`cdk8s.ApiObject`](#cdk8s.ApiObject)
 
+Which ApiObject is currently being resolved.
+
 ---
 
 ##### `key`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.key"></a>
 
 - *Type:* typing.List[`str`]
 
+Which key is currently being resolved.
+
 ---
 
-##### `value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.value"></a>
+##### `original_value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.original_value"></a>
 
 - *Type:* `typing.Any`
+
+The value associated to the key currently being resolved.
 
 ---
 
@@ -3180,15 +3198,7 @@ key: typing.List[str]
 
 - *Type:* typing.List[`str`]
 
----
-
-##### `new_value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.new_value"></a>
-
-```python
-new_value: typing.Any
-```
-
-- *Type:* `typing.Any`
+Which key is currently being resolved.
 
 ---
 
@@ -3200,6 +3210,20 @@ obj: ApiObject
 
 - *Type:* [`cdk8s.ApiObject`](#cdk8s.ApiObject)
 
+Which ApiObject is currently being resolved.
+
+---
+
+##### `original_value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.original_value"></a>
+
+```python
+original_value: typing.Any
+```
+
+- *Type:* `typing.Any`
+
+The value associated to the key currently being resolved.
+
 ---
 
 ##### `value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.value"></a>
@@ -3209,6 +3233,12 @@ value: typing.Any
 ```
 
 - *Type:* `typing.Any`
+
+The final value of the resolution process.
+
+If the resolver invoked
+`replaceValue`, this will be the replaced value, otherwise, it is the original
+value.
 
 ---
 
@@ -3623,6 +3653,8 @@ def produce()
 ### IResolver <a name="cdk8s.IResolver"></a>
 
 - *Implemented By:* [`cdk8s.ImplicitTokenResolver`](#cdk8s.ImplicitTokenResolver), [`cdk8s.LazyResolver`](#cdk8s.LazyResolver), [`cdk8s.IResolver`](#cdk8s.IResolver)
+
+Contract for resolver objects.
 
 #### Methods <a name="Methods"></a>
 

@@ -150,7 +150,7 @@ export class App extends Construct {
    * Defines an app
    * @param props configuration options
    */
-  constructor(props: AppProps = {}) {
+  constructor(props: AppProps = { }) {
     super(undefined as any, '');
     this.outdir = props.outdir ?? process.env.CDK8S_OUTDIR ?? 'dist';
     this.outputFileExtension = props.outputFileExtension ?? '.k8s.yaml';

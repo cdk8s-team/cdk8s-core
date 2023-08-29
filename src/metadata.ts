@@ -101,8 +101,14 @@ export interface ApiObjectMetadata {
   readonly additionalAttributes?: { [key: string]: any };
 }
 
+/**
+ * Options for `ApiObjectMetadataDefinition`.
+ */
 export interface ApiObjectMetadataDefinitionOptions extends ApiObjectMetadata {
 
+  /**
+   * Which ApiObject instance is the metadata attached to.
+   */
   readonly apiObject: ApiObject;
 
 }
@@ -227,7 +233,7 @@ export class ApiObjectMetadataDefinition {
    */
   public toJson() {
     const sanitize = (x: any) => sanitizeValue(x, { filterEmptyArrays: true, filterEmptyObjects: true });
-    const value: any = {
+    return sanitize(resolve([], {
       ...this._additionalAttributes,
       name: this.name,
       namespace: this.namespace,
@@ -235,8 +241,7 @@ export class ApiObjectMetadataDefinition {
       finalizers: this.finalizers,
       ownerReferences: this.ownerReferences,
       labels: this.labels,
-    };
-    return sanitize(resolve([], value, this.apiObject));
+    }, this.apiObject));
   }
 }
 

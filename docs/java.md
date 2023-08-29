@@ -893,6 +893,8 @@ relationships.
 
 ### ApiObjectMetadataDefinitionOptions <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions"></a>
 
+Options for `ApiObjectMetadataDefinition`.
+
 #### Initializer <a name="[object Object].Initializer"></a>
 
 ```java
@@ -1063,6 +1065,8 @@ public ApiObject getApiObject();
 ```
 
 - *Type:* [`org.cdk8s.ApiObject`](#org.cdk8s.ApiObject)
+
+Which ApiObject instance is the metadata attached to.
 
 ---
 
@@ -1926,6 +1930,8 @@ relationships.
 
 - *Type:* [`org.cdk8s.ApiObject`](#org.cdk8s.ApiObject)
 
+Which ApiObject instance is the metadata attached to.
+
 ---
 
 #### Methods <a name="Methods"></a>
@@ -2555,6 +2561,8 @@ the amount of Seconds the `Duration` will represent.
 
 - *Implements:* [`org.cdk8s.IResolver`](#org.cdk8s.IResolver)
 
+Resolves implicit tokens.
+
 #### Initializers <a name="org.cdk8s.ImplicitTokenResolver.Initializer"></a>
 
 ```java
@@ -2765,6 +2773,8 @@ Lazy.any(IAnyProducer producer)
 
 - *Implements:* [`org.cdk8s.IResolver`](#org.cdk8s.IResolver)
 
+Resolvers instanecs of `Lazy`.
+
 #### Initializers <a name="org.cdk8s.LazyResolver.Initializer"></a>
 
 ```java
@@ -2851,17 +2861,21 @@ Name options.
 
 ### ResolutionContext <a name="org.cdk8s.ResolutionContext"></a>
 
+Context object for a specific resolution process.
+
 #### Initializers <a name="org.cdk8s.ResolutionContext.Initializer"></a>
 
 ```java
 import org.cdk8s.ResolutionContext;
 
-new ResolutionContext(ApiObject obj, java.util.List<java.lang.String> key, java.lang.Object value);
+new ResolutionContext(ApiObject obj, java.util.List<java.lang.String> key, java.lang.Object originalValue);
 ```
 
 ##### `obj`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.parameter.obj"></a>
 
 - *Type:* [`org.cdk8s.ApiObject`](#org.cdk8s.ApiObject)
+
+Which ApiObject is currently being resolved.
 
 ---
 
@@ -2869,11 +2883,15 @@ new ResolutionContext(ApiObject obj, java.util.List<java.lang.String> key, java.
 
 - *Type:* java.util.List<`java.lang.String`>
 
+Which key is currently being resolved.
+
 ---
 
-##### `value`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.parameter.value"></a>
+##### `originalValue`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.parameter.originalValue"></a>
 
 - *Type:* `java.lang.Object`
+
+The value associated to the key currently being resolved.
 
 ---
 
@@ -2902,15 +2920,7 @@ public java.util.List<java.lang.String> getKey();
 
 - *Type:* java.util.List<`java.lang.String`>
 
----
-
-##### `newValue`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.property.newValue"></a>
-
-```java
-public java.lang.Object getNewValue();
-```
-
-- *Type:* `java.lang.Object`
+Which key is currently being resolved.
 
 ---
 
@@ -2922,6 +2932,20 @@ public ApiObject getObj();
 
 - *Type:* [`org.cdk8s.ApiObject`](#org.cdk8s.ApiObject)
 
+Which ApiObject is currently being resolved.
+
+---
+
+##### `originalValue`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.property.originalValue"></a>
+
+```java
+public java.lang.Object getOriginalValue();
+```
+
+- *Type:* `java.lang.Object`
+
+The value associated to the key currently being resolved.
+
 ---
 
 ##### `value`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.property.value"></a>
@@ -2931,6 +2955,12 @@ public java.lang.Object getValue();
 ```
 
 - *Type:* `java.lang.Object`
+
+The final value of the resolution process.
+
+If the resolver invoked
+`replaceValue`, this will be the replaced value, otherwise, it is the original
+value.
 
 ---
 
@@ -3244,6 +3274,8 @@ public produce()
 ### IResolver <a name="org.cdk8s.IResolver"></a>
 
 - *Implemented By:* [`org.cdk8s.ImplicitTokenResolver`](#org.cdk8s.ImplicitTokenResolver), [`org.cdk8s.LazyResolver`](#org.cdk8s.LazyResolver), [`org.cdk8s.IResolver`](#org.cdk8s.IResolver)
+
+Contract for resolver objects.
 
 #### Methods <a name="Methods"></a>
 

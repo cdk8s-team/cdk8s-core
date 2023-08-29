@@ -690,6 +690,8 @@ relationships.
 
 ### ApiObjectMetadataDefinitionOptions <a name="cdk8s.ApiObjectMetadataDefinitionOptions"></a>
 
+Options for `ApiObjectMetadataDefinition`.
+
 #### Initializer <a name="[object Object].Initializer"></a>
 
 ```typescript
@@ -851,6 +853,8 @@ public readonly apiObject: ApiObject;
 ```
 
 - *Type:* [`cdk8s.ApiObject`](#cdk8s.ApiObject)
+
+Which ApiObject instance is the metadata attached to.
 
 ---
 
@@ -2115,6 +2119,8 @@ the amount of Seconds the `Duration` will represent.
 
 - *Implements:* [`cdk8s.IResolver`](#cdk8s.IResolver)
 
+Resolves implicit tokens.
+
 #### Initializers <a name="cdk8s.ImplicitTokenResolver.Initializer"></a>
 
 ```typescript
@@ -2325,6 +2331,8 @@ Lazy.any(producer: IAnyProducer)
 
 - *Implements:* [`cdk8s.IResolver`](#cdk8s.IResolver)
 
+Resolvers instanecs of `Lazy`.
+
 #### Initializers <a name="cdk8s.LazyResolver.Initializer"></a>
 
 ```typescript
@@ -2409,17 +2417,21 @@ Name options.
 
 ### ResolutionContext <a name="cdk8s.ResolutionContext"></a>
 
+Context object for a specific resolution process.
+
 #### Initializers <a name="cdk8s.ResolutionContext.Initializer"></a>
 
 ```typescript
 import { ResolutionContext } from 'cdk8s'
 
-new ResolutionContext(obj: ApiObject, key: string[], value: any)
+new ResolutionContext(obj: ApiObject, key: string[], originalValue: any)
 ```
 
 ##### `obj`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.obj"></a>
 
 - *Type:* [`cdk8s.ApiObject`](#cdk8s.ApiObject)
+
+Which ApiObject is currently being resolved.
 
 ---
 
@@ -2427,11 +2439,15 @@ new ResolutionContext(obj: ApiObject, key: string[], value: any)
 
 - *Type:* `string`[]
 
+Which key is currently being resolved.
+
 ---
 
-##### `value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.value"></a>
+##### `originalValue`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.originalValue"></a>
 
 - *Type:* `any`
+
+The value associated to the key currently being resolved.
 
 ---
 
@@ -2460,15 +2476,7 @@ public readonly key: string[];
 
 - *Type:* `string`[]
 
----
-
-##### `newValue`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.newValue"></a>
-
-```typescript
-public readonly newValue: any;
-```
-
-- *Type:* `any`
+Which key is currently being resolved.
 
 ---
 
@@ -2480,6 +2488,20 @@ public readonly obj: ApiObject;
 
 - *Type:* [`cdk8s.ApiObject`](#cdk8s.ApiObject)
 
+Which ApiObject is currently being resolved.
+
+---
+
+##### `originalValue`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.originalValue"></a>
+
+```typescript
+public readonly originalValue: any;
+```
+
+- *Type:* `any`
+
+The value associated to the key currently being resolved.
+
 ---
 
 ##### `value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.value"></a>
@@ -2489,6 +2511,12 @@ public readonly value: any;
 ```
 
 - *Type:* `any`
+
+The final value of the resolution process.
+
+If the resolver invoked
+`replaceValue`, this will be the replaced value, otherwise, it is the original
+value.
 
 ---
 
@@ -2796,6 +2824,8 @@ public produce()
 ### IResolver <a name="cdk8s.IResolver"></a>
 
 - *Implemented By:* [`cdk8s.ImplicitTokenResolver`](#cdk8s.ImplicitTokenResolver), [`cdk8s.LazyResolver`](#cdk8s.LazyResolver), [`cdk8s.IResolver`](#cdk8s.IResolver)
+
+Contract for resolver objects.
 
 #### Methods <a name="Methods"></a>
 

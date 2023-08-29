@@ -2,32 +2,59 @@ import { ApiObject } from './api-object';
 import { App } from './app';
 import { Lazy } from './lazy';
 
+/**
+ * Context object for a specific resolution process.
+ */
 export class ResolutionContext {
 
-  private _newValue: any;
+  /**
+   * The final value of the resolution process. If the resolver invoked
+   * `replaceValue`, this will be the replaced value, otherwise, it is the original
+   * value.
+   */
+  public value: any;
 
   constructor(
+    /**
+     * Which ApiObject is currently being resolved.
+     */
     public readonly obj: ApiObject,
+    /**
+     * Which key is currently being resolved.
+     */
     public readonly key: string[],
-    public readonly value: any) {
-    this._newValue = value;
+    /**
+     * The value associated to the key currently being resolved.
+     */
+    public readonly originalValue: any) {
+    this.value = originalValue;
   }
 
+  /**
+   * Replaces the original value in this resolution context
+   * with a new value. The new value is what will end up in the manifest.
+   */
   public replaceValue(newValue: any) {
-    this._newValue = newValue;
-  }
-
-  public get newValue(): any {
-    return this._newValue;
+    this.value = newValue;
   }
 
 }
 
+/**
+ * Contract for resolver objects.
+ */
 export interface IResolver {
 
+  /**
+   * This function is invoked on every property during cdk8s synthesis.
+   * To replace a value, implementations must invoke `context.replaceValue`.
+   */
   resolve(context: ResolutionContext): void;
 }
 
+/**
+ * Resolvers instanecs of `Lazy`.
+ */
 export class LazyResolver implements IResolver {
 
   public resolve(context: ResolutionContext): void {
@@ -38,6 +65,9 @@ export class LazyResolver implements IResolver {
   }
 }
 
+/**
+ * Resolves implicit tokens.
+ */
 export class ImplicitTokenResolver implements IResolver {
 
   public resolve(context: ResolutionContext): void {
@@ -51,6 +81,9 @@ export class ImplicitTokenResolver implements IResolver {
 
 }
 
+/**
+ * Resolves any value attached to a specific ApiObject.
+ */
 export function resolve(key: string[], value: any, apiObject: ApiObject): any {
 
   const resolvers = App.of(apiObject).resolvers;
@@ -74,7 +107,7 @@ export function resolve(key: string[], value: any, apiObject: ApiObject): any {
   const context = new ResolutionContext(apiObject, key, value);
   for (const resolver of resolvers) {
     resolver.resolve(context);
-    if (context.newValue !== value) return resolve(key, context.newValue, apiObject);
+    if (context.value !== value) return resolve(key, context.value, apiObject);
   }
 
   return value;
