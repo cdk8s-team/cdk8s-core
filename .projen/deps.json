@@ -123,6 +123,11 @@
       "type": "override"
     },
     {
+      "name": "**/downlevel-dts/**/typescript",
+      "version": "~5.2.2",
+      "type": "override"
+    },
+    {
       "name": "wrap-ansi",
       "version": "7.0.0",
       "type": "override"

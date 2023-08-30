@@ -46,7 +46,7 @@
     "organization": false
   },
   "devDependencies": {
-    "@cdk8s/projen-common": "^0.0.451",
+    "@cdk8s/projen-common": "^0.0.454",
     "@types/follow-redirects": "^1.14.1",
     "@types/jest": "^27",
     "@types/node": "^16",
@@ -86,6 +86,7 @@
   ],
   "resolutions": {
     "@types/lodash": "4.14.192",
+    "**/downlevel-dts/**/typescript": "~5.2.2",
     "wrap-ansi": "7.0.0"
   },
   "keywords": [
