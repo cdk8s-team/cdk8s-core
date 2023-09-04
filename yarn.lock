@@ -4503,9 +4503,9 @@ jsii-rosetta@^1.44.0, jsii-rosetta@^1.88.0:
     yargs "^16.2.0"
 
 jsii-rosetta@^5:
-  version "5.1.11"
-  resolved "https://registry.yarnpkg.com/jsii-rosetta/-/jsii-rosetta-5.1.11.tgz#0beac0b3d07798e9a26bfb32012f4201371f26bb"
-  integrity sha512-kZfHby0gqmwvpGUOgFhevoge4Fek1+zdGYs+nb7SIhxJL8s5amdUEUXoUB8evB/0unMvINSjhMbyiW+8h2JG6Q==
+  version "5.1.12"
+  resolved "https://registry.yarnpkg.com/jsii-rosetta/-/jsii-rosetta-5.1.12.tgz#d22f45473bfaf5a9c01029c0a9752bc1fc7e54bf"
+  integrity sha512-H158wTB6dP4FEhWIuLQ1dqzIMHiGULO6bKaQW7KNtLPl/fmtWJf/HT0jyC6EZmbeySYxJiScaSaDs0b/shisPw==
   dependencies:
     "@jsii/check-node" "1.88.0"
     "@jsii/spec" "^1.88.0"
@@ -4540,7 +4540,26 @@ jsii@1.88.0:
     typescript "~3.9.10"
     yargs "^16.2.0"
 
-jsii@^5, jsii@~5.1.5:
+jsii@^5:
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/jsii/-/jsii-5.2.2.tgz#976cf303a6e08b7d5b733767443b4ae9d6bae359"
+  integrity sha512-0GufgQqaSSt/cLoMeNSP/Xw7xYIGis5KP8nfGRVP04zVJQ/BUXChxwCfG4LaYN2roxixIPAzdO4fj6W8lv7v3g==
+  dependencies:
+    "@jsii/check-node" "1.88.0"
+    "@jsii/spec" "^1.88.0"
+    case "^1.6.3"
+    chalk "^4"
+    downlevel-dts "^0.11.0"
+    fast-deep-equal "^3.1.3"
+    log4js "^6.9.1"
+    semver "^7.5.4"
+    semver-intersect "^1.4.0"
+    sort-json "^2.0.1"
+    spdx-license-list "^6.7.0"
+    typescript "~5.2"
+    yargs "^17.7.2"
+
+jsii@~5.1.5:
   version "5.1.12"
   resolved "https://registry.yarnpkg.com/jsii/-/jsii-5.1.12.tgz#0ac6d92d52c6732a6e0e3e27f9f07453318715f2"
   integrity sha512-iY3zLosUEKbeua6IAGJXjFxibiiI0xHFjyYPyewOc56MBRHC7nczWSVGRP+Jgwyo7HWXs4TvJKLG6w8zSuAZrg==
@@ -6324,7 +6343,7 @@ spdx-license-ids@^3.0.0:
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.13.tgz#7189a474c46f8d47c7b0da4b987bb45e908bd2d5"
   integrity sha512-XkD+zwiqXHikFZm4AX/7JSCXA98U5Db4AFd5XUg/+9UNtnH75+Z9KxtpYiJZx36mUDVOwH83pl7yvCer6ewM3w==
 
-spdx-license-list@^6.6.0:
+spdx-license-list@^6.6.0, spdx-license-list@^6.7.0:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/spdx-license-list/-/spdx-license-list-6.7.0.tgz#dd8c6aba00e7a3f9549e473d0be2b83c4cae081f"
   integrity sha512-NFqavuJxNsHdwSy/0PjmUpcc76XwlmHQRPjVVtE62qmSLhKJUnzSvJCkU9nrY6TsChfGU1xqGePriBkNtNRMiA==
@@ -6873,7 +6892,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==
 
-typescript@next, typescript@~5.2.2:
+typescript@next, typescript@~5.2, typescript@~5.2.2:
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.2.2.tgz#5ebb5e5a5b75f085f22bc3f8460fba308310fa78"
   integrity sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==
