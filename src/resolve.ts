@@ -8,11 +8,14 @@ import { Lazy } from './lazy';
 export class ResolutionContext {
 
   /**
-   * The final value of the resolution process. If the resolver invoked
-   * `replaceValue`, this will be the replaced value, otherwise, it is the original
-   * value.
+   * The replaced value that was set via the `replaceValue` method.
    */
-  public value: any;
+  public replacedValue: any;
+
+  /**
+   * Whether or not the value was replaced by invoking the `replaceValue` method.
+   */
+  public replaced: boolean = false;
 
   constructor(
     /**
@@ -26,8 +29,7 @@ export class ResolutionContext {
     /**
      * The value associated to the key currently being resolved.
      */
-    public readonly originalValue: any) {
-    this.value = originalValue;
+    public readonly value: any) {
   }
 
   /**
@@ -35,7 +37,8 @@ export class ResolutionContext {
    * with a new value. The new value is what will end up in the manifest.
    */
   public replaceValue(newValue: any) {
-    this.value = newValue;
+    this.replacedValue = newValue;
+    this.replaced = true;
   }
 
 }
@@ -92,22 +95,28 @@ export function resolve(key: string[], value: any, apiObject: ApiObject): any {
     return value;
   }
 
+  // array - resolve each element
   if (Array.isArray(value)) {
     return value.map((x, i) => resolve([...key, `${i}`], x, apiObject));
   }
 
-  if (value.constructor == Object && Object.entries(value).length > 0) {
+  // see if the resolvers should handle this value
+  const context = new ResolutionContext(apiObject, key, value);
+  for (const resolver of resolvers) {
+    resolver.resolve(context);
+    if (context.replaced) {
+      // stop when the first resolver replaces the value.
+      return resolve(key, context.replacedValue, apiObject);
+    }
+  }
+
+  // dictionrary - resolve leafs
+  if (value.constructor == Object) {
     const result: any = {};
     for (const [k, v] of Object.entries(value)) {
       result[k] = resolve([...key, k], v, apiObject);
     }
     return result;
-  }
-
-  const context = new ResolutionContext(apiObject, key, value);
-  for (const resolver of resolvers) {
-    resolver.resolve(context);
-    if (context.value !== value) return resolve(key, context.value, apiObject);
   }
 
   return value;

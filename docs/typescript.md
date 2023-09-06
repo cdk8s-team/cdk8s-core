@@ -2424,7 +2424,7 @@ Context object for a specific resolution process.
 ```typescript
 import { ResolutionContext } from 'cdk8s'
 
-new ResolutionContext(obj: ApiObject, key: string[], originalValue: any)
+new ResolutionContext(obj: ApiObject, key: string[], value: any)
 ```
 
 ##### `obj`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.obj"></a>
@@ -2443,7 +2443,7 @@ Which key is currently being resolved.
 
 ---
 
-##### `originalValue`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.originalValue"></a>
+##### `value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.value"></a>
 
 - *Type:* `any`
 
@@ -2492,18 +2492,6 @@ Which ApiObject is currently being resolved.
 
 ---
 
-##### `originalValue`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.originalValue"></a>
-
-```typescript
-public readonly originalValue: any;
-```
-
-- *Type:* `any`
-
-The value associated to the key currently being resolved.
-
----
-
 ##### `value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.value"></a>
 
 ```typescript
@@ -2512,11 +2500,31 @@ public readonly value: any;
 
 - *Type:* `any`
 
-The final value of the resolution process.
+The value associated to the key currently being resolved.
 
-If the resolver invoked
-`replaceValue`, this will be the replaced value, otherwise, it is the original
-value.
+---
+
+##### `replaced`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.replaced"></a>
+
+```typescript
+public readonly replaced: boolean;
+```
+
+- *Type:* `boolean`
+
+Whether or not the value was replaced by invoking the `replaceValue` method.
+
+---
+
+##### `replacedValue`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.replacedValue"></a>
+
+```typescript
+public readonly replacedValue: any;
+```
+
+- *Type:* `any`
+
+The replaced value that was set via the `replaceValue` method.
 
 ---
 

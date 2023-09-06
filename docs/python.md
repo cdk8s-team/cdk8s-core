@@ -3143,7 +3143,7 @@ import cdk8s
 cdk8s.ResolutionContext(
   obj: ApiObject,
   key: typing.List[str],
-  original_value: typing.Any
+  value: typing.Any
 )
 ```
 
@@ -3163,7 +3163,7 @@ Which key is currently being resolved.
 
 ---
 
-##### `original_value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.original_value"></a>
+##### `value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.value"></a>
 
 - *Type:* `typing.Any`
 
@@ -3214,18 +3214,6 @@ Which ApiObject is currently being resolved.
 
 ---
 
-##### `original_value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.original_value"></a>
-
-```python
-original_value: typing.Any
-```
-
-- *Type:* `typing.Any`
-
-The value associated to the key currently being resolved.
-
----
-
 ##### `value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.value"></a>
 
 ```python
@@ -3234,11 +3222,31 @@ value: typing.Any
 
 - *Type:* `typing.Any`
 
-The final value of the resolution process.
+The value associated to the key currently being resolved.
 
-If the resolver invoked
-`replaceValue`, this will be the replaced value, otherwise, it is the original
-value.
+---
+
+##### `replaced`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.replaced"></a>
+
+```python
+replaced: bool
+```
+
+- *Type:* `bool`
+
+Whether or not the value was replaced by invoking the `replaceValue` method.
+
+---
+
+##### `replaced_value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.replaced_value"></a>
+
+```python
+replaced_value: typing.Any
+```
+
+- *Type:* `typing.Any`
+
+The replaced value that was set via the `replaceValue` method.
 
 ---
 

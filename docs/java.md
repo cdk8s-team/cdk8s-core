@@ -2868,7 +2868,7 @@ Context object for a specific resolution process.
 ```java
 import org.cdk8s.ResolutionContext;
 
-new ResolutionContext(ApiObject obj, java.util.List<java.lang.String> key, java.lang.Object originalValue);
+new ResolutionContext(ApiObject obj, java.util.List<java.lang.String> key, java.lang.Object value);
 ```
 
 ##### `obj`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.parameter.obj"></a>
@@ -2887,7 +2887,7 @@ Which key is currently being resolved.
 
 ---
 
-##### `originalValue`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.parameter.originalValue"></a>
+##### `value`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.parameter.value"></a>
 
 - *Type:* `java.lang.Object`
 
@@ -2936,18 +2936,6 @@ Which ApiObject is currently being resolved.
 
 ---
 
-##### `originalValue`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.property.originalValue"></a>
-
-```java
-public java.lang.Object getOriginalValue();
-```
-
-- *Type:* `java.lang.Object`
-
-The value associated to the key currently being resolved.
-
----
-
 ##### `value`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.property.value"></a>
 
 ```java
@@ -2956,11 +2944,31 @@ public java.lang.Object getValue();
 
 - *Type:* `java.lang.Object`
 
-The final value of the resolution process.
+The value associated to the key currently being resolved.
 
-If the resolver invoked
-`replaceValue`, this will be the replaced value, otherwise, it is the original
-value.
+---
+
+##### `replaced`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.property.replaced"></a>
+
+```java
+public java.lang.Boolean getReplaced();
+```
+
+- *Type:* `java.lang.Boolean`
+
+Whether or not the value was replaced by invoking the `replaceValue` method.
+
+---
+
+##### `replacedValue`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.property.replacedValue"></a>
+
+```java
+public java.lang.Object getReplacedValue();
+```
+
+- *Type:* `java.lang.Object`
+
+The replaced value that was set via the `replaceValue` method.
 
 ---
 
