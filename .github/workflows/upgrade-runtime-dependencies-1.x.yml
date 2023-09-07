@@ -66,7 +66,7 @@ jobs:
         with:
           token: ${{ secrets.PROJEN_GITHUB_TOKEN }}
           commit-message: |-
-            feat(deps): upgrade runtime dependencies
+            chore(deps): upgrade runtime dependencies
 
             Upgrades project dependencies. See details in [workflow run].
 
@@ -76,7 +76,7 @@ jobs:
 
             *Automatically created by projen via the "upgrade-runtime-dependencies-1.x" workflow*
           branch: github-actions/upgrade-runtime-dependencies-1.x
-          title: "feat(deps): upgrade runtime dependencies"
+          title: "chore(deps): upgrade runtime dependencies"
           labels: auto-approve
           body: |-
             Upgrades project dependencies. See details in [workflow run].
