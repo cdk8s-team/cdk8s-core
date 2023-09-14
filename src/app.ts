@@ -55,15 +55,15 @@ export interface AppProps {
 }
 
 class SynthRequestCache {
-  public NodeChildrenCache: Map<Node, IConstruct[]> = new Map<Node, IConstruct[]>();
+  public nodeChildrenCache: Map<Node, IConstruct[]> = new Map<Node, IConstruct[]>();
 
-  public NodeAllChildren(node: Node): IConstruct[] {
-    if (this.NodeChildrenCache.has(node)) {
-      return this.NodeChildrenCache.get(node)!;
+  public findAll(node: Node): IConstruct[] {
+    if (this.nodeChildrenCache.has(node)) {
+      return this.nodeChildrenCache.get(node)!;
     }
 
     const children = node.findAll();
-    this.NodeChildrenCache.set(node, children);
+    this.nodeChildrenCache.set(node, children);
     return children;
   }
 }
@@ -248,7 +248,6 @@ export class App extends Construct {
    * @returns A string with all YAML objects across all charts in this app.
    */
   public synthYaml(): string {
-
     const cache = new SynthRequestCache();
 
     resolveDependencies(this, cache);
@@ -279,7 +278,7 @@ export class App extends Construct {
 
 function validate(app: App, cache: SynthRequestCache) {
   const errors = [];
-  for (const child of cache.NodeAllChildren(app.node)) {
+  for (const child of cache.findAll(app.node)) {
     const childErrors = child.node.validate();
     for (const error of childErrors) {
       errors.push(`[${child.node.path}] ${error}`);
@@ -294,7 +293,7 @@ function validate(app: App, cache: SynthRequestCache) {
 function buildDependencies(app: App, cache: SynthRequestCache) {
 
   const deps = [];
-  for (const child of cache.NodeAllChildren(app.node)) {
+  for (const child of cache.findAll(app.node)) {
     for (const dep of child.node.dependencies) {
       deps.push({ source: child, target: dep });
     }
@@ -309,7 +308,7 @@ function resolveDependencies(app: App, cache: SynthRequestCache) {
   let hasDependantCharts = false;
 
   // create an explicit chart dependency from nested chart relationships
-  for (const parentChart of cache.NodeAllChildren(app.node).filter(x => x instanceof Chart)) {
+  for (const parentChart of cache.findAll(app.node).filter(x => x instanceof Chart)) {
     for (const childChart of parentChart.node.children.filter(x => x instanceof Chart)) {
       parentChart.node.addDependency(childChart);
       hasDependantCharts = true;
@@ -335,8 +334,8 @@ function resolveDependencies(app: App, cache: SynthRequestCache) {
     const sourceChart = Chart.of(dep.source);
     const targetChart = Chart.of(dep.target);
 
-    const targetApiObjects = cache.NodeAllChildren(dep.target.node).filter(c => c instanceof ApiObject).filter(x => Chart.of(x) === targetChart);
-    const sourceApiObjects = cache.NodeAllChildren(dep.source.node).filter(c => c instanceof ApiObject).filter(x => Chart.of(x) === sourceChart);
+    const targetApiObjects = cache.findAll(dep.target.node).filter(c => c instanceof ApiObject).filter(x => Chart.of(x) === targetChart);
+    const sourceApiObjects = cache.findAll(dep.source.node).filter(c => c instanceof ApiObject).filter(x => Chart.of(x) === sourceChart);
 
     for (const target of targetApiObjects) {
       for (const source of sourceApiObjects) {
