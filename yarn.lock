@@ -4552,9 +4552,9 @@ jsii@1.88.0:
     yargs "^16.2.0"
 
 jsii@^5:
-  version "5.2.5"
-  resolved "https://registry.yarnpkg.com/jsii/-/jsii-5.2.5.tgz#ce3584e97a9ef98e46bb0de34ca1c502b15077c6"
-  integrity sha512-kVNFvxRJ5gakm8Aiv9x5Yo/w7zAw6seW+zwK7XPzULTYNSQBoWnikIGaRZIHoQtImtbheyQ8AmzRrD9pNocF/g==
+  version "5.2.8"
+  resolved "https://registry.yarnpkg.com/jsii/-/jsii-5.2.8.tgz#d473830a6de1d8dc308830a529c7ee2e3fdb72ad"
+  integrity sha512-25inqiaSd8CnMsiStis8xslT1m8H62Q1eCWb0O76f06hfzBSp+T7wDbtipQZm9NuK4BiUF3rb2Nt6uGJgOVd7Q==
   dependencies:
     "@jsii/check-node" "1.88.0"
     "@jsii/spec" "^1.88.0"
