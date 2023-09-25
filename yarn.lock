@@ -4570,12 +4570,12 @@ jsii@1.89.0:
     yargs "^16.2.0"
 
 jsii@^5:
-  version "5.2.8"
-  resolved "https://registry.yarnpkg.com/jsii/-/jsii-5.2.8.tgz#d473830a6de1d8dc308830a529c7ee2e3fdb72ad"
-  integrity sha512-25inqiaSd8CnMsiStis8xslT1m8H62Q1eCWb0O76f06hfzBSp+T7wDbtipQZm9NuK4BiUF3rb2Nt6uGJgOVd7Q==
+  version "5.2.9"
+  resolved "https://registry.yarnpkg.com/jsii/-/jsii-5.2.9.tgz#1417896c73dfb3a3615020608c018ea4d72dba0e"
+  integrity sha512-cJg8Y/JrZrN6Icu7yUKnOjL9CLeqL5oNK/aj8oiIgmNZdhnQv5wGaCC11W0JMHvSEfDdfhhKddQlxoErC71GPQ==
   dependencies:
-    "@jsii/check-node" "1.88.0"
-    "@jsii/spec" "^1.88.0"
+    "@jsii/check-node" "1.89.0"
+    "@jsii/spec" "^1.89.0"
     case "^1.6.3"
     chalk "^4"
     downlevel-dts "^0.11.0"
