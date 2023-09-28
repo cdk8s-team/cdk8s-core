@@ -155,7 +155,7 @@ export class App extends Construct {
     this.outdir = props.outdir ?? process.env.CDK8S_OUTDIR ?? 'dist';
     this.outputFileExtension = props.outputFileExtension ?? '.k8s.yaml';
     this.yamlOutputType = props.yamlOutputType ?? YamlOutputType.FILE_PER_CHART;
-    this.resolvers = [new LazyResolver(), new ImplicitTokenResolver(), ...(props.resolvers ?? [])];
+    this.resolvers = [...(props.resolvers ?? []), new LazyResolver(), new ImplicitTokenResolver()];
     this.recordConstructMetadata = props.recordConstructMetadata ?? (process.env.CDK8S_RECORD_CONSTRUCT_METADATA === 'true' ? true : false);
 
   }

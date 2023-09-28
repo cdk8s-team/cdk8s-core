@@ -95,12 +95,7 @@ export function resolve(key: string[], value: any, apiObject: ApiObject): any {
     return value;
   }
 
-  // array - resolve each element
-  if (Array.isArray(value)) {
-    return value.map((x, i) => resolve([...key, `${i}`], x, apiObject));
-  }
-
-  // see if the resolvers should handle this value
+  // give dibs to the resolvers as they are more specific
   const context = new ResolutionContext(apiObject, key, value);
   for (const resolver of resolvers) {
     resolver.resolve(context);
@@ -108,6 +103,11 @@ export function resolve(key: string[], value: any, apiObject: ApiObject): any {
       // stop when the first resolver replaces the value.
       return resolve(key, context.replacedValue, apiObject);
     }
+  }
+
+  // array - resolve each element
+  if (Array.isArray(value)) {
+    return value.map((x, i) => resolve([...key, `${i}`], x, apiObject));
   }
 
   // dictionrary - resolve leafs
