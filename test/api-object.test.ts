@@ -515,10 +515,7 @@ test('multiple custom resolvers', () => {
         "name": "chart-apiobject-c830d7bd",
       },
       "spec": Object {
-        "someArray": Array [
-          "newValue2",
-          "newValue2",
-        ],
+        "someArray": "newValue2",
         "type": "newValue1",
       },
     }
