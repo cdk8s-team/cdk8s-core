@@ -1,5 +1,6 @@
-import { resolve } from './_resolve';
 import { sanitizeValue } from './_util';
+import { ApiObject } from './api-object';
+import { resolve } from './resolve';
 
 /**
  * Metadata associated with this object.
@@ -96,10 +97,20 @@ export interface ApiObjectMetadata {
 
   /**
    * Additional metadata attributes.
-   * @jsii ignore
-   * @see https://github.com/cdk8s-team/cdk8s-core/issues/1297
    */
-  readonly [key: string]: any;
+  readonly additionalAttributes?: { [key: string]: any };
+}
+
+/**
+ * Options for `ApiObjectMetadataDefinition`.
+ */
+export interface ApiObjectMetadataDefinitionOptions extends ApiObjectMetadata {
+
+  /**
+   * Which ApiObject instance is the metadata attached to.
+   */
+  readonly apiObject: ApiObject;
+
 }
 
 /**
@@ -142,18 +153,24 @@ export class ApiObjectMetadataDefinition {
   private readonly ownerReferences: OwnerReference[];
 
   /**
+   * The ApiObject this metadata is attached to.
+   */
+  private readonly apiObject: ApiObject;
+
+  /**
    * Additional metadata attributes passed through `options`.
    */
   private readonly _additionalAttributes: { [key: string]: any };
 
-  constructor(options: ApiObjectMetadata = { }) {
+  constructor(options: ApiObjectMetadataDefinitionOptions) {
     this.name = options.name;
     this.labels = { ...options.labels } ?? { };
     this.annotations = { ...options.annotations } ?? { };
     this.namespace = options.namespace;
     this.finalizers = options.finalizers ? [...options.finalizers] : [];
     this.ownerReferences = options.ownerReferences ? [...options.ownerReferences] : [];
-    this._additionalAttributes = options ?? { };
+    this.apiObject = options.apiObject;
+    this._additionalAttributes = options.additionalAttributes ?? { };
   }
 
   /**
@@ -216,7 +233,7 @@ export class ApiObjectMetadataDefinition {
    */
   public toJson() {
     const sanitize = (x: any) => sanitizeValue(x, { filterEmptyArrays: true, filterEmptyObjects: true });
-    return sanitize(resolve({
+    return sanitize(resolve([], {
       ...this._additionalAttributes,
       name: this.name,
       namespace: this.namespace,
@@ -224,7 +241,7 @@ export class ApiObjectMetadataDefinition {
       finalizers: this.finalizers,
       ownerReferences: this.ownerReferences,
       labels: this.labels,
-    }));
+    }, this.apiObject));
   }
 }
 

@@ -5,6 +5,7 @@ import { ApiObject } from './api-object';
 import { Chart } from './chart';
 import { DependencyGraph } from './dependency';
 import { Names } from './names';
+import { IResolver, ImplicitTokenResolver, LazyResolver } from './resolve';
 import { Yaml } from './yaml';
 
 /** The method to divide YAML output into files */
@@ -52,6 +53,18 @@ export interface AppProps {
    * @default false
    */
   readonly recordConstructMetadata?: boolean;
+
+  /**
+   * A list of resolvers that can be used to replace property values before
+   * they are written to the manifest file. When multiple resolvers are passed,
+   * they are invoked by order in the list, and only the first one that applies
+   * (e.g calls `context.replaceValue`) is invoked.
+   *
+   * @see https://cdk8s.io/docs/latest/basics/app/#resolvers
+   *
+   * @default - no resolvers.
+   */
+  readonly resolvers?: IResolver[];
 }
 
 class SynthRequestCache {
@@ -103,7 +116,7 @@ export class App extends Construct {
     return chartToKube(chart).map(obj => obj.toJson());
   }
 
-  private static of(c: IConstruct): App {
+  public static of(c: IConstruct): App {
 
     const scope = c.node.scope;
 
@@ -131,6 +144,12 @@ export class App extends Construct {
    */
   public readonly yamlOutputType: YamlOutputType;
 
+  /**
+   * Resolvers used by this app. This includes both custom resolvers
+   * passed by the `resolvers` property, as well as built-in resolvers.
+   */
+  public readonly resolvers: IResolver[];
+
   private readonly recordConstructMetadata: boolean;
 
   /**
@@ -152,7 +171,7 @@ export class App extends Construct {
     this.outdir = props.outdir ?? process.env.CDK8S_OUTDIR ?? 'dist';
     this.outputFileExtension = props.outputFileExtension ?? '.k8s.yaml';
     this.yamlOutputType = props.yamlOutputType ?? YamlOutputType.FILE_PER_CHART;
-
+    this.resolvers = [...(props.resolvers ?? []), new LazyResolver(), new ImplicitTokenResolver()];
     this.recordConstructMetadata = props.recordConstructMetadata ?? (process.env.CDK8S_RECORD_CONSTRUCT_METADATA === 'true' ? true : false);
 
   }
