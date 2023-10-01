@@ -735,7 +735,6 @@ Metadata associated with this object.
 import org.cdk8s.ApiObjectMetadata;
 
 ApiObjectMetadata.builder()
-//  .additionalAttributes(java.util.Map<java.lang.String, java.lang.Object>)
 //  .annotations(java.util.Map<java.lang.String, java.lang.String>)
 //  .finalizers(java.util.List<java.lang.String>)
 //  .labels(java.util.Map<java.lang.String, java.lang.String>)
@@ -744,18 +743,6 @@ ApiObjectMetadata.builder()
 //  .ownerReferences(java.util.List<OwnerReference>)
     .build();
 ```
-
-##### `additionalAttributes`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadata.property.additionalAttributes"></a>
-
-```java
-public java.util.Map<java.lang.String, java.lang.Object> getAdditionalAttributes();
-```
-
-- *Type:* java.util.Map<java.lang.String, `java.lang.Object`>
-
-Additional metadata attributes.
-
----
 
 ##### `annotations`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadata.property.annotations"></a>
 
@@ -901,7 +888,6 @@ Options for `ApiObjectMetadataDefinition`.
 import org.cdk8s.ApiObjectMetadataDefinitionOptions;
 
 ApiObjectMetadataDefinitionOptions.builder()
-//  .additionalAttributes(java.util.Map<java.lang.String, java.lang.Object>)
 //  .annotations(java.util.Map<java.lang.String, java.lang.String>)
 //  .finalizers(java.util.List<java.lang.String>)
 //  .labels(java.util.Map<java.lang.String, java.lang.String>)
@@ -911,18 +897,6 @@ ApiObjectMetadataDefinitionOptions.builder()
     .apiObject(ApiObject)
     .build();
 ```
-
-##### `additionalAttributes`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions.property.additionalAttributes"></a>
-
-```java
-public java.util.Map<java.lang.String, java.lang.Object> getAdditionalAttributes();
-```
-
-- *Type:* java.util.Map<java.lang.String, `java.lang.Object`>
-
-Additional metadata attributes.
-
----
 
 ##### `annotations`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions.property.annotations"></a>
 
@@ -1797,7 +1771,6 @@ Object metadata.
 import org.cdk8s.ApiObjectMetadataDefinition;
 
 ApiObjectMetadataDefinition.Builder.create()
-//  .additionalAttributes(java.util.Map<java.lang.String, java.lang.Object>)
 //  .annotations(java.util.Map<java.lang.String, java.lang.String>)
 //  .finalizers(java.util.List<java.lang.String>)
 //  .labels(java.util.Map<java.lang.String, java.lang.String>)
@@ -1807,14 +1780,6 @@ ApiObjectMetadataDefinition.Builder.create()
     .apiObject(ApiObject)
     .build();
 ```
-
-##### `additionalAttributes`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions.parameter.additionalAttributes"></a>
-
-- *Type:* java.util.Map<java.lang.String, `java.lang.Object`>
-
-Additional metadata attributes.
-
----
 
 ##### `annotations`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions.parameter.annotations"></a>
 

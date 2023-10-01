@@ -542,18 +542,6 @@ import { ApiObjectMetadata } from 'cdk8s'
 const apiObjectMetadata: ApiObjectMetadata = { ... }
 ```
 
-##### `additionalAttributes`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.additionalAttributes"></a>
-
-```typescript
-public readonly additionalAttributes: {[ key: string ]: any};
-```
-
-- *Type:* {[ key: string ]: `any`}
-
-Additional metadata attributes.
-
----
-
 ##### `annotations`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.annotations"></a>
 
 ```typescript
@@ -699,18 +687,6 @@ import { ApiObjectMetadataDefinitionOptions } from 'cdk8s'
 
 const apiObjectMetadataDefinitionOptions: ApiObjectMetadataDefinitionOptions = { ... }
 ```
-
-##### `additionalAttributes`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.additionalAttributes"></a>
-
-```typescript
-public readonly additionalAttributes: {[ key: string ]: any};
-```
-
-- *Type:* {[ key: string ]: `any`}
-
-Additional metadata attributes.
-
----
 
 ##### `annotations`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.annotations"></a>
 
