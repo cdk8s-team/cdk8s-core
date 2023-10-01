@@ -36,11 +36,9 @@ test('printed yaml is alphabetical', () => {
       firstProperty: 'hello',
     },
     metadata: {
-      additionalAttributes: {
-        meta: {
-          zzz: 'hello',
-          aaa: 123,
-        },
+      meta: {
+        zzz: 'hello',
+        aaa: 123,
       },
     },
     apiVersion: 'v1',
@@ -453,9 +451,7 @@ test('custom resolver', () => {
     kind: 'Service',
     apiVersion: 'v1',
     metadata: {
-      additionalAttributes: {
-        foo: 'bar',
-      },
+      foo: 'bar',
     },
     spec: {
       type: 'LoadBalancer',
@@ -506,9 +502,7 @@ test('multiple custom resolvers', () => {
     kind: 'Service',
     apiVersion: 'v1',
     metadata: {
-      additionalAttributes: {
-        foo: 'bar',
-      },
+      foo: 'bar',
     },
     spec: {
       type: 'LoadBalancer',
@@ -555,9 +549,7 @@ test('annonymous object custom resolver', () => {
     kind: 'Service',
     apiVersion: 'v1',
     metadata: {
-      additionalAttributes: {
-        foo: 'bar',
-      },
+      foo: 'bar',
     },
     spec: {
       type: resolvable,

@@ -761,7 +761,6 @@ Metadata associated with this object.
 import cdk8s
 
 cdk8s.ApiObjectMetadata(
-  additional_attributes: typing.Mapping[typing.Any] = None,
   annotations: typing.Mapping[str] = None,
   finalizers: typing.List[str] = None,
   labels: typing.Mapping[str] = None,
@@ -770,18 +769,6 @@ cdk8s.ApiObjectMetadata(
   owner_references: typing.List[OwnerReference] = None
 )
 ```
-
-##### `additional_attributes`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.additional_attributes"></a>
-
-```python
-additional_attributes: typing.Mapping[typing.Any]
-```
-
-- *Type:* typing.Mapping[`typing.Any`]
-
-Additional metadata attributes.
-
----
 
 ##### `annotations`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.annotations"></a>
 
@@ -927,7 +914,6 @@ Options for `ApiObjectMetadataDefinition`.
 import cdk8s
 
 cdk8s.ApiObjectMetadataDefinitionOptions(
-  additional_attributes: typing.Mapping[typing.Any] = None,
   annotations: typing.Mapping[str] = None,
   finalizers: typing.List[str] = None,
   labels: typing.Mapping[str] = None,
@@ -937,18 +923,6 @@ cdk8s.ApiObjectMetadataDefinitionOptions(
   api_object: ApiObject
 )
 ```
-
-##### `additional_attributes`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.additional_attributes"></a>
-
-```python
-additional_attributes: typing.Mapping[typing.Any]
-```
-
-- *Type:* typing.Mapping[`typing.Any`]
-
-Additional metadata attributes.
-
----
 
 ##### `annotations`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.annotations"></a>
 
@@ -1823,7 +1797,6 @@ Object metadata.
 import cdk8s
 
 cdk8s.ApiObjectMetadataDefinition(
-  additional_attributes: typing.Mapping[typing.Any] = None,
   annotations: typing.Mapping[str] = None,
   finalizers: typing.List[str] = None,
   labels: typing.Mapping[str] = None,
@@ -1833,14 +1806,6 @@ cdk8s.ApiObjectMetadataDefinition(
   api_object: ApiObject
 )
 ```
-
-##### `additional_attributes`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.parameter.additional_attributes"></a>
-
-- *Type:* typing.Mapping[`typing.Any`]
-
-Additional metadata attributes.
-
----
 
 ##### `annotations`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.parameter.annotations"></a>
 
