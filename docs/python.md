@@ -232,6 +232,7 @@ cdk8s.App(
   outdir: str = None,
   output_file_extension: str = None,
   record_construct_metadata: bool = None,
+  resolvers: typing.List[IResolver] = None,
   yaml_output_type: YamlOutputType = None
 )
 ```
@@ -271,6 +272,21 @@ When set to true, the output directory will contain a `construct-metadata.json` 
 
 ---
 
+##### `resolvers`<sup>Optional</sup> <a name="cdk8s.AppProps.parameter.resolvers"></a>
+
+- *Type:* typing.List[[`cdk8s.IResolver`](#cdk8s.IResolver)]
+- *Default:* no resolvers.
+
+A list of resolvers that can be used to replace property values before they are written to the manifest file.
+
+When multiple resolvers are passed,
+they are invoked by order in the list, and only the first one that applies
+(e.g calls `context.replaceValue`) is invoked.
+
+> https://cdk8s.io/docs/latest/basics/app/#resolvers
+
+---
+
 ##### `yaml_output_type`<sup>Optional</sup> <a name="cdk8s.AppProps.parameter.yaml_output_type"></a>
 
 - *Type:* [`cdk8s.YamlOutputType`](#cdk8s.YamlOutputType)
@@ -294,6 +310,23 @@ def synth()
 def synth_yaml()
 ```
 
+#### Static Functions <a name="Static Functions"></a>
+
+##### `of` <a name="cdk8s.App.of"></a>
+
+```python
+import cdk8s
+
+cdk8s.App.of(
+  c: IConstruct
+)
+```
+
+###### `c`<sup>Required</sup> <a name="cdk8s.App.parameter.c"></a>
+
+- *Type:* [`constructs.IConstruct`](#constructs.IConstruct)
+
+---
 
 #### Properties <a name="Properties"></a>
 
@@ -331,6 +364,21 @@ output_file_extension: str
 - *Default:* .k8s.yaml
 
 The file extension to use for rendered YAML files.
+
+---
+
+##### `resolvers`<sup>Required</sup> <a name="cdk8s.App.property.resolvers"></a>
+
+```python
+resolvers: typing.List[IResolver]
+```
+
+- *Type:* typing.List[[`cdk8s.IResolver`](#cdk8s.IResolver)]
+
+Resolvers used by this app.
+
+This includes both custom resolvers
+passed by the `resolvers` property, as well as built-in resolvers.
 
 ---
 
@@ -713,6 +761,7 @@ Metadata associated with this object.
 import cdk8s
 
 cdk8s.ApiObjectMetadata(
+  additional_attributes: typing.Mapping[typing.Any] = None,
   annotations: typing.Mapping[str] = None,
   finalizers: typing.List[str] = None,
   labels: typing.Mapping[str] = None,
@@ -721,6 +770,18 @@ cdk8s.ApiObjectMetadata(
   owner_references: typing.List[OwnerReference] = None
 )
 ```
+
+##### `additional_attributes`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.additional_attributes"></a>
+
+```python
+additional_attributes: typing.Mapping[typing.Any]
+```
+
+- *Type:* typing.Mapping[`typing.Any`]
+
+Additional metadata attributes.
+
+---
 
 ##### `annotations`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.annotations"></a>
 
@@ -856,6 +917,185 @@ relationships.
 
 ---
 
+### ApiObjectMetadataDefinitionOptions <a name="cdk8s.ApiObjectMetadataDefinitionOptions"></a>
+
+Options for `ApiObjectMetadataDefinition`.
+
+#### Initializer <a name="[object Object].Initializer"></a>
+
+```python
+import cdk8s
+
+cdk8s.ApiObjectMetadataDefinitionOptions(
+  additional_attributes: typing.Mapping[typing.Any] = None,
+  annotations: typing.Mapping[str] = None,
+  finalizers: typing.List[str] = None,
+  labels: typing.Mapping[str] = None,
+  name: str = None,
+  namespace: str = None,
+  owner_references: typing.List[OwnerReference] = None,
+  api_object: ApiObject
+)
+```
+
+##### `additional_attributes`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.additional_attributes"></a>
+
+```python
+additional_attributes: typing.Mapping[typing.Any]
+```
+
+- *Type:* typing.Mapping[`typing.Any`]
+
+Additional metadata attributes.
+
+---
+
+##### `annotations`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.annotations"></a>
+
+```python
+annotations: typing.Mapping[str]
+```
+
+- *Type:* typing.Mapping[`str`]
+- *Default:* No annotations.
+
+Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+
+They are not queryable and should be
+preserved when modifying objects.
+
+> http://kubernetes.io/docs/user-guide/annotations
+
+---
+
+##### `finalizers`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.finalizers"></a>
+
+```python
+finalizers: typing.List[str]
+```
+
+- *Type:* typing.List[`str`]
+- *Default:* No finalizers.
+
+Namespaced keys that tell Kubernetes to wait until specific conditions are met before it fully deletes resources marked for deletion.
+
+Must be empty before the object is deleted from the registry. Each entry is
+an identifier for the responsible component that will remove the entry from
+the list. If the deletionTimestamp of the object is non-nil, entries in
+this list can only be removed. Finalizers may be processed and removed in
+any order.  Order is NOT enforced because it introduces significant risk of
+stuck finalizers. finalizers is a shared field, any actor with permission
+can reorder it. If the finalizer list is processed in order, then this can
+lead to a situation in which the component responsible for the first
+finalizer in the list is waiting for a signal (field value, external
+system, or other) produced by a component responsible for a finalizer later
+in the list, resulting in a deadlock. Without enforced ordering finalizers
+are free to order amongst themselves and are not vulnerable to ordering
+changes in the list.
+
+> https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/
+
+---
+
+##### `labels`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.labels"></a>
+
+```python
+labels: typing.Mapping[str]
+```
+
+- *Type:* typing.Mapping[`str`]
+- *Default:* No labels.
+
+Map of string keys and values that can be used to organize and categorize (scope and select) objects.
+
+May match selectors of replication controllers and services.
+
+> http://kubernetes.io/docs/user-guide/labels
+
+---
+
+##### `name`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.name"></a>
+
+```python
+name: str
+```
+
+- *Type:* `str`
+- *Default:* an app-unique name generated by the chart
+
+The unique, namespace-global, name of this object inside the Kubernetes cluster.
+
+Normally, you shouldn't specify names for objects and let the CDK generate
+a name for you that is application-unique. The names CDK generates are
+composed from the construct path components, separated by dots and a suffix
+that is based on a hash of the entire path, to ensure uniqueness.
+
+You can supply custom name allocation logic by overriding the
+`chart.generateObjectName` method.
+
+If you use an explicit name here, bear in mind that this reduces the
+composability of your construct because it won't be possible to include
+more than one instance in any app. Therefore it is highly recommended to
+leave this unspecified.
+
+---
+
+##### `namespace`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.namespace"></a>
+
+```python
+namespace: str
+```
+
+- *Type:* `str`
+- *Default:* undefined (will be assigned to the 'default' namespace)
+
+Namespace defines the space within each name must be unique.
+
+An empty namespace is equivalent to the "default" namespace, but "default" is the canonical representation.
+Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces
+
+---
+
+##### `owner_references`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.owner_references"></a>
+
+```python
+owner_references: typing.List[OwnerReference]
+```
+
+- *Type:* typing.List[[`cdk8s.OwnerReference`](#cdk8s.OwnerReference)]
+- *Default:* automatically set by Kubernetes
+
+List of objects depended by this object.
+
+If ALL objects in the list have
+been deleted, this object will be garbage collected. If this object is
+managed by a controller, then an entry in this list will point to this
+controller, with the controller field set to true. There cannot be more
+than one managing controller.
+
+Kubernetes sets the value of this field automatically for objects that are
+dependents of other objects like ReplicaSets, DaemonSets, Deployments, Jobs
+and CronJobs, and ReplicationControllers. You can also configure these
+relationships manually by changing the value of this field. However, you
+usually don't need to and can allow Kubernetes to automatically manage the
+relationships.
+
+> https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/
+
+---
+
+##### `api_object`<sup>Required</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.api_object"></a>
+
+```python
+api_object: ApiObject
+```
+
+- *Type:* [`cdk8s.ApiObject`](#cdk8s.ApiObject)
+
+Which ApiObject instance is the metadata attached to.
+
+---
+
 ### ApiObjectProps <a name="cdk8s.ApiObjectProps"></a>
 
 Options for defining API objects.
@@ -922,6 +1162,7 @@ cdk8s.AppProps(
   outdir: str = None,
   output_file_extension: str = None,
   record_construct_metadata: bool = None,
+  resolvers: typing.List[IResolver] = None,
   yaml_output_type: YamlOutputType = None
 )
 ```
@@ -970,6 +1211,25 @@ record_construct_metadata: bool
 - *Default:* false
 
 When set to true, the output directory will contain a `construct-metadata.json` file that holds construct related metadata on every resource in the app.
+
+---
+
+##### `resolvers`<sup>Optional</sup> <a name="cdk8s.AppProps.property.resolvers"></a>
+
+```python
+resolvers: typing.List[IResolver]
+```
+
+- *Type:* typing.List[[`cdk8s.IResolver`](#cdk8s.IResolver)]
+- *Default:* no resolvers.
+
+A list of resolvers that can be used to replace property values before they are written to the manifest file.
+
+When multiple resolvers are passed,
+they are invoked by order in the list, and only the first one that applies
+(e.g calls `context.replaceValue`) is invoked.
+
+> https://cdk8s.io/docs/latest/basics/app/#resolvers
 
 ---
 
@@ -1563,16 +1823,26 @@ Object metadata.
 import cdk8s
 
 cdk8s.ApiObjectMetadataDefinition(
+  additional_attributes: typing.Mapping[typing.Any] = None,
   annotations: typing.Mapping[str] = None,
   finalizers: typing.List[str] = None,
   labels: typing.Mapping[str] = None,
   name: str = None,
   namespace: str = None,
-  owner_references: typing.List[OwnerReference] = None
+  owner_references: typing.List[OwnerReference] = None,
+  api_object: ApiObject
 )
 ```
 
-##### `annotations`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.parameter.annotations"></a>
+##### `additional_attributes`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.parameter.additional_attributes"></a>
+
+- *Type:* typing.Mapping[`typing.Any`]
+
+Additional metadata attributes.
+
+---
+
+##### `annotations`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.parameter.annotations"></a>
 
 - *Type:* typing.Mapping[`str`]
 - *Default:* No annotations.
@@ -1586,7 +1856,7 @@ preserved when modifying objects.
 
 ---
 
-##### `finalizers`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.parameter.finalizers"></a>
+##### `finalizers`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.parameter.finalizers"></a>
 
 - *Type:* typing.List[`str`]
 - *Default:* No finalizers.
@@ -1611,7 +1881,7 @@ changes in the list.
 
 ---
 
-##### `labels`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.parameter.labels"></a>
+##### `labels`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.parameter.labels"></a>
 
 - *Type:* typing.Mapping[`str`]
 - *Default:* No labels.
@@ -1624,7 +1894,7 @@ May match selectors of replication controllers and services.
 
 ---
 
-##### `name`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.parameter.name"></a>
+##### `name`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.parameter.name"></a>
 
 - *Type:* `str`
 - *Default:* an app-unique name generated by the chart
@@ -1646,7 +1916,7 @@ leave this unspecified.
 
 ---
 
-##### `namespace`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.parameter.namespace"></a>
+##### `namespace`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.parameter.namespace"></a>
 
 - *Type:* `str`
 - *Default:* undefined (will be assigned to the 'default' namespace)
@@ -1658,7 +1928,7 @@ Not all objects are required to be scoped to a namespace - the value of this fie
 
 ---
 
-##### `owner_references`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.parameter.owner_references"></a>
+##### `owner_references`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.parameter.owner_references"></a>
 
 - *Type:* typing.List[[`cdk8s.OwnerReference`](#cdk8s.OwnerReference)]
 - *Default:* automatically set by Kubernetes
@@ -1679,6 +1949,14 @@ usually don't need to and can allow Kubernetes to automatically manage the
 relationships.
 
 > https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/
+
+---
+
+##### `api_object`<sup>Required</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.parameter.api_object"></a>
+
+- *Type:* [`cdk8s.ApiObject`](#cdk8s.ApiObject)
+
+Which ApiObject instance is the metadata attached to.
 
 ---
 
@@ -2459,6 +2737,39 @@ the amount of Seconds the `Duration` will represent.
 
 
 
+### ImplicitTokenResolver <a name="cdk8s.ImplicitTokenResolver"></a>
+
+- *Implements:* [`cdk8s.IResolver`](#cdk8s.IResolver)
+
+Resolves implicit tokens.
+
+#### Initializers <a name="cdk8s.ImplicitTokenResolver.Initializer"></a>
+
+```python
+import cdk8s
+
+cdk8s.ImplicitTokenResolver()
+```
+
+#### Methods <a name="Methods"></a>
+
+##### `resolve` <a name="cdk8s.ImplicitTokenResolver.resolve"></a>
+
+```python
+def resolve(
+  context: ResolutionContext
+)
+```
+
+###### `context`<sup>Required</sup> <a name="cdk8s.ImplicitTokenResolver.parameter.context"></a>
+
+- *Type:* [`cdk8s.ResolutionContext`](#cdk8s.ResolutionContext)
+
+---
+
+
+
+
 ### JsonPatch <a name="cdk8s.JsonPatch"></a>
 
 Utility for applying RFC-6902 JSON-Patch to a document.
@@ -2662,6 +2973,39 @@ cdk8s.Lazy.any(
 
 
 
+### LazyResolver <a name="cdk8s.LazyResolver"></a>
+
+- *Implements:* [`cdk8s.IResolver`](#cdk8s.IResolver)
+
+Resolvers instanecs of `Lazy`.
+
+#### Initializers <a name="cdk8s.LazyResolver.Initializer"></a>
+
+```python
+import cdk8s
+
+cdk8s.LazyResolver()
+```
+
+#### Methods <a name="Methods"></a>
+
+##### `resolve` <a name="cdk8s.LazyResolver.resolve"></a>
+
+```python
+def resolve(
+  context: ResolutionContext
+)
+```
+
+###### `context`<sup>Required</sup> <a name="cdk8s.LazyResolver.parameter.context"></a>
+
+- *Type:* [`cdk8s.ResolutionContext`](#cdk8s.ResolutionContext)
+
+---
+
+
+
+
 ### Names <a name="cdk8s.Names"></a>
 
 Utilities for generating unique and stable names.
@@ -2785,6 +3129,126 @@ Maximum allowed length for the name.
 
 ---
 
+
+
+### ResolutionContext <a name="cdk8s.ResolutionContext"></a>
+
+Context object for a specific resolution process.
+
+#### Initializers <a name="cdk8s.ResolutionContext.Initializer"></a>
+
+```python
+import cdk8s
+
+cdk8s.ResolutionContext(
+  obj: ApiObject,
+  key: typing.List[str],
+  value: typing.Any
+)
+```
+
+##### `obj`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.obj"></a>
+
+- *Type:* [`cdk8s.ApiObject`](#cdk8s.ApiObject)
+
+Which ApiObject is currently being resolved.
+
+---
+
+##### `key`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.key"></a>
+
+- *Type:* typing.List[`str`]
+
+Which key is currently being resolved.
+
+---
+
+##### `value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.value"></a>
+
+- *Type:* `typing.Any`
+
+The value associated to the key currently being resolved.
+
+---
+
+#### Methods <a name="Methods"></a>
+
+##### `replace_value` <a name="cdk8s.ResolutionContext.replace_value"></a>
+
+```python
+def replace_value(
+  new_value: typing.Any
+)
+```
+
+###### `new_value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.new_value"></a>
+
+- *Type:* `typing.Any`
+
+---
+
+
+#### Properties <a name="Properties"></a>
+
+##### `key`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.key"></a>
+
+```python
+key: typing.List[str]
+```
+
+- *Type:* typing.List[`str`]
+
+Which key is currently being resolved.
+
+---
+
+##### `obj`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.obj"></a>
+
+```python
+obj: ApiObject
+```
+
+- *Type:* [`cdk8s.ApiObject`](#cdk8s.ApiObject)
+
+Which ApiObject is currently being resolved.
+
+---
+
+##### `value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.value"></a>
+
+```python
+value: typing.Any
+```
+
+- *Type:* `typing.Any`
+
+The value associated to the key currently being resolved.
+
+---
+
+##### `replaced`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.replaced"></a>
+
+```python
+replaced: bool
+```
+
+- *Type:* `bool`
+
+Whether or not the value was replaced by invoking the `replaceValue` method.
+
+---
+
+##### `replaced_value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.replaced_value"></a>
+
+```python
+replaced_value: typing.Any
+```
+
+- *Type:* `typing.Any`
+
+The replaced value that was set via the `replaceValue` method.
+
+---
 
 
 ### Size <a name="cdk8s.Size"></a>
@@ -2983,6 +3447,7 @@ cdk8s.Testing.app(
   outdir: str = None,
   output_file_extension: str = None,
   record_construct_metadata: bool = None,
+  resolvers: typing.List[IResolver] = None,
   yaml_output_type: YamlOutputType = None
 )
 ```
@@ -3019,6 +3484,21 @@ The file extension to use for rendered YAML files.
 - *Default:* false
 
 When set to true, the output directory will contain a `construct-metadata.json` file that holds construct related metadata on every resource in the app.
+
+---
+
+###### `resolvers`<sup>Optional</sup> <a name="cdk8s.AppProps.parameter.resolvers"></a>
+
+- *Type:* typing.List[[`cdk8s.IResolver`](#cdk8s.IResolver)]
+- *Default:* no resolvers.
+
+A list of resolvers that can be used to replace property values before they are written to the manifest file.
+
+When multiple resolvers are passed,
+they are invoked by order in the list, and only the first one that applies
+(e.g calls `context.replaceValue`) is invoked.
+
+> https://cdk8s.io/docs/latest/basics/app/#resolvers
 
 ---
 
@@ -3176,6 +3656,29 @@ the set of documents to save.
 ```python
 def produce()
 ```
+
+
+### IResolver <a name="cdk8s.IResolver"></a>
+
+- *Implemented By:* [`cdk8s.ImplicitTokenResolver`](#cdk8s.ImplicitTokenResolver), [`cdk8s.LazyResolver`](#cdk8s.LazyResolver), [`cdk8s.IResolver`](#cdk8s.IResolver)
+
+Contract for resolver objects.
+
+#### Methods <a name="Methods"></a>
+
+##### `resolve` <a name="cdk8s.IResolver.resolve"></a>
+
+```python
+def resolve(
+  context: ResolutionContext
+)
+```
+
+###### `context`<sup>Required</sup> <a name="cdk8s.IResolver.parameter.context"></a>
+
+- *Type:* [`cdk8s.ResolutionContext`](#cdk8s.ResolutionContext)
+
+---
 
 
 ## Enums <a name="Enums"></a>
