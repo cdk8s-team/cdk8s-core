@@ -1,9 +1,9 @@
 import { Construct, IConstruct, Node } from 'constructs';
-import { resolve } from './_resolve';
 import { sanitizeValue } from './_util';
 import { Chart } from './chart';
 import { JsonPatch } from './json-patch';
 import { ApiObjectMetadata, ApiObjectMetadataDefinition } from './metadata';
+import { resolve } from './resolve';
 
 /**
  * Options for defining API objects.
@@ -160,6 +160,7 @@ export class ApiObject extends Construct {
         ...this.chart.labels,
         ...props.metadata?.labels,
       },
+      apiObject: this,
     });
 
     Object.defineProperty(this, API_OBJECT_SYMBOL, { value: true });
@@ -203,7 +204,7 @@ export class ApiObject extends Construct {
     };
 
     const sortKeys = process.env.CDK8S_DISABLE_SORT ? false : true;
-    const json = sanitizeValue(resolve(data), { sortKeys });
+    const json = sanitizeValue(resolve([], data, this), { sortKeys });
     const patched = JsonPatch.apply(json, ...this.patches);
 
     // reorder top-level keys so that we first have "apiVersion", "kind" and
