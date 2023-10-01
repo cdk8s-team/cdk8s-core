@@ -222,6 +222,7 @@ App.Builder.create()
 //  .outdir(java.lang.String)
 //  .outputFileExtension(java.lang.String)
 //  .recordConstructMetadata(java.lang.Boolean)
+//  .resolvers(java.util.List<IResolver>)
 //  .yamlOutputType(YamlOutputType)
     .build();
 ```
@@ -261,6 +262,21 @@ When set to true, the output directory will contain a `construct-metadata.json` 
 
 ---
 
+##### `resolvers`<sup>Optional</sup> <a name="org.cdk8s.AppProps.parameter.resolvers"></a>
+
+- *Type:* java.util.List<[`org.cdk8s.IResolver`](#org.cdk8s.IResolver)>
+- *Default:* no resolvers.
+
+A list of resolvers that can be used to replace property values before they are written to the manifest file.
+
+When multiple resolvers are passed,
+they are invoked by order in the list, and only the first one that applies
+(e.g calls `context.replaceValue`) is invoked.
+
+> https://cdk8s.io/docs/latest/basics/app/#resolvers
+
+---
+
 ##### `yamlOutputType`<sup>Optional</sup> <a name="org.cdk8s.AppProps.parameter.yamlOutputType"></a>
 
 - *Type:* [`org.cdk8s.YamlOutputType`](#org.cdk8s.YamlOutputType)
@@ -284,6 +300,21 @@ public synth()
 public synthYaml()
 ```
 
+#### Static Functions <a name="Static Functions"></a>
+
+##### `of` <a name="org.cdk8s.App.of"></a>
+
+```java
+import org.cdk8s.App;
+
+App.of(IConstruct c)
+```
+
+###### `c`<sup>Required</sup> <a name="org.cdk8s.App.parameter.c"></a>
+
+- *Type:* [`software.constructs.IConstruct`](#software.constructs.IConstruct)
+
+---
 
 #### Properties <a name="Properties"></a>
 
@@ -321,6 +352,21 @@ public java.lang.String getOutputFileExtension();
 - *Default:* .k8s.yaml
 
 The file extension to use for rendered YAML files.
+
+---
+
+##### `resolvers`<sup>Required</sup> <a name="org.cdk8s.App.property.resolvers"></a>
+
+```java
+public java.util.List<IResolver> getResolvers();
+```
+
+- *Type:* java.util.List<[`org.cdk8s.IResolver`](#org.cdk8s.IResolver)>
+
+Resolvers used by this app.
+
+This includes both custom resolvers
+passed by the `resolvers` property, as well as built-in resolvers.
 
 ---
 
@@ -689,6 +735,7 @@ Metadata associated with this object.
 import org.cdk8s.ApiObjectMetadata;
 
 ApiObjectMetadata.builder()
+//  .additionalAttributes(java.util.Map<java.lang.String, java.lang.Object>)
 //  .annotations(java.util.Map<java.lang.String, java.lang.String>)
 //  .finalizers(java.util.List<java.lang.String>)
 //  .labels(java.util.Map<java.lang.String, java.lang.String>)
@@ -697,6 +744,18 @@ ApiObjectMetadata.builder()
 //  .ownerReferences(java.util.List<OwnerReference>)
     .build();
 ```
+
+##### `additionalAttributes`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadata.property.additionalAttributes"></a>
+
+```java
+public java.util.Map<java.lang.String, java.lang.Object> getAdditionalAttributes();
+```
+
+- *Type:* java.util.Map<java.lang.String, `java.lang.Object`>
+
+Additional metadata attributes.
+
+---
 
 ##### `annotations`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadata.property.annotations"></a>
 
@@ -832,6 +891,185 @@ relationships.
 
 ---
 
+### ApiObjectMetadataDefinitionOptions <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions"></a>
+
+Options for `ApiObjectMetadataDefinition`.
+
+#### Initializer <a name="[object Object].Initializer"></a>
+
+```java
+import org.cdk8s.ApiObjectMetadataDefinitionOptions;
+
+ApiObjectMetadataDefinitionOptions.builder()
+//  .additionalAttributes(java.util.Map<java.lang.String, java.lang.Object>)
+//  .annotations(java.util.Map<java.lang.String, java.lang.String>)
+//  .finalizers(java.util.List<java.lang.String>)
+//  .labels(java.util.Map<java.lang.String, java.lang.String>)
+//  .name(java.lang.String)
+//  .namespace(java.lang.String)
+//  .ownerReferences(java.util.List<OwnerReference>)
+    .apiObject(ApiObject)
+    .build();
+```
+
+##### `additionalAttributes`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions.property.additionalAttributes"></a>
+
+```java
+public java.util.Map<java.lang.String, java.lang.Object> getAdditionalAttributes();
+```
+
+- *Type:* java.util.Map<java.lang.String, `java.lang.Object`>
+
+Additional metadata attributes.
+
+---
+
+##### `annotations`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions.property.annotations"></a>
+
+```java
+public java.util.Map<java.lang.String, java.lang.String> getAnnotations();
+```
+
+- *Type:* java.util.Map<java.lang.String, `java.lang.String`>
+- *Default:* No annotations.
+
+Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+
+They are not queryable and should be
+preserved when modifying objects.
+
+> http://kubernetes.io/docs/user-guide/annotations
+
+---
+
+##### `finalizers`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions.property.finalizers"></a>
+
+```java
+public java.util.List<java.lang.String> getFinalizers();
+```
+
+- *Type:* java.util.List<`java.lang.String`>
+- *Default:* No finalizers.
+
+Namespaced keys that tell Kubernetes to wait until specific conditions are met before it fully deletes resources marked for deletion.
+
+Must be empty before the object is deleted from the registry. Each entry is
+an identifier for the responsible component that will remove the entry from
+the list. If the deletionTimestamp of the object is non-nil, entries in
+this list can only be removed. Finalizers may be processed and removed in
+any order.  Order is NOT enforced because it introduces significant risk of
+stuck finalizers. finalizers is a shared field, any actor with permission
+can reorder it. If the finalizer list is processed in order, then this can
+lead to a situation in which the component responsible for the first
+finalizer in the list is waiting for a signal (field value, external
+system, or other) produced by a component responsible for a finalizer later
+in the list, resulting in a deadlock. Without enforced ordering finalizers
+are free to order amongst themselves and are not vulnerable to ordering
+changes in the list.
+
+> https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/
+
+---
+
+##### `labels`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions.property.labels"></a>
+
+```java
+public java.util.Map<java.lang.String, java.lang.String> getLabels();
+```
+
+- *Type:* java.util.Map<java.lang.String, `java.lang.String`>
+- *Default:* No labels.
+
+Map of string keys and values that can be used to organize and categorize (scope and select) objects.
+
+May match selectors of replication controllers and services.
+
+> http://kubernetes.io/docs/user-guide/labels
+
+---
+
+##### `name`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions.property.name"></a>
+
+```java
+public java.lang.String getName();
+```
+
+- *Type:* `java.lang.String`
+- *Default:* an app-unique name generated by the chart
+
+The unique, namespace-global, name of this object inside the Kubernetes cluster.
+
+Normally, you shouldn't specify names for objects and let the CDK generate
+a name for you that is application-unique. The names CDK generates are
+composed from the construct path components, separated by dots and a suffix
+that is based on a hash of the entire path, to ensure uniqueness.
+
+You can supply custom name allocation logic by overriding the
+`chart.generateObjectName` method.
+
+If you use an explicit name here, bear in mind that this reduces the
+composability of your construct because it won't be possible to include
+more than one instance in any app. Therefore it is highly recommended to
+leave this unspecified.
+
+---
+
+##### `namespace`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions.property.namespace"></a>
+
+```java
+public java.lang.String getNamespace();
+```
+
+- *Type:* `java.lang.String`
+- *Default:* undefined (will be assigned to the 'default' namespace)
+
+Namespace defines the space within each name must be unique.
+
+An empty namespace is equivalent to the "default" namespace, but "default" is the canonical representation.
+Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces
+
+---
+
+##### `ownerReferences`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions.property.ownerReferences"></a>
+
+```java
+public java.util.List<OwnerReference> getOwnerReferences();
+```
+
+- *Type:* java.util.List<[`org.cdk8s.OwnerReference`](#org.cdk8s.OwnerReference)>
+- *Default:* automatically set by Kubernetes
+
+List of objects depended by this object.
+
+If ALL objects in the list have
+been deleted, this object will be garbage collected. If this object is
+managed by a controller, then an entry in this list will point to this
+controller, with the controller field set to true. There cannot be more
+than one managing controller.
+
+Kubernetes sets the value of this field automatically for objects that are
+dependents of other objects like ReplicaSets, DaemonSets, Deployments, Jobs
+and CronJobs, and ReplicationControllers. You can also configure these
+relationships manually by changing the value of this field. However, you
+usually don't need to and can allow Kubernetes to automatically manage the
+relationships.
+
+> https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/
+
+---
+
+##### `apiObject`<sup>Required</sup> <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions.property.apiObject"></a>
+
+```java
+public ApiObject getApiObject();
+```
+
+- *Type:* [`org.cdk8s.ApiObject`](#org.cdk8s.ApiObject)
+
+Which ApiObject instance is the metadata attached to.
+
+---
+
 ### ApiObjectProps <a name="org.cdk8s.ApiObjectProps"></a>
 
 Options for defining API objects.
@@ -898,6 +1136,7 @@ AppProps.builder()
 //  .outdir(java.lang.String)
 //  .outputFileExtension(java.lang.String)
 //  .recordConstructMetadata(java.lang.Boolean)
+//  .resolvers(java.util.List<IResolver>)
 //  .yamlOutputType(YamlOutputType)
     .build();
 ```
@@ -946,6 +1185,25 @@ public java.lang.Boolean getRecordConstructMetadata();
 - *Default:* false
 
 When set to true, the output directory will contain a `construct-metadata.json` file that holds construct related metadata on every resource in the app.
+
+---
+
+##### `resolvers`<sup>Optional</sup> <a name="org.cdk8s.AppProps.property.resolvers"></a>
+
+```java
+public java.util.List<IResolver> getResolvers();
+```
+
+- *Type:* java.util.List<[`org.cdk8s.IResolver`](#org.cdk8s.IResolver)>
+- *Default:* no resolvers.
+
+A list of resolvers that can be used to replace property values before they are written to the manifest file.
+
+When multiple resolvers are passed,
+they are invoked by order in the list, and only the first one that applies
+(e.g calls `context.replaceValue`) is invoked.
+
+> https://cdk8s.io/docs/latest/basics/app/#resolvers
 
 ---
 
@@ -1539,16 +1797,26 @@ Object metadata.
 import org.cdk8s.ApiObjectMetadataDefinition;
 
 ApiObjectMetadataDefinition.Builder.create()
+//  .additionalAttributes(java.util.Map<java.lang.String, java.lang.Object>)
 //  .annotations(java.util.Map<java.lang.String, java.lang.String>)
 //  .finalizers(java.util.List<java.lang.String>)
 //  .labels(java.util.Map<java.lang.String, java.lang.String>)
 //  .name(java.lang.String)
 //  .namespace(java.lang.String)
 //  .ownerReferences(java.util.List<OwnerReference>)
+    .apiObject(ApiObject)
     .build();
 ```
 
-##### `annotations`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadata.parameter.annotations"></a>
+##### `additionalAttributes`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions.parameter.additionalAttributes"></a>
+
+- *Type:* java.util.Map<java.lang.String, `java.lang.Object`>
+
+Additional metadata attributes.
+
+---
+
+##### `annotations`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions.parameter.annotations"></a>
 
 - *Type:* java.util.Map<java.lang.String, `java.lang.String`>
 - *Default:* No annotations.
@@ -1562,7 +1830,7 @@ preserved when modifying objects.
 
 ---
 
-##### `finalizers`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadata.parameter.finalizers"></a>
+##### `finalizers`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions.parameter.finalizers"></a>
 
 - *Type:* java.util.List<`java.lang.String`>
 - *Default:* No finalizers.
@@ -1587,7 +1855,7 @@ changes in the list.
 
 ---
 
-##### `labels`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadata.parameter.labels"></a>
+##### `labels`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions.parameter.labels"></a>
 
 - *Type:* java.util.Map<java.lang.String, `java.lang.String`>
 - *Default:* No labels.
@@ -1600,7 +1868,7 @@ May match selectors of replication controllers and services.
 
 ---
 
-##### `name`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadata.parameter.name"></a>
+##### `name`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions.parameter.name"></a>
 
 - *Type:* `java.lang.String`
 - *Default:* an app-unique name generated by the chart
@@ -1622,7 +1890,7 @@ leave this unspecified.
 
 ---
 
-##### `namespace`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadata.parameter.namespace"></a>
+##### `namespace`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions.parameter.namespace"></a>
 
 - *Type:* `java.lang.String`
 - *Default:* undefined (will be assigned to the 'default' namespace)
@@ -1634,7 +1902,7 @@ Not all objects are required to be scoped to a namespace - the value of this fie
 
 ---
 
-##### `ownerReferences`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadata.parameter.ownerReferences"></a>
+##### `ownerReferences`<sup>Optional</sup> <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions.parameter.ownerReferences"></a>
 
 - *Type:* java.util.List<[`org.cdk8s.OwnerReference`](#org.cdk8s.OwnerReference)>
 - *Default:* automatically set by Kubernetes
@@ -1655,6 +1923,14 @@ usually don't need to and can allow Kubernetes to automatically manage the
 relationships.
 
 > https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/
+
+---
+
+##### `apiObject`<sup>Required</sup> <a name="org.cdk8s.ApiObjectMetadataDefinitionOptions.parameter.apiObject"></a>
+
+- *Type:* [`org.cdk8s.ApiObject`](#org.cdk8s.ApiObject)
+
+Which ApiObject instance is the metadata attached to.
 
 ---
 
@@ -2281,6 +2557,37 @@ the amount of Seconds the `Duration` will represent.
 
 
 
+### ImplicitTokenResolver <a name="org.cdk8s.ImplicitTokenResolver"></a>
+
+- *Implements:* [`org.cdk8s.IResolver`](#org.cdk8s.IResolver)
+
+Resolves implicit tokens.
+
+#### Initializers <a name="org.cdk8s.ImplicitTokenResolver.Initializer"></a>
+
+```java
+import org.cdk8s.ImplicitTokenResolver;
+
+new ImplicitTokenResolver();
+```
+
+#### Methods <a name="Methods"></a>
+
+##### `resolve` <a name="org.cdk8s.ImplicitTokenResolver.resolve"></a>
+
+```java
+public resolve(ResolutionContext context)
+```
+
+###### `context`<sup>Required</sup> <a name="org.cdk8s.ImplicitTokenResolver.parameter.context"></a>
+
+- *Type:* [`org.cdk8s.ResolutionContext`](#org.cdk8s.ResolutionContext)
+
+---
+
+
+
+
 ### JsonPatch <a name="org.cdk8s.JsonPatch"></a>
 
 Utility for applying RFC-6902 JSON-Patch to a document.
@@ -2462,6 +2769,37 @@ Lazy.any(IAnyProducer producer)
 
 
 
+### LazyResolver <a name="org.cdk8s.LazyResolver"></a>
+
+- *Implements:* [`org.cdk8s.IResolver`](#org.cdk8s.IResolver)
+
+Resolvers instanecs of `Lazy`.
+
+#### Initializers <a name="org.cdk8s.LazyResolver.Initializer"></a>
+
+```java
+import org.cdk8s.LazyResolver;
+
+new LazyResolver();
+```
+
+#### Methods <a name="Methods"></a>
+
+##### `resolve` <a name="org.cdk8s.LazyResolver.resolve"></a>
+
+```java
+public resolve(ResolutionContext context)
+```
+
+###### `context`<sup>Required</sup> <a name="org.cdk8s.LazyResolver.parameter.context"></a>
+
+- *Type:* [`org.cdk8s.ResolutionContext`](#org.cdk8s.ResolutionContext)
+
+---
+
+
+
+
 ### Names <a name="org.cdk8s.Names"></a>
 
 Utilities for generating unique and stable names.
@@ -2519,6 +2857,120 @@ Name options.
 
 ---
 
+
+
+### ResolutionContext <a name="org.cdk8s.ResolutionContext"></a>
+
+Context object for a specific resolution process.
+
+#### Initializers <a name="org.cdk8s.ResolutionContext.Initializer"></a>
+
+```java
+import org.cdk8s.ResolutionContext;
+
+new ResolutionContext(ApiObject obj, java.util.List<java.lang.String> key, java.lang.Object value);
+```
+
+##### `obj`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.parameter.obj"></a>
+
+- *Type:* [`org.cdk8s.ApiObject`](#org.cdk8s.ApiObject)
+
+Which ApiObject is currently being resolved.
+
+---
+
+##### `key`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.parameter.key"></a>
+
+- *Type:* java.util.List<`java.lang.String`>
+
+Which key is currently being resolved.
+
+---
+
+##### `value`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.parameter.value"></a>
+
+- *Type:* `java.lang.Object`
+
+The value associated to the key currently being resolved.
+
+---
+
+#### Methods <a name="Methods"></a>
+
+##### `replaceValue` <a name="org.cdk8s.ResolutionContext.replaceValue"></a>
+
+```java
+public replaceValue(java.lang.Object newValue)
+```
+
+###### `newValue`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.parameter.newValue"></a>
+
+- *Type:* `java.lang.Object`
+
+---
+
+
+#### Properties <a name="Properties"></a>
+
+##### `key`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.property.key"></a>
+
+```java
+public java.util.List<java.lang.String> getKey();
+```
+
+- *Type:* java.util.List<`java.lang.String`>
+
+Which key is currently being resolved.
+
+---
+
+##### `obj`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.property.obj"></a>
+
+```java
+public ApiObject getObj();
+```
+
+- *Type:* [`org.cdk8s.ApiObject`](#org.cdk8s.ApiObject)
+
+Which ApiObject is currently being resolved.
+
+---
+
+##### `value`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.property.value"></a>
+
+```java
+public java.lang.Object getValue();
+```
+
+- *Type:* `java.lang.Object`
+
+The value associated to the key currently being resolved.
+
+---
+
+##### `replaced`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.property.replaced"></a>
+
+```java
+public java.lang.Boolean getReplaced();
+```
+
+- *Type:* `java.lang.Boolean`
+
+Whether or not the value was replaced by invoking the `replaceValue` method.
+
+---
+
+##### `replacedValue`<sup>Required</sup> <a name="org.cdk8s.ResolutionContext.property.replacedValue"></a>
+
+```java
+public java.lang.Object getReplacedValue();
+```
+
+- *Type:* `java.lang.Object`
+
+The replaced value that was set via the `replaceValue` method.
+
+---
 
 
 ### Size <a name="org.cdk8s.Size"></a>
@@ -2825,6 +3277,27 @@ the set of documents to save.
 ```java
 public produce()
 ```
+
+
+### IResolver <a name="org.cdk8s.IResolver"></a>
+
+- *Implemented By:* [`org.cdk8s.ImplicitTokenResolver`](#org.cdk8s.ImplicitTokenResolver), [`org.cdk8s.LazyResolver`](#org.cdk8s.LazyResolver), [`org.cdk8s.IResolver`](#org.cdk8s.IResolver)
+
+Contract for resolver objects.
+
+#### Methods <a name="Methods"></a>
+
+##### `resolve` <a name="org.cdk8s.IResolver.resolve"></a>
+
+```java
+public resolve(ResolutionContext context)
+```
+
+###### `context`<sup>Required</sup> <a name="org.cdk8s.IResolver.parameter.context"></a>
+
+- *Type:* [`org.cdk8s.ResolutionContext`](#org.cdk8s.ResolutionContext)
+
+---
 
 
 ## Enums <a name="Enums"></a>

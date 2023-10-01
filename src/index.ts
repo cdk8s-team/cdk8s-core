@@ -13,3 +13,4 @@ export * from './json-patch';
 export * from './duration';
 export * from './cron';
 export * from './size';
+export * from './resolve';
