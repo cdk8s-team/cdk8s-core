@@ -172,7 +172,7 @@ export class ApiObjectMetadataDefinition {
     this.finalizers = options.finalizers ? [...options.finalizers] : [];
     this.ownerReferences = options.ownerReferences ? [...options.ownerReferences] : [];
     this.apiObject = options.apiObject;
-    this._additionalAttributes = options ?? { };
+    this._additionalAttributes = options;
 
     // otherwise apiObject is passed to the resolving logic, which expectadly fails
     delete this._additionalAttributes.apiObject;
