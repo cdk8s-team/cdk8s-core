@@ -4570,9 +4570,9 @@ jsii@1.89.0:
     yargs "^16.2.0"
 
 jsii@^5:
-  version "5.2.9"
-  resolved "https://registry.yarnpkg.com/jsii/-/jsii-5.2.9.tgz#1417896c73dfb3a3615020608c018ea4d72dba0e"
-  integrity sha512-cJg8Y/JrZrN6Icu7yUKnOjL9CLeqL5oNK/aj8oiIgmNZdhnQv5wGaCC11W0JMHvSEfDdfhhKddQlxoErC71GPQ==
+  version "5.2.11"
+  resolved "https://registry.yarnpkg.com/jsii/-/jsii-5.2.11.tgz#52821745c79585664ed35e97e291eb9c56953d75"
+  integrity sha512-HbEgIrWuGswoxgRaKOTOp4m6FPnrL6gpBAc3j78hhPo1k9MCxydiQQAKm73eCRYCwt9/zPBms8O+3Vd6Bi1kRQ==
   dependencies:
     "@jsii/check-node" "1.89.0"
     "@jsii/spec" "^1.89.0"
