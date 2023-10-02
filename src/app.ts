@@ -5,7 +5,7 @@ import { ApiObject } from './api-object';
 import { Chart } from './chart';
 import { DependencyGraph } from './dependency';
 import { Names } from './names';
-import { IResolver, ImplicitTokenResolver, LazyResolver } from './resolve';
+import { IResolver, ImplicitTokenResolver, LazyResolver, NumberStringUnionResolver } from './resolve';
 import { Yaml } from './yaml';
 
 /** The method to divide YAML output into files */
@@ -171,7 +171,7 @@ export class App extends Construct {
     this.outdir = props.outdir ?? process.env.CDK8S_OUTDIR ?? 'dist';
     this.outputFileExtension = props.outputFileExtension ?? '.k8s.yaml';
     this.yamlOutputType = props.yamlOutputType ?? YamlOutputType.FILE_PER_CHART;
-    this.resolvers = [...(props.resolvers ?? []), new LazyResolver(), new ImplicitTokenResolver()];
+    this.resolvers = [...(props.resolvers ?? []), new LazyResolver(), new ImplicitTokenResolver(), new NumberStringUnionResolver()];
     this.recordConstructMetadata = props.recordConstructMetadata ?? (process.env.CDK8S_RECORD_CONSTRUCT_METADATA === 'true' ? true : false);
 
   }
