@@ -2,6 +2,7 @@ import { Construct, Node, Dependency } from 'constructs';
 import {
   ApiObject,
   Chart,
+  GroupVersionKind,
   IResolver,
   JsonPatch,
   Lazy,
@@ -566,6 +567,70 @@ test('annonymous object custom resolver', () => {
       },
       "spec": Object {
         "type": "blah",
+      },
+    }
+  `);
+});
+
+test('can resolve L1', () => {
+  class IntOrString {
+    public static fromString(value: string): IntOrString {
+      return new IntOrString(value);
+    }
+    public static fromNumber(value: number): IntOrString {
+      return new IntOrString(value);
+    }
+    private constructor(public readonly value: string | number) {}
+  }
+
+  interface L1Props {
+    readonly surge: IntOrString;
+  }
+
+  // simulates an L1 as generated via the CLI
+  class L1 extends ApiObject {
+    static readonly GVK: GroupVersionKind = {
+      apiVersion: 'v1',
+      kind: 'Kind',
+    };
+
+    constructor(scope: Construct, id: string, props: L1Props) {
+      super(scope, id, {
+        ...L1.GVK,
+        spec: {
+          surge: props.surge,
+        },
+      });
+    }
+
+    public toJson(): any {
+      const resolved = super.toJson();
+
+      return {
+        ...L1.GVK,
+        metadata: this.metadata.toJson(),
+        spec: {
+          surge: resolved.spec.surge.value,
+        },
+      };
+    }
+  }
+
+  const chart = Testing.chart();
+
+  const apiObject = new L1(chart, 'L1', {
+    surge: IntOrString.fromNumber(500),
+  });
+
+  expect(apiObject.toJson()).toMatchInlineSnapshot(`
+    Object {
+      "apiVersion": "v1",
+      "kind": "Kind",
+      "metadata": Object {
+        "name": "test-l1-c8c430b5",
+      },
+      "spec": Object {
+        "surge": 500,
       },
     }
   `);
