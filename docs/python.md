@@ -2942,7 +2942,7 @@ cdk8s.Lazy.any(
 
 - *Implements:* [`cdk8s.IResolver`](#cdk8s.IResolver)
 
-Resolvers instanecs of `Lazy`.
+Resolves instances of `Lazy`.
 
 #### Initializers <a name="cdk8s.LazyResolver.Initializer"></a>
 

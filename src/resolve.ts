@@ -56,7 +56,7 @@ export interface IResolver {
 }
 
 /**
- * Resolvers instanecs of `Lazy`.
+ * Resolves instances of `Lazy`.
  */
 export class LazyResolver implements IResolver {
 
@@ -136,8 +136,8 @@ export function resolve(key: string[], value: any, apiObject: ApiObject): any {
     return value.map((x, i) => resolve([...key, `${i}`], x, apiObject));
   }
 
-  // dictionrary - resolve leafs
-  if (value.constructor == Object) {
+  // dictionary - resolve leafs
+  if (value.constructor == Object || typeof(value) === 'object') {
     const result: any = {};
     for (const [k, v] of Object.entries(value)) {
       result[k] = resolve([...key, k], v, apiObject);

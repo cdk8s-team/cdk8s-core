@@ -2738,7 +2738,7 @@ Lazy.any(IAnyProducer producer)
 
 - *Implements:* [`org.cdk8s.IResolver`](#org.cdk8s.IResolver)
 
-Resolvers instanecs of `Lazy`.
+Resolves instances of `Lazy`.
 
 #### Initializers <a name="org.cdk8s.LazyResolver.Initializer"></a>
 

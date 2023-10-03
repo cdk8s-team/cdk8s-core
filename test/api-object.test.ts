@@ -164,6 +164,86 @@ test('"spec" is synthesized as-is', () => {
   expect(Testing.synth(stack)).toMatchSnapshot();
 });
 
+test('synth construct with class referenced in child object', () => {
+  // GIVEN
+  const app = Testing.app();
+  const stack = new Chart(app, 'test');
+
+  class Cluster {
+    private readonly name: string;
+    constructor(name: string) {
+      this.name = name;
+    }
+    public toString(): string {
+      return this.name;
+    }
+  }
+  class ExtendedConstruct extends Construct {
+    constructor(scope: Construct, id: string, cluster: Cluster) {
+      super(scope, id);
+
+      new ApiObject(this, 'resource', {
+        kind: 'ResourceType',
+        apiVersion: 'v1',
+        spec: {
+          cluster: cluster, // this should be valid, as the synther can call toString on the cluster object
+          prop2: {
+            world: 123,
+          },
+        },
+      });
+    }
+  }
+
+  new ExtendedConstruct(stack, 'myConstruct', new Cluster('test'));
+
+  expect(Testing.synth(stack)).toMatchSnapshot();
+});
+
+test('synth APIObject with class in props', () => {
+  // GIVEN
+  const app = Testing.app();
+  const stack = new Chart(app, 'test');
+
+  class Cluster {
+    private readonly name: string;
+    constructor(name: string) {
+      this.name = name;
+    }
+    public toString(): string {
+      return this.name;
+    }
+  }
+  class CustomAPIObject extends ApiObject {
+    constructor(scope: Construct, id: string, props: {cluster: Cluster}) {
+      super(scope, id, {
+        apiVersion: 'v1',
+        kind: 'NewObject',
+        ...props, // we super our props for convenience, but it can contain arbitrary fields
+      });
+
+      // In this case we don't even need to reference the class in an object, just super the props
+      if (props.cluster.toString() === 'test2') {
+        throw new Error('Invalid cluster name');
+      }
+
+      new ApiObject(this, 'resource', {
+        kind: 'ResourceType',
+        apiVersion: 'v1',
+        spec: {
+          prop2: {
+            world: 123,
+          },
+        },
+      });
+    }
+  }
+
+  new CustomAPIObject(stack, 'myObject', { cluster: new Cluster('test') });
+
+  expect(Testing.synth(stack)).toMatchSnapshot();
+});
+
 test('"data" can be used to specify resource data', () => {
   // GIVEN
   const app = Testing.app();

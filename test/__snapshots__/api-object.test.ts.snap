@@ -80,6 +80,53 @@ exports[`printed yaml is alphabetical 1`] = `
 ]"
 `;
 
+exports[`synth APIObject with class in props 1`] = `
+Array [
+  Object {
+    "apiVersion": "v1",
+    "cluster": Object {
+      "name": "test",
+    },
+    "kind": "NewObject",
+    "metadata": Object {
+      "name": "test-myobject-c81c5228",
+    },
+  },
+  Object {
+    "apiVersion": "v1",
+    "kind": "ResourceType",
+    "metadata": Object {
+      "name": "test-myobject-c8b02486",
+    },
+    "spec": Object {
+      "prop2": Object {
+        "world": 123,
+      },
+    },
+  },
+]
+`;
+
+exports[`synth construct with class referenced in child object 1`] = `
+Array [
+  Object {
+    "apiVersion": "v1",
+    "kind": "ResourceType",
+    "metadata": Object {
+      "name": "test-myconstruct-c89c4ae1",
+    },
+    "spec": Object {
+      "cluster": Object {
+        "name": "test",
+      },
+      "prop2": Object {
+        "world": 123,
+      },
+    },
+  },
+]
+`;
+
 exports[`synthesized resource name is based on path 1`] = `
 Array [
   Object {
