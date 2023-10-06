@@ -30,7 +30,6 @@ export interface ChartProps {
    * @default false
    */
   readonly disableResourceNameHashes?: boolean;
-
 }
 
 export class Chart extends Construct {
@@ -40,7 +39,7 @@ export class Chart extends Construct {
    * We do attribute detection since we can't reliably use 'instanceof'.
    */
   public static isChart(x: any): x is Chart {
-    return x !== null && typeof(x) === 'object' && CHART_SYMBOL in x;
+    return x !== null && typeof x === 'object' && CHART_SYMBOL in x;
   }
 
   /**
@@ -85,7 +84,7 @@ export class Chart extends Construct {
    */
   private readonly _disableResourceNameHashes?: boolean;
 
-  constructor(scope: Construct, id: string, props: ChartProps = { }) {
+  constructor(scope: Construct, id: string, props: ChartProps = {}) {
     super(scope, id);
     this.namespace = props.namespace;
     this._labels = props.labels ?? {};
@@ -147,5 +146,11 @@ export class Chart extends Construct {
   public toJson(): any[] {
     return App._synthChart(this);
   }
-}
 
+  /**
+   * Returns all the included API objects.
+   */
+  get apiObjects(): ApiObject[] {
+    return this.node.children.filter((o): o is ApiObject => o instanceof ApiObject);
+  }
+}

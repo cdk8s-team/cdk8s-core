@@ -38,6 +38,6 @@ export class Include extends Construct {
    * Returns all the included API objects.
    */
   public get apiObjects(): ApiObject[] {
-    return this.node.children.filter(o => o instanceof ApiObject) as ApiObject[];
+    return this.node.children.filter((o): o is ApiObject => o instanceof ApiObject);
   }
 }
