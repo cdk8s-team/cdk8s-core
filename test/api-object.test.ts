@@ -7,6 +7,7 @@ import {
   JsonPatch,
   Lazy,
   ResolutionContext,
+  Size,
   Testing,
 } from '../src';
 
@@ -624,4 +625,20 @@ test('can resolve L1', () => {
       },
     }
   `);
+});
+
+test('toJson error message', () => {
+
+  const chart = Testing.chart();
+
+  const obj = new ApiObject(chart, 'ConfigMap', {
+    kind: 'ConfigMap',
+    apiVersion: 'v1',
+    data: {
+      size: Size.gibibytes(5),
+    },
+  });
+
+  expect(() => obj.toJson()).toThrowError(`Failed serializing construct at path '${obj.node.path}' with name '${obj.name}': Error: can't render non-simple object of type 'Size'`);
+
 });
