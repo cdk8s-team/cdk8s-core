@@ -198,26 +198,31 @@ export class ApiObject extends Construct {
    * `CDK8S_DISABLE_SORT` environment variable to any non-empty value.
    */
   public toJson(): any {
-    const data: any = {
-      ...this.props,
-      metadata: this.metadata.toJson(),
-    };
 
-    const sortKeys = process.env.CDK8S_DISABLE_SORT ? false : true;
-    const json = sanitizeValue(resolve([], data, this), { sortKeys });
-    const patched = JsonPatch.apply(json, ...this.patches);
+    try {
+      const data: any = {
+        ...this.props,
+        metadata: this.metadata.toJson(),
+      };
 
-    // reorder top-level keys so that we first have "apiVersion", "kind" and
-    // "metadata" and then all the rest
-    const result: any = {};
-    const orderedKeys = ['apiVersion', 'kind', 'metadata', ...Object.keys(patched)];
-    for (const k of orderedKeys) {
-      if (k in patched) {
-        result[k] = patched[k];
+      const sortKeys = process.env.CDK8S_DISABLE_SORT ? false : true;
+      const json = sanitizeValue(resolve([], data, this), { sortKeys });
+      const patched = JsonPatch.apply(json, ...this.patches);
+
+      // reorder top-level keys so that we first have "apiVersion", "kind" and
+      // "metadata" and then all the rest
+      const result: any = {};
+      const orderedKeys = ['apiVersion', 'kind', 'metadata', ...Object.keys(patched)];
+      for (const k of orderedKeys) {
+        if (k in patched) {
+          result[k] = patched[k];
+        }
       }
-    }
 
-    return result;
+      return result;
+    } catch (e) {
+      throw new Error(`Failed serializing construct at path '${Node.of(this).path}' with name '${this.name}': ${e}`);
+    }
   }
 }
 
