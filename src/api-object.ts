@@ -221,7 +221,7 @@ export class ApiObject extends Construct {
 
       return result;
     } catch (e) {
-      throw new Error(`Failed serializing construct at path '${this.node.path}' with name '${this.name}': ${e}`);
+      throw new Error(`Failed serializing construct at path '${Node.of(this).path}' with name '${this.name}': ${e}`);
     }
   }
 }

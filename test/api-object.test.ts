@@ -649,6 +649,6 @@ test('toJson error message', () => {
     },
   });
 
-  expect(() => obj.toJson()).toThrowError(`Failed serializing construct at path '${obj.node.path}' with name '${obj.name}': Error: can't render non-simple object of type 'Size'`);
+  expect(() => obj.toJson()).toThrowError(`Failed serializing construct at path '${Node.of(obj).path}' with name '${obj.name}': Error: can't render non-simple object of type 'Size'`);
 
 });
