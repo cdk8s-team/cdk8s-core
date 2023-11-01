@@ -39,7 +39,7 @@ export class Chart extends Construct {
    * We do attribute detection since we can't reliably use 'instanceof'.
    */
   public static isChart(x: any): x is Chart {
-    return x !== null && typeof x === 'object' && CHART_SYMBOL in x;
+    return x !== null && typeof(x) === 'object' && CHART_SYMBOL in x;
   }
 
   /**
@@ -84,7 +84,7 @@ export class Chart extends Construct {
    */
   private readonly _disableResourceNameHashes?: boolean;
 
-  constructor(scope: Construct, id: string, props: ChartProps = {}) {
+  constructor(scope: Construct, id: string, props: ChartProps = { }) {
     super(scope, id);
     this.namespace = props.namespace;
     this._labels = props.labels ?? {};
