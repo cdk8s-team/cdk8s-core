@@ -30,6 +30,7 @@ export interface ChartProps {
    * @default false
    */
   readonly disableResourceNameHashes?: boolean;
+
 }
 
 export class Chart extends Construct {

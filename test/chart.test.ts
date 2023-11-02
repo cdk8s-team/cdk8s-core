@@ -142,6 +142,7 @@ test('synthesizeManifest() can be used to synthesize a specific chart', () => {
 });
 
 test('addDependency', () => {
+
   const app = Testing.app();
   const chart1 = new Chart(app, 'chart1');
   const chart2 = new Chart(app, 'chart2');
@@ -155,6 +156,7 @@ test('addDependency', () => {
     chart2,
     chart3,
   ]);
+
 });
 
 test('isChart distinguishes charts from non-charts', () => {
@@ -183,8 +185,10 @@ test('isChart distinguishes charts from non-charts', () => {
 });
 
 describe('toJson', () => {
+
   test('validates the chart', () => {
     class ValidatingConstruct extends Construct {
+
       public validateInvoked = false;
 
       constructor(scope: Construct, id: string) {
@@ -204,9 +208,11 @@ describe('toJson', () => {
     chart.toJson();
 
     expect(construct.validateInvoked).toBeTruthy();
+
   });
 
   test('returns an ordered list', () => {
+
     const app = Testing.app();
     const chart1 = new Chart(app, 'chart1');
 
@@ -222,9 +228,11 @@ describe('toJson', () => {
       obj2.toJson(),
       obj1.toJson(),
     ]);
+
   });
 
   test('ignores objects belonging to a different chart', () => {
+
     const app = Testing.app();
     const chart1 = new Chart(app, 'chart1');
     const chart2 = new Chart(app, 'chart2');
@@ -237,9 +245,11 @@ describe('toJson', () => {
     expect(chart1.toJson()).toEqual([
       obj1.toJson(),
     ]);
+
   });
 
   test('ignores chart objects', () => {
+
     const app = Testing.app();
     const chart1 = new Chart(app, 'chart1');
     const chart2 = new Chart(app, 'chart2');
@@ -253,9 +263,11 @@ describe('toJson', () => {
     expect(chart1.toJson()).toEqual([
       obj1.toJson(),
     ]);
+
   });
 
   test('orders custom constructs', () => {
+
     const app = Testing.app();
     const chart = new Chart(app, 'chart');
 
@@ -268,9 +280,11 @@ describe('toJson', () => {
       dataBase.obj.toJson(),
       microService.obj.toJson(),
     ]);
+
   });
 
   test('orders transitive custom constructs', () => {
+
     const app = Testing.app();
     const chart = new Chart(app, 'chart');
 
@@ -283,9 +297,11 @@ describe('toJson', () => {
       dataBase.obj.obj.toJson(),
       microService.obj.toJson(),
     ]);
+
   });
 
   test('api object depends on custom construct', () => {
+
     const app = Testing.app();
     const chart = new Chart(app, 'chart');
 
@@ -298,9 +314,11 @@ describe('toJson', () => {
       dataBase.obj.toJson(),
       microService.toJson(),
     ]);
+
   });
 
   test('construct depends on api object', () => {
+
     const app = Testing.app();
     const chart = new Chart(app, 'chart');
 
@@ -313,9 +331,11 @@ describe('toJson', () => {
       database.toJson(),
       microService.obj.toJson(),
     ]);
+
   });
 
   test('parent chart does not include objects of children charts', () => {
+
     const app = Testing.app();
     const chart = new Chart(app, 'chart1');
     const childChart = new Chart(chart, 'chart2');
@@ -328,10 +348,13 @@ describe('toJson', () => {
     expect(childChart.toJson()).toMatchObject([
       { apiVersion: 'v1', kind: 'CustomConstruct', metadata: { name: 'chart1-chart2-child2-child2obj-c828dca6' } },
     ]);
+
   });
+
 });
 
 test('construct metadata is recorded when requested by api', () => {
+
   const app = Testing.app({ recordConstructMetadata: true });
   const chart = new Chart(app, 'chart1');
 
@@ -351,9 +374,12 @@ test('construct metadata is recorded when requested by api', () => {
       },
     },
   });
+
+
 });
 
 test('construct metadata is recoreded when requested by env variable', () => {
+
   try {
     process.env.CDK8S_RECORD_CONSTRUCT_METADATA = 'true';
     const app = Testing.app();
@@ -378,9 +404,11 @@ test('construct metadata is recoreded when requested by env variable', () => {
   } finally {
     delete process.env.CDK8S_RECORD_CONSTRUCT_METADATA;
   }
+
 });
 
 test('construct metadata is not recorded when not requested', () => {
+
   const app = Testing.app();
   const chart = new Chart(app, 'chart1');
 
@@ -392,6 +420,7 @@ test('construct metadata is not recorded when not requested', () => {
   app.synth();
 
   expect(fs.existsSync(path.join(app.outdir, 'construct-metadata.json'))).toBeFalsy();
+
 });
 
 function createImplictToken(value: any) {
@@ -401,6 +430,7 @@ function createImplictToken(value: any) {
 }
 
 class CustomConstruct extends Construct {
+
   public obj: ApiObject;
 
   constructor(scope: Construct, id: string) {
@@ -411,6 +441,7 @@ class CustomConstruct extends Construct {
 }
 
 class CustomNestedConstruct extends Construct {
+
   public obj: CustomConstruct;
 
   constructor(scope: Construct, id: string) {
