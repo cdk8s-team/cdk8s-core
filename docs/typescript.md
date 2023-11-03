@@ -402,6 +402,18 @@ a construct node.
 
 #### Properties <a name="Properties"></a>
 
+##### `apiObjects`<sup>Required</sup> <a name="cdk8s.Chart.property.apiObjects"></a>
+
+```typescript
+public readonly apiObjects: ApiObject[];
+```
+
+- *Type:* [`cdk8s.ApiObject`](#cdk8s.ApiObject)[]
+
+Returns all the included API objects.
+
+---
+
 ##### `labels`<sup>Required</sup> <a name="cdk8s.Chart.property.labels"></a>
 
 ```typescript

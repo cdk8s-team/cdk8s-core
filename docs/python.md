@@ -534,6 +534,18 @@ a construct node.
 
 #### Properties <a name="Properties"></a>
 
+##### `api_objects`<sup>Required</sup> <a name="cdk8s.Chart.property.api_objects"></a>
+
+```python
+api_objects: typing.List[ApiObject]
+```
+
+- *Type:* typing.List[[`cdk8s.ApiObject`](#cdk8s.ApiObject)]
+
+Returns all the included API objects.
+
+---
+
 ##### `labels`<sup>Required</sup> <a name="cdk8s.Chart.property.labels"></a>
 
 ```python
