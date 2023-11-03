@@ -450,3 +450,30 @@ class CustomNestedConstruct extends Construct {
     this.obj = new CustomConstruct(this, 'nested');
   }
 }
+
+test('apiObjects returns all the API objects', () => {
+  // GIVEN
+  const chart = Testing.chart();
+
+  // WHEN
+
+  new ApiObject(chart, 'obj1', {
+    kind: 'Deployment',
+    apiVersion: 'v1',
+  });
+  new ApiObject(chart, 'obj2', {
+    apiVersion: 'v1',
+    kind: 'Foo',
+    metadata: {
+      name: 'resource1',
+    },
+  });
+  new ApiObject(chart, 'obj3', {
+    apiVersion: 'v1',
+    kind: 'Bar',
+    metadata: {
+      name: 'resource1',
+    },
+  });
+  expect(chart.apiObjects.map((x) => x.kind).sort()).toEqual(['Bar', 'Deployment', 'Foo']);
+});
