@@ -152,6 +152,6 @@ export class Chart extends Construct {
    * Returns all the included API objects.
    */
   get apiObjects(): ApiObject[] {
-    return this.node.children.filter((o): o is ApiObject => o instanceof ApiObject);
+    return Node.of(this).children.filter((o): o is ApiObject => o instanceof ApiObject);
   }
 }
