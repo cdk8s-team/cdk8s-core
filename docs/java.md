@@ -512,6 +512,18 @@ a construct node.
 
 #### Properties <a name="Properties"></a>
 
+##### `apiObjects`<sup>Required</sup> <a name="org.cdk8s.Chart.property.apiObjects"></a>
+
+```java
+public java.util.List<ApiObject> getApiObjects();
+```
+
+- *Type:* java.util.List<[`org.cdk8s.ApiObject`](#org.cdk8s.ApiObject)>
+
+Returns all the included API objects.
+
+---
+
 ##### `labels`<sup>Required</sup> <a name="org.cdk8s.Chart.property.labels"></a>
 
 ```java
