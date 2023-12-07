@@ -67,7 +67,7 @@
     "projen": "^0.77.5",
     "standard-version": "^9",
     "ts-jest": "^27",
-    "typescript": "~5.3.2"
+    "typescript": "~5.3.3"
   },
   "peerDependencies": {
     "constructs": "^3.4.344"
