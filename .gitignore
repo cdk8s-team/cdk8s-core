@@ -31,7 +31,6 @@ jspm_packages/
 *.tgz
 .yarn-integrity
 .cache
-!/.projenrc.js
 /test-reports/
 junit.xml
 /coverage/
@@ -74,3 +73,4 @@ tsconfig.json
 !/.backportrc.json
 !/.github/workflows/backport.yml
 !/src/_loadurl.js
+!/.projenrc.js
