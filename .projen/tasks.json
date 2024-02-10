@@ -433,7 +433,7 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev --filter=@types/follow-redirects,@types/jest,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,constructs,eslint-import-resolver-typescript,eslint-plugin-import,eslint,jest,jest-junit,jsii-diff,json-schema-to-typescript,standard-version,ts-jest,fast-json-patch,follow-redirects,yaml"
+          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev --filter=@types/follow-redirects,@types/jest,eslint-import-resolver-typescript,eslint-plugin-import,jest,jsii-diff,json-schema-to-typescript,ts-jest,fast-json-patch,follow-redirects,yaml"
         },
         {
           "exec": "yarn install --check-files"
