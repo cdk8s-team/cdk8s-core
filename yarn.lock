@@ -4000,9 +4000,9 @@ jsii-rosetta@^1.44.0, jsii-rosetta@^1.94.0:
     yargs "^16.2.0"
 
 jsii-rosetta@^5:
-  version "5.3.21"
-  resolved "https://registry.yarnpkg.com/jsii-rosetta/-/jsii-rosetta-5.3.21.tgz#7b4b40d3b9dff6e776736541bb17a1ffa7da86ed"
-  integrity sha512-xkq55t8UdRXuiphil6lxNlDggK2m5eNJ5bG/FgF+74A32EfDK/usLEZP6wC6zDeJJW3g4Ec3GABatnI0b5m72Q==
+  version "5.3.24"
+  resolved "https://registry.yarnpkg.com/jsii-rosetta/-/jsii-rosetta-5.3.24.tgz#f51c7bfef651d502f8899b89b210768f83316cd8"
+  integrity sha512-loeDPp/5M4KGboicntXSKGOLfkC9zRKCGA7SJbk9vSKg/5g2ndDc6oKAkVr+o8vF0v8Vup5rN5o10gztnkkAuQ==
   dependencies:
     "@jsii/check-node" "1.94.0"
     "@jsii/spec" "^1.94.0"
@@ -4038,9 +4038,9 @@ jsii@1.94.0:
     yargs "^16.2.0"
 
 jsii@^5, jsii@~5.3.0:
-  version "5.3.23"
-  resolved "https://registry.yarnpkg.com/jsii/-/jsii-5.3.23.tgz#1d464f5b6b934e46abfd2c324f3c309f8aeb39ef"
-  integrity sha512-100e5Cu2IzP7Kp4mqDc+5skaov1NQZu004lwuhajZV0ywj7dCg7ygkP67qBh+ALXCpgPbm4oTsOKrrmp2dBjOA==
+  version "5.3.25"
+  resolved "https://registry.yarnpkg.com/jsii/-/jsii-5.3.25.tgz#5bf5b492cd276ee354b5f5e63f362d1c58475457"
+  integrity sha512-uTPLKvI3ULJfF6jNL4Juq/h81C/pu1YTI+b7J8C258MPlN6vOIsLXV1aC8ENZBzJh1txqT2VLP28hoGzyETwUQ==
   dependencies:
     "@jsii/check-node" "1.94.0"
     "@jsii/spec" "^1.94.0"
