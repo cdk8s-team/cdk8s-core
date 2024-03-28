@@ -59,6 +59,30 @@ export class Size {
   }
 
   /**
+   * Returns amount with abbreviated storage unit
+   */
+  public toString(): string {
+    return `${this.amount}${this.getAbbreviatedStorageUnit(this.unit)}`;
+  }
+
+  private getAbbreviatedStorageUnit(unit: StorageUnit): string {
+    switch (unit) {
+      case StorageUnit.Kibibytes:
+        return 'Ki';
+      case StorageUnit.Mebibytes:
+        return 'Mi';
+      case StorageUnit.Gibibytes:
+        return 'Gi';
+      case StorageUnit.Tebibytes:
+        return 'Ti';
+      case StorageUnit.Pebibytes:
+        return 'Pi';
+      default:
+        throw new Error(`Recieved an incorrect storage unit: ${unit}`);
+    }
+  }
+
+  /**
    * Return this storage as a total number of kibibytes.
    */
   public toKibibytes(opts: SizeConversionOptions = {}): number {
@@ -104,11 +128,10 @@ export enum SizeRoundingBehavior {
   FLOOR,
   /** Don't round. Return even if the result is a fraction. */
   NONE,
-
 }
 
 /**
- * Options for how to convert time to a different unit.
+ * Options for how to convert size to a different unit.
  */
 export interface SizeConversionOptions {
   /**
@@ -137,7 +160,9 @@ class StorageUnit {
 
 function convert(amount: number, fromUnit: StorageUnit, toUnit: StorageUnit, options: SizeConversionOptions = {}) {
   const rounding = options.rounding ?? SizeRoundingBehavior.FAIL;
-  if (fromUnit.inKibiBytes === toUnit.inKibiBytes) { return amount; }
+  if (fromUnit.inKibiBytes === toUnit.inKibiBytes) {
+    return amount;
+  }
 
   const multiplier = fromUnit.inKibiBytes / toUnit.inKibiBytes;
   const value = amount * multiplier;
