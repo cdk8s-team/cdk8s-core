@@ -74,8 +74,8 @@
   },
   "dependencies": {
     "fast-json-patch": "^3.1.1",
-    "follow-redirects": "^1.15.2",
-    "yaml": "2.3.2"
+    "follow-redirects": "^1.15.6",
+    "yaml": "2.4.1"
   },
   "bundledDependencies": [
     "fast-json-patch",
