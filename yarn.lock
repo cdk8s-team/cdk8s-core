@@ -1416,7 +1416,7 @@ brace-expansion@^2.0.1:
   dependencies:
     balanced-match "^1.0.0"
 
-braces@^3.0.2:
+braces@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/braces/-/braces-3.0.3.tgz#490332f40919452272d55a8480adc0c441358789"
   integrity sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==
@@ -4028,9 +4028,9 @@ jsii-rosetta@^1.44.0:
     yargs "^16.2.0"
 
 jsii-rosetta@^5:
-  version "5.4.18"
-  resolved "https://registry.yarnpkg.com/jsii-rosetta/-/jsii-rosetta-5.4.18.tgz#52b0683c7f4a38111fa682b69e9d28e2916f3d72"
-  integrity sha512-9hWCwMtu2u1si10+jy63PNUhMaqCYeF6eqKrvzw8TLQjPMPj1WyJR7ztbooR2L25IM+UVTv0FmQZljNZirVERQ==
+  version "5.4.19"
+  resolved "https://registry.yarnpkg.com/jsii-rosetta/-/jsii-rosetta-5.4.19.tgz#be5a73e873786ae30197333ba92408fadd556fc2"
+  integrity sha512-LEH/weiioP9vf4mWhqwfVSU1kRdWlC6d7In0D2HR9vNwENmzG9kx+Jy6WonUT9HsEos/RmqTxI35CRGHQ+R7Ag==
   dependencies:
     "@jsii/check-node" "1.98.0"
     "@jsii/spec" "^1.98.0"
@@ -4066,9 +4066,9 @@ jsii@1.98.0:
     yargs "^16.2.0"
 
 jsii@^5, jsii@~5.4.0:
-  version "5.4.17"
-  resolved "https://registry.yarnpkg.com/jsii/-/jsii-5.4.17.tgz#0450755998a0b5a72abb63d991fd803475dff62a"
-  integrity sha512-UyhEQW3wgMUdkM6vs68H+nbXtQTgEAt03jxFonmLoi+nfa+uZ8mNilYqmCJARQR3NLC+J0+Ahg8OGskx7anAgg==
+  version "5.4.18"
+  resolved "https://registry.yarnpkg.com/jsii/-/jsii-5.4.18.tgz#82298308de4077b52dba631c891d32a9d21b340d"
+  integrity sha512-ocVGqfYmXk0SCKmygQt+OS9dfCnIMIdAfwqdyhwaY3AnNlRxN6d74Yg6Pz9GaB4zeE9skFBlOJLLtn2J+EKULQ==
   dependencies:
     "@jsii/check-node" "1.98.0"
     "@jsii/spec" "^1.98.0"
@@ -4415,12 +4415,12 @@ merge2@^1.3.0, merge2@^1.4.1:
   integrity sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==
 
 micromatch@^4.0.4:
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-4.0.5.tgz#bc8999a7cbbf77cdc89f132f6e467051b49090c6"
-  integrity sha512-DMy+ERcEW2q8Z2Po+WNXuw3c5YaUSFjAO5GsJqfEl7UjvtIuFKO6ZrKvcItdy98dwFI2N1tg3zNIdKaQT+aNdA==
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-4.0.6.tgz#ab4e37c42726b9cd788181ba4a2a4fead8e394a3"
+  integrity sha512-Y4Ypn3oujJYxJcMacVgcs92wofTHxp9FzfDpQON4msDefoC0lb3ETvQLOdLcbhSwU1bz8HrL/1sygfBIHudrkQ==
   dependencies:
-    braces "^3.0.2"
-    picomatch "^2.3.1"
+    braces "^3.0.3"
+    picomatch "^4.0.2"
 
 mime-db@1.52.0:
   version "1.52.0"
@@ -4831,10 +4831,15 @@ picocolors@^1.0.0, picocolors@^1.0.1:
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.0.1.tgz#a8ad579b571952f0e5d25892de5445bcfe25aaa1"
   integrity sha512-anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==
 
-picomatch@^2.0.4, picomatch@^2.2.3, picomatch@^2.3.1:
+picomatch@^2.0.4, picomatch@^2.2.3:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
+
+picomatch@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-4.0.2.tgz#77c742931e8f3b8820946c76cd0c1f13730d1dab"
+  integrity sha512-M7BAV6Rlcy5u+m6oPhAPFgJTzAioX/6B0DxyvDlo9l8+T3nLKbrczg2WLUyzd45L8RqfUMyGPzekbMvX2Ldkwg==
 
 pify@^2.3.0:
   version "2.3.0"
