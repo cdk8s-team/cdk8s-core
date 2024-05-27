@@ -64,7 +64,7 @@
     "jsii-pacmak": "^1.98.0",
     "jsii-rosetta": "^5",
     "json-schema-to-typescript": "^10.1.5",
-    "projen": "^0.81.15",
+    "projen": "^0.81.16",
     "standard-version": "^9",
     "ts-jest": "^27",
     "typescript": "~5.4.5"
@@ -101,8 +101,12 @@
   },
   "main": "lib/index.js",
   "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "0.0.0",
   "jest": {
+    "coverageProvider": "v8",
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.ts?(x)",
       "<rootDir>/@(test|src)/**/*(*.)@(spec|test).ts?(x)"
