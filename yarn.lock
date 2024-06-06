@@ -1625,7 +1625,7 @@ co@^4.6.0:
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
   integrity sha512-QVb0dM5HvG+uaxitm8wONl7jltx8dqhfU33DcqtOZcLSVIKSDDLDi7+0LbAKiyI8hD9u42m2YxXSkMGWThaecQ==
 
-codemaker@^1.98.0, codemaker@^1.99.0:
+codemaker@^1.99.0:
   version "1.99.0"
   resolved "https://registry.yarnpkg.com/codemaker/-/codemaker-1.99.0.tgz#642716671066395d54aab301f32112731f0b813d"
   integrity sha512-Skhc0pdsxRWxevjQWLFWOGzhC8BJaac0MfV0lF5UUJuRcf2T6qAhc1OGuWwlZTZZxor9dS0JKavlSTKyLcksag==
