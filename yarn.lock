@@ -621,14 +621,6 @@
   resolved "https://registry.yarnpkg.com/@jsdevtools/ono/-/ono-7.1.3.tgz#9df03bbd7c696a5c58885c34aa06da41c8543796"
   integrity sha512-4JQNk+3mVzK3xh2rqd6RB4J46qUR19azEHBneZyTZM+c456qOrbbM/5xcR8huNCCcbVt7+UmizG6GuUvPvKUYg==
 
-"@jsii/check-node@1.100.0":
-  version "1.100.0"
-  resolved "https://registry.yarnpkg.com/@jsii/check-node/-/check-node-1.100.0.tgz#98e8db619d026c8693f2fe0417961e8fb1e9daff"
-  integrity sha512-4bsO7Y6YyekBk4v4iatAl5E7QQs2UUPtHoP9gfT3UnpbKzyMjH8XholSVCjfcNSKBwFobPMb8iA7NCMIMqFKsQ==
-  dependencies:
-    chalk "^4.1.2"
-    semver "^7.6.0"
-
 "@jsii/check-node@1.101.0":
   version "1.101.0"
   resolved "https://registry.yarnpkg.com/@jsii/check-node/-/check-node-1.101.0.tgz#175e5a2b9b31f232fd5df2942dacc4b20820aa93"
@@ -637,7 +629,7 @@
     chalk "^4.1.2"
     semver "^7.6.0"
 
-"@jsii/spec@1.101.0", "@jsii/spec@^1.100.0", "@jsii/spec@^1.101.0", "@jsii/spec@^1.44.0":
+"@jsii/spec@1.101.0", "@jsii/spec@^1.101.0", "@jsii/spec@^1.44.0":
   version "1.101.0"
   resolved "https://registry.yarnpkg.com/@jsii/spec/-/spec-1.101.0.tgz#b1c3488d5df2ee0c355e0a3493e3de4add9d7452"
   integrity sha512-855OnjKm4RTzRA78GGTNBG/GLe6X/vHJYD58zg7Rw8rWS7sU6iB65TM/7P7R3cufVew8umjjPjvW7ygS6ZqITQ==
@@ -4276,12 +4268,12 @@ jsii-rosetta@^1.44.0:
     yargs "^16.2.0"
 
 jsii-rosetta@^5:
-  version "5.4.23"
-  resolved "https://registry.yarnpkg.com/jsii-rosetta/-/jsii-rosetta-5.4.23.tgz#c07fb7d99e7796c3b9e4d13eff7e37b9d07ea96c"
-  integrity sha512-QOObTPIWIwc+q4dvXgRXptdEtkcCb6uQO93sHlz5f3SBJ/E/LdLaIVCqPqZmojkGr+5OnVrU4h58okPFOo4c4w==
+  version "5.4.24"
+  resolved "https://registry.yarnpkg.com/jsii-rosetta/-/jsii-rosetta-5.4.24.tgz#c7f580ef5cc6a485cbe37abe7ff4422b64cf57c5"
+  integrity sha512-KFeyqpIqbA6eDfmC9DdsG13kSANev47amXrH+ngx8WhXTre8D11V65BiSWlyBdvuUFvmGaN8eUd66+dyPcxndA==
   dependencies:
-    "@jsii/check-node" "1.100.0"
-    "@jsii/spec" "^1.100.0"
+    "@jsii/check-node" "1.101.0"
+    "@jsii/spec" "^1.101.0"
     "@xmldom/xmldom" "^0.8.10"
     chalk "^4"
     commonmark "^0.31.0"
@@ -4314,9 +4306,9 @@ jsii@1.101.0:
     yargs "^16.2.0"
 
 jsii@^5, jsii@~5.4.0:
-  version "5.4.24"
-  resolved "https://registry.yarnpkg.com/jsii/-/jsii-5.4.24.tgz#69701c7a317f64b5a7d0687a7844bf68d4b1c91d"
-  integrity sha512-9xC4LDmWCrhNKQk2LApB5KSDko8SR0VaTqd97fwjxmYmVImUmbMEiqXGUA/AD6NUAePlexoFeX929z2EPJ4s+g==
+  version "5.4.25"
+  resolved "https://registry.yarnpkg.com/jsii/-/jsii-5.4.25.tgz#a0515329308bb0223f50723dc1689c3b140b6587"
+  integrity sha512-taEVKh+SWtg0nNGzk5YrLGjWRxSnVaVfxgec4BtthwBgmaUH+QMKIIT/AM84s1WRVMWBG+GnZKgKFv+L4jKLig==
   dependencies:
     "@jsii/check-node" "1.101.0"
     "@jsii/spec" "^1.101.0"
