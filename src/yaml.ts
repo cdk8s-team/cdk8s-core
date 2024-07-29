@@ -82,7 +82,7 @@ export class Yaml {
       if (obj === undefined) { continue; }
       if (obj === null) { continue; }
       if (Array.isArray(obj) && obj.length === 0) { continue; }
-      if (typeof(obj) === 'object' && Object.keys(obj).length === 0) { continue; }
+      if (typeof (obj) === 'object' && Object.keys(obj).length === 0) { continue; }
 
       result.push(obj);
     }
@@ -103,7 +103,7 @@ export class Yaml {
  * This method spawns a child process in order to perform an http call synchronously.
  */
 function loadurl(url: string): string {
-  const script = path.join(__dirname, '_loadurl.js');
+  const script = path.join(__dirname, '_loadurl.mjs');
   return execFileSync(process.execPath, [script, url], {
     encoding: 'utf-8',
     maxBuffer: MAX_DOWNLOAD_BUFFER,

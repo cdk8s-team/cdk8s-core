@@ -5,9 +5,10 @@
 // ctors). so we utilize `spawnSync` to spawn this program as a child process.
 // alternatively we could have use `curl` but this is more portable.
 
-const { http, https } = require('follow-redirects');
-const { parse } = require('url');
-const fs = require('fs');
+import { http, https } from 'follow-redirects';
+import { parse } from 'url';
+import { lstatSync, createReadStream } from 'fs';
+import process from 'node:process'
 
 const url = process.argv[2];
 if (!url) {
@@ -16,8 +17,8 @@ if (!url) {
 }
 
 try {
-  if (fs.lstatSync(url).isFile()) {
-    fs.createReadStream(url).pipe(process.stdout);
+  if (lstatSync(url).isFile()) {
+    createReadStream(url).pipe(process.stdout);
   }
 } catch (err) {
   const purl = parse(url);
@@ -25,16 +26,16 @@ try {
   if (!purl.protocol) {
     throw new Error(`unable to determine protocol from url: ${url}`);
   }
-  
+
   const client = getHttpClient(purl.protocol);
   const get = client.get(url, response => {
     if (response.statusCode !== 200) {
       throw new Error(`${response.statusCode} response from http get: ${response.statusMessage}`);
     }
-  
+
     response.on('data', chunk => process.stdout.write(chunk));
   });
-  
+
   get.once('error', err => {
     throw new Error(`http error: ${err.message}`);
   });
