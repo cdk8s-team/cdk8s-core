@@ -5,10 +5,12 @@
 // ctors). so we utilize `spawnSync` to spawn this program as a child process.
 // alternatively we could have use `curl` but this is more portable.
 
-import { http, https } from 'follow-redirects';
-import { parse } from 'url';
-import { lstatSync, createReadStream } from 'fs';
+import * as followRedirects from 'follow-redirects';
+import { parse } from 'node:url';
+import { lstatSync, createReadStream } from 'node:fs';
 import process from 'node:process'
+
+const { http, https } = followRedirects;
 
 const url = process.argv[2];
 if (!url) {
