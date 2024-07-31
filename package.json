@@ -46,7 +46,7 @@
     "organization": false
   },
   "devDependencies": {
-    "@cdk8s/projen-common": "^0.0.534",
+    "@cdk8s/projen-common": "^0.0.535",
     "@types/follow-redirects": "^1.14.4",
     "@types/jest": "^27",
     "@types/node": "16.18.78",
@@ -65,7 +65,7 @@
     "jsii-pacmak": "^1.101.0",
     "jsii-rosetta": "^5",
     "json-schema-to-typescript": "^10.1.5",
-    "projen": "^0.84.5",
+    "projen": "^0.84.13",
     "standard-version": "^9",
     "ts-jest": "^27",
     "typescript": "~5.5.4"
@@ -109,7 +109,7 @@
   "jest": {
     "coverageProvider": "v8",
     "testMatch": [
-      "<rootDir>/@(src|test)/**/?(*.)+(spec|test).ts?(x)",
+      "<rootDir>/@(src|test)/**/*(*.)@(spec|test).ts?(x)",
       "<rootDir>/@(src|test)/**/__tests__/**/*.ts?(x)"
     ],
     "clearMocks": true,
