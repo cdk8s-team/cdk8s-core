@@ -46,7 +46,7 @@
     "organization": false
   },
   "devDependencies": {
-    "@cdk8s/projen-common": "^0.0.541",
+    "@cdk8s/projen-common": "^0.0.542",
     "@types/follow-redirects": "^1.14.4",
     "@types/jest": "^27",
     "@types/node": "16.18.78",
