@@ -1455,10 +1455,10 @@ babel-preset-jest@^27.5.1:
     babel-plugin-jest-hoist "^27.5.1"
     babel-preset-current-node-syntax "^1.0.0"
 
-backport@^9.5.1:
-  version "9.5.1"
-  resolved "https://registry.yarnpkg.com/backport/-/backport-9.5.1.tgz#28430c2b7c05ceb742885ee6049aa3204f4e4e1e"
-  integrity sha512-SF+RmjHO5PqE1bVduOeWbvTsFU8Okf0S46y0w5WotynO6cmJPOFFcYnbImN5ezqx6v1UDWoefer/v+xBAMFwdQ==
+backport@^9.6.0:
+  version "9.6.0"
+  resolved "https://registry.yarnpkg.com/backport/-/backport-9.6.0.tgz#e0929d80bcda633a67a96050c32824377f5330da"
+  integrity sha512-hI1Aj9GFJDUuM1VEwAsrdO+QB9mog4yL6L5/d14HZgAoipZlWhvnnEWfIALp2SiRv3Ms5CjPYV5SC4q7mRupFQ==
   dependencies:
     "@octokit/rest" "^19.0.7"
     axios "^1.6.2"
@@ -1630,9 +1630,9 @@ camelcase@^6.2.0, camelcase@^6.3.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001646:
-  version "1.0.30001658"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001658.tgz#b5f7be8ac748a049ab06aa1cf7a1408d83f074ec"
-  integrity sha512-N2YVqWbJELVdrnsW5p+apoQyYt51aBMSsBZki1XZEfeBCexcM/sf4xiAHcXQBkuOwJBXtWF7aW1sYX6tKebPHw==
+  version "1.0.30001659"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001659.tgz#f370c311ffbc19c4965d8ec0064a3625c8aaa7af"
+  integrity sha512-Qxxyfv3RdHAfJcXelgf0hU4DFUVXBGTjqrBUZLUh8AtlGnsDo+CnncYtTd95+ZKfnANUOzxyIQCuU/UeBZBYoA==
 
 case@^1.6.3:
   version "1.6.3"
