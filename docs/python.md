@@ -1,10 +1,10 @@
-# API Reference <a name="API Reference"></a>
+# API Reference <a name="API Reference" id="api-reference"></a>
 
-## Constructs <a name="Constructs"></a>
+## Constructs <a name="Constructs" id="Constructs"></a>
 
-### ApiObject <a name="cdk8s.ApiObject"></a>
+### ApiObject <a name="ApiObject" id="cdk8s.ApiObject"></a>
 
-#### Initializers <a name="cdk8s.ApiObject.Initializer"></a>
+#### Initializers <a name="Initializers" id="cdk8s.ApiObject.Initializer"></a>
 
 ```python
 import cdk8s
@@ -18,41 +18,51 @@ cdk8s.ApiObject(
 )
 ```
 
-##### `scope`<sup>Required</sup> <a name="cdk8s.ApiObject.parameter.scope"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.ApiObject.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | the construct scope. |
+| <code><a href="#cdk8s.ApiObject.Initializer.parameter.id">id</a></code> | <code>str</code> | namespace. |
+| <code><a href="#cdk8s.ApiObject.Initializer.parameter.apiVersion">api_version</a></code> | <code>str</code> | API version. |
+| <code><a href="#cdk8s.ApiObject.Initializer.parameter.kind">kind</a></code> | <code>str</code> | Resource kind. |
+| <code><a href="#cdk8s.ApiObject.Initializer.parameter.metadata">metadata</a></code> | <code><a href="#cdk8s.ApiObjectMetadata">ApiObjectMetadata</a></code> | Object metadata. |
 
-- *Type:* [`constructs.Construct`](#constructs.Construct)
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="cdk8s.ApiObject.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
 
 the construct scope.
 
 ---
 
-##### `id`<sup>Required</sup> <a name="cdk8s.ApiObject.parameter.id"></a>
+##### `id`<sup>Required</sup> <a name="id" id="cdk8s.ApiObject.Initializer.parameter.id"></a>
 
-- *Type:* `str`
+- *Type:* str
 
 namespace.
 
 ---
 
-##### `api_version`<sup>Required</sup> <a name="cdk8s.ApiObjectProps.parameter.api_version"></a>
+##### `api_version`<sup>Required</sup> <a name="api_version" id="cdk8s.ApiObject.Initializer.parameter.apiVersion"></a>
 
-- *Type:* `str`
+- *Type:* str
 
 API version.
 
 ---
 
-##### `kind`<sup>Required</sup> <a name="cdk8s.ApiObjectProps.parameter.kind"></a>
+##### `kind`<sup>Required</sup> <a name="kind" id="cdk8s.ApiObject.Initializer.parameter.kind"></a>
 
-- *Type:* `str`
+- *Type:* str
 
 Resource kind.
 
 ---
 
-##### `metadata`<sup>Optional</sup> <a name="cdk8s.ApiObjectProps.parameter.metadata"></a>
+##### `metadata`<sup>Optional</sup> <a name="metadata" id="cdk8s.ApiObject.Initializer.parameter.metadata"></a>
 
-- *Type:* [`cdk8s.ApiObjectMetadata`](#cdk8s.ApiObjectMetadata)
+- *Type:* <a href="#cdk8s.ApiObjectMetadata">ApiObjectMetadata</a>
 
 Object metadata.
 
@@ -61,49 +71,113 @@ framework based on the path of the construct within thes construct tree.
 
 ---
 
-#### Methods <a name="Methods"></a>
+#### Methods <a name="Methods" id="Methods"></a>
 
-##### `add_dependency` <a name="cdk8s.ApiObject.add_dependency"></a>
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.ApiObject.toString">to_string</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk8s.ApiObject.addDependency">add_dependency</a></code> | Create a dependency between this ApiObject and other constructs. |
+| <code><a href="#cdk8s.ApiObject.addJsonPatch">add_json_patch</a></code> | Applies a set of RFC-6902 JSON-Patch operations to the manifest synthesized for this API object. |
+| <code><a href="#cdk8s.ApiObject.toJson">to_json</a></code> | Renders the object to Kubernetes JSON. |
+
+---
+
+##### `to_string` <a name="to_string" id="cdk8s.ApiObject.toString"></a>
+
+```python
+def to_string() -> str
+```
+
+Returns a string representation of this construct.
+
+##### `add_dependency` <a name="add_dependency" id="cdk8s.ApiObject.addDependency"></a>
 
 ```python
 def add_dependency(
   dependencies: IConstruct
-)
+) -> None
 ```
 
-###### `dependencies`<sup>Required</sup> <a name="cdk8s.ApiObject.parameter.dependencies"></a>
+Create a dependency between this ApiObject and other constructs.
 
-- *Type:* [`constructs.IConstruct`](#constructs.IConstruct)
+These can be other ApiObjects, Charts, or custom.
+
+###### `dependencies`<sup>Required</sup> <a name="dependencies" id="cdk8s.ApiObject.addDependency.parameter.dependencies"></a>
+
+- *Type:* constructs.IConstruct
 
 the dependencies to add.
 
 ---
 
-##### `add_json_patch` <a name="cdk8s.ApiObject.add_json_patch"></a>
+##### `add_json_patch` <a name="add_json_patch" id="cdk8s.ApiObject.addJsonPatch"></a>
 
 ```python
 def add_json_patch(
   ops: JsonPatch
-)
+) -> None
 ```
 
-###### `ops`<sup>Required</sup> <a name="cdk8s.ApiObject.parameter.ops"></a>
+Applies a set of RFC-6902 JSON-Patch operations to the manifest synthesized for this API object.
 
-- *Type:* [`cdk8s.JsonPatch`](#cdk8s.JsonPatch)
+*Example*
+
+```python
+# Example automatically generated from non-compiling source. May contain errors.
+kube_pod.add_json_patch(JsonPatch.replace("/spec/enableServiceLinks", True))
+```
+
+
+###### `ops`<sup>Required</sup> <a name="ops" id="cdk8s.ApiObject.addJsonPatch.parameter.ops"></a>
+
+- *Type:* <a href="#cdk8s.JsonPatch">JsonPatch</a>
 
 The JSON-Patch operations to apply.
 
 ---
 
-##### `to_json` <a name="cdk8s.ApiObject.to_json"></a>
+##### `to_json` <a name="to_json" id="cdk8s.ApiObject.toJson"></a>
 
 ```python
-def to_json()
+def to_json() -> typing.Any
 ```
 
-#### Static Functions <a name="Static Functions"></a>
+Renders the object to Kubernetes JSON.
 
-##### `is_api_object` <a name="cdk8s.ApiObject.is_api_object"></a>
+To disable sorting of dictionary keys in output object set the
+`CDK8S_DISABLE_SORT` environment variable to any non-empty value.
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.ApiObject.isConstruct">is_construct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#cdk8s.ApiObject.isApiObject">is_api_object</a></code> | Return whether the given object is an `ApiObject`. |
+| <code><a href="#cdk8s.ApiObject.of">of</a></code> | Returns the `ApiObject` named `Resource` which is a child of the given construct. |
+
+---
+
+##### ~~`is_construct`~~ <a name="is_construct" id="cdk8s.ApiObject.isConstruct"></a>
+
+```python
+import cdk8s
+
+cdk8s.ApiObject.is_construct(
+  x: typing.Any
+)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="cdk8s.ApiObject.isConstruct.parameter.x"></a>
+
+- *Type:* typing.Any
+
+Any object.
+
+---
+
+##### `is_api_object` <a name="is_api_object" id="cdk8s.ApiObject.isApiObject"></a>
 
 ```python
 import cdk8s
@@ -113,15 +187,19 @@ cdk8s.ApiObject.is_api_object(
 )
 ```
 
-###### `o`<sup>Required</sup> <a name="cdk8s.ApiObject.parameter.o"></a>
+Return whether the given object is an `ApiObject`.
 
-- *Type:* `typing.Any`
+We do attribute detection since we can't reliably use 'instanceof'.
+
+###### `o`<sup>Required</sup> <a name="o" id="cdk8s.ApiObject.isApiObject.parameter.o"></a>
+
+- *Type:* typing.Any
 
 The object to check.
 
 ---
 
-##### `of` <a name="cdk8s.ApiObject.of"></a>
+##### `of` <a name="of" id="cdk8s.ApiObject.of"></a>
 
 ```python
 import cdk8s
@@ -131,83 +209,113 @@ cdk8s.ApiObject.of(
 )
 ```
 
-###### `c`<sup>Required</sup> <a name="cdk8s.ApiObject.parameter.c"></a>
+Returns the `ApiObject` named `Resource` which is a child of the given construct.
 
-- *Type:* [`constructs.IConstruct`](#constructs.IConstruct)
+If `c` is an `ApiObject`, it is returned directly. Throws an
+exception if the construct does not have a child named `Default` *or* if
+this child is not an `ApiObject`.
+
+###### `c`<sup>Required</sup> <a name="c" id="cdk8s.ApiObject.of.parameter.c"></a>
+
+- *Type:* constructs.IConstruct
 
 The higher-level construct.
 
 ---
 
-#### Properties <a name="Properties"></a>
+#### Properties <a name="Properties" id="Properties"></a>
 
-##### `api_group`<sup>Required</sup> <a name="cdk8s.ApiObject.property.api_group"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.ApiObject.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#cdk8s.ApiObject.property.apiGroup">api_group</a></code> | <code>str</code> | The group portion of the API version (e.g. `authorization.k8s.io`). |
+| <code><a href="#cdk8s.ApiObject.property.apiVersion">api_version</a></code> | <code>str</code> | The object's API version (e.g. `authorization.k8s.io/v1`). |
+| <code><a href="#cdk8s.ApiObject.property.chart">chart</a></code> | <code><a href="#cdk8s.Chart">Chart</a></code> | The chart in which this object is defined. |
+| <code><a href="#cdk8s.ApiObject.property.kind">kind</a></code> | <code>str</code> | The object kind. |
+| <code><a href="#cdk8s.ApiObject.property.metadata">metadata</a></code> | <code><a href="#cdk8s.ApiObjectMetadataDefinition">ApiObjectMetadataDefinition</a></code> | Metadata associated with this API object. |
+| <code><a href="#cdk8s.ApiObject.property.name">name</a></code> | <code>str</code> | The name of the API object. |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="cdk8s.ApiObject.property.node"></a>
+
+```python
+node: Node
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `api_group`<sup>Required</sup> <a name="api_group" id="cdk8s.ApiObject.property.apiGroup"></a>
 
 ```python
 api_group: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 The group portion of the API version (e.g. `authorization.k8s.io`).
 
 ---
 
-##### `api_version`<sup>Required</sup> <a name="cdk8s.ApiObject.property.api_version"></a>
+##### `api_version`<sup>Required</sup> <a name="api_version" id="cdk8s.ApiObject.property.apiVersion"></a>
 
 ```python
 api_version: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 The object's API version (e.g. `authorization.k8s.io/v1`).
 
 ---
 
-##### `chart`<sup>Required</sup> <a name="cdk8s.ApiObject.property.chart"></a>
+##### `chart`<sup>Required</sup> <a name="chart" id="cdk8s.ApiObject.property.chart"></a>
 
 ```python
 chart: Chart
 ```
 
-- *Type:* [`cdk8s.Chart`](#cdk8s.Chart)
+- *Type:* <a href="#cdk8s.Chart">Chart</a>
 
 The chart in which this object is defined.
 
 ---
 
-##### `kind`<sup>Required</sup> <a name="cdk8s.ApiObject.property.kind"></a>
+##### `kind`<sup>Required</sup> <a name="kind" id="cdk8s.ApiObject.property.kind"></a>
 
 ```python
 kind: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 The object kind.
 
 ---
 
-##### `metadata`<sup>Required</sup> <a name="cdk8s.ApiObject.property.metadata"></a>
+##### `metadata`<sup>Required</sup> <a name="metadata" id="cdk8s.ApiObject.property.metadata"></a>
 
 ```python
 metadata: ApiObjectMetadataDefinition
 ```
 
-- *Type:* [`cdk8s.ApiObjectMetadataDefinition`](#cdk8s.ApiObjectMetadataDefinition)
+- *Type:* <a href="#cdk8s.ApiObjectMetadataDefinition">ApiObjectMetadataDefinition</a>
 
 Metadata associated with this API object.
 
 ---
 
-##### `name`<sup>Required</sup> <a name="cdk8s.ApiObject.property.name"></a>
+##### `name`<sup>Required</sup> <a name="name" id="cdk8s.ApiObject.property.name"></a>
 
 ```python
 name: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 The name of the API object.
 
@@ -219,11 +327,11 @@ construct path to generate a DNS-compatible name for the resource.
 ---
 
 
-### App <a name="cdk8s.App"></a>
+### App <a name="App" id="cdk8s.App"></a>
 
 Represents a cdk8s application.
 
-#### Initializers <a name="cdk8s.App.Initializer"></a>
+#### Initializers <a name="Initializers" id="cdk8s.App.Initializer"></a>
 
 ```python
 import cdk8s
@@ -237,9 +345,19 @@ cdk8s.App(
 )
 ```
 
-##### `outdir`<sup>Optional</sup> <a name="cdk8s.AppProps.parameter.outdir"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.App.Initializer.parameter.outdir">outdir</a></code> | <code>str</code> | The directory to output Kubernetes manifests. |
+| <code><a href="#cdk8s.App.Initializer.parameter.outputFileExtension">output_file_extension</a></code> | <code>str</code> | The file extension to use for rendered YAML files. |
+| <code><a href="#cdk8s.App.Initializer.parameter.recordConstructMetadata">record_construct_metadata</a></code> | <code>bool</code> | When set to true, the output directory will contain a `construct-metadata.json` file that holds construct related metadata on every resource in the app. |
+| <code><a href="#cdk8s.App.Initializer.parameter.resolvers">resolvers</a></code> | <code>typing.List[<a href="#cdk8s.IResolver">IResolver</a>]</code> | A list of resolvers that can be used to replace property values before they are written to the manifest file. |
+| <code><a href="#cdk8s.App.Initializer.parameter.yamlOutputType">yaml_output_type</a></code> | <code><a href="#cdk8s.YamlOutputType">YamlOutputType</a></code> | How to divide the YAML output into files. |
 
-- *Type:* `str`
+---
+
+##### `outdir`<sup>Optional</sup> <a name="outdir" id="cdk8s.App.Initializer.parameter.outdir"></a>
+
+- *Type:* str
 - *Default:* CDK8S_OUTDIR if defined, otherwise "dist"
 
 The directory to output Kubernetes manifests.
@@ -254,27 +372,27 @@ This property is intended for internal and testing use.
 
 ---
 
-##### `output_file_extension`<sup>Optional</sup> <a name="cdk8s.AppProps.parameter.output_file_extension"></a>
+##### `output_file_extension`<sup>Optional</sup> <a name="output_file_extension" id="cdk8s.App.Initializer.parameter.outputFileExtension"></a>
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* .k8s.yaml
 
 The file extension to use for rendered YAML files.
 
 ---
 
-##### `record_construct_metadata`<sup>Optional</sup> <a name="cdk8s.AppProps.parameter.record_construct_metadata"></a>
+##### `record_construct_metadata`<sup>Optional</sup> <a name="record_construct_metadata" id="cdk8s.App.Initializer.parameter.recordConstructMetadata"></a>
 
-- *Type:* `bool`
+- *Type:* bool
 - *Default:* false
 
 When set to true, the output directory will contain a `construct-metadata.json` file that holds construct related metadata on every resource in the app.
 
 ---
 
-##### `resolvers`<sup>Optional</sup> <a name="cdk8s.AppProps.parameter.resolvers"></a>
+##### `resolvers`<sup>Optional</sup> <a name="resolvers" id="cdk8s.App.Initializer.parameter.resolvers"></a>
 
-- *Type:* typing.List[[`cdk8s.IResolver`](#cdk8s.IResolver)]
+- *Type:* typing.List[<a href="#cdk8s.IResolver">IResolver</a>]
 - *Default:* no resolvers.
 
 A list of resolvers that can be used to replace property values before they are written to the manifest file.
@@ -283,36 +401,83 @@ When multiple resolvers are passed,
 they are invoked by order in the list, and only the first one that applies
 (e.g calls `context.replaceValue`) is invoked.
 
-> https://cdk8s.io/docs/latest/basics/app/#resolvers
+> [https://cdk8s.io/docs/latest/basics/app/#resolvers](https://cdk8s.io/docs/latest/basics/app/#resolvers)
 
 ---
 
-##### `yaml_output_type`<sup>Optional</sup> <a name="cdk8s.AppProps.parameter.yaml_output_type"></a>
+##### `yaml_output_type`<sup>Optional</sup> <a name="yaml_output_type" id="cdk8s.App.Initializer.parameter.yamlOutputType"></a>
 
-- *Type:* [`cdk8s.YamlOutputType`](#cdk8s.YamlOutputType)
+- *Type:* <a href="#cdk8s.YamlOutputType">YamlOutputType</a>
 - *Default:* YamlOutputType.FILE_PER_CHART
 
 How to divide the YAML output into files.
 
 ---
 
-#### Methods <a name="Methods"></a>
+#### Methods <a name="Methods" id="Methods"></a>
 
-##### `synth` <a name="cdk8s.App.synth"></a>
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.App.toString">to_string</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk8s.App.synth">synth</a></code> | Synthesizes all manifests to the output directory. |
+| <code><a href="#cdk8s.App.synthYaml">synth_yaml</a></code> | Synthesizes the app into a YAML string. |
+
+---
+
+##### `to_string` <a name="to_string" id="cdk8s.App.toString"></a>
 
 ```python
-def synth()
+def to_string() -> str
 ```
 
-##### `synth_yaml` <a name="cdk8s.App.synth_yaml"></a>
+Returns a string representation of this construct.
+
+##### `synth` <a name="synth" id="cdk8s.App.synth"></a>
 
 ```python
-def synth_yaml()
+def synth() -> None
 ```
 
-#### Static Functions <a name="Static Functions"></a>
+Synthesizes all manifests to the output directory.
 
-##### `of` <a name="cdk8s.App.of"></a>
+##### `synth_yaml` <a name="synth_yaml" id="cdk8s.App.synthYaml"></a>
+
+```python
+def synth_yaml() -> str
+```
+
+Synthesizes the app into a YAML string.
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.App.isConstruct">is_construct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#cdk8s.App.of">of</a></code> | *No description.* |
+
+---
+
+##### ~~`is_construct`~~ <a name="is_construct" id="cdk8s.App.isConstruct"></a>
+
+```python
+import cdk8s
+
+cdk8s.App.is_construct(
+  x: typing.Any
+)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="cdk8s.App.isConstruct.parameter.x"></a>
+
+- *Type:* typing.Any
+
+Any object.
+
+---
+
+##### `of` <a name="of" id="cdk8s.App.of"></a>
 
 ```python
 import cdk8s
@@ -322,58 +487,81 @@ cdk8s.App.of(
 )
 ```
 
-###### `c`<sup>Required</sup> <a name="cdk8s.App.parameter.c"></a>
+###### `c`<sup>Required</sup> <a name="c" id="cdk8s.App.of.parameter.c"></a>
 
-- *Type:* [`constructs.IConstruct`](#constructs.IConstruct)
+- *Type:* constructs.IConstruct
 
 ---
 
-#### Properties <a name="Properties"></a>
+#### Properties <a name="Properties" id="Properties"></a>
 
-##### `charts`<sup>Required</sup> <a name="cdk8s.App.property.charts"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.App.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#cdk8s.App.property.charts">charts</a></code> | <code>typing.List[<a href="#cdk8s.Chart">Chart</a>]</code> | Returns all the charts in this app, sorted topologically. |
+| <code><a href="#cdk8s.App.property.outdir">outdir</a></code> | <code>str</code> | The output directory into which manifests will be synthesized. |
+| <code><a href="#cdk8s.App.property.outputFileExtension">output_file_extension</a></code> | <code>str</code> | The file extension to use for rendered YAML files. |
+| <code><a href="#cdk8s.App.property.resolvers">resolvers</a></code> | <code>typing.List[<a href="#cdk8s.IResolver">IResolver</a>]</code> | Resolvers used by this app. |
+| <code><a href="#cdk8s.App.property.yamlOutputType">yaml_output_type</a></code> | <code><a href="#cdk8s.YamlOutputType">YamlOutputType</a></code> | How to divide the YAML output into files. |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="cdk8s.App.property.node"></a>
+
+```python
+node: Node
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `charts`<sup>Required</sup> <a name="charts" id="cdk8s.App.property.charts"></a>
 
 ```python
 charts: typing.List[Chart]
 ```
 
-- *Type:* typing.List[[`cdk8s.Chart`](#cdk8s.Chart)]
+- *Type:* typing.List[<a href="#cdk8s.Chart">Chart</a>]
 
 Returns all the charts in this app, sorted topologically.
 
 ---
 
-##### `outdir`<sup>Required</sup> <a name="cdk8s.App.property.outdir"></a>
+##### `outdir`<sup>Required</sup> <a name="outdir" id="cdk8s.App.property.outdir"></a>
 
 ```python
 outdir: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 The output directory into which manifests will be synthesized.
 
 ---
 
-##### `output_file_extension`<sup>Required</sup> <a name="cdk8s.App.property.output_file_extension"></a>
+##### `output_file_extension`<sup>Required</sup> <a name="output_file_extension" id="cdk8s.App.property.outputFileExtension"></a>
 
 ```python
 output_file_extension: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* .k8s.yaml
 
 The file extension to use for rendered YAML files.
 
 ---
 
-##### `resolvers`<sup>Required</sup> <a name="cdk8s.App.property.resolvers"></a>
+##### `resolvers`<sup>Required</sup> <a name="resolvers" id="cdk8s.App.property.resolvers"></a>
 
 ```python
 resolvers: typing.List[IResolver]
 ```
 
-- *Type:* typing.List[[`cdk8s.IResolver`](#cdk8s.IResolver)]
+- *Type:* typing.List[<a href="#cdk8s.IResolver">IResolver</a>]
 
 Resolvers used by this app.
 
@@ -382,13 +570,13 @@ passed by the `resolvers` property, as well as built-in resolvers.
 
 ---
 
-##### `yaml_output_type`<sup>Required</sup> <a name="cdk8s.App.property.yaml_output_type"></a>
+##### `yaml_output_type`<sup>Required</sup> <a name="yaml_output_type" id="cdk8s.App.property.yamlOutputType"></a>
 
 ```python
 yaml_output_type: YamlOutputType
 ```
 
-- *Type:* [`cdk8s.YamlOutputType`](#cdk8s.YamlOutputType)
+- *Type:* <a href="#cdk8s.YamlOutputType">YamlOutputType</a>
 - *Default:* YamlOutputType.FILE_PER_CHART
 
 How to divide the YAML output into files.
@@ -396,9 +584,9 @@ How to divide the YAML output into files.
 ---
 
 
-### Chart <a name="cdk8s.Chart"></a>
+### Chart <a name="Chart" id="cdk8s.Chart"></a>
 
-#### Initializers <a name="cdk8s.Chart.Initializer"></a>
+#### Initializers <a name="Initializers" id="cdk8s.Chart.Initializer"></a>
 
 ```python
 import cdk8s
@@ -412,21 +600,31 @@ cdk8s.Chart(
 )
 ```
 
-##### `scope`<sup>Required</sup> <a name="cdk8s.Chart.parameter.scope"></a>
-
-- *Type:* [`constructs.Construct`](#constructs.Construct)
-
----
-
-##### `id`<sup>Required</sup> <a name="cdk8s.Chart.parameter.id"></a>
-
-- *Type:* `str`
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.Chart.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#cdk8s.Chart.Initializer.parameter.id">id</a></code> | <code>str</code> | *No description.* |
+| <code><a href="#cdk8s.Chart.Initializer.parameter.disableResourceNameHashes">disable_resource_name_hashes</a></code> | <code>bool</code> | The autogenerated resource name by default is suffixed with a stable hash of the construct path. |
+| <code><a href="#cdk8s.Chart.Initializer.parameter.labels">labels</a></code> | <code>typing.Mapping[str]</code> | Labels to apply to all resources in this chart. |
+| <code><a href="#cdk8s.Chart.Initializer.parameter.namespace">namespace</a></code> | <code>str</code> | The default namespace for all objects defined in this chart (directly or indirectly). |
 
 ---
 
-##### `disable_resource_name_hashes`<sup>Optional</sup> <a name="cdk8s.ChartProps.parameter.disable_resource_name_hashes"></a>
+##### `scope`<sup>Required</sup> <a name="scope" id="cdk8s.Chart.Initializer.parameter.scope"></a>
 
-- *Type:* `bool`
+- *Type:* constructs.Construct
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="cdk8s.Chart.Initializer.parameter.id"></a>
+
+- *Type:* str
+
+---
+
+##### `disable_resource_name_hashes`<sup>Optional</sup> <a name="disable_resource_name_hashes" id="cdk8s.Chart.Initializer.parameter.disableResourceNameHashes"></a>
+
+- *Type:* bool
 - *Default:* false
 
 The autogenerated resource name by default is suffixed with a stable hash of the construct path.
@@ -435,18 +633,18 @@ Setting this property to true drops the hash suffix.
 
 ---
 
-##### `labels`<sup>Optional</sup> <a name="cdk8s.ChartProps.parameter.labels"></a>
+##### `labels`<sup>Optional</sup> <a name="labels" id="cdk8s.Chart.Initializer.parameter.labels"></a>
 
-- *Type:* typing.Mapping[`str`]
+- *Type:* typing.Mapping[str]
 - *Default:* no common labels
 
 Labels to apply to all resources in this chart.
 
 ---
 
-##### `namespace`<sup>Optional</sup> <a name="cdk8s.ChartProps.parameter.namespace"></a>
+##### `namespace`<sup>Optional</sup> <a name="namespace" id="cdk8s.Chart.Initializer.parameter.namespace"></a>
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* no namespace is synthesized (usually this implies "default")
 
 The default namespace for all objects defined in this chart (directly or indirectly).
@@ -456,49 +654,117 @@ This namespace will only apply to objects that don't have a
 
 ---
 
-#### Methods <a name="Methods"></a>
+#### Methods <a name="Methods" id="Methods"></a>
 
-##### `add_dependency` <a name="cdk8s.Chart.add_dependency"></a>
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.Chart.toString">to_string</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk8s.Chart.addDependency">add_dependency</a></code> | Create a dependency between this Chart and other constructs. |
+| <code><a href="#cdk8s.Chart.generateObjectName">generate_object_name</a></code> | Generates a app-unique name for an object given it's construct node path. |
+| <code><a href="#cdk8s.Chart.toJson">to_json</a></code> | Renders this chart to a set of Kubernetes JSON resources. |
+
+---
+
+##### `to_string` <a name="to_string" id="cdk8s.Chart.toString"></a>
+
+```python
+def to_string() -> str
+```
+
+Returns a string representation of this construct.
+
+##### `add_dependency` <a name="add_dependency" id="cdk8s.Chart.addDependency"></a>
 
 ```python
 def add_dependency(
   dependencies: IConstruct
-)
+) -> None
 ```
 
-###### `dependencies`<sup>Required</sup> <a name="cdk8s.Chart.parameter.dependencies"></a>
+Create a dependency between this Chart and other constructs.
 
-- *Type:* [`constructs.IConstruct`](#constructs.IConstruct)
+These can be other ApiObjects, Charts, or custom.
+
+###### `dependencies`<sup>Required</sup> <a name="dependencies" id="cdk8s.Chart.addDependency.parameter.dependencies"></a>
+
+- *Type:* constructs.IConstruct
 
 the dependencies to add.
 
 ---
 
-##### `generate_object_name` <a name="cdk8s.Chart.generate_object_name"></a>
+##### `generate_object_name` <a name="generate_object_name" id="cdk8s.Chart.generateObjectName"></a>
 
 ```python
 def generate_object_name(
   api_object: ApiObject
-)
+) -> str
 ```
 
-###### `api_object`<sup>Required</sup> <a name="cdk8s.Chart.parameter.api_object"></a>
+Generates a app-unique name for an object given it's construct node path.
 
-- *Type:* [`cdk8s.ApiObject`](#cdk8s.ApiObject)
+Different resource types may have different constraints on names
+(`metadata.name`). The previous version of the name generator was
+compatible with DNS_SUBDOMAIN but not with DNS_LABEL.
+
+For example, `Deployment` names must comply with DNS_SUBDOMAIN while
+`Service` names must comply with DNS_LABEL.
+
+Since there is no formal specification for this, the default name
+generation scheme for kubernetes objects in cdk8s was changed to DNS_LABEL,
+since it’s the common denominator for all kubernetes resources
+(supposedly).
+
+You can override this method if you wish to customize object names at the
+chart level.
+
+###### `api_object`<sup>Required</sup> <a name="api_object" id="cdk8s.Chart.generateObjectName.parameter.apiObject"></a>
+
+- *Type:* <a href="#cdk8s.ApiObject">ApiObject</a>
 
 The API object to generate a name for.
 
 ---
 
-##### `to_json` <a name="cdk8s.Chart.to_json"></a>
+##### `to_json` <a name="to_json" id="cdk8s.Chart.toJson"></a>
 
 ```python
-def to_json()
+def to_json() -> typing.List[typing.Any]
 ```
 
-#### Static Functions <a name="Static Functions"></a>
+Renders this chart to a set of Kubernetes JSON resources.
 
-##### `is_chart` <a name="cdk8s.Chart.is_chart"></a>
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.Chart.isConstruct">is_construct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#cdk8s.Chart.isChart">is_chart</a></code> | Return whether the given object is a Chart. |
+| <code><a href="#cdk8s.Chart.of">of</a></code> | Finds the chart in which a node is defined. |
+
+---
+
+##### ~~`is_construct`~~ <a name="is_construct" id="cdk8s.Chart.isConstruct"></a>
+
+```python
+import cdk8s
+
+cdk8s.Chart.is_construct(
+  x: typing.Any
+)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="cdk8s.Chart.isConstruct.parameter.x"></a>
+
+- *Type:* typing.Any
+
+Any object.
+
+---
+
+##### `is_chart` <a name="is_chart" id="cdk8s.Chart.isChart"></a>
 
 ```python
 import cdk8s
@@ -508,13 +774,17 @@ cdk8s.Chart.is_chart(
 )
 ```
 
-###### `x`<sup>Required</sup> <a name="cdk8s.Chart.parameter.x"></a>
+Return whether the given object is a Chart.
 
-- *Type:* `typing.Any`
+We do attribute detection since we can't reliably use 'instanceof'.
+
+###### `x`<sup>Required</sup> <a name="x" id="cdk8s.Chart.isChart.parameter.x"></a>
+
+- *Type:* typing.Any
 
 ---
 
-##### `of` <a name="cdk8s.Chart.of"></a>
+##### `of` <a name="of" id="cdk8s.Chart.of"></a>
 
 ```python
 import cdk8s
@@ -524,35 +794,58 @@ cdk8s.Chart.of(
 )
 ```
 
-###### `c`<sup>Required</sup> <a name="cdk8s.Chart.parameter.c"></a>
+Finds the chart in which a node is defined.
 
-- *Type:* [`constructs.IConstruct`](#constructs.IConstruct)
+###### `c`<sup>Required</sup> <a name="c" id="cdk8s.Chart.of.parameter.c"></a>
+
+- *Type:* constructs.IConstruct
 
 a construct node.
 
 ---
 
-#### Properties <a name="Properties"></a>
+#### Properties <a name="Properties" id="Properties"></a>
 
-##### `api_objects`<sup>Required</sup> <a name="cdk8s.Chart.property.api_objects"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.Chart.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#cdk8s.Chart.property.apiObjects">api_objects</a></code> | <code>typing.List[<a href="#cdk8s.ApiObject">ApiObject</a>]</code> | Returns all the included API objects. |
+| <code><a href="#cdk8s.Chart.property.labels">labels</a></code> | <code>typing.Mapping[str]</code> | Labels applied to all resources in this chart. |
+| <code><a href="#cdk8s.Chart.property.namespace">namespace</a></code> | <code>str</code> | The default namespace for all objects in this chart. |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="cdk8s.Chart.property.node"></a>
+
+```python
+node: Node
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `api_objects`<sup>Required</sup> <a name="api_objects" id="cdk8s.Chart.property.apiObjects"></a>
 
 ```python
 api_objects: typing.List[ApiObject]
 ```
 
-- *Type:* typing.List[[`cdk8s.ApiObject`](#cdk8s.ApiObject)]
+- *Type:* typing.List[<a href="#cdk8s.ApiObject">ApiObject</a>]
 
 Returns all the included API objects.
 
 ---
 
-##### `labels`<sup>Required</sup> <a name="cdk8s.Chart.property.labels"></a>
+##### `labels`<sup>Required</sup> <a name="labels" id="cdk8s.Chart.property.labels"></a>
 
 ```python
 labels: typing.Mapping[str]
 ```
 
-- *Type:* typing.Mapping[`str`]
+- *Type:* typing.Mapping[str]
 
 Labels applied to all resources in this chart.
 
@@ -560,26 +853,26 @@ This is an immutable copy.
 
 ---
 
-##### `namespace`<sup>Optional</sup> <a name="cdk8s.Chart.property.namespace"></a>
+##### `namespace`<sup>Optional</sup> <a name="namespace" id="cdk8s.Chart.property.namespace"></a>
 
 ```python
 namespace: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 The default namespace for all objects in this chart.
 
 ---
 
 
-### Helm <a name="cdk8s.Helm"></a>
+### Helm <a name="Helm" id="cdk8s.Helm"></a>
 
 Represents a Helm deployment.
 
 Use this construct to import an existing Helm chart and incorporate it into your constructs.
 
-#### Initializers <a name="cdk8s.Helm.Initializer"></a>
+#### Initializers <a name="Initializers" id="cdk8s.Helm.Initializer"></a>
 
 ```python
 import cdk8s
@@ -598,21 +891,36 @@ cdk8s.Helm(
 )
 ```
 
-##### `scope`<sup>Required</sup> <a name="cdk8s.Helm.parameter.scope"></a>
-
-- *Type:* [`constructs.Construct`](#constructs.Construct)
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.Helm.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#cdk8s.Helm.Initializer.parameter.id">id</a></code> | <code>str</code> | *No description.* |
+| <code><a href="#cdk8s.Helm.Initializer.parameter.chart">chart</a></code> | <code>str</code> | The chart name to use. It can be a chart from a helm repository or a local directory. |
+| <code><a href="#cdk8s.Helm.Initializer.parameter.helmExecutable">helm_executable</a></code> | <code>str</code> | The local helm executable to use in order to create the manifest the chart. |
+| <code><a href="#cdk8s.Helm.Initializer.parameter.helmFlags">helm_flags</a></code> | <code>typing.List[str]</code> | Additional flags to add to the `helm` execution. |
+| <code><a href="#cdk8s.Helm.Initializer.parameter.namespace">namespace</a></code> | <code>str</code> | Scope all resources in to a given namespace. |
+| <code><a href="#cdk8s.Helm.Initializer.parameter.releaseName">release_name</a></code> | <code>str</code> | The release name. |
+| <code><a href="#cdk8s.Helm.Initializer.parameter.repo">repo</a></code> | <code>str</code> | Chart repository url where to locate the requested chart. |
+| <code><a href="#cdk8s.Helm.Initializer.parameter.values">values</a></code> | <code>typing.Mapping[typing.Any]</code> | Values to pass to the chart. |
+| <code><a href="#cdk8s.Helm.Initializer.parameter.version">version</a></code> | <code>str</code> | Version constraint for the chart version to use. |
 
 ---
 
-##### `id`<sup>Required</sup> <a name="cdk8s.Helm.parameter.id"></a>
+##### `scope`<sup>Required</sup> <a name="scope" id="cdk8s.Helm.Initializer.parameter.scope"></a>
 
-- *Type:* `str`
+- *Type:* constructs.Construct
 
 ---
 
-##### `chart`<sup>Required</sup> <a name="cdk8s.HelmProps.parameter.chart"></a>
+##### `id`<sup>Required</sup> <a name="id" id="cdk8s.Helm.Initializer.parameter.id"></a>
 
-- *Type:* `str`
+- *Type:* str
+
+---
+
+##### `chart`<sup>Required</sup> <a name="chart" id="cdk8s.Helm.Initializer.parameter.chart"></a>
+
+- *Type:* str
 
 The chart name to use. It can be a chart from a helm repository or a local directory.
 
@@ -620,63 +928,70 @@ This name is passed to `helm template` and has all the relevant semantics.
 
 ---
 
-##### `helm_executable`<sup>Optional</sup> <a name="cdk8s.HelmProps.parameter.helm_executable"></a>
+*Example*
 
-- *Type:* `str`
+```python
+"bitnami/redis"
+```
+
+
+##### `helm_executable`<sup>Optional</sup> <a name="helm_executable" id="cdk8s.Helm.Initializer.parameter.helmExecutable"></a>
+
+- *Type:* str
 - *Default:* "helm"
 
 The local helm executable to use in order to create the manifest the chart.
 
 ---
 
-##### `helm_flags`<sup>Optional</sup> <a name="cdk8s.HelmProps.parameter.helm_flags"></a>
+##### `helm_flags`<sup>Optional</sup> <a name="helm_flags" id="cdk8s.Helm.Initializer.parameter.helmFlags"></a>
 
-- *Type:* typing.List[`str`]
+- *Type:* typing.List[str]
 - *Default:* []
 
 Additional flags to add to the `helm` execution.
 
 ---
 
-##### `namespace`<sup>Optional</sup> <a name="cdk8s.HelmProps.parameter.namespace"></a>
+##### `namespace`<sup>Optional</sup> <a name="namespace" id="cdk8s.Helm.Initializer.parameter.namespace"></a>
 
-- *Type:* `str`
+- *Type:* str
 
 Scope all resources in to a given namespace.
 
 ---
 
-##### `release_name`<sup>Optional</sup> <a name="cdk8s.HelmProps.parameter.release_name"></a>
+##### `release_name`<sup>Optional</sup> <a name="release_name" id="cdk8s.Helm.Initializer.parameter.releaseName"></a>
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* if unspecified, a name will be allocated based on the construct path
 
 The release name.
 
-> https://helm.sh/docs/intro/using_helm/#three-big-concepts
+> [https://helm.sh/docs/intro/using_helm/#three-big-concepts](https://helm.sh/docs/intro/using_helm/#three-big-concepts)
 
 ---
 
-##### `repo`<sup>Optional</sup> <a name="cdk8s.HelmProps.parameter.repo"></a>
+##### `repo`<sup>Optional</sup> <a name="repo" id="cdk8s.Helm.Initializer.parameter.repo"></a>
 
-- *Type:* `str`
+- *Type:* str
 
 Chart repository url where to locate the requested chart.
 
 ---
 
-##### `values`<sup>Optional</sup> <a name="cdk8s.HelmProps.parameter.values"></a>
+##### `values`<sup>Optional</sup> <a name="values" id="cdk8s.Helm.Initializer.parameter.values"></a>
 
-- *Type:* typing.Mapping[`typing.Any`]
+- *Type:* typing.Mapping[typing.Any]
 - *Default:* If no values are specified, chart will use the defaults.
 
 Values to pass to the chart.
 
 ---
 
-##### `version`<sup>Optional</sup> <a name="cdk8s.HelmProps.parameter.version"></a>
+##### `version`<sup>Optional</sup> <a name="version" id="cdk8s.Helm.Initializer.parameter.version"></a>
 
-- *Type:* `str`
+- *Type:* str
 
 Version constraint for the chart version to use.
 
@@ -688,31 +1003,112 @@ This name is passed to `helm template --version` and has all the relevant semant
 
 ---
 
+*Example*
+
+```python
+"^2.0.0"
+```
 
 
-#### Properties <a name="Properties"></a>
+#### Methods <a name="Methods" id="Methods"></a>
 
-##### `release_name`<sup>Required</sup> <a name="cdk8s.Helm.property.release_name"></a>
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.Helm.toString">to_string</a></code> | Returns a string representation of this construct. |
+
+---
+
+##### `to_string` <a name="to_string" id="cdk8s.Helm.toString"></a>
+
+```python
+def to_string() -> str
+```
+
+Returns a string representation of this construct.
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.Helm.isConstruct">is_construct</a></code> | Checks if `x` is a construct. |
+
+---
+
+##### ~~`is_construct`~~ <a name="is_construct" id="cdk8s.Helm.isConstruct"></a>
+
+```python
+import cdk8s
+
+cdk8s.Helm.is_construct(
+  x: typing.Any
+)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="cdk8s.Helm.isConstruct.parameter.x"></a>
+
+- *Type:* typing.Any
+
+Any object.
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.Helm.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#cdk8s.Helm.property.apiObjects">api_objects</a></code> | <code>typing.List[<a href="#cdk8s.ApiObject">ApiObject</a>]</code> | Returns all the included API objects. |
+| <code><a href="#cdk8s.Helm.property.releaseName">release_name</a></code> | <code>str</code> | The helm release name. |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="cdk8s.Helm.property.node"></a>
+
+```python
+node: Node
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `api_objects`<sup>Required</sup> <a name="api_objects" id="cdk8s.Helm.property.apiObjects"></a>
+
+```python
+api_objects: typing.List[ApiObject]
+```
+
+- *Type:* typing.List[<a href="#cdk8s.ApiObject">ApiObject</a>]
+
+Returns all the included API objects.
+
+---
+
+##### `release_name`<sup>Required</sup> <a name="release_name" id="cdk8s.Helm.property.releaseName"></a>
 
 ```python
 release_name: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 The helm release name.
 
 ---
 
 
-### Include <a name="cdk8s.Include"></a>
+### Include <a name="Include" id="cdk8s.Include"></a>
 
 Reads a YAML manifest from a file or a URL and defines all resources as API objects within the defined scope.
 
 The names (`metadata.name`) of imported resources will be preserved as-is
 from the manifest.
 
-#### Initializers <a name="cdk8s.Include.Initializer"></a>
+#### Initializers <a name="Initializers" id="cdk8s.Include.Initializer"></a>
 
 ```python
 import cdk8s
@@ -724,50 +1120,127 @@ cdk8s.Include(
 )
 ```
 
-##### `scope`<sup>Required</sup> <a name="cdk8s.Include.parameter.scope"></a>
-
-- *Type:* [`constructs.Construct`](#constructs.Construct)
-
----
-
-##### `id`<sup>Required</sup> <a name="cdk8s.Include.parameter.id"></a>
-
-- *Type:* `str`
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.Include.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#cdk8s.Include.Initializer.parameter.id">id</a></code> | <code>str</code> | *No description.* |
+| <code><a href="#cdk8s.Include.Initializer.parameter.url">url</a></code> | <code>str</code> | Local file path or URL which includes a Kubernetes YAML manifest. |
 
 ---
 
-##### `url`<sup>Required</sup> <a name="cdk8s.IncludeProps.parameter.url"></a>
+##### `scope`<sup>Required</sup> <a name="scope" id="cdk8s.Include.Initializer.parameter.scope"></a>
 
-- *Type:* `str`
+- *Type:* constructs.Construct
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="cdk8s.Include.Initializer.parameter.id"></a>
+
+- *Type:* str
+
+---
+
+##### `url`<sup>Required</sup> <a name="url" id="cdk8s.Include.Initializer.parameter.url"></a>
+
+- *Type:* str
 
 Local file path or URL which includes a Kubernetes YAML manifest.
 
 ---
 
+*Example*
+
+```python
+# Example automatically generated from non-compiling source. May contain errors.
+mymanifest.yaml
+```
 
 
-#### Properties <a name="Properties"></a>
+#### Methods <a name="Methods" id="Methods"></a>
 
-##### `api_objects`<sup>Required</sup> <a name="cdk8s.Include.property.api_objects"></a>
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.Include.toString">to_string</a></code> | Returns a string representation of this construct. |
+
+---
+
+##### `to_string` <a name="to_string" id="cdk8s.Include.toString"></a>
+
+```python
+def to_string() -> str
+```
+
+Returns a string representation of this construct.
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.Include.isConstruct">is_construct</a></code> | Checks if `x` is a construct. |
+
+---
+
+##### ~~`is_construct`~~ <a name="is_construct" id="cdk8s.Include.isConstruct"></a>
+
+```python
+import cdk8s
+
+cdk8s.Include.is_construct(
+  x: typing.Any
+)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="cdk8s.Include.isConstruct.parameter.x"></a>
+
+- *Type:* typing.Any
+
+Any object.
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.Include.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#cdk8s.Include.property.apiObjects">api_objects</a></code> | <code>typing.List[<a href="#cdk8s.ApiObject">ApiObject</a>]</code> | Returns all the included API objects. |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="cdk8s.Include.property.node"></a>
+
+```python
+node: Node
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `api_objects`<sup>Required</sup> <a name="api_objects" id="cdk8s.Include.property.apiObjects"></a>
 
 ```python
 api_objects: typing.List[ApiObject]
 ```
 
-- *Type:* typing.List[[`cdk8s.ApiObject`](#cdk8s.ApiObject)]
+- *Type:* typing.List[<a href="#cdk8s.ApiObject">ApiObject</a>]
 
 Returns all the included API objects.
 
 ---
 
 
-## Structs <a name="Structs"></a>
+## Structs <a name="Structs" id="Structs"></a>
 
-### ApiObjectMetadata <a name="cdk8s.ApiObjectMetadata"></a>
+### ApiObjectMetadata <a name="ApiObjectMetadata" id="cdk8s.ApiObjectMetadata"></a>
 
 Metadata associated with this object.
 
-#### Initializer <a name="[object Object].Initializer"></a>
+#### Initializer <a name="Initializer" id="cdk8s.ApiObjectMetadata.Initializer"></a>
 
 ```python
 import cdk8s
@@ -782,13 +1255,26 @@ cdk8s.ApiObjectMetadata(
 )
 ```
 
-##### `annotations`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.annotations"></a>
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.ApiObjectMetadata.property.annotations">annotations</a></code> | <code>typing.Mapping[str]</code> | Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. |
+| <code><a href="#cdk8s.ApiObjectMetadata.property.finalizers">finalizers</a></code> | <code>typing.List[str]</code> | Namespaced keys that tell Kubernetes to wait until specific conditions are met before it fully deletes resources marked for deletion. |
+| <code><a href="#cdk8s.ApiObjectMetadata.property.labels">labels</a></code> | <code>typing.Mapping[str]</code> | Map of string keys and values that can be used to organize and categorize (scope and select) objects. |
+| <code><a href="#cdk8s.ApiObjectMetadata.property.name">name</a></code> | <code>str</code> | The unique, namespace-global, name of this object inside the Kubernetes cluster. |
+| <code><a href="#cdk8s.ApiObjectMetadata.property.namespace">namespace</a></code> | <code>str</code> | Namespace defines the space within each name must be unique. |
+| <code><a href="#cdk8s.ApiObjectMetadata.property.ownerReferences">owner_references</a></code> | <code>typing.List[<a href="#cdk8s.OwnerReference">OwnerReference</a>]</code> | List of objects depended by this object. |
+
+---
+
+##### `annotations`<sup>Optional</sup> <a name="annotations" id="cdk8s.ApiObjectMetadata.property.annotations"></a>
 
 ```python
 annotations: typing.Mapping[str]
 ```
 
-- *Type:* typing.Mapping[`str`]
+- *Type:* typing.Mapping[str]
 - *Default:* No annotations.
 
 Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
@@ -796,17 +1282,17 @@ Annotations is an unstructured key value map stored with a resource that may be 
 They are not queryable and should be
 preserved when modifying objects.
 
-> http://kubernetes.io/docs/user-guide/annotations
+> [http://kubernetes.io/docs/user-guide/annotations](http://kubernetes.io/docs/user-guide/annotations)
 
 ---
 
-##### `finalizers`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.finalizers"></a>
+##### `finalizers`<sup>Optional</sup> <a name="finalizers" id="cdk8s.ApiObjectMetadata.property.finalizers"></a>
 
 ```python
 finalizers: typing.List[str]
 ```
 
-- *Type:* typing.List[`str`]
+- *Type:* typing.List[str]
 - *Default:* No finalizers.
 
 Namespaced keys that tell Kubernetes to wait until specific conditions are met before it fully deletes resources marked for deletion.
@@ -825,34 +1311,34 @@ in the list, resulting in a deadlock. Without enforced ordering finalizers
 are free to order amongst themselves and are not vulnerable to ordering
 changes in the list.
 
-> https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/
+> [https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/](https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/)
 
 ---
 
-##### `labels`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.labels"></a>
+##### `labels`<sup>Optional</sup> <a name="labels" id="cdk8s.ApiObjectMetadata.property.labels"></a>
 
 ```python
 labels: typing.Mapping[str]
 ```
 
-- *Type:* typing.Mapping[`str`]
+- *Type:* typing.Mapping[str]
 - *Default:* No labels.
 
 Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 May match selectors of replication controllers and services.
 
-> http://kubernetes.io/docs/user-guide/labels
+> [http://kubernetes.io/docs/user-guide/labels](http://kubernetes.io/docs/user-guide/labels)
 
 ---
 
-##### `name`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.name"></a>
+##### `name`<sup>Optional</sup> <a name="name" id="cdk8s.ApiObjectMetadata.property.name"></a>
 
 ```python
 name: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* an app-unique name generated by the chart
 
 The unique, namespace-global, name of this object inside the Kubernetes cluster.
@@ -872,13 +1358,13 @@ leave this unspecified.
 
 ---
 
-##### `namespace`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.namespace"></a>
+##### `namespace`<sup>Optional</sup> <a name="namespace" id="cdk8s.ApiObjectMetadata.property.namespace"></a>
 
 ```python
 namespace: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* undefined (will be assigned to the 'default' namespace)
 
 Namespace defines the space within each name must be unique.
@@ -888,13 +1374,13 @@ Not all objects are required to be scoped to a namespace - the value of this fie
 
 ---
 
-##### `owner_references`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadata.property.owner_references"></a>
+##### `owner_references`<sup>Optional</sup> <a name="owner_references" id="cdk8s.ApiObjectMetadata.property.ownerReferences"></a>
 
 ```python
 owner_references: typing.List[OwnerReference]
 ```
 
-- *Type:* typing.List[[`cdk8s.OwnerReference`](#cdk8s.OwnerReference)]
+- *Type:* typing.List[<a href="#cdk8s.OwnerReference">OwnerReference</a>]
 - *Default:* automatically set by Kubernetes
 
 List of objects depended by this object.
@@ -912,15 +1398,15 @@ relationships manually by changing the value of this field. However, you
 usually don't need to and can allow Kubernetes to automatically manage the
 relationships.
 
-> https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/
+> [https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/)
 
 ---
 
-### ApiObjectMetadataDefinitionOptions <a name="cdk8s.ApiObjectMetadataDefinitionOptions"></a>
+### ApiObjectMetadataDefinitionOptions <a name="ApiObjectMetadataDefinitionOptions" id="cdk8s.ApiObjectMetadataDefinitionOptions"></a>
 
 Options for `ApiObjectMetadataDefinition`.
 
-#### Initializer <a name="[object Object].Initializer"></a>
+#### Initializer <a name="Initializer" id="cdk8s.ApiObjectMetadataDefinitionOptions.Initializer"></a>
 
 ```python
 import cdk8s
@@ -936,13 +1422,27 @@ cdk8s.ApiObjectMetadataDefinitionOptions(
 )
 ```
 
-##### `annotations`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.annotations"></a>
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinitionOptions.property.annotations">annotations</a></code> | <code>typing.Mapping[str]</code> | Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinitionOptions.property.finalizers">finalizers</a></code> | <code>typing.List[str]</code> | Namespaced keys that tell Kubernetes to wait until specific conditions are met before it fully deletes resources marked for deletion. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinitionOptions.property.labels">labels</a></code> | <code>typing.Mapping[str]</code> | Map of string keys and values that can be used to organize and categorize (scope and select) objects. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinitionOptions.property.name">name</a></code> | <code>str</code> | The unique, namespace-global, name of this object inside the Kubernetes cluster. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinitionOptions.property.namespace">namespace</a></code> | <code>str</code> | Namespace defines the space within each name must be unique. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinitionOptions.property.ownerReferences">owner_references</a></code> | <code>typing.List[<a href="#cdk8s.OwnerReference">OwnerReference</a>]</code> | List of objects depended by this object. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinitionOptions.property.apiObject">api_object</a></code> | <code><a href="#cdk8s.ApiObject">ApiObject</a></code> | Which ApiObject instance is the metadata attached to. |
+
+---
+
+##### `annotations`<sup>Optional</sup> <a name="annotations" id="cdk8s.ApiObjectMetadataDefinitionOptions.property.annotations"></a>
 
 ```python
 annotations: typing.Mapping[str]
 ```
 
-- *Type:* typing.Mapping[`str`]
+- *Type:* typing.Mapping[str]
 - *Default:* No annotations.
 
 Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
@@ -950,17 +1450,17 @@ Annotations is an unstructured key value map stored with a resource that may be 
 They are not queryable and should be
 preserved when modifying objects.
 
-> http://kubernetes.io/docs/user-guide/annotations
+> [http://kubernetes.io/docs/user-guide/annotations](http://kubernetes.io/docs/user-guide/annotations)
 
 ---
 
-##### `finalizers`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.finalizers"></a>
+##### `finalizers`<sup>Optional</sup> <a name="finalizers" id="cdk8s.ApiObjectMetadataDefinitionOptions.property.finalizers"></a>
 
 ```python
 finalizers: typing.List[str]
 ```
 
-- *Type:* typing.List[`str`]
+- *Type:* typing.List[str]
 - *Default:* No finalizers.
 
 Namespaced keys that tell Kubernetes to wait until specific conditions are met before it fully deletes resources marked for deletion.
@@ -979,34 +1479,34 @@ in the list, resulting in a deadlock. Without enforced ordering finalizers
 are free to order amongst themselves and are not vulnerable to ordering
 changes in the list.
 
-> https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/
+> [https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/](https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/)
 
 ---
 
-##### `labels`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.labels"></a>
+##### `labels`<sup>Optional</sup> <a name="labels" id="cdk8s.ApiObjectMetadataDefinitionOptions.property.labels"></a>
 
 ```python
 labels: typing.Mapping[str]
 ```
 
-- *Type:* typing.Mapping[`str`]
+- *Type:* typing.Mapping[str]
 - *Default:* No labels.
 
 Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 May match selectors of replication controllers and services.
 
-> http://kubernetes.io/docs/user-guide/labels
+> [http://kubernetes.io/docs/user-guide/labels](http://kubernetes.io/docs/user-guide/labels)
 
 ---
 
-##### `name`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.name"></a>
+##### `name`<sup>Optional</sup> <a name="name" id="cdk8s.ApiObjectMetadataDefinitionOptions.property.name"></a>
 
 ```python
 name: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* an app-unique name generated by the chart
 
 The unique, namespace-global, name of this object inside the Kubernetes cluster.
@@ -1026,13 +1526,13 @@ leave this unspecified.
 
 ---
 
-##### `namespace`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.namespace"></a>
+##### `namespace`<sup>Optional</sup> <a name="namespace" id="cdk8s.ApiObjectMetadataDefinitionOptions.property.namespace"></a>
 
 ```python
 namespace: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* undefined (will be assigned to the 'default' namespace)
 
 Namespace defines the space within each name must be unique.
@@ -1042,13 +1542,13 @@ Not all objects are required to be scoped to a namespace - the value of this fie
 
 ---
 
-##### `owner_references`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.owner_references"></a>
+##### `owner_references`<sup>Optional</sup> <a name="owner_references" id="cdk8s.ApiObjectMetadataDefinitionOptions.property.ownerReferences"></a>
 
 ```python
 owner_references: typing.List[OwnerReference]
 ```
 
-- *Type:* typing.List[[`cdk8s.OwnerReference`](#cdk8s.OwnerReference)]
+- *Type:* typing.List[<a href="#cdk8s.OwnerReference">OwnerReference</a>]
 - *Default:* automatically set by Kubernetes
 
 List of objects depended by this object.
@@ -1066,27 +1566,27 @@ relationships manually by changing the value of this field. However, you
 usually don't need to and can allow Kubernetes to automatically manage the
 relationships.
 
-> https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/
+> [https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/)
 
 ---
 
-##### `api_object`<sup>Required</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.property.api_object"></a>
+##### `api_object`<sup>Required</sup> <a name="api_object" id="cdk8s.ApiObjectMetadataDefinitionOptions.property.apiObject"></a>
 
 ```python
 api_object: ApiObject
 ```
 
-- *Type:* [`cdk8s.ApiObject`](#cdk8s.ApiObject)
+- *Type:* <a href="#cdk8s.ApiObject">ApiObject</a>
 
 Which ApiObject instance is the metadata attached to.
 
 ---
 
-### ApiObjectProps <a name="cdk8s.ApiObjectProps"></a>
+### ApiObjectProps <a name="ApiObjectProps" id="cdk8s.ApiObjectProps"></a>
 
 Options for defining API objects.
 
-#### Initializer <a name="[object Object].Initializer"></a>
+#### Initializer <a name="Initializer" id="cdk8s.ApiObjectProps.Initializer"></a>
 
 ```python
 import cdk8s
@@ -1098,37 +1598,47 @@ cdk8s.ApiObjectProps(
 )
 ```
 
-##### `api_version`<sup>Required</sup> <a name="cdk8s.ApiObjectProps.property.api_version"></a>
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.ApiObjectProps.property.apiVersion">api_version</a></code> | <code>str</code> | API version. |
+| <code><a href="#cdk8s.ApiObjectProps.property.kind">kind</a></code> | <code>str</code> | Resource kind. |
+| <code><a href="#cdk8s.ApiObjectProps.property.metadata">metadata</a></code> | <code><a href="#cdk8s.ApiObjectMetadata">ApiObjectMetadata</a></code> | Object metadata. |
+
+---
+
+##### `api_version`<sup>Required</sup> <a name="api_version" id="cdk8s.ApiObjectProps.property.apiVersion"></a>
 
 ```python
 api_version: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 API version.
 
 ---
 
-##### `kind`<sup>Required</sup> <a name="cdk8s.ApiObjectProps.property.kind"></a>
+##### `kind`<sup>Required</sup> <a name="kind" id="cdk8s.ApiObjectProps.property.kind"></a>
 
 ```python
 kind: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 Resource kind.
 
 ---
 
-##### `metadata`<sup>Optional</sup> <a name="cdk8s.ApiObjectProps.property.metadata"></a>
+##### `metadata`<sup>Optional</sup> <a name="metadata" id="cdk8s.ApiObjectProps.property.metadata"></a>
 
 ```python
 metadata: ApiObjectMetadata
 ```
 
-- *Type:* [`cdk8s.ApiObjectMetadata`](#cdk8s.ApiObjectMetadata)
+- *Type:* <a href="#cdk8s.ApiObjectMetadata">ApiObjectMetadata</a>
 
 Object metadata.
 
@@ -1137,9 +1647,9 @@ framework based on the path of the construct within thes construct tree.
 
 ---
 
-### AppProps <a name="cdk8s.AppProps"></a>
+### AppProps <a name="AppProps" id="cdk8s.AppProps"></a>
 
-#### Initializer <a name="[object Object].Initializer"></a>
+#### Initializer <a name="Initializer" id="cdk8s.AppProps.Initializer"></a>
 
 ```python
 import cdk8s
@@ -1153,13 +1663,25 @@ cdk8s.AppProps(
 )
 ```
 
-##### `outdir`<sup>Optional</sup> <a name="cdk8s.AppProps.property.outdir"></a>
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.AppProps.property.outdir">outdir</a></code> | <code>str</code> | The directory to output Kubernetes manifests. |
+| <code><a href="#cdk8s.AppProps.property.outputFileExtension">output_file_extension</a></code> | <code>str</code> | The file extension to use for rendered YAML files. |
+| <code><a href="#cdk8s.AppProps.property.recordConstructMetadata">record_construct_metadata</a></code> | <code>bool</code> | When set to true, the output directory will contain a `construct-metadata.json` file that holds construct related metadata on every resource in the app. |
+| <code><a href="#cdk8s.AppProps.property.resolvers">resolvers</a></code> | <code>typing.List[<a href="#cdk8s.IResolver">IResolver</a>]</code> | A list of resolvers that can be used to replace property values before they are written to the manifest file. |
+| <code><a href="#cdk8s.AppProps.property.yamlOutputType">yaml_output_type</a></code> | <code><a href="#cdk8s.YamlOutputType">YamlOutputType</a></code> | How to divide the YAML output into files. |
+
+---
+
+##### `outdir`<sup>Optional</sup> <a name="outdir" id="cdk8s.AppProps.property.outdir"></a>
 
 ```python
 outdir: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* CDK8S_OUTDIR if defined, otherwise "dist"
 
 The directory to output Kubernetes manifests.
@@ -1174,39 +1696,39 @@ This property is intended for internal and testing use.
 
 ---
 
-##### `output_file_extension`<sup>Optional</sup> <a name="cdk8s.AppProps.property.output_file_extension"></a>
+##### `output_file_extension`<sup>Optional</sup> <a name="output_file_extension" id="cdk8s.AppProps.property.outputFileExtension"></a>
 
 ```python
 output_file_extension: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* .k8s.yaml
 
 The file extension to use for rendered YAML files.
 
 ---
 
-##### `record_construct_metadata`<sup>Optional</sup> <a name="cdk8s.AppProps.property.record_construct_metadata"></a>
+##### `record_construct_metadata`<sup>Optional</sup> <a name="record_construct_metadata" id="cdk8s.AppProps.property.recordConstructMetadata"></a>
 
 ```python
 record_construct_metadata: bool
 ```
 
-- *Type:* `bool`
+- *Type:* bool
 - *Default:* false
 
 When set to true, the output directory will contain a `construct-metadata.json` file that holds construct related metadata on every resource in the app.
 
 ---
 
-##### `resolvers`<sup>Optional</sup> <a name="cdk8s.AppProps.property.resolvers"></a>
+##### `resolvers`<sup>Optional</sup> <a name="resolvers" id="cdk8s.AppProps.property.resolvers"></a>
 
 ```python
 resolvers: typing.List[IResolver]
 ```
 
-- *Type:* typing.List[[`cdk8s.IResolver`](#cdk8s.IResolver)]
+- *Type:* typing.List[<a href="#cdk8s.IResolver">IResolver</a>]
 - *Default:* no resolvers.
 
 A list of resolvers that can be used to replace property values before they are written to the manifest file.
@@ -1215,26 +1737,26 @@ When multiple resolvers are passed,
 they are invoked by order in the list, and only the first one that applies
 (e.g calls `context.replaceValue`) is invoked.
 
-> https://cdk8s.io/docs/latest/basics/app/#resolvers
+> [https://cdk8s.io/docs/latest/basics/app/#resolvers](https://cdk8s.io/docs/latest/basics/app/#resolvers)
 
 ---
 
-##### `yaml_output_type`<sup>Optional</sup> <a name="cdk8s.AppProps.property.yaml_output_type"></a>
+##### `yaml_output_type`<sup>Optional</sup> <a name="yaml_output_type" id="cdk8s.AppProps.property.yamlOutputType"></a>
 
 ```python
 yaml_output_type: YamlOutputType
 ```
 
-- *Type:* [`cdk8s.YamlOutputType`](#cdk8s.YamlOutputType)
+- *Type:* <a href="#cdk8s.YamlOutputType">YamlOutputType</a>
 - *Default:* YamlOutputType.FILE_PER_CHART
 
 How to divide the YAML output into files.
 
 ---
 
-### ChartProps <a name="cdk8s.ChartProps"></a>
+### ChartProps <a name="ChartProps" id="cdk8s.ChartProps"></a>
 
-#### Initializer <a name="[object Object].Initializer"></a>
+#### Initializer <a name="Initializer" id="cdk8s.ChartProps.Initializer"></a>
 
 ```python
 import cdk8s
@@ -1246,13 +1768,23 @@ cdk8s.ChartProps(
 )
 ```
 
-##### `disable_resource_name_hashes`<sup>Optional</sup> <a name="cdk8s.ChartProps.property.disable_resource_name_hashes"></a>
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.ChartProps.property.disableResourceNameHashes">disable_resource_name_hashes</a></code> | <code>bool</code> | The autogenerated resource name by default is suffixed with a stable hash of the construct path. |
+| <code><a href="#cdk8s.ChartProps.property.labels">labels</a></code> | <code>typing.Mapping[str]</code> | Labels to apply to all resources in this chart. |
+| <code><a href="#cdk8s.ChartProps.property.namespace">namespace</a></code> | <code>str</code> | The default namespace for all objects defined in this chart (directly or indirectly). |
+
+---
+
+##### `disable_resource_name_hashes`<sup>Optional</sup> <a name="disable_resource_name_hashes" id="cdk8s.ChartProps.property.disableResourceNameHashes"></a>
 
 ```python
 disable_resource_name_hashes: bool
 ```
 
-- *Type:* `bool`
+- *Type:* bool
 - *Default:* false
 
 The autogenerated resource name by default is suffixed with a stable hash of the construct path.
@@ -1261,26 +1793,26 @@ Setting this property to true drops the hash suffix.
 
 ---
 
-##### `labels`<sup>Optional</sup> <a name="cdk8s.ChartProps.property.labels"></a>
+##### `labels`<sup>Optional</sup> <a name="labels" id="cdk8s.ChartProps.property.labels"></a>
 
 ```python
 labels: typing.Mapping[str]
 ```
 
-- *Type:* typing.Mapping[`str`]
+- *Type:* typing.Mapping[str]
 - *Default:* no common labels
 
 Labels to apply to all resources in this chart.
 
 ---
 
-##### `namespace`<sup>Optional</sup> <a name="cdk8s.ChartProps.property.namespace"></a>
+##### `namespace`<sup>Optional</sup> <a name="namespace" id="cdk8s.ChartProps.property.namespace"></a>
 
 ```python
 namespace: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* no namespace is synthesized (usually this implies "default")
 
 The default namespace for all objects defined in this chart (directly or indirectly).
@@ -1290,14 +1822,14 @@ This namespace will only apply to objects that don't have a
 
 ---
 
-### CronOptions <a name="cdk8s.CronOptions"></a>
+### CronOptions <a name="CronOptions" id="cdk8s.CronOptions"></a>
 
 Options to configure a cron expression.
 
 All fields are strings so you can use complex expressions. Absence of
 a field implies '*'
 
-#### Initializer <a name="[object Object].Initializer"></a>
+#### Initializer <a name="Initializer" id="cdk8s.CronOptions.Initializer"></a>
 
 ```python
 import cdk8s
@@ -1311,74 +1843,86 @@ cdk8s.CronOptions(
 )
 ```
 
-##### `day`<sup>Optional</sup> <a name="cdk8s.CronOptions.property.day"></a>
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.CronOptions.property.day">day</a></code> | <code>str</code> | The day of the month to run this rule at. |
+| <code><a href="#cdk8s.CronOptions.property.hour">hour</a></code> | <code>str</code> | The hour to run this rule at. |
+| <code><a href="#cdk8s.CronOptions.property.minute">minute</a></code> | <code>str</code> | The minute to run this rule at. |
+| <code><a href="#cdk8s.CronOptions.property.month">month</a></code> | <code>str</code> | The month to run this rule at. |
+| <code><a href="#cdk8s.CronOptions.property.weekDay">week_day</a></code> | <code>str</code> | The day of the week to run this rule at. |
+
+---
+
+##### `day`<sup>Optional</sup> <a name="day" id="cdk8s.CronOptions.property.day"></a>
 
 ```python
 day: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* Every day of the month
 
 The day of the month to run this rule at.
 
 ---
 
-##### `hour`<sup>Optional</sup> <a name="cdk8s.CronOptions.property.hour"></a>
+##### `hour`<sup>Optional</sup> <a name="hour" id="cdk8s.CronOptions.property.hour"></a>
 
 ```python
 hour: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* Every hour
 
 The hour to run this rule at.
 
 ---
 
-##### `minute`<sup>Optional</sup> <a name="cdk8s.CronOptions.property.minute"></a>
+##### `minute`<sup>Optional</sup> <a name="minute" id="cdk8s.CronOptions.property.minute"></a>
 
 ```python
 minute: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* Every minute
 
 The minute to run this rule at.
 
 ---
 
-##### `month`<sup>Optional</sup> <a name="cdk8s.CronOptions.property.month"></a>
+##### `month`<sup>Optional</sup> <a name="month" id="cdk8s.CronOptions.property.month"></a>
 
 ```python
 month: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* Every month
 
 The month to run this rule at.
 
 ---
 
-##### `week_day`<sup>Optional</sup> <a name="cdk8s.CronOptions.property.week_day"></a>
+##### `week_day`<sup>Optional</sup> <a name="week_day" id="cdk8s.CronOptions.property.weekDay"></a>
 
 ```python
 week_day: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* Any day of the week
 
 The day of the week to run this rule at.
 
 ---
 
-### GroupVersionKind <a name="cdk8s.GroupVersionKind"></a>
+### GroupVersionKind <a name="GroupVersionKind" id="cdk8s.GroupVersionKind"></a>
 
-#### Initializer <a name="[object Object].Initializer"></a>
+#### Initializer <a name="Initializer" id="cdk8s.GroupVersionKind.Initializer"></a>
 
 ```python
 import cdk8s
@@ -1389,35 +1933,44 @@ cdk8s.GroupVersionKind(
 )
 ```
 
-##### `api_version`<sup>Required</sup> <a name="cdk8s.GroupVersionKind.property.api_version"></a>
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.GroupVersionKind.property.apiVersion">api_version</a></code> | <code>str</code> | The object's API version (e.g. `authorization.k8s.io/v1`). |
+| <code><a href="#cdk8s.GroupVersionKind.property.kind">kind</a></code> | <code>str</code> | The object kind. |
+
+---
+
+##### `api_version`<sup>Required</sup> <a name="api_version" id="cdk8s.GroupVersionKind.property.apiVersion"></a>
 
 ```python
 api_version: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 The object's API version (e.g. `authorization.k8s.io/v1`).
 
 ---
 
-##### `kind`<sup>Required</sup> <a name="cdk8s.GroupVersionKind.property.kind"></a>
+##### `kind`<sup>Required</sup> <a name="kind" id="cdk8s.GroupVersionKind.property.kind"></a>
 
 ```python
 kind: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 The object kind.
 
 ---
 
-### HelmProps <a name="cdk8s.HelmProps"></a>
+### HelmProps <a name="HelmProps" id="cdk8s.HelmProps"></a>
 
 Options for `Helm`.
 
-#### Initializer <a name="[object Object].Initializer"></a>
+#### Initializer <a name="Initializer" id="cdk8s.HelmProps.Initializer"></a>
 
 ```python
 import cdk8s
@@ -1434,13 +1987,28 @@ cdk8s.HelmProps(
 )
 ```
 
-##### `chart`<sup>Required</sup> <a name="cdk8s.HelmProps.property.chart"></a>
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.HelmProps.property.chart">chart</a></code> | <code>str</code> | The chart name to use. It can be a chart from a helm repository or a local directory. |
+| <code><a href="#cdk8s.HelmProps.property.helmExecutable">helm_executable</a></code> | <code>str</code> | The local helm executable to use in order to create the manifest the chart. |
+| <code><a href="#cdk8s.HelmProps.property.helmFlags">helm_flags</a></code> | <code>typing.List[str]</code> | Additional flags to add to the `helm` execution. |
+| <code><a href="#cdk8s.HelmProps.property.namespace">namespace</a></code> | <code>str</code> | Scope all resources in to a given namespace. |
+| <code><a href="#cdk8s.HelmProps.property.releaseName">release_name</a></code> | <code>str</code> | The release name. |
+| <code><a href="#cdk8s.HelmProps.property.repo">repo</a></code> | <code>str</code> | Chart repository url where to locate the requested chart. |
+| <code><a href="#cdk8s.HelmProps.property.values">values</a></code> | <code>typing.Mapping[typing.Any]</code> | Values to pass to the chart. |
+| <code><a href="#cdk8s.HelmProps.property.version">version</a></code> | <code>str</code> | Version constraint for the chart version to use. |
+
+---
+
+##### `chart`<sup>Required</sup> <a name="chart" id="cdk8s.HelmProps.property.chart"></a>
 
 ```python
 chart: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 The chart name to use. It can be a chart from a helm repository or a local directory.
 
@@ -1448,91 +2016,98 @@ This name is passed to `helm template` and has all the relevant semantics.
 
 ---
 
-##### `helm_executable`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.helm_executable"></a>
+*Example*
+
+```python
+"bitnami/redis"
+```
+
+
+##### `helm_executable`<sup>Optional</sup> <a name="helm_executable" id="cdk8s.HelmProps.property.helmExecutable"></a>
 
 ```python
 helm_executable: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* "helm"
 
 The local helm executable to use in order to create the manifest the chart.
 
 ---
 
-##### `helm_flags`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.helm_flags"></a>
+##### `helm_flags`<sup>Optional</sup> <a name="helm_flags" id="cdk8s.HelmProps.property.helmFlags"></a>
 
 ```python
 helm_flags: typing.List[str]
 ```
 
-- *Type:* typing.List[`str`]
+- *Type:* typing.List[str]
 - *Default:* []
 
 Additional flags to add to the `helm` execution.
 
 ---
 
-##### `namespace`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.namespace"></a>
+##### `namespace`<sup>Optional</sup> <a name="namespace" id="cdk8s.HelmProps.property.namespace"></a>
 
 ```python
 namespace: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 Scope all resources in to a given namespace.
 
 ---
 
-##### `release_name`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.release_name"></a>
+##### `release_name`<sup>Optional</sup> <a name="release_name" id="cdk8s.HelmProps.property.releaseName"></a>
 
 ```python
 release_name: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* if unspecified, a name will be allocated based on the construct path
 
 The release name.
 
-> https://helm.sh/docs/intro/using_helm/#three-big-concepts
+> [https://helm.sh/docs/intro/using_helm/#three-big-concepts](https://helm.sh/docs/intro/using_helm/#three-big-concepts)
 
 ---
 
-##### `repo`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.repo"></a>
+##### `repo`<sup>Optional</sup> <a name="repo" id="cdk8s.HelmProps.property.repo"></a>
 
 ```python
 repo: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 Chart repository url where to locate the requested chart.
 
 ---
 
-##### `values`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.values"></a>
+##### `values`<sup>Optional</sup> <a name="values" id="cdk8s.HelmProps.property.values"></a>
 
 ```python
 values: typing.Mapping[typing.Any]
 ```
 
-- *Type:* typing.Mapping[`typing.Any`]
+- *Type:* typing.Mapping[typing.Any]
 - *Default:* If no values are specified, chart will use the defaults.
 
 Values to pass to the chart.
 
 ---
 
-##### `version`<sup>Optional</sup> <a name="cdk8s.HelmProps.property.version"></a>
+##### `version`<sup>Optional</sup> <a name="version" id="cdk8s.HelmProps.property.version"></a>
 
 ```python
 version: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 Version constraint for the chart version to use.
 
@@ -1544,9 +2119,16 @@ This name is passed to `helm template --version` and has all the relevant semant
 
 ---
 
-### IncludeProps <a name="cdk8s.IncludeProps"></a>
+*Example*
 
-#### Initializer <a name="[object Object].Initializer"></a>
+```python
+"^2.0.0"
+```
+
+
+### IncludeProps <a name="IncludeProps" id="cdk8s.IncludeProps"></a>
+
+#### Initializer <a name="Initializer" id="cdk8s.IncludeProps.Initializer"></a>
 
 ```python
 import cdk8s
@@ -1556,23 +2138,39 @@ cdk8s.IncludeProps(
 )
 ```
 
-##### `url`<sup>Required</sup> <a name="cdk8s.IncludeProps.property.url"></a>
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.IncludeProps.property.url">url</a></code> | <code>str</code> | Local file path or URL which includes a Kubernetes YAML manifest. |
+
+---
+
+##### `url`<sup>Required</sup> <a name="url" id="cdk8s.IncludeProps.property.url"></a>
 
 ```python
 url: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 Local file path or URL which includes a Kubernetes YAML manifest.
 
 ---
 
-### NameOptions <a name="cdk8s.NameOptions"></a>
+*Example*
+
+```python
+# Example automatically generated from non-compiling source. May contain errors.
+mymanifest.yaml
+```
+
+
+### NameOptions <a name="NameOptions" id="cdk8s.NameOptions"></a>
 
 Options for name generation.
 
-#### Initializer <a name="[object Object].Initializer"></a>
+#### Initializer <a name="Initializer" id="cdk8s.NameOptions.Initializer"></a>
 
 ```python
 import cdk8s
@@ -1585,66 +2183,77 @@ cdk8s.NameOptions(
 )
 ```
 
-##### `delimiter`<sup>Optional</sup> <a name="cdk8s.NameOptions.property.delimiter"></a>
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.NameOptions.property.delimiter">delimiter</a></code> | <code>str</code> | Delimiter to use between components. |
+| <code><a href="#cdk8s.NameOptions.property.extra">extra</a></code> | <code>typing.List[str]</code> | Extra components to include in the name. |
+| <code><a href="#cdk8s.NameOptions.property.includeHash">include_hash</a></code> | <code>bool</code> | Include a short hash as last part of the name. |
+| <code><a href="#cdk8s.NameOptions.property.maxLen">max_len</a></code> | <code>typing.Union[int, float]</code> | Maximum allowed length for the name. |
+
+---
+
+##### `delimiter`<sup>Optional</sup> <a name="delimiter" id="cdk8s.NameOptions.property.delimiter"></a>
 
 ```python
 delimiter: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* "-"
 
 Delimiter to use between components.
 
 ---
 
-##### `extra`<sup>Optional</sup> <a name="cdk8s.NameOptions.property.extra"></a>
+##### `extra`<sup>Optional</sup> <a name="extra" id="cdk8s.NameOptions.property.extra"></a>
 
 ```python
 extra: typing.List[str]
 ```
 
-- *Type:* typing.List[`str`]
+- *Type:* typing.List[str]
 - *Default:* [] use the construct path components
 
 Extra components to include in the name.
 
 ---
 
-##### `include_hash`<sup>Optional</sup> <a name="cdk8s.NameOptions.property.include_hash"></a>
+##### `include_hash`<sup>Optional</sup> <a name="include_hash" id="cdk8s.NameOptions.property.includeHash"></a>
 
 ```python
 include_hash: bool
 ```
 
-- *Type:* `bool`
+- *Type:* bool
 - *Default:* true
 
 Include a short hash as last part of the name.
 
 ---
 
-##### `max_len`<sup>Optional</sup> <a name="cdk8s.NameOptions.property.max_len"></a>
+##### `max_len`<sup>Optional</sup> <a name="max_len" id="cdk8s.NameOptions.property.maxLen"></a>
 
 ```python
 max_len: typing.Union[int, float]
 ```
 
-- *Type:* `typing.Union[int, float]`
+- *Type:* typing.Union[int, float]
 - *Default:* 63
 
 Maximum allowed length for the name.
 
 ---
 
-### OwnerReference <a name="cdk8s.OwnerReference"></a>
+### OwnerReference <a name="OwnerReference" id="cdk8s.OwnerReference"></a>
 
 OwnerReference contains enough information to let you identify an owning object.
 
 An owning object must be in the same namespace as the dependent, or
 be cluster-scoped, so there is no namespace field.
 
-#### Initializer <a name="[object Object].Initializer"></a>
+#### Initializer <a name="Initializer" id="cdk8s.OwnerReference.Initializer"></a>
 
 ```python
 import cdk8s
@@ -1659,69 +2268,81 @@ cdk8s.OwnerReference(
 )
 ```
 
-##### `api_version`<sup>Required</sup> <a name="cdk8s.OwnerReference.property.api_version"></a>
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.OwnerReference.property.apiVersion">api_version</a></code> | <code>str</code> | API version of the referent. |
+| <code><a href="#cdk8s.OwnerReference.property.kind">kind</a></code> | <code>str</code> | Kind of the referent. |
+| <code><a href="#cdk8s.OwnerReference.property.name">name</a></code> | <code>str</code> | Name of the referent. |
+| <code><a href="#cdk8s.OwnerReference.property.uid">uid</a></code> | <code>str</code> | UID of the referent. |
+| <code><a href="#cdk8s.OwnerReference.property.blockOwnerDeletion">block_owner_deletion</a></code> | <code>bool</code> | If true, AND if the owner has the "foregroundDeletion" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. |
+| <code><a href="#cdk8s.OwnerReference.property.controller">controller</a></code> | <code>bool</code> | If true, this reference points to the managing controller. |
+
+---
+
+##### `api_version`<sup>Required</sup> <a name="api_version" id="cdk8s.OwnerReference.property.apiVersion"></a>
 
 ```python
 api_version: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 API version of the referent.
 
 ---
 
-##### `kind`<sup>Required</sup> <a name="cdk8s.OwnerReference.property.kind"></a>
+##### `kind`<sup>Required</sup> <a name="kind" id="cdk8s.OwnerReference.property.kind"></a>
 
 ```python
 kind: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 Kind of the referent.
 
-> https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+> [https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds](https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds)
 
 ---
 
-##### `name`<sup>Required</sup> <a name="cdk8s.OwnerReference.property.name"></a>
+##### `name`<sup>Required</sup> <a name="name" id="cdk8s.OwnerReference.property.name"></a>
 
 ```python
 name: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 Name of the referent.
 
-> http://kubernetes.io/docs/user-guide/identifiers#names
+> [http://kubernetes.io/docs/user-guide/identifiers#names](http://kubernetes.io/docs/user-guide/identifiers#names)
 
 ---
 
-##### `uid`<sup>Required</sup> <a name="cdk8s.OwnerReference.property.uid"></a>
+##### `uid`<sup>Required</sup> <a name="uid" id="cdk8s.OwnerReference.property.uid"></a>
 
 ```python
 uid: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 UID of the referent.
 
-> http://kubernetes.io/docs/user-guide/identifiers#uids
+> [http://kubernetes.io/docs/user-guide/identifiers#uids](http://kubernetes.io/docs/user-guide/identifiers#uids)
 
 ---
 
-##### `block_owner_deletion`<sup>Optional</sup> <a name="cdk8s.OwnerReference.property.block_owner_deletion"></a>
+##### `block_owner_deletion`<sup>Optional</sup> <a name="block_owner_deletion" id="cdk8s.OwnerReference.property.blockOwnerDeletion"></a>
 
 ```python
 block_owner_deletion: bool
 ```
 
-- *Type:* `bool`
-- *Default:* false. To set this field, a user needs "delete" permission of the
-owner, otherwise 422 (Unprocessable Entity) will be returned.
+- *Type:* bool
+- *Default:* false. To set this field, a user needs "delete" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.
 
 If true, AND if the owner has the "foregroundDeletion" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed.
 
@@ -1731,23 +2352,23 @@ returned.
 
 ---
 
-##### `controller`<sup>Optional</sup> <a name="cdk8s.OwnerReference.property.controller"></a>
+##### `controller`<sup>Optional</sup> <a name="controller" id="cdk8s.OwnerReference.property.controller"></a>
 
 ```python
 controller: bool
 ```
 
-- *Type:* `bool`
+- *Type:* bool
 
 If true, this reference points to the managing controller.
 
 ---
 
-### SizeConversionOptions <a name="cdk8s.SizeConversionOptions"></a>
+### SizeConversionOptions <a name="SizeConversionOptions" id="cdk8s.SizeConversionOptions"></a>
 
 Options for how to convert time to a different unit.
 
-#### Initializer <a name="[object Object].Initializer"></a>
+#### Initializer <a name="Initializer" id="cdk8s.SizeConversionOptions.Initializer"></a>
 
 ```python
 import cdk8s
@@ -1757,24 +2378,32 @@ cdk8s.SizeConversionOptions(
 )
 ```
 
-##### `rounding`<sup>Optional</sup> <a name="cdk8s.SizeConversionOptions.property.rounding"></a>
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.SizeConversionOptions.property.rounding">rounding</a></code> | <code><a href="#cdk8s.SizeRoundingBehavior">SizeRoundingBehavior</a></code> | How conversions should behave when it encounters a non-integer result. |
+
+---
+
+##### `rounding`<sup>Optional</sup> <a name="rounding" id="cdk8s.SizeConversionOptions.property.rounding"></a>
 
 ```python
 rounding: SizeRoundingBehavior
 ```
 
-- *Type:* [`cdk8s.SizeRoundingBehavior`](#cdk8s.SizeRoundingBehavior)
+- *Type:* <a href="#cdk8s.SizeRoundingBehavior">SizeRoundingBehavior</a>
 - *Default:* SizeRoundingBehavior.FAIL
 
 How conversions should behave when it encounters a non-integer result.
 
 ---
 
-### TimeConversionOptions <a name="cdk8s.TimeConversionOptions"></a>
+### TimeConversionOptions <a name="TimeConversionOptions" id="cdk8s.TimeConversionOptions"></a>
 
 Options for how to convert time to a different unit.
 
-#### Initializer <a name="[object Object].Initializer"></a>
+#### Initializer <a name="Initializer" id="cdk8s.TimeConversionOptions.Initializer"></a>
 
 ```python
 import cdk8s
@@ -1784,26 +2413,34 @@ cdk8s.TimeConversionOptions(
 )
 ```
 
-##### `integral`<sup>Optional</sup> <a name="cdk8s.TimeConversionOptions.property.integral"></a>
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.TimeConversionOptions.property.integral">integral</a></code> | <code>bool</code> | If `true`, conversions into a larger time unit (e.g. `Seconds` to `Minutes`) will fail if the result is not an integer. |
+
+---
+
+##### `integral`<sup>Optional</sup> <a name="integral" id="cdk8s.TimeConversionOptions.property.integral"></a>
 
 ```python
 integral: bool
 ```
 
-- *Type:* `bool`
+- *Type:* bool
 - *Default:* true
 
 If `true`, conversions into a larger time unit (e.g. `Seconds` to `Minutes`) will fail if the result is not an integer.
 
 ---
 
-## Classes <a name="Classes"></a>
+## Classes <a name="Classes" id="Classes"></a>
 
-### ApiObjectMetadataDefinition <a name="cdk8s.ApiObjectMetadataDefinition"></a>
+### ApiObjectMetadataDefinition <a name="ApiObjectMetadataDefinition" id="cdk8s.ApiObjectMetadataDefinition"></a>
 
 Object metadata.
 
-#### Initializers <a name="cdk8s.ApiObjectMetadataDefinition.Initializer"></a>
+#### Initializers <a name="Initializers" id="cdk8s.ApiObjectMetadataDefinition.Initializer"></a>
 
 ```python
 import cdk8s
@@ -1819,9 +2456,21 @@ cdk8s.ApiObjectMetadataDefinition(
 )
 ```
 
-##### `annotations`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.parameter.annotations"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinition.Initializer.parameter.annotations">annotations</a></code> | <code>typing.Mapping[str]</code> | Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinition.Initializer.parameter.finalizers">finalizers</a></code> | <code>typing.List[str]</code> | Namespaced keys that tell Kubernetes to wait until specific conditions are met before it fully deletes resources marked for deletion. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinition.Initializer.parameter.labels">labels</a></code> | <code>typing.Mapping[str]</code> | Map of string keys and values that can be used to organize and categorize (scope and select) objects. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinition.Initializer.parameter.name">name</a></code> | <code>str</code> | The unique, namespace-global, name of this object inside the Kubernetes cluster. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinition.Initializer.parameter.namespace">namespace</a></code> | <code>str</code> | Namespace defines the space within each name must be unique. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinition.Initializer.parameter.ownerReferences">owner_references</a></code> | <code>typing.List[<a href="#cdk8s.OwnerReference">OwnerReference</a>]</code> | List of objects depended by this object. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinition.Initializer.parameter.apiObject">api_object</a></code> | <code><a href="#cdk8s.ApiObject">ApiObject</a></code> | Which ApiObject instance is the metadata attached to. |
 
-- *Type:* typing.Mapping[`str`]
+---
+
+##### `annotations`<sup>Optional</sup> <a name="annotations" id="cdk8s.ApiObjectMetadataDefinition.Initializer.parameter.annotations"></a>
+
+- *Type:* typing.Mapping[str]
 - *Default:* No annotations.
 
 Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
@@ -1829,13 +2478,13 @@ Annotations is an unstructured key value map stored with a resource that may be 
 They are not queryable and should be
 preserved when modifying objects.
 
-> http://kubernetes.io/docs/user-guide/annotations
+> [http://kubernetes.io/docs/user-guide/annotations](http://kubernetes.io/docs/user-guide/annotations)
 
 ---
 
-##### `finalizers`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.parameter.finalizers"></a>
+##### `finalizers`<sup>Optional</sup> <a name="finalizers" id="cdk8s.ApiObjectMetadataDefinition.Initializer.parameter.finalizers"></a>
 
-- *Type:* typing.List[`str`]
+- *Type:* typing.List[str]
 - *Default:* No finalizers.
 
 Namespaced keys that tell Kubernetes to wait until specific conditions are met before it fully deletes resources marked for deletion.
@@ -1854,26 +2503,26 @@ in the list, resulting in a deadlock. Without enforced ordering finalizers
 are free to order amongst themselves and are not vulnerable to ordering
 changes in the list.
 
-> https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/
+> [https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/](https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/)
 
 ---
 
-##### `labels`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.parameter.labels"></a>
+##### `labels`<sup>Optional</sup> <a name="labels" id="cdk8s.ApiObjectMetadataDefinition.Initializer.parameter.labels"></a>
 
-- *Type:* typing.Mapping[`str`]
+- *Type:* typing.Mapping[str]
 - *Default:* No labels.
 
 Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
 May match selectors of replication controllers and services.
 
-> http://kubernetes.io/docs/user-guide/labels
+> [http://kubernetes.io/docs/user-guide/labels](http://kubernetes.io/docs/user-guide/labels)
 
 ---
 
-##### `name`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.parameter.name"></a>
+##### `name`<sup>Optional</sup> <a name="name" id="cdk8s.ApiObjectMetadataDefinition.Initializer.parameter.name"></a>
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* an app-unique name generated by the chart
 
 The unique, namespace-global, name of this object inside the Kubernetes cluster.
@@ -1893,9 +2542,9 @@ leave this unspecified.
 
 ---
 
-##### `namespace`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.parameter.namespace"></a>
+##### `namespace`<sup>Optional</sup> <a name="namespace" id="cdk8s.ApiObjectMetadataDefinition.Initializer.parameter.namespace"></a>
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* undefined (will be assigned to the 'default' namespace)
 
 Namespace defines the space within each name must be unique.
@@ -1905,9 +2554,9 @@ Not all objects are required to be scoped to a namespace - the value of this fie
 
 ---
 
-##### `owner_references`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.parameter.owner_references"></a>
+##### `owner_references`<sup>Optional</sup> <a name="owner_references" id="cdk8s.ApiObjectMetadataDefinition.Initializer.parameter.ownerReferences"></a>
 
-- *Type:* typing.List[[`cdk8s.OwnerReference`](#cdk8s.OwnerReference)]
+- *Type:* typing.List[<a href="#cdk8s.OwnerReference">OwnerReference</a>]
 - *Default:* automatically set by Kubernetes
 
 List of objects depended by this object.
@@ -1925,112 +2574,132 @@ relationships manually by changing the value of this field. However, you
 usually don't need to and can allow Kubernetes to automatically manage the
 relationships.
 
-> https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/
+> [https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/)
 
 ---
 
-##### `api_object`<sup>Required</sup> <a name="cdk8s.ApiObjectMetadataDefinitionOptions.parameter.api_object"></a>
+##### `api_object`<sup>Required</sup> <a name="api_object" id="cdk8s.ApiObjectMetadataDefinition.Initializer.parameter.apiObject"></a>
 
-- *Type:* [`cdk8s.ApiObject`](#cdk8s.ApiObject)
+- *Type:* <a href="#cdk8s.ApiObject">ApiObject</a>
 
 Which ApiObject instance is the metadata attached to.
 
 ---
 
-#### Methods <a name="Methods"></a>
+#### Methods <a name="Methods" id="Methods"></a>
 
-##### `add` <a name="cdk8s.ApiObjectMetadataDefinition.add"></a>
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinition.add">add</a></code> | Adds an arbitrary key/value to the object metadata. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinition.addAnnotation">add_annotation</a></code> | Add an annotation. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinition.addFinalizers">add_finalizers</a></code> | Add one or more finalizers. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinition.addLabel">add_label</a></code> | Add a label. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinition.addOwnerReference">add_owner_reference</a></code> | Add an owner. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinition.getLabel">get_label</a></code> | *No description.* |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinition.toJson">to_json</a></code> | Synthesizes a k8s ObjectMeta for this metadata set. |
+
+---
+
+##### `add` <a name="add" id="cdk8s.ApiObjectMetadataDefinition.add"></a>
 
 ```python
 def add(
   key: str,
   value: typing.Any
-)
+) -> None
 ```
 
-###### `key`<sup>Required</sup> <a name="cdk8s.ApiObjectMetadataDefinition.parameter.key"></a>
+Adds an arbitrary key/value to the object metadata.
 
-- *Type:* `str`
+###### `key`<sup>Required</sup> <a name="key" id="cdk8s.ApiObjectMetadataDefinition.add.parameter.key"></a>
+
+- *Type:* str
 
 Metadata key.
 
 ---
 
-###### `value`<sup>Required</sup> <a name="cdk8s.ApiObjectMetadataDefinition.parameter.value"></a>
+###### `value`<sup>Required</sup> <a name="value" id="cdk8s.ApiObjectMetadataDefinition.add.parameter.value"></a>
 
-- *Type:* `typing.Any`
+- *Type:* typing.Any
 
 Metadata value.
 
 ---
 
-##### `add_annotation` <a name="cdk8s.ApiObjectMetadataDefinition.add_annotation"></a>
+##### `add_annotation` <a name="add_annotation" id="cdk8s.ApiObjectMetadataDefinition.addAnnotation"></a>
 
 ```python
 def add_annotation(
   key: str,
   value: str
-)
+) -> None
 ```
 
-###### `key`<sup>Required</sup> <a name="cdk8s.ApiObjectMetadataDefinition.parameter.key"></a>
+Add an annotation.
 
-- *Type:* `str`
+###### `key`<sup>Required</sup> <a name="key" id="cdk8s.ApiObjectMetadataDefinition.addAnnotation.parameter.key"></a>
+
+- *Type:* str
 
 The key.
 
 ---
 
-###### `value`<sup>Required</sup> <a name="cdk8s.ApiObjectMetadataDefinition.parameter.value"></a>
+###### `value`<sup>Required</sup> <a name="value" id="cdk8s.ApiObjectMetadataDefinition.addAnnotation.parameter.value"></a>
 
-- *Type:* `str`
+- *Type:* str
 
 The value.
 
 ---
 
-##### `add_finalizers` <a name="cdk8s.ApiObjectMetadataDefinition.add_finalizers"></a>
+##### `add_finalizers` <a name="add_finalizers" id="cdk8s.ApiObjectMetadataDefinition.addFinalizers"></a>
 
 ```python
 def add_finalizers(
   finalizers: str
-)
+) -> None
 ```
 
-###### `finalizers`<sup>Required</sup> <a name="cdk8s.ApiObjectMetadataDefinition.parameter.finalizers"></a>
+Add one or more finalizers.
 
-- *Type:* `str`
+###### `finalizers`<sup>Required</sup> <a name="finalizers" id="cdk8s.ApiObjectMetadataDefinition.addFinalizers.parameter.finalizers"></a>
+
+- *Type:* str
 
 the finalizers.
 
 ---
 
-##### `add_label` <a name="cdk8s.ApiObjectMetadataDefinition.add_label"></a>
+##### `add_label` <a name="add_label" id="cdk8s.ApiObjectMetadataDefinition.addLabel"></a>
 
 ```python
 def add_label(
   key: str,
   value: str
-)
+) -> None
 ```
 
-###### `key`<sup>Required</sup> <a name="cdk8s.ApiObjectMetadataDefinition.parameter.key"></a>
+Add a label.
 
-- *Type:* `str`
+###### `key`<sup>Required</sup> <a name="key" id="cdk8s.ApiObjectMetadataDefinition.addLabel.parameter.key"></a>
+
+- *Type:* str
 
 The key.
 
 ---
 
-###### `value`<sup>Required</sup> <a name="cdk8s.ApiObjectMetadataDefinition.parameter.value"></a>
+###### `value`<sup>Required</sup> <a name="value" id="cdk8s.ApiObjectMetadataDefinition.addLabel.parameter.value"></a>
 
-- *Type:* `str`
+- *Type:* str
 
 The value.
 
 ---
 
-##### `add_owner_reference` <a name="cdk8s.ApiObjectMetadataDefinition.add_owner_reference"></a>
+##### `add_owner_reference` <a name="add_owner_reference" id="cdk8s.ApiObjectMetadataDefinition.addOwnerReference"></a>
 
 ```python
 def add_owner_reference(
@@ -2040,52 +2709,53 @@ def add_owner_reference(
   uid: str,
   block_owner_deletion: bool = None,
   controller: bool = None
-)
+) -> None
 ```
 
-###### `api_version`<sup>Required</sup> <a name="cdk8s.OwnerReference.parameter.api_version"></a>
+Add an owner.
 
-- *Type:* `str`
+###### `api_version`<sup>Required</sup> <a name="api_version" id="cdk8s.ApiObjectMetadataDefinition.addOwnerReference.parameter.apiVersion"></a>
+
+- *Type:* str
 
 API version of the referent.
 
 ---
 
-###### `kind`<sup>Required</sup> <a name="cdk8s.OwnerReference.parameter.kind"></a>
+###### `kind`<sup>Required</sup> <a name="kind" id="cdk8s.ApiObjectMetadataDefinition.addOwnerReference.parameter.kind"></a>
 
-- *Type:* `str`
+- *Type:* str
 
 Kind of the referent.
 
-> https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+> [https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds](https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds)
 
 ---
 
-###### `name`<sup>Required</sup> <a name="cdk8s.OwnerReference.parameter.name"></a>
+###### `name`<sup>Required</sup> <a name="name" id="cdk8s.ApiObjectMetadataDefinition.addOwnerReference.parameter.name"></a>
 
-- *Type:* `str`
+- *Type:* str
 
 Name of the referent.
 
-> http://kubernetes.io/docs/user-guide/identifiers#names
+> [http://kubernetes.io/docs/user-guide/identifiers#names](http://kubernetes.io/docs/user-guide/identifiers#names)
 
 ---
 
-###### `uid`<sup>Required</sup> <a name="cdk8s.OwnerReference.parameter.uid"></a>
+###### `uid`<sup>Required</sup> <a name="uid" id="cdk8s.ApiObjectMetadataDefinition.addOwnerReference.parameter.uid"></a>
 
-- *Type:* `str`
+- *Type:* str
 
 UID of the referent.
 
-> http://kubernetes.io/docs/user-guide/identifiers#uids
+> [http://kubernetes.io/docs/user-guide/identifiers#uids](http://kubernetes.io/docs/user-guide/identifiers#uids)
 
 ---
 
-###### `block_owner_deletion`<sup>Optional</sup> <a name="cdk8s.OwnerReference.parameter.block_owner_deletion"></a>
+###### `block_owner_deletion`<sup>Optional</sup> <a name="block_owner_deletion" id="cdk8s.ApiObjectMetadataDefinition.addOwnerReference.parameter.blockOwnerDeletion"></a>
 
-- *Type:* `bool`
-- *Default:* false. To set this field, a user needs "delete" permission of the
-owner, otherwise 422 (Unprocessable Entity) will be returned.
+- *Type:* bool
+- *Default:* false. To set this field, a user needs "delete" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.
 
 If true, AND if the owner has the "foregroundDeletion" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed.
 
@@ -2095,46 +2765,55 @@ returned.
 
 ---
 
-###### `controller`<sup>Optional</sup> <a name="cdk8s.OwnerReference.parameter.controller"></a>
+###### `controller`<sup>Optional</sup> <a name="controller" id="cdk8s.ApiObjectMetadataDefinition.addOwnerReference.parameter.controller"></a>
 
-- *Type:* `bool`
+- *Type:* bool
 
 If true, this reference points to the managing controller.
 
 ---
 
-##### `get_label` <a name="cdk8s.ApiObjectMetadataDefinition.get_label"></a>
+##### `get_label` <a name="get_label" id="cdk8s.ApiObjectMetadataDefinition.getLabel"></a>
 
 ```python
 def get_label(
   key: str
-)
+) -> str
 ```
 
-###### `key`<sup>Required</sup> <a name="cdk8s.ApiObjectMetadataDefinition.parameter.key"></a>
+###### `key`<sup>Required</sup> <a name="key" id="cdk8s.ApiObjectMetadataDefinition.getLabel.parameter.key"></a>
 
-- *Type:* `str`
+- *Type:* str
 
 the label.
 
 ---
 
-##### `to_json` <a name="cdk8s.ApiObjectMetadataDefinition.to_json"></a>
+##### `to_json` <a name="to_json" id="cdk8s.ApiObjectMetadataDefinition.toJson"></a>
 
 ```python
-def to_json()
+def to_json() -> typing.Any
 ```
 
+Synthesizes a k8s ObjectMeta for this metadata set.
 
-#### Properties <a name="Properties"></a>
 
-##### `name`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinition.property.name"></a>
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinition.property.name">name</a></code> | <code>str</code> | The name of the API object. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinition.property.namespace">namespace</a></code> | <code>str</code> | The object's namespace. |
+
+---
+
+##### `name`<sup>Optional</sup> <a name="name" id="cdk8s.ApiObjectMetadataDefinition.property.name"></a>
 
 ```python
 name: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 The name of the API object.
 
@@ -2145,24 +2824,24 @@ construct path to generate a DNS-compatible name for the resource.
 
 ---
 
-##### `namespace`<sup>Optional</sup> <a name="cdk8s.ApiObjectMetadataDefinition.property.namespace"></a>
+##### `namespace`<sup>Optional</sup> <a name="namespace" id="cdk8s.ApiObjectMetadataDefinition.property.namespace"></a>
 
 ```python
 namespace: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 The object's namespace.
 
 ---
 
 
-### Cron <a name="cdk8s.Cron"></a>
+### Cron <a name="Cron" id="cdk8s.Cron"></a>
 
 Represents a cron schedule.
 
-#### Initializers <a name="cdk8s.Cron.Initializer"></a>
+#### Initializers <a name="Initializers" id="cdk8s.Cron.Initializer"></a>
 
 ```python
 import cdk8s
@@ -2176,45 +2855,55 @@ cdk8s.Cron(
 )
 ```
 
-##### `day`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.day"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.Cron.Initializer.parameter.day">day</a></code> | <code>str</code> | The day of the month to run this rule at. |
+| <code><a href="#cdk8s.Cron.Initializer.parameter.hour">hour</a></code> | <code>str</code> | The hour to run this rule at. |
+| <code><a href="#cdk8s.Cron.Initializer.parameter.minute">minute</a></code> | <code>str</code> | The minute to run this rule at. |
+| <code><a href="#cdk8s.Cron.Initializer.parameter.month">month</a></code> | <code>str</code> | The month to run this rule at. |
+| <code><a href="#cdk8s.Cron.Initializer.parameter.weekDay">week_day</a></code> | <code>str</code> | The day of the week to run this rule at. |
 
-- *Type:* `str`
+---
+
+##### `day`<sup>Optional</sup> <a name="day" id="cdk8s.Cron.Initializer.parameter.day"></a>
+
+- *Type:* str
 - *Default:* Every day of the month
 
 The day of the month to run this rule at.
 
 ---
 
-##### `hour`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.hour"></a>
+##### `hour`<sup>Optional</sup> <a name="hour" id="cdk8s.Cron.Initializer.parameter.hour"></a>
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* Every hour
 
 The hour to run this rule at.
 
 ---
 
-##### `minute`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.minute"></a>
+##### `minute`<sup>Optional</sup> <a name="minute" id="cdk8s.Cron.Initializer.parameter.minute"></a>
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* Every minute
 
 The minute to run this rule at.
 
 ---
 
-##### `month`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.month"></a>
+##### `month`<sup>Optional</sup> <a name="month" id="cdk8s.Cron.Initializer.parameter.month"></a>
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* Every month
 
 The month to run this rule at.
 
 ---
 
-##### `week_day`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.week_day"></a>
+##### `week_day`<sup>Optional</sup> <a name="week_day" id="cdk8s.Cron.Initializer.parameter.weekDay"></a>
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* Any day of the week
 
 The day of the week to run this rule at.
@@ -2222,9 +2911,21 @@ The day of the week to run this rule at.
 ---
 
 
-#### Static Functions <a name="Static Functions"></a>
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
-##### `annually` <a name="cdk8s.Cron.annually"></a>
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.Cron.annually">annually</a></code> | Create a cron schedule which runs first day of January every year. |
+| <code><a href="#cdk8s.Cron.daily">daily</a></code> | Create a cron schedule which runs every day at midnight. |
+| <code><a href="#cdk8s.Cron.everyMinute">every_minute</a></code> | Create a cron schedule which runs every minute. |
+| <code><a href="#cdk8s.Cron.hourly">hourly</a></code> | Create a cron schedule which runs every hour. |
+| <code><a href="#cdk8s.Cron.monthly">monthly</a></code> | Create a cron schedule which runs first day of every month. |
+| <code><a href="#cdk8s.Cron.schedule">schedule</a></code> | Create a custom cron schedule from a set of cron fields. |
+| <code><a href="#cdk8s.Cron.weekly">weekly</a></code> | Create a cron schedule which runs every week on Sunday. |
+
+---
+
+##### `annually` <a name="annually" id="cdk8s.Cron.annually"></a>
 
 ```python
 import cdk8s
@@ -2232,7 +2933,9 @@ import cdk8s
 cdk8s.Cron.annually()
 ```
 
-##### `daily` <a name="cdk8s.Cron.daily"></a>
+Create a cron schedule which runs first day of January every year.
+
+##### `daily` <a name="daily" id="cdk8s.Cron.daily"></a>
 
 ```python
 import cdk8s
@@ -2240,7 +2943,9 @@ import cdk8s
 cdk8s.Cron.daily()
 ```
 
-##### `every_minute` <a name="cdk8s.Cron.every_minute"></a>
+Create a cron schedule which runs every day at midnight.
+
+##### `every_minute` <a name="every_minute" id="cdk8s.Cron.everyMinute"></a>
 
 ```python
 import cdk8s
@@ -2248,7 +2953,9 @@ import cdk8s
 cdk8s.Cron.every_minute()
 ```
 
-##### `hourly` <a name="cdk8s.Cron.hourly"></a>
+Create a cron schedule which runs every minute.
+
+##### `hourly` <a name="hourly" id="cdk8s.Cron.hourly"></a>
 
 ```python
 import cdk8s
@@ -2256,7 +2963,9 @@ import cdk8s
 cdk8s.Cron.hourly()
 ```
 
-##### `monthly` <a name="cdk8s.Cron.monthly"></a>
+Create a cron schedule which runs every hour.
+
+##### `monthly` <a name="monthly" id="cdk8s.Cron.monthly"></a>
 
 ```python
 import cdk8s
@@ -2264,7 +2973,9 @@ import cdk8s
 cdk8s.Cron.monthly()
 ```
 
-##### `schedule` <a name="cdk8s.Cron.schedule"></a>
+Create a cron schedule which runs first day of every month.
+
+##### `schedule` <a name="schedule" id="cdk8s.Cron.schedule"></a>
 
 ```python
 import cdk8s
@@ -2278,52 +2989,54 @@ cdk8s.Cron.schedule(
 )
 ```
 
-###### `day`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.day"></a>
+Create a custom cron schedule from a set of cron fields.
 
-- *Type:* `str`
+###### `day`<sup>Optional</sup> <a name="day" id="cdk8s.Cron.schedule.parameter.day"></a>
+
+- *Type:* str
 - *Default:* Every day of the month
 
 The day of the month to run this rule at.
 
 ---
 
-###### `hour`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.hour"></a>
+###### `hour`<sup>Optional</sup> <a name="hour" id="cdk8s.Cron.schedule.parameter.hour"></a>
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* Every hour
 
 The hour to run this rule at.
 
 ---
 
-###### `minute`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.minute"></a>
+###### `minute`<sup>Optional</sup> <a name="minute" id="cdk8s.Cron.schedule.parameter.minute"></a>
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* Every minute
 
 The minute to run this rule at.
 
 ---
 
-###### `month`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.month"></a>
+###### `month`<sup>Optional</sup> <a name="month" id="cdk8s.Cron.schedule.parameter.month"></a>
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* Every month
 
 The month to run this rule at.
 
 ---
 
-###### `week_day`<sup>Optional</sup> <a name="cdk8s.CronOptions.parameter.week_day"></a>
+###### `week_day`<sup>Optional</sup> <a name="week_day" id="cdk8s.Cron.schedule.parameter.weekDay"></a>
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* Any day of the week
 
 The day of the week to run this rule at.
 
 ---
 
-##### `weekly` <a name="cdk8s.Cron.weekly"></a>
+##### `weekly` <a name="weekly" id="cdk8s.Cron.weekly"></a>
 
 ```python
 import cdk8s
@@ -2331,22 +3044,30 @@ import cdk8s
 cdk8s.Cron.weekly()
 ```
 
-#### Properties <a name="Properties"></a>
+Create a cron schedule which runs every week on Sunday.
 
-##### `expression_string`<sup>Required</sup> <a name="cdk8s.Cron.property.expression_string"></a>
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.Cron.property.expressionString">expression_string</a></code> | <code>str</code> | Retrieve the expression for this schedule. |
+
+---
+
+##### `expression_string`<sup>Required</sup> <a name="expression_string" id="cdk8s.Cron.property.expressionString"></a>
 
 ```python
 expression_string: str
 ```
 
-- *Type:* `str`
+- *Type:* str
 
 Retrieve the expression for this schedule.
 
 ---
 
 
-### DependencyGraph <a name="cdk8s.DependencyGraph"></a>
+### DependencyGraph <a name="DependencyGraph" id="cdk8s.DependencyGraph"></a>
 
 Represents the dependency graph for a given Node.
 
@@ -2359,7 +3080,7 @@ childless children of the root node of the graph.
 The graph does not include cross-scope dependencies. That is, if a child on the current scope depends on a node
 from a different scope, that relationship is not represented in this graph.
 
-#### Initializers <a name="cdk8s.DependencyGraph.Initializer"></a>
+#### Initializers <a name="Initializers" id="cdk8s.DependencyGraph.Initializer"></a>
 
 ```python
 import cdk8s
@@ -2369,30 +3090,50 @@ cdk8s.DependencyGraph(
 )
 ```
 
-##### `node`<sup>Required</sup> <a name="cdk8s.DependencyGraph.parameter.node"></a>
-
-- *Type:* [`constructs.Node`](#constructs.Node)
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.DependencyGraph.Initializer.parameter.node">node</a></code> | <code>constructs.Node</code> | *No description.* |
 
 ---
 
-#### Methods <a name="Methods"></a>
+##### `node`<sup>Required</sup> <a name="node" id="cdk8s.DependencyGraph.Initializer.parameter.node"></a>
 
-##### `topology` <a name="cdk8s.DependencyGraph.topology"></a>
+- *Type:* constructs.Node
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.DependencyGraph.topology">topology</a></code> | *No description.* |
+
+---
+
+##### `topology` <a name="topology" id="cdk8s.DependencyGraph.topology"></a>
 
 ```python
-def topology()
+def topology() -> typing.List[IConstruct]
 ```
 
+> [Vertex.topology ()](Vertex.topology ())
 
-#### Properties <a name="Properties"></a>
 
-##### `root`<sup>Required</sup> <a name="cdk8s.DependencyGraph.property.root"></a>
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.DependencyGraph.property.root">root</a></code> | <code><a href="#cdk8s.DependencyVertex">DependencyVertex</a></code> | Returns the root of the graph. |
+
+---
+
+##### `root`<sup>Required</sup> <a name="root" id="cdk8s.DependencyGraph.property.root"></a>
 
 ```python
 root: DependencyVertex
 ```
 
-- *Type:* [`cdk8s.DependencyVertex`](#cdk8s.DependencyVertex)
+- *Type:* <a href="#cdk8s.DependencyVertex">DependencyVertex</a>
 
 Returns the root of the graph.
 
@@ -2402,13 +3143,13 @@ that binds all the connected spaces of the graph.
 ---
 
 
-### DependencyVertex <a name="cdk8s.DependencyVertex"></a>
+### DependencyVertex <a name="DependencyVertex" id="cdk8s.DependencyVertex"></a>
 
 Represents a vertex in the graph.
 
 The value of each vertex is an `IConstruct` that is accessible via the `.value` getter.
 
-#### Initializers <a name="cdk8s.DependencyVertex.Initializer"></a>
+#### Initializers <a name="Initializers" id="cdk8s.DependencyVertex.Initializer"></a>
 
 ```python
 import cdk8s
@@ -2418,70 +3159,99 @@ cdk8s.DependencyVertex(
 )
 ```
 
-##### `value`<sup>Optional</sup> <a name="cdk8s.DependencyVertex.parameter.value"></a>
-
-- *Type:* [`constructs.IConstruct`](#constructs.IConstruct)
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.DependencyVertex.Initializer.parameter.value">value</a></code> | <code>constructs.IConstruct</code> | *No description.* |
 
 ---
 
-#### Methods <a name="Methods"></a>
+##### `value`<sup>Optional</sup> <a name="value" id="cdk8s.DependencyVertex.Initializer.parameter.value"></a>
 
-##### `add_child` <a name="cdk8s.DependencyVertex.add_child"></a>
+- *Type:* constructs.IConstruct
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.DependencyVertex.addChild">add_child</a></code> | Adds a vertex as a dependency of the current node. |
+| <code><a href="#cdk8s.DependencyVertex.topology">topology</a></code> | Returns a topologically sorted array of the constructs in the sub-graph. |
+
+---
+
+##### `add_child` <a name="add_child" id="cdk8s.DependencyVertex.addChild"></a>
 
 ```python
 def add_child(
   dep: DependencyVertex
-)
+) -> None
 ```
 
-###### `dep`<sup>Required</sup> <a name="cdk8s.DependencyVertex.parameter.dep"></a>
+Adds a vertex as a dependency of the current node.
 
-- *Type:* [`cdk8s.DependencyVertex`](#cdk8s.DependencyVertex)
+Also updates the parents of `dep`, so that it contains this node as a parent.
+
+This operation will fail in case it creates a cycle in the graph.
+
+###### `dep`<sup>Required</sup> <a name="dep" id="cdk8s.DependencyVertex.addChild.parameter.dep"></a>
+
+- *Type:* <a href="#cdk8s.DependencyVertex">DependencyVertex</a>
 
 The dependency.
 
 ---
 
-##### `topology` <a name="cdk8s.DependencyVertex.topology"></a>
+##### `topology` <a name="topology" id="cdk8s.DependencyVertex.topology"></a>
 
 ```python
-def topology()
+def topology() -> typing.List[IConstruct]
 ```
 
+Returns a topologically sorted array of the constructs in the sub-graph.
 
-#### Properties <a name="Properties"></a>
 
-##### `inbound`<sup>Required</sup> <a name="cdk8s.DependencyVertex.property.inbound"></a>
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.DependencyVertex.property.inbound">inbound</a></code> | <code>typing.List[<a href="#cdk8s.DependencyVertex">DependencyVertex</a>]</code> | Returns the parents of the vertex (i.e dependants). |
+| <code><a href="#cdk8s.DependencyVertex.property.outbound">outbound</a></code> | <code>typing.List[<a href="#cdk8s.DependencyVertex">DependencyVertex</a>]</code> | Returns the children of the vertex (i.e dependencies). |
+| <code><a href="#cdk8s.DependencyVertex.property.value">value</a></code> | <code>constructs.IConstruct</code> | Returns the IConstruct this graph vertex represents. |
+
+---
+
+##### `inbound`<sup>Required</sup> <a name="inbound" id="cdk8s.DependencyVertex.property.inbound"></a>
 
 ```python
 inbound: typing.List[DependencyVertex]
 ```
 
-- *Type:* typing.List[[`cdk8s.DependencyVertex`](#cdk8s.DependencyVertex)]
+- *Type:* typing.List[<a href="#cdk8s.DependencyVertex">DependencyVertex</a>]
 
 Returns the parents of the vertex (i.e dependants).
 
 ---
 
-##### `outbound`<sup>Required</sup> <a name="cdk8s.DependencyVertex.property.outbound"></a>
+##### `outbound`<sup>Required</sup> <a name="outbound" id="cdk8s.DependencyVertex.property.outbound"></a>
 
 ```python
 outbound: typing.List[DependencyVertex]
 ```
 
-- *Type:* typing.List[[`cdk8s.DependencyVertex`](#cdk8s.DependencyVertex)]
+- *Type:* typing.List[<a href="#cdk8s.DependencyVertex">DependencyVertex</a>]
 
 Returns the children of the vertex (i.e dependencies).
 
 ---
 
-##### `value`<sup>Optional</sup> <a name="cdk8s.DependencyVertex.property.value"></a>
+##### `value`<sup>Optional</sup> <a name="value" id="cdk8s.DependencyVertex.property.value"></a>
 
 ```python
 value: IConstruct
 ```
 
-- *Type:* [`constructs.IConstruct`](#constructs.IConstruct)
+- *Type:* constructs.IConstruct
 
 Returns the IConstruct this graph vertex represents.
 
@@ -2490,121 +3260,163 @@ Returns the IConstruct this graph vertex represents.
 ---
 
 
-### Duration <a name="cdk8s.Duration"></a>
+### Duration <a name="Duration" id="cdk8s.Duration"></a>
 
 Represents a length of time.
 
 The amount can be specified either as a literal value (e.g: `10`) which
 cannot be negative.
 
-#### Methods <a name="Methods"></a>
+#### Methods <a name="Methods" id="Methods"></a>
 
-##### `to_days` <a name="cdk8s.Duration.to_days"></a>
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.Duration.toDays">to_days</a></code> | Return the total number of days in this Duration. |
+| <code><a href="#cdk8s.Duration.toHours">to_hours</a></code> | Return the total number of hours in this Duration. |
+| <code><a href="#cdk8s.Duration.toHumanString">to_human_string</a></code> | Turn this duration into a human-readable string. |
+| <code><a href="#cdk8s.Duration.toIsoString">to_iso_string</a></code> | Return an ISO 8601 representation of this period. |
+| <code><a href="#cdk8s.Duration.toMilliseconds">to_milliseconds</a></code> | Return the total number of milliseconds in this Duration. |
+| <code><a href="#cdk8s.Duration.toMinutes">to_minutes</a></code> | Return the total number of minutes in this Duration. |
+| <code><a href="#cdk8s.Duration.toSeconds">to_seconds</a></code> | Return the total number of seconds in this Duration. |
+| <code><a href="#cdk8s.Duration.unitLabel">unit_label</a></code> | Return unit of Duration. |
+
+---
+
+##### `to_days` <a name="to_days" id="cdk8s.Duration.toDays"></a>
 
 ```python
 def to_days(
   integral: bool = None
-)
+) -> typing.Union[int, float]
 ```
 
-###### `integral`<sup>Optional</sup> <a name="cdk8s.TimeConversionOptions.parameter.integral"></a>
+Return the total number of days in this Duration.
 
-- *Type:* `bool`
+###### `integral`<sup>Optional</sup> <a name="integral" id="cdk8s.Duration.toDays.parameter.integral"></a>
+
+- *Type:* bool
 - *Default:* true
 
 If `true`, conversions into a larger time unit (e.g. `Seconds` to `Minutes`) will fail if the result is not an integer.
 
 ---
 
-##### `to_hours` <a name="cdk8s.Duration.to_hours"></a>
+##### `to_hours` <a name="to_hours" id="cdk8s.Duration.toHours"></a>
 
 ```python
 def to_hours(
   integral: bool = None
-)
+) -> typing.Union[int, float]
 ```
 
-###### `integral`<sup>Optional</sup> <a name="cdk8s.TimeConversionOptions.parameter.integral"></a>
+Return the total number of hours in this Duration.
 
-- *Type:* `bool`
+###### `integral`<sup>Optional</sup> <a name="integral" id="cdk8s.Duration.toHours.parameter.integral"></a>
+
+- *Type:* bool
 - *Default:* true
 
 If `true`, conversions into a larger time unit (e.g. `Seconds` to `Minutes`) will fail if the result is not an integer.
 
 ---
 
-##### `to_human_string` <a name="cdk8s.Duration.to_human_string"></a>
+##### `to_human_string` <a name="to_human_string" id="cdk8s.Duration.toHumanString"></a>
 
 ```python
-def to_human_string()
+def to_human_string() -> str
 ```
 
-##### `to_iso_string` <a name="cdk8s.Duration.to_iso_string"></a>
+Turn this duration into a human-readable string.
+
+##### `to_iso_string` <a name="to_iso_string" id="cdk8s.Duration.toIsoString"></a>
 
 ```python
-def to_iso_string()
+def to_iso_string() -> str
 ```
 
-##### `to_milliseconds` <a name="cdk8s.Duration.to_milliseconds"></a>
+Return an ISO 8601 representation of this period.
+
+> [https://www.iso.org/fr/standard/70907.html](https://www.iso.org/fr/standard/70907.html)
+
+##### `to_milliseconds` <a name="to_milliseconds" id="cdk8s.Duration.toMilliseconds"></a>
 
 ```python
 def to_milliseconds(
   integral: bool = None
-)
+) -> typing.Union[int, float]
 ```
 
-###### `integral`<sup>Optional</sup> <a name="cdk8s.TimeConversionOptions.parameter.integral"></a>
+Return the total number of milliseconds in this Duration.
 
-- *Type:* `bool`
+###### `integral`<sup>Optional</sup> <a name="integral" id="cdk8s.Duration.toMilliseconds.parameter.integral"></a>
+
+- *Type:* bool
 - *Default:* true
 
 If `true`, conversions into a larger time unit (e.g. `Seconds` to `Minutes`) will fail if the result is not an integer.
 
 ---
 
-##### `to_minutes` <a name="cdk8s.Duration.to_minutes"></a>
+##### `to_minutes` <a name="to_minutes" id="cdk8s.Duration.toMinutes"></a>
 
 ```python
 def to_minutes(
   integral: bool = None
-)
+) -> typing.Union[int, float]
 ```
 
-###### `integral`<sup>Optional</sup> <a name="cdk8s.TimeConversionOptions.parameter.integral"></a>
+Return the total number of minutes in this Duration.
 
-- *Type:* `bool`
+###### `integral`<sup>Optional</sup> <a name="integral" id="cdk8s.Duration.toMinutes.parameter.integral"></a>
+
+- *Type:* bool
 - *Default:* true
 
 If `true`, conversions into a larger time unit (e.g. `Seconds` to `Minutes`) will fail if the result is not an integer.
 
 ---
 
-##### `to_seconds` <a name="cdk8s.Duration.to_seconds"></a>
+##### `to_seconds` <a name="to_seconds" id="cdk8s.Duration.toSeconds"></a>
 
 ```python
 def to_seconds(
   integral: bool = None
-)
+) -> typing.Union[int, float]
 ```
 
-###### `integral`<sup>Optional</sup> <a name="cdk8s.TimeConversionOptions.parameter.integral"></a>
+Return the total number of seconds in this Duration.
 
-- *Type:* `bool`
+###### `integral`<sup>Optional</sup> <a name="integral" id="cdk8s.Duration.toSeconds.parameter.integral"></a>
+
+- *Type:* bool
 - *Default:* true
 
 If `true`, conversions into a larger time unit (e.g. `Seconds` to `Minutes`) will fail if the result is not an integer.
 
 ---
 
-##### `unit_label` <a name="cdk8s.Duration.unit_label"></a>
+##### `unit_label` <a name="unit_label" id="cdk8s.Duration.unitLabel"></a>
 
 ```python
-def unit_label()
+def unit_label() -> str
 ```
 
-#### Static Functions <a name="Static Functions"></a>
+Return unit of Duration.
 
-##### `days` <a name="cdk8s.Duration.days"></a>
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.Duration.days">days</a></code> | Create a Duration representing an amount of days. |
+| <code><a href="#cdk8s.Duration.hours">hours</a></code> | Create a Duration representing an amount of hours. |
+| <code><a href="#cdk8s.Duration.millis">millis</a></code> | Create a Duration representing an amount of milliseconds. |
+| <code><a href="#cdk8s.Duration.minutes">minutes</a></code> | Create a Duration representing an amount of minutes. |
+| <code><a href="#cdk8s.Duration.parse">parse</a></code> | Parse a period formatted according to the ISO 8601 standard. |
+| <code><a href="#cdk8s.Duration.seconds">seconds</a></code> | Create a Duration representing an amount of seconds. |
+
+---
+
+##### `days` <a name="days" id="cdk8s.Duration.days"></a>
 
 ```python
 import cdk8s
@@ -2614,15 +3426,17 @@ cdk8s.Duration.days(
 )
 ```
 
-###### `amount`<sup>Required</sup> <a name="cdk8s.Duration.parameter.amount"></a>
+Create a Duration representing an amount of days.
 
-- *Type:* `typing.Union[int, float]`
+###### `amount`<sup>Required</sup> <a name="amount" id="cdk8s.Duration.days.parameter.amount"></a>
+
+- *Type:* typing.Union[int, float]
 
 the amount of Days the `Duration` will represent.
 
 ---
 
-##### `hours` <a name="cdk8s.Duration.hours"></a>
+##### `hours` <a name="hours" id="cdk8s.Duration.hours"></a>
 
 ```python
 import cdk8s
@@ -2632,15 +3446,17 @@ cdk8s.Duration.hours(
 )
 ```
 
-###### `amount`<sup>Required</sup> <a name="cdk8s.Duration.parameter.amount"></a>
+Create a Duration representing an amount of hours.
 
-- *Type:* `typing.Union[int, float]`
+###### `amount`<sup>Required</sup> <a name="amount" id="cdk8s.Duration.hours.parameter.amount"></a>
+
+- *Type:* typing.Union[int, float]
 
 the amount of Hours the `Duration` will represent.
 
 ---
 
-##### `millis` <a name="cdk8s.Duration.millis"></a>
+##### `millis` <a name="millis" id="cdk8s.Duration.millis"></a>
 
 ```python
 import cdk8s
@@ -2650,15 +3466,17 @@ cdk8s.Duration.millis(
 )
 ```
 
-###### `amount`<sup>Required</sup> <a name="cdk8s.Duration.parameter.amount"></a>
+Create a Duration representing an amount of milliseconds.
 
-- *Type:* `typing.Union[int, float]`
+###### `amount`<sup>Required</sup> <a name="amount" id="cdk8s.Duration.millis.parameter.amount"></a>
+
+- *Type:* typing.Union[int, float]
 
 the amount of Milliseconds the `Duration` will represent.
 
 ---
 
-##### `minutes` <a name="cdk8s.Duration.minutes"></a>
+##### `minutes` <a name="minutes" id="cdk8s.Duration.minutes"></a>
 
 ```python
 import cdk8s
@@ -2668,15 +3486,17 @@ cdk8s.Duration.minutes(
 )
 ```
 
-###### `amount`<sup>Required</sup> <a name="cdk8s.Duration.parameter.amount"></a>
+Create a Duration representing an amount of minutes.
 
-- *Type:* `typing.Union[int, float]`
+###### `amount`<sup>Required</sup> <a name="amount" id="cdk8s.Duration.minutes.parameter.amount"></a>
+
+- *Type:* typing.Union[int, float]
 
 the amount of Minutes the `Duration` will represent.
 
 ---
 
-##### `parse` <a name="cdk8s.Duration.parse"></a>
+##### `parse` <a name="parse" id="cdk8s.Duration.parse"></a>
 
 ```python
 import cdk8s
@@ -2686,15 +3506,19 @@ cdk8s.Duration.parse(
 )
 ```
 
-###### `duration`<sup>Required</sup> <a name="cdk8s.Duration.parameter.duration"></a>
+Parse a period formatted according to the ISO 8601 standard.
 
-- *Type:* `str`
+> [https://www.iso.org/fr/standard/70907.html](https://www.iso.org/fr/standard/70907.html)
+
+###### `duration`<sup>Required</sup> <a name="duration" id="cdk8s.Duration.parse.parameter.duration"></a>
+
+- *Type:* str
 
 an ISO-formtted duration to be parsed.
 
 ---
 
-##### `seconds` <a name="cdk8s.Duration.seconds"></a>
+##### `seconds` <a name="seconds" id="cdk8s.Duration.seconds"></a>
 
 ```python
 import cdk8s
@@ -2704,9 +3528,11 @@ cdk8s.Duration.seconds(
 )
 ```
 
-###### `amount`<sup>Required</sup> <a name="cdk8s.Duration.parameter.amount"></a>
+Create a Duration representing an amount of seconds.
 
-- *Type:* `typing.Union[int, float]`
+###### `amount`<sup>Required</sup> <a name="amount" id="cdk8s.Duration.seconds.parameter.amount"></a>
+
+- *Type:* typing.Union[int, float]
 
 the amount of Seconds the `Duration` will represent.
 
@@ -2714,13 +3540,13 @@ the amount of Seconds the `Duration` will represent.
 
 
 
-### ImplicitTokenResolver <a name="cdk8s.ImplicitTokenResolver"></a>
+### ImplicitTokenResolver <a name="ImplicitTokenResolver" id="cdk8s.ImplicitTokenResolver"></a>
 
-- *Implements:* [`cdk8s.IResolver`](#cdk8s.IResolver)
+- *Implements:* <a href="#cdk8s.IResolver">IResolver</a>
 
 Resolves implicit tokens.
 
-#### Initializers <a name="cdk8s.ImplicitTokenResolver.Initializer"></a>
+#### Initializers <a name="Initializers" id="cdk8s.ImplicitTokenResolver.Initializer"></a>
 
 ```python
 import cdk8s
@@ -2728,26 +3554,41 @@ import cdk8s
 cdk8s.ImplicitTokenResolver()
 ```
 
-#### Methods <a name="Methods"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
 
-##### `resolve` <a name="cdk8s.ImplicitTokenResolver.resolve"></a>
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.ImplicitTokenResolver.resolve">resolve</a></code> | This function is invoked on every property during cdk8s synthesis. |
+
+---
+
+##### `resolve` <a name="resolve" id="cdk8s.ImplicitTokenResolver.resolve"></a>
 
 ```python
 def resolve(
   context: ResolutionContext
-)
+) -> None
 ```
 
-###### `context`<sup>Required</sup> <a name="cdk8s.ImplicitTokenResolver.parameter.context"></a>
+This function is invoked on every property during cdk8s synthesis.
 
-- *Type:* [`cdk8s.ResolutionContext`](#cdk8s.ResolutionContext)
+To replace a value, implementations must invoke `context.replaceValue`.
+
+###### `context`<sup>Required</sup> <a name="context" id="cdk8s.ImplicitTokenResolver.resolve.parameter.context"></a>
+
+- *Type:* <a href="#cdk8s.ResolutionContext">ResolutionContext</a>
 
 ---
 
 
 
 
-### JsonPatch <a name="cdk8s.JsonPatch"></a>
+### JsonPatch <a name="JsonPatch" id="cdk8s.JsonPatch"></a>
 
 Utility for applying RFC-6902 JSON-Patch to a document.
 
@@ -2757,10 +3598,33 @@ operations to a JSON document and return the result.
 Operations can be created using the factory methods `JsonPatch.add()`,
 `JsonPatch.remove()`, etc.
 
+*Example*
 
-#### Static Functions <a name="Static Functions"></a>
+```python
+# Example automatically generated from non-compiling source. May contain errors.
+output = JsonPatch.apply(input,
+    JsonPatch.replace("/world/hi/there", "goodbye"),
+    JsonPatch.add("/world/foo/", "boom"),
+    JsonPatch.remove("/hello"))
+```
 
-##### `add` <a name="cdk8s.JsonPatch.add"></a>
+
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.JsonPatch.add">add</a></code> | Adds a value to an object or inserts it into an array. |
+| <code><a href="#cdk8s.JsonPatch.apply">apply</a></code> | Applies a set of JSON-Patch (RFC-6902) operations to `document` and returns the result. |
+| <code><a href="#cdk8s.JsonPatch.copy">copy</a></code> | Copies a value from one location to another within the JSON document. |
+| <code><a href="#cdk8s.JsonPatch.move">move</a></code> | Moves a value from one location to the other. |
+| <code><a href="#cdk8s.JsonPatch.remove">remove</a></code> | Removes a value from an object or array. |
+| <code><a href="#cdk8s.JsonPatch.replace">replace</a></code> | Replaces a value. |
+| <code><a href="#cdk8s.JsonPatch.test">test</a></code> | Tests that the specified value is set in the document. |
+
+---
+
+##### `add` <a name="add" id="cdk8s.JsonPatch.add"></a>
 
 ```python
 import cdk8s
@@ -2771,19 +3635,33 @@ cdk8s.JsonPatch.add(
 )
 ```
 
-###### `path`<sup>Required</sup> <a name="cdk8s.JsonPatch.parameter.path"></a>
+Adds a value to an object or inserts it into an array.
 
-- *Type:* `str`
+In the case of an
+array, the value is inserted before the given index. The - character can be
+used instead of an index to insert at the end of an array.
+
+*Example*
+
+```python
+# Example automatically generated from non-compiling source. May contain errors.
+JsonPatch.add("/biscuits/1", name="Ginger Nut")
+```
+
+
+###### `path`<sup>Required</sup> <a name="path" id="cdk8s.JsonPatch.add.parameter.path"></a>
+
+- *Type:* str
 
 ---
 
-###### `value`<sup>Required</sup> <a name="cdk8s.JsonPatch.parameter.value"></a>
+###### `value`<sup>Required</sup> <a name="value" id="cdk8s.JsonPatch.add.parameter.value"></a>
 
-- *Type:* `typing.Any`
+- *Type:* typing.Any
 
 ---
 
-##### `apply` <a name="cdk8s.JsonPatch.apply"></a>
+##### `apply` <a name="apply" id="cdk8s.JsonPatch.apply"></a>
 
 ```python
 import cdk8s
@@ -2794,23 +3672,25 @@ cdk8s.JsonPatch.apply(
 )
 ```
 
-###### `document`<sup>Required</sup> <a name="cdk8s.JsonPatch.parameter.document"></a>
+Applies a set of JSON-Patch (RFC-6902) operations to `document` and returns the result.
 
-- *Type:* `typing.Any`
+###### `document`<sup>Required</sup> <a name="document" id="cdk8s.JsonPatch.apply.parameter.document"></a>
+
+- *Type:* typing.Any
 
 The document to patch.
 
 ---
 
-###### `ops`<sup>Required</sup> <a name="cdk8s.JsonPatch.parameter.ops"></a>
+###### `ops`<sup>Required</sup> <a name="ops" id="cdk8s.JsonPatch.apply.parameter.ops"></a>
 
-- *Type:* [`cdk8s.JsonPatch`](#cdk8s.JsonPatch)
+- *Type:* <a href="#cdk8s.JsonPatch">JsonPatch</a>
 
 The operations to apply.
 
 ---
 
-##### `copy` <a name="cdk8s.JsonPatch.copy"></a>
+##### `copy` <a name="copy" id="cdk8s.JsonPatch.copy"></a>
 
 ```python
 import cdk8s
@@ -2821,19 +3701,32 @@ cdk8s.JsonPatch.copy(
 )
 ```
 
-###### `from`<sup>Required</sup> <a name="cdk8s.JsonPatch.parameter.from"></a>
+Copies a value from one location to another within the JSON document.
 
-- *Type:* `str`
+Both
+from and path are JSON Pointers.
+
+*Example*
+
+```python
+# Example automatically generated from non-compiling source. May contain errors.
+JsonPatch.copy("/biscuits/0", "/best_biscuit")
+```
+
+
+###### `from`<sup>Required</sup> <a name="from" id="cdk8s.JsonPatch.copy.parameter.from"></a>
+
+- *Type:* str
 
 ---
 
-###### `path`<sup>Required</sup> <a name="cdk8s.JsonPatch.parameter.path"></a>
+###### `path`<sup>Required</sup> <a name="path" id="cdk8s.JsonPatch.copy.parameter.path"></a>
 
-- *Type:* `str`
+- *Type:* str
 
 ---
 
-##### `move` <a name="cdk8s.JsonPatch.move"></a>
+##### `move` <a name="move" id="cdk8s.JsonPatch.move"></a>
 
 ```python
 import cdk8s
@@ -2844,19 +3737,31 @@ cdk8s.JsonPatch.move(
 )
 ```
 
-###### `from`<sup>Required</sup> <a name="cdk8s.JsonPatch.parameter.from"></a>
+Moves a value from one location to the other.
 
-- *Type:* `str`
+Both from and path are JSON Pointers.
+
+*Example*
+
+```python
+# Example automatically generated from non-compiling source. May contain errors.
+JsonPatch.move("/biscuits", "/cookies")
+```
+
+
+###### `from`<sup>Required</sup> <a name="from" id="cdk8s.JsonPatch.move.parameter.from"></a>
+
+- *Type:* str
 
 ---
 
-###### `path`<sup>Required</sup> <a name="cdk8s.JsonPatch.parameter.path"></a>
+###### `path`<sup>Required</sup> <a name="path" id="cdk8s.JsonPatch.move.parameter.path"></a>
 
-- *Type:* `str`
+- *Type:* str
 
 ---
 
-##### `remove` <a name="cdk8s.JsonPatch.remove"></a>
+##### `remove` <a name="remove" id="cdk8s.JsonPatch.remove"></a>
 
 ```python
 import cdk8s
@@ -2866,13 +3771,23 @@ cdk8s.JsonPatch.remove(
 )
 ```
 
-###### `path`<sup>Required</sup> <a name="cdk8s.JsonPatch.parameter.path"></a>
+Removes a value from an object or array.
 
-- *Type:* `str`
+*Example*
+
+```python
+# Example automatically generated from non-compiling source. May contain errors.
+JsonPatch.remove("/biscuits/0")
+```
+
+
+###### `path`<sup>Required</sup> <a name="path" id="cdk8s.JsonPatch.remove.parameter.path"></a>
+
+- *Type:* str
 
 ---
 
-##### `replace` <a name="cdk8s.JsonPatch.replace"></a>
+##### `replace` <a name="replace" id="cdk8s.JsonPatch.replace"></a>
 
 ```python
 import cdk8s
@@ -2883,19 +3798,31 @@ cdk8s.JsonPatch.replace(
 )
 ```
 
-###### `path`<sup>Required</sup> <a name="cdk8s.JsonPatch.parameter.path"></a>
+Replaces a value.
 
-- *Type:* `str`
+Equivalent to a “remove” followed by an “add”.
+
+*Example*
+
+```python
+# Example automatically generated from non-compiling source. May contain errors.
+JsonPatch.replace("/biscuits/0/name", "Chocolate Digestive")
+```
+
+
+###### `path`<sup>Required</sup> <a name="path" id="cdk8s.JsonPatch.replace.parameter.path"></a>
+
+- *Type:* str
 
 ---
 
-###### `value`<sup>Required</sup> <a name="cdk8s.JsonPatch.parameter.value"></a>
+###### `value`<sup>Required</sup> <a name="value" id="cdk8s.JsonPatch.replace.parameter.value"></a>
 
-- *Type:* `typing.Any`
+- *Type:* typing.Any
 
 ---
 
-##### `test` <a name="cdk8s.JsonPatch.test"></a>
+##### `test` <a name="test" id="cdk8s.JsonPatch.test"></a>
 
 ```python
 import cdk8s
@@ -2906,33 +3833,58 @@ cdk8s.JsonPatch.test(
 )
 ```
 
-###### `path`<sup>Required</sup> <a name="cdk8s.JsonPatch.parameter.path"></a>
+Tests that the specified value is set in the document.
 
-- *Type:* `str`
+If the test fails,
+then the patch as a whole should not apply.
 
----
-
-###### `value`<sup>Required</sup> <a name="cdk8s.JsonPatch.parameter.value"></a>
-
-- *Type:* `typing.Any`
-
----
-
-
-
-### Lazy <a name="cdk8s.Lazy"></a>
-
-#### Methods <a name="Methods"></a>
-
-##### `produce` <a name="cdk8s.Lazy.produce"></a>
+*Example*
 
 ```python
-def produce()
+# Example automatically generated from non-compiling source. May contain errors.
+JsonPatch.test("/best_biscuit/name", "Choco Leibniz")
 ```
 
-#### Static Functions <a name="Static Functions"></a>
 
-##### `any` <a name="cdk8s.Lazy.any"></a>
+###### `path`<sup>Required</sup> <a name="path" id="cdk8s.JsonPatch.test.parameter.path"></a>
+
+- *Type:* str
+
+---
+
+###### `value`<sup>Required</sup> <a name="value" id="cdk8s.JsonPatch.test.parameter.value"></a>
+
+- *Type:* typing.Any
+
+---
+
+
+
+### Lazy <a name="Lazy" id="cdk8s.Lazy"></a>
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.Lazy.produce">produce</a></code> | *No description.* |
+
+---
+
+##### `produce` <a name="produce" id="cdk8s.Lazy.produce"></a>
+
+```python
+def produce() -> typing.Any
+```
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.Lazy.any">any</a></code> | *No description.* |
+
+---
+
+##### `any` <a name="any" id="cdk8s.Lazy.any"></a>
 
 ```python
 import cdk8s
@@ -2942,21 +3894,21 @@ cdk8s.Lazy.any(
 )
 ```
 
-###### `producer`<sup>Required</sup> <a name="cdk8s.Lazy.parameter.producer"></a>
+###### `producer`<sup>Required</sup> <a name="producer" id="cdk8s.Lazy.any.parameter.producer"></a>
 
-- *Type:* [`cdk8s.IAnyProducer`](#cdk8s.IAnyProducer)
+- *Type:* <a href="#cdk8s.IAnyProducer">IAnyProducer</a>
 
 ---
 
 
 
-### LazyResolver <a name="cdk8s.LazyResolver"></a>
+### LazyResolver <a name="LazyResolver" id="cdk8s.LazyResolver"></a>
 
-- *Implements:* [`cdk8s.IResolver`](#cdk8s.IResolver)
+- *Implements:* <a href="#cdk8s.IResolver">IResolver</a>
 
 Resolvers instanecs of `Lazy`.
 
-#### Initializers <a name="cdk8s.LazyResolver.Initializer"></a>
+#### Initializers <a name="Initializers" id="cdk8s.LazyResolver.Initializer"></a>
 
 ```python
 import cdk8s
@@ -2964,33 +3916,55 @@ import cdk8s
 cdk8s.LazyResolver()
 ```
 
-#### Methods <a name="Methods"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
 
-##### `resolve` <a name="cdk8s.LazyResolver.resolve"></a>
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.LazyResolver.resolve">resolve</a></code> | This function is invoked on every property during cdk8s synthesis. |
+
+---
+
+##### `resolve` <a name="resolve" id="cdk8s.LazyResolver.resolve"></a>
 
 ```python
 def resolve(
   context: ResolutionContext
-)
+) -> None
 ```
 
-###### `context`<sup>Required</sup> <a name="cdk8s.LazyResolver.parameter.context"></a>
+This function is invoked on every property during cdk8s synthesis.
 
-- *Type:* [`cdk8s.ResolutionContext`](#cdk8s.ResolutionContext)
+To replace a value, implementations must invoke `context.replaceValue`.
+
+###### `context`<sup>Required</sup> <a name="context" id="cdk8s.LazyResolver.resolve.parameter.context"></a>
+
+- *Type:* <a href="#cdk8s.ResolutionContext">ResolutionContext</a>
 
 ---
 
 
 
 
-### Names <a name="cdk8s.Names"></a>
+### Names <a name="Names" id="cdk8s.Names"></a>
 
 Utilities for generating unique and stable names.
 
 
-#### Static Functions <a name="Static Functions"></a>
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
-##### `to_dns_label` <a name="cdk8s.Names.to_dns_label"></a>
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.Names.toDnsLabel">to_dns_label</a></code> | Generates a unique and stable name compatible DNS_LABEL from RFC-1123 from a path. |
+| <code><a href="#cdk8s.Names.toLabelValue">to_label_value</a></code> | Generates a unique and stable name compatible label key name segment and label value from a path. |
+
+---
+
+##### `to_dns_label` <a name="to_dns_label" id="cdk8s.Names.toDnsLabel"></a>
 
 ```python
 import cdk8s
@@ -3004,51 +3978,71 @@ cdk8s.Names.to_dns_label(
 )
 ```
 
-###### `scope`<sup>Required</sup> <a name="cdk8s.Names.parameter.scope"></a>
+Generates a unique and stable name compatible DNS_LABEL from RFC-1123 from a path.
 
-- *Type:* [`constructs.Construct`](#constructs.Construct)
+The generated name will:
+
+* contain at most 63 characters
+* contain only lowercase alphanumeric characters or ‘-’
+* start with an alphanumeric character
+* end with an alphanumeric character
+
+The generated name will have the form:
+<comp0>-<comp1>-..-<compN>-<short-hash>
+
+Where <comp> are the path components (assuming they are is separated by
+"/").
+
+Note that if the total length is longer than 63 characters, we will trim
+the first components since the last components usually encode more meaning.
+
+> [https://tools.ietf.org/html/rfc1123](https://tools.ietf.org/html/rfc1123)
+
+###### `scope`<sup>Required</sup> <a name="scope" id="cdk8s.Names.toDnsLabel.parameter.scope"></a>
+
+- *Type:* constructs.Construct
 
 The construct for which to render the DNS label.
 
 ---
 
-###### `delimiter`<sup>Optional</sup> <a name="cdk8s.NameOptions.parameter.delimiter"></a>
+###### `delimiter`<sup>Optional</sup> <a name="delimiter" id="cdk8s.Names.toDnsLabel.parameter.delimiter"></a>
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* "-"
 
 Delimiter to use between components.
 
 ---
 
-###### `extra`<sup>Optional</sup> <a name="cdk8s.NameOptions.parameter.extra"></a>
+###### `extra`<sup>Optional</sup> <a name="extra" id="cdk8s.Names.toDnsLabel.parameter.extra"></a>
 
-- *Type:* typing.List[`str`]
+- *Type:* typing.List[str]
 - *Default:* [] use the construct path components
 
 Extra components to include in the name.
 
 ---
 
-###### `include_hash`<sup>Optional</sup> <a name="cdk8s.NameOptions.parameter.include_hash"></a>
+###### `include_hash`<sup>Optional</sup> <a name="include_hash" id="cdk8s.Names.toDnsLabel.parameter.includeHash"></a>
 
-- *Type:* `bool`
+- *Type:* bool
 - *Default:* true
 
 Include a short hash as last part of the name.
 
 ---
 
-###### `max_len`<sup>Optional</sup> <a name="cdk8s.NameOptions.parameter.max_len"></a>
+###### `max_len`<sup>Optional</sup> <a name="max_len" id="cdk8s.Names.toDnsLabel.parameter.maxLen"></a>
 
-- *Type:* `typing.Union[int, float]`
+- *Type:* typing.Union[int, float]
 - *Default:* 63
 
 Maximum allowed length for the name.
 
 ---
 
-##### `to_label_value` <a name="cdk8s.Names.to_label_value"></a>
+##### `to_label_value` <a name="to_label_value" id="cdk8s.Names.toLabelValue"></a>
 
 ```python
 import cdk8s
@@ -3062,44 +4056,65 @@ cdk8s.Names.to_label_value(
 )
 ```
 
-###### `scope`<sup>Required</sup> <a name="cdk8s.Names.parameter.scope"></a>
+Generates a unique and stable name compatible label key name segment and label value from a path.
 
-- *Type:* [`constructs.Construct`](#constructs.Construct)
+The name segment is required and must be 63 characters or less, beginning
+and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-),
+underscores (_), dots (.), and alphanumerics between.
+
+Valid label values must be 63 characters or less and must be empty or
+begin and end with an alphanumeric character ([a-z0-9A-Z]) with dashes
+(-), underscores (_), dots (.), and alphanumerics between.
+
+The generated name will have the form:
+<comp0><delim><comp1><delim>..<delim><compN><delim><short-hash>
+
+Where <comp> are the path components (assuming they are is separated by
+"/").
+
+Note that if the total length is longer than 63 characters, we will trim
+the first components since the last components usually encode more meaning.
+
+> [https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set)
+
+###### `scope`<sup>Required</sup> <a name="scope" id="cdk8s.Names.toLabelValue.parameter.scope"></a>
+
+- *Type:* constructs.Construct
 
 The construct for which to render the DNS label.
 
 ---
 
-###### `delimiter`<sup>Optional</sup> <a name="cdk8s.NameOptions.parameter.delimiter"></a>
+###### `delimiter`<sup>Optional</sup> <a name="delimiter" id="cdk8s.Names.toLabelValue.parameter.delimiter"></a>
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* "-"
 
 Delimiter to use between components.
 
 ---
 
-###### `extra`<sup>Optional</sup> <a name="cdk8s.NameOptions.parameter.extra"></a>
+###### `extra`<sup>Optional</sup> <a name="extra" id="cdk8s.Names.toLabelValue.parameter.extra"></a>
 
-- *Type:* typing.List[`str`]
+- *Type:* typing.List[str]
 - *Default:* [] use the construct path components
 
 Extra components to include in the name.
 
 ---
 
-###### `include_hash`<sup>Optional</sup> <a name="cdk8s.NameOptions.parameter.include_hash"></a>
+###### `include_hash`<sup>Optional</sup> <a name="include_hash" id="cdk8s.Names.toLabelValue.parameter.includeHash"></a>
 
-- *Type:* `bool`
+- *Type:* bool
 - *Default:* true
 
 Include a short hash as last part of the name.
 
 ---
 
-###### `max_len`<sup>Optional</sup> <a name="cdk8s.NameOptions.parameter.max_len"></a>
+###### `max_len`<sup>Optional</sup> <a name="max_len" id="cdk8s.Names.toLabelValue.parameter.maxLen"></a>
 
-- *Type:* `typing.Union[int, float]`
+- *Type:* typing.Union[int, float]
 - *Default:* 63
 
 Maximum allowed length for the name.
@@ -3108,15 +4123,15 @@ Maximum allowed length for the name.
 
 
 
-### NumberStringUnionResolver <a name="cdk8s.NumberStringUnionResolver"></a>
+### NumberStringUnionResolver <a name="NumberStringUnionResolver" id="cdk8s.NumberStringUnionResolver"></a>
 
-- *Implements:* [`cdk8s.IResolver`](#cdk8s.IResolver)
+- *Implements:* <a href="#cdk8s.IResolver">IResolver</a>
 
 Resolves union types that allow using either number or string (as generated by the CLI).
 
 E.g IntOrString, Quantity, ...
 
-#### Initializers <a name="cdk8s.NumberStringUnionResolver.Initializer"></a>
+#### Initializers <a name="Initializers" id="cdk8s.NumberStringUnionResolver.Initializer"></a>
 
 ```python
 import cdk8s
@@ -3124,30 +4139,45 @@ import cdk8s
 cdk8s.NumberStringUnionResolver()
 ```
 
-#### Methods <a name="Methods"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
 
-##### `resolve` <a name="cdk8s.NumberStringUnionResolver.resolve"></a>
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.NumberStringUnionResolver.resolve">resolve</a></code> | This function is invoked on every property during cdk8s synthesis. |
+
+---
+
+##### `resolve` <a name="resolve" id="cdk8s.NumberStringUnionResolver.resolve"></a>
 
 ```python
 def resolve(
   context: ResolutionContext
-)
+) -> None
 ```
 
-###### `context`<sup>Required</sup> <a name="cdk8s.NumberStringUnionResolver.parameter.context"></a>
+This function is invoked on every property during cdk8s synthesis.
 
-- *Type:* [`cdk8s.ResolutionContext`](#cdk8s.ResolutionContext)
+To replace a value, implementations must invoke `context.replaceValue`.
+
+###### `context`<sup>Required</sup> <a name="context" id="cdk8s.NumberStringUnionResolver.resolve.parameter.context"></a>
+
+- *Type:* <a href="#cdk8s.ResolutionContext">ResolutionContext</a>
 
 ---
 
 
 
 
-### ResolutionContext <a name="cdk8s.ResolutionContext"></a>
+### ResolutionContext <a name="ResolutionContext" id="cdk8s.ResolutionContext"></a>
 
 Context object for a specific resolution process.
 
-#### Initializers <a name="cdk8s.ResolutionContext.Initializer"></a>
+#### Initializers <a name="Initializers" id="cdk8s.ResolutionContext.Initializer"></a>
 
 ```python
 import cdk8s
@@ -3159,111 +4189,139 @@ cdk8s.ResolutionContext(
 )
 ```
 
-##### `obj`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.obj"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.ResolutionContext.Initializer.parameter.obj">obj</a></code> | <code><a href="#cdk8s.ApiObject">ApiObject</a></code> | Which ApiObject is currently being resolved. |
+| <code><a href="#cdk8s.ResolutionContext.Initializer.parameter.key">key</a></code> | <code>typing.List[str]</code> | Which key is currently being resolved. |
+| <code><a href="#cdk8s.ResolutionContext.Initializer.parameter.value">value</a></code> | <code>typing.Any</code> | The value associated to the key currently being resolved. |
 
-- *Type:* [`cdk8s.ApiObject`](#cdk8s.ApiObject)
+---
+
+##### `obj`<sup>Required</sup> <a name="obj" id="cdk8s.ResolutionContext.Initializer.parameter.obj"></a>
+
+- *Type:* <a href="#cdk8s.ApiObject">ApiObject</a>
 
 Which ApiObject is currently being resolved.
 
 ---
 
-##### `key`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.key"></a>
+##### `key`<sup>Required</sup> <a name="key" id="cdk8s.ResolutionContext.Initializer.parameter.key"></a>
 
-- *Type:* typing.List[`str`]
+- *Type:* typing.List[str]
 
 Which key is currently being resolved.
 
 ---
 
-##### `value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.value"></a>
+##### `value`<sup>Required</sup> <a name="value" id="cdk8s.ResolutionContext.Initializer.parameter.value"></a>
 
-- *Type:* `typing.Any`
+- *Type:* typing.Any
 
 The value associated to the key currently being resolved.
 
 ---
 
-#### Methods <a name="Methods"></a>
+#### Methods <a name="Methods" id="Methods"></a>
 
-##### `replace_value` <a name="cdk8s.ResolutionContext.replace_value"></a>
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.ResolutionContext.replaceValue">replace_value</a></code> | Replaces the original value in this resolution context with a new value. |
+
+---
+
+##### `replace_value` <a name="replace_value" id="cdk8s.ResolutionContext.replaceValue"></a>
 
 ```python
 def replace_value(
   new_value: typing.Any
-)
+) -> None
 ```
 
-###### `new_value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.parameter.new_value"></a>
+Replaces the original value in this resolution context with a new value.
 
-- *Type:* `typing.Any`
+The new value is what will end up in the manifest.
+
+###### `new_value`<sup>Required</sup> <a name="new_value" id="cdk8s.ResolutionContext.replaceValue.parameter.newValue"></a>
+
+- *Type:* typing.Any
 
 ---
 
 
-#### Properties <a name="Properties"></a>
+#### Properties <a name="Properties" id="Properties"></a>
 
-##### `key`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.key"></a>
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.ResolutionContext.property.key">key</a></code> | <code>typing.List[str]</code> | Which key is currently being resolved. |
+| <code><a href="#cdk8s.ResolutionContext.property.obj">obj</a></code> | <code><a href="#cdk8s.ApiObject">ApiObject</a></code> | Which ApiObject is currently being resolved. |
+| <code><a href="#cdk8s.ResolutionContext.property.value">value</a></code> | <code>typing.Any</code> | The value associated to the key currently being resolved. |
+| <code><a href="#cdk8s.ResolutionContext.property.replaced">replaced</a></code> | <code>bool</code> | Whether or not the value was replaced by invoking the `replaceValue` method. |
+| <code><a href="#cdk8s.ResolutionContext.property.replacedValue">replaced_value</a></code> | <code>typing.Any</code> | The replaced value that was set via the `replaceValue` method. |
+
+---
+
+##### `key`<sup>Required</sup> <a name="key" id="cdk8s.ResolutionContext.property.key"></a>
 
 ```python
 key: typing.List[str]
 ```
 
-- *Type:* typing.List[`str`]
+- *Type:* typing.List[str]
 
 Which key is currently being resolved.
 
 ---
 
-##### `obj`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.obj"></a>
+##### `obj`<sup>Required</sup> <a name="obj" id="cdk8s.ResolutionContext.property.obj"></a>
 
 ```python
 obj: ApiObject
 ```
 
-- *Type:* [`cdk8s.ApiObject`](#cdk8s.ApiObject)
+- *Type:* <a href="#cdk8s.ApiObject">ApiObject</a>
 
 Which ApiObject is currently being resolved.
 
 ---
 
-##### `value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.value"></a>
+##### `value`<sup>Required</sup> <a name="value" id="cdk8s.ResolutionContext.property.value"></a>
 
 ```python
 value: typing.Any
 ```
 
-- *Type:* `typing.Any`
+- *Type:* typing.Any
 
 The value associated to the key currently being resolved.
 
 ---
 
-##### `replaced`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.replaced"></a>
+##### `replaced`<sup>Required</sup> <a name="replaced" id="cdk8s.ResolutionContext.property.replaced"></a>
 
 ```python
 replaced: bool
 ```
 
-- *Type:* `bool`
+- *Type:* bool
 
 Whether or not the value was replaced by invoking the `replaceValue` method.
 
 ---
 
-##### `replaced_value`<sup>Required</sup> <a name="cdk8s.ResolutionContext.property.replaced_value"></a>
+##### `replaced_value`<sup>Required</sup> <a name="replaced_value" id="cdk8s.ResolutionContext.property.replacedValue"></a>
 
 ```python
 replaced_value: typing.Any
 ```
 
-- *Type:* `typing.Any`
+- *Type:* typing.Any
 
 The replaced value that was set via the `replaceValue` method.
 
 ---
 
 
-### Size <a name="cdk8s.Size"></a>
+### Size <a name="Size" id="cdk8s.Size"></a>
 
 Represents the amount of digital storage.
 
@@ -3272,96 +4330,126 @@ cannot be negative.
 
 When the amount is passed as a token, unit conversion is not possible.
 
-#### Methods <a name="Methods"></a>
+#### Methods <a name="Methods" id="Methods"></a>
 
-##### `to_gibibytes` <a name="cdk8s.Size.to_gibibytes"></a>
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.Size.toGibibytes">to_gibibytes</a></code> | Return this storage as a total number of gibibytes. |
+| <code><a href="#cdk8s.Size.toKibibytes">to_kibibytes</a></code> | Return this storage as a total number of kibibytes. |
+| <code><a href="#cdk8s.Size.toMebibytes">to_mebibytes</a></code> | Return this storage as a total number of mebibytes. |
+| <code><a href="#cdk8s.Size.toPebibytes">to_pebibytes</a></code> | Return this storage as a total number of pebibytes. |
+| <code><a href="#cdk8s.Size.toTebibytes">to_tebibytes</a></code> | Return this storage as a total number of tebibytes. |
+
+---
+
+##### `to_gibibytes` <a name="to_gibibytes" id="cdk8s.Size.toGibibytes"></a>
 
 ```python
 def to_gibibytes(
   rounding: SizeRoundingBehavior = None
-)
+) -> typing.Union[int, float]
 ```
 
-###### `rounding`<sup>Optional</sup> <a name="cdk8s.SizeConversionOptions.parameter.rounding"></a>
+Return this storage as a total number of gibibytes.
 
-- *Type:* [`cdk8s.SizeRoundingBehavior`](#cdk8s.SizeRoundingBehavior)
+###### `rounding`<sup>Optional</sup> <a name="rounding" id="cdk8s.Size.toGibibytes.parameter.rounding"></a>
+
+- *Type:* <a href="#cdk8s.SizeRoundingBehavior">SizeRoundingBehavior</a>
 - *Default:* SizeRoundingBehavior.FAIL
 
 How conversions should behave when it encounters a non-integer result.
 
 ---
 
-##### `to_kibibytes` <a name="cdk8s.Size.to_kibibytes"></a>
+##### `to_kibibytes` <a name="to_kibibytes" id="cdk8s.Size.toKibibytes"></a>
 
 ```python
 def to_kibibytes(
   rounding: SizeRoundingBehavior = None
-)
+) -> typing.Union[int, float]
 ```
 
-###### `rounding`<sup>Optional</sup> <a name="cdk8s.SizeConversionOptions.parameter.rounding"></a>
+Return this storage as a total number of kibibytes.
 
-- *Type:* [`cdk8s.SizeRoundingBehavior`](#cdk8s.SizeRoundingBehavior)
+###### `rounding`<sup>Optional</sup> <a name="rounding" id="cdk8s.Size.toKibibytes.parameter.rounding"></a>
+
+- *Type:* <a href="#cdk8s.SizeRoundingBehavior">SizeRoundingBehavior</a>
 - *Default:* SizeRoundingBehavior.FAIL
 
 How conversions should behave when it encounters a non-integer result.
 
 ---
 
-##### `to_mebibytes` <a name="cdk8s.Size.to_mebibytes"></a>
+##### `to_mebibytes` <a name="to_mebibytes" id="cdk8s.Size.toMebibytes"></a>
 
 ```python
 def to_mebibytes(
   rounding: SizeRoundingBehavior = None
-)
+) -> typing.Union[int, float]
 ```
 
-###### `rounding`<sup>Optional</sup> <a name="cdk8s.SizeConversionOptions.parameter.rounding"></a>
+Return this storage as a total number of mebibytes.
 
-- *Type:* [`cdk8s.SizeRoundingBehavior`](#cdk8s.SizeRoundingBehavior)
+###### `rounding`<sup>Optional</sup> <a name="rounding" id="cdk8s.Size.toMebibytes.parameter.rounding"></a>
+
+- *Type:* <a href="#cdk8s.SizeRoundingBehavior">SizeRoundingBehavior</a>
 - *Default:* SizeRoundingBehavior.FAIL
 
 How conversions should behave when it encounters a non-integer result.
 
 ---
 
-##### `to_pebibytes` <a name="cdk8s.Size.to_pebibytes"></a>
+##### `to_pebibytes` <a name="to_pebibytes" id="cdk8s.Size.toPebibytes"></a>
 
 ```python
 def to_pebibytes(
   rounding: SizeRoundingBehavior = None
-)
+) -> typing.Union[int, float]
 ```
 
-###### `rounding`<sup>Optional</sup> <a name="cdk8s.SizeConversionOptions.parameter.rounding"></a>
+Return this storage as a total number of pebibytes.
 
-- *Type:* [`cdk8s.SizeRoundingBehavior`](#cdk8s.SizeRoundingBehavior)
+###### `rounding`<sup>Optional</sup> <a name="rounding" id="cdk8s.Size.toPebibytes.parameter.rounding"></a>
+
+- *Type:* <a href="#cdk8s.SizeRoundingBehavior">SizeRoundingBehavior</a>
 - *Default:* SizeRoundingBehavior.FAIL
 
 How conversions should behave when it encounters a non-integer result.
 
 ---
 
-##### `to_tebibytes` <a name="cdk8s.Size.to_tebibytes"></a>
+##### `to_tebibytes` <a name="to_tebibytes" id="cdk8s.Size.toTebibytes"></a>
 
 ```python
 def to_tebibytes(
   rounding: SizeRoundingBehavior = None
-)
+) -> typing.Union[int, float]
 ```
 
-###### `rounding`<sup>Optional</sup> <a name="cdk8s.SizeConversionOptions.parameter.rounding"></a>
+Return this storage as a total number of tebibytes.
 
-- *Type:* [`cdk8s.SizeRoundingBehavior`](#cdk8s.SizeRoundingBehavior)
+###### `rounding`<sup>Optional</sup> <a name="rounding" id="cdk8s.Size.toTebibytes.parameter.rounding"></a>
+
+- *Type:* <a href="#cdk8s.SizeRoundingBehavior">SizeRoundingBehavior</a>
 - *Default:* SizeRoundingBehavior.FAIL
 
 How conversions should behave when it encounters a non-integer result.
 
 ---
 
-#### Static Functions <a name="Static Functions"></a>
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
-##### `gibibytes` <a name="cdk8s.Size.gibibytes"></a>
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.Size.gibibytes">gibibytes</a></code> | Create a Storage representing an amount gibibytes. |
+| <code><a href="#cdk8s.Size.kibibytes">kibibytes</a></code> | Create a Storage representing an amount kibibytes. |
+| <code><a href="#cdk8s.Size.mebibytes">mebibytes</a></code> | Create a Storage representing an amount mebibytes. |
+| <code><a href="#cdk8s.Size.pebibyte">pebibyte</a></code> | Create a Storage representing an amount pebibytes. |
+| <code><a href="#cdk8s.Size.tebibytes">tebibytes</a></code> | Create a Storage representing an amount tebibytes. |
+
+---
+
+##### `gibibytes` <a name="gibibytes" id="cdk8s.Size.gibibytes"></a>
 
 ```python
 import cdk8s
@@ -3371,13 +4459,17 @@ cdk8s.Size.gibibytes(
 )
 ```
 
-###### `amount`<sup>Required</sup> <a name="cdk8s.Size.parameter.amount"></a>
+Create a Storage representing an amount gibibytes.
 
-- *Type:* `typing.Union[int, float]`
+1 GiB = 1024 MiB
+
+###### `amount`<sup>Required</sup> <a name="amount" id="cdk8s.Size.gibibytes.parameter.amount"></a>
+
+- *Type:* typing.Union[int, float]
 
 ---
 
-##### `kibibytes` <a name="cdk8s.Size.kibibytes"></a>
+##### `kibibytes` <a name="kibibytes" id="cdk8s.Size.kibibytes"></a>
 
 ```python
 import cdk8s
@@ -3387,13 +4479,17 @@ cdk8s.Size.kibibytes(
 )
 ```
 
-###### `amount`<sup>Required</sup> <a name="cdk8s.Size.parameter.amount"></a>
+Create a Storage representing an amount kibibytes.
 
-- *Type:* `typing.Union[int, float]`
+1 KiB = 1024 bytes
+
+###### `amount`<sup>Required</sup> <a name="amount" id="cdk8s.Size.kibibytes.parameter.amount"></a>
+
+- *Type:* typing.Union[int, float]
 
 ---
 
-##### `mebibytes` <a name="cdk8s.Size.mebibytes"></a>
+##### `mebibytes` <a name="mebibytes" id="cdk8s.Size.mebibytes"></a>
 
 ```python
 import cdk8s
@@ -3403,13 +4499,17 @@ cdk8s.Size.mebibytes(
 )
 ```
 
-###### `amount`<sup>Required</sup> <a name="cdk8s.Size.parameter.amount"></a>
+Create a Storage representing an amount mebibytes.
 
-- *Type:* `typing.Union[int, float]`
+1 MiB = 1024 KiB
+
+###### `amount`<sup>Required</sup> <a name="amount" id="cdk8s.Size.mebibytes.parameter.amount"></a>
+
+- *Type:* typing.Union[int, float]
 
 ---
 
-##### `pebibyte` <a name="cdk8s.Size.pebibyte"></a>
+##### `pebibyte` <a name="pebibyte" id="cdk8s.Size.pebibyte"></a>
 
 ```python
 import cdk8s
@@ -3419,13 +4519,17 @@ cdk8s.Size.pebibyte(
 )
 ```
 
-###### `amount`<sup>Required</sup> <a name="cdk8s.Size.parameter.amount"></a>
+Create a Storage representing an amount pebibytes.
 
-- *Type:* `typing.Union[int, float]`
+1 PiB = 1024 TiB
+
+###### `amount`<sup>Required</sup> <a name="amount" id="cdk8s.Size.pebibyte.parameter.amount"></a>
+
+- *Type:* typing.Union[int, float]
 
 ---
 
-##### `tebibytes` <a name="cdk8s.Size.tebibytes"></a>
+##### `tebibytes` <a name="tebibytes" id="cdk8s.Size.tebibytes"></a>
 
 ```python
 import cdk8s
@@ -3435,22 +4539,34 @@ cdk8s.Size.tebibytes(
 )
 ```
 
-###### `amount`<sup>Required</sup> <a name="cdk8s.Size.parameter.amount"></a>
+Create a Storage representing an amount tebibytes.
 
-- *Type:* `typing.Union[int, float]`
+1 TiB = 1024 GiB
+
+###### `amount`<sup>Required</sup> <a name="amount" id="cdk8s.Size.tebibytes.parameter.amount"></a>
+
+- *Type:* typing.Union[int, float]
 
 ---
 
 
 
-### Testing <a name="cdk8s.Testing"></a>
+### Testing <a name="Testing" id="cdk8s.Testing"></a>
 
 Testing utilities for cdk8s applications.
 
 
-#### Static Functions <a name="Static Functions"></a>
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
-##### `app` <a name="cdk8s.Testing.app"></a>
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.Testing.app">app</a></code> | Returns an app for testing with the following properties: - Output directory is a temp dir. |
+| <code><a href="#cdk8s.Testing.chart">chart</a></code> | *No description.* |
+| <code><a href="#cdk8s.Testing.synth">synth</a></code> | Returns the Kubernetes manifest synthesized from this chart. |
+
+---
+
+##### `app` <a name="app" id="cdk8s.Testing.app"></a>
 
 ```python
 import cdk8s
@@ -3464,9 +4580,11 @@ cdk8s.Testing.app(
 )
 ```
 
-###### `outdir`<sup>Optional</sup> <a name="cdk8s.AppProps.parameter.outdir"></a>
+Returns an app for testing with the following properties: - Output directory is a temp dir.
 
-- *Type:* `str`
+###### `outdir`<sup>Optional</sup> <a name="outdir" id="cdk8s.Testing.app.parameter.outdir"></a>
+
+- *Type:* str
 - *Default:* CDK8S_OUTDIR if defined, otherwise "dist"
 
 The directory to output Kubernetes manifests.
@@ -3481,27 +4599,27 @@ This property is intended for internal and testing use.
 
 ---
 
-###### `output_file_extension`<sup>Optional</sup> <a name="cdk8s.AppProps.parameter.output_file_extension"></a>
+###### `output_file_extension`<sup>Optional</sup> <a name="output_file_extension" id="cdk8s.Testing.app.parameter.outputFileExtension"></a>
 
-- *Type:* `str`
+- *Type:* str
 - *Default:* .k8s.yaml
 
 The file extension to use for rendered YAML files.
 
 ---
 
-###### `record_construct_metadata`<sup>Optional</sup> <a name="cdk8s.AppProps.parameter.record_construct_metadata"></a>
+###### `record_construct_metadata`<sup>Optional</sup> <a name="record_construct_metadata" id="cdk8s.Testing.app.parameter.recordConstructMetadata"></a>
 
-- *Type:* `bool`
+- *Type:* bool
 - *Default:* false
 
 When set to true, the output directory will contain a `construct-metadata.json` file that holds construct related metadata on every resource in the app.
 
 ---
 
-###### `resolvers`<sup>Optional</sup> <a name="cdk8s.AppProps.parameter.resolvers"></a>
+###### `resolvers`<sup>Optional</sup> <a name="resolvers" id="cdk8s.Testing.app.parameter.resolvers"></a>
 
-- *Type:* typing.List[[`cdk8s.IResolver`](#cdk8s.IResolver)]
+- *Type:* typing.List[<a href="#cdk8s.IResolver">IResolver</a>]
 - *Default:* no resolvers.
 
 A list of resolvers that can be used to replace property values before they are written to the manifest file.
@@ -3510,20 +4628,20 @@ When multiple resolvers are passed,
 they are invoked by order in the list, and only the first one that applies
 (e.g calls `context.replaceValue`) is invoked.
 
-> https://cdk8s.io/docs/latest/basics/app/#resolvers
+> [https://cdk8s.io/docs/latest/basics/app/#resolvers](https://cdk8s.io/docs/latest/basics/app/#resolvers)
 
 ---
 
-###### `yaml_output_type`<sup>Optional</sup> <a name="cdk8s.AppProps.parameter.yaml_output_type"></a>
+###### `yaml_output_type`<sup>Optional</sup> <a name="yaml_output_type" id="cdk8s.Testing.app.parameter.yamlOutputType"></a>
 
-- *Type:* [`cdk8s.YamlOutputType`](#cdk8s.YamlOutputType)
+- *Type:* <a href="#cdk8s.YamlOutputType">YamlOutputType</a>
 - *Default:* YamlOutputType.FILE_PER_CHART
 
 How to divide the YAML output into files.
 
 ---
 
-##### `chart` <a name="cdk8s.Testing.chart"></a>
+##### `chart` <a name="chart" id="cdk8s.Testing.chart"></a>
 
 ```python
 import cdk8s
@@ -3531,7 +4649,7 @@ import cdk8s
 cdk8s.Testing.chart()
 ```
 
-##### `synth` <a name="cdk8s.Testing.synth"></a>
+##### `synth` <a name="synth" id="cdk8s.Testing.synth"></a>
 
 ```python
 import cdk8s
@@ -3541,22 +4659,34 @@ cdk8s.Testing.synth(
 )
 ```
 
-###### `chart`<sup>Required</sup> <a name="cdk8s.Testing.parameter.chart"></a>
+Returns the Kubernetes manifest synthesized from this chart.
 
-- *Type:* [`cdk8s.Chart`](#cdk8s.Chart)
+###### `chart`<sup>Required</sup> <a name="chart" id="cdk8s.Testing.synth.parameter.chart"></a>
+
+- *Type:* <a href="#cdk8s.Chart">Chart</a>
 
 ---
 
 
 
-### Yaml <a name="cdk8s.Yaml"></a>
+### Yaml <a name="Yaml" id="cdk8s.Yaml"></a>
 
 YAML utilities.
 
 
-#### Static Functions <a name="Static Functions"></a>
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
-##### ~~`format_objects`~~ <a name="cdk8s.Yaml.format_objects"></a>
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.Yaml.formatObjects">format_objects</a></code> | *No description.* |
+| <code><a href="#cdk8s.Yaml.load">load</a></code> | Downloads a set of YAML documents (k8s manifest for example) from a URL or a file and returns them as javascript objects. |
+| <code><a href="#cdk8s.Yaml.save">save</a></code> | Saves a set of objects as a multi-document YAML file. |
+| <code><a href="#cdk8s.Yaml.stringify">stringify</a></code> | Stringify a document (or multiple documents) into YAML. |
+| <code><a href="#cdk8s.Yaml.tmp">tmp</a></code> | Saves a set of YAML documents into a temp file (in /tmp). |
+
+---
+
+##### ~~`format_objects`~~ <a name="format_objects" id="cdk8s.Yaml.formatObjects"></a>
 
 ```python
 import cdk8s
@@ -3566,13 +4696,13 @@ cdk8s.Yaml.format_objects(
 )
 ```
 
-###### `docs`<sup>Required</sup> <a name="cdk8s.Yaml.parameter.docs"></a>
+###### `docs`<sup>Required</sup> <a name="docs" id="cdk8s.Yaml.formatObjects.parameter.docs"></a>
 
-- *Type:* typing.List[`typing.Any`]
+- *Type:* typing.List[typing.Any]
 
 ---
 
-##### `load` <a name="cdk8s.Yaml.load"></a>
+##### `load` <a name="load" id="cdk8s.Yaml.load"></a>
 
 ```python
 import cdk8s
@@ -3582,15 +4712,19 @@ cdk8s.Yaml.load(
 )
 ```
 
-###### `url_or_file`<sup>Required</sup> <a name="cdk8s.Yaml.parameter.url_or_file"></a>
+Downloads a set of YAML documents (k8s manifest for example) from a URL or a file and returns them as javascript objects.
 
-- *Type:* `str`
+Empty documents are filtered out.
+
+###### `url_or_file`<sup>Required</sup> <a name="url_or_file" id="cdk8s.Yaml.load.parameter.urlOrFile"></a>
+
+- *Type:* str
 
 a URL of a file path to load from.
 
 ---
 
-##### `save` <a name="cdk8s.Yaml.save"></a>
+##### `save` <a name="save" id="cdk8s.Yaml.save"></a>
 
 ```python
 import cdk8s
@@ -3601,23 +4735,25 @@ cdk8s.Yaml.save(
 )
 ```
 
-###### `file_path`<sup>Required</sup> <a name="cdk8s.Yaml.parameter.file_path"></a>
+Saves a set of objects as a multi-document YAML file.
 
-- *Type:* `str`
+###### `file_path`<sup>Required</sup> <a name="file_path" id="cdk8s.Yaml.save.parameter.filePath"></a>
+
+- *Type:* str
 
 The output path.
 
 ---
 
-###### `docs`<sup>Required</sup> <a name="cdk8s.Yaml.parameter.docs"></a>
+###### `docs`<sup>Required</sup> <a name="docs" id="cdk8s.Yaml.save.parameter.docs"></a>
 
-- *Type:* typing.List[`typing.Any`]
+- *Type:* typing.List[typing.Any]
 
 The set of objects.
 
 ---
 
-##### `stringify` <a name="cdk8s.Yaml.stringify"></a>
+##### `stringify` <a name="stringify" id="cdk8s.Yaml.stringify"></a>
 
 ```python
 import cdk8s
@@ -3627,15 +4763,20 @@ cdk8s.Yaml.stringify(
 )
 ```
 
-###### `docs`<sup>Required</sup> <a name="cdk8s.Yaml.parameter.docs"></a>
+Stringify a document (or multiple documents) into YAML.
 
-- *Type:* `typing.Any`
+We convert undefined values to null, but ignore any documents that are
+undefined.
+
+###### `docs`<sup>Required</sup> <a name="docs" id="cdk8s.Yaml.stringify.parameter.docs"></a>
+
+- *Type:* typing.Any
 
 A set of objects to convert to YAML.
 
 ---
 
-##### `tmp` <a name="cdk8s.Yaml.tmp"></a>
+##### `tmp` <a name="tmp" id="cdk8s.Yaml.tmp"></a>
 
 ```python
 import cdk8s
@@ -3645,9 +4786,11 @@ cdk8s.Yaml.tmp(
 )
 ```
 
-###### `docs`<sup>Required</sup> <a name="cdk8s.Yaml.parameter.docs"></a>
+Saves a set of YAML documents into a temp file (in /tmp).
 
-- *Type:* typing.List[`typing.Any`]
+###### `docs`<sup>Required</sup> <a name="docs" id="cdk8s.Yaml.tmp.parameter.docs"></a>
+
+- *Type:* typing.List[typing.Any]
 
 the set of documents to save.
 
@@ -3655,65 +4798,91 @@ the set of documents to save.
 
 
 
-## Protocols <a name="Protocols"></a>
+## Protocols <a name="Protocols" id="Protocols"></a>
 
-### IAnyProducer <a name="cdk8s.IAnyProducer"></a>
+### IAnyProducer <a name="IAnyProducer" id="cdk8s.IAnyProducer"></a>
 
-- *Implemented By:* [`cdk8s.IAnyProducer`](#cdk8s.IAnyProducer)
+- *Implemented By:* <a href="#cdk8s.IAnyProducer">IAnyProducer</a>
 
-#### Methods <a name="Methods"></a>
+#### Methods <a name="Methods" id="Methods"></a>
 
-##### `produce` <a name="cdk8s.IAnyProducer.produce"></a>
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.IAnyProducer.produce">produce</a></code> | *No description.* |
+
+---
+
+##### `produce` <a name="produce" id="cdk8s.IAnyProducer.produce"></a>
 
 ```python
-def produce()
+def produce() -> typing.Any
 ```
 
 
-### IResolver <a name="cdk8s.IResolver"></a>
+### IResolver <a name="IResolver" id="cdk8s.IResolver"></a>
 
-- *Implemented By:* [`cdk8s.ImplicitTokenResolver`](#cdk8s.ImplicitTokenResolver), [`cdk8s.LazyResolver`](#cdk8s.LazyResolver), [`cdk8s.NumberStringUnionResolver`](#cdk8s.NumberStringUnionResolver), [`cdk8s.IResolver`](#cdk8s.IResolver)
+- *Implemented By:* <a href="#cdk8s.ImplicitTokenResolver">ImplicitTokenResolver</a>, <a href="#cdk8s.LazyResolver">LazyResolver</a>, <a href="#cdk8s.NumberStringUnionResolver">NumberStringUnionResolver</a>, <a href="#cdk8s.IResolver">IResolver</a>
 
 Contract for resolver objects.
 
-#### Methods <a name="Methods"></a>
+#### Methods <a name="Methods" id="Methods"></a>
 
-##### `resolve` <a name="cdk8s.IResolver.resolve"></a>
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.IResolver.resolve">resolve</a></code> | This function is invoked on every property during cdk8s synthesis. |
+
+---
+
+##### `resolve` <a name="resolve" id="cdk8s.IResolver.resolve"></a>
 
 ```python
 def resolve(
   context: ResolutionContext
-)
+) -> None
 ```
 
-###### `context`<sup>Required</sup> <a name="cdk8s.IResolver.parameter.context"></a>
+This function is invoked on every property during cdk8s synthesis.
 
-- *Type:* [`cdk8s.ResolutionContext`](#cdk8s.ResolutionContext)
+To replace a value, implementations must invoke `context.replaceValue`.
+
+###### `context`<sup>Required</sup> <a name="context" id="cdk8s.IResolver.resolve.parameter.context"></a>
+
+- *Type:* <a href="#cdk8s.ResolutionContext">ResolutionContext</a>
 
 ---
 
 
-## Enums <a name="Enums"></a>
+## Enums <a name="Enums" id="Enums"></a>
 
-### SizeRoundingBehavior <a name="SizeRoundingBehavior"></a>
+### SizeRoundingBehavior <a name="SizeRoundingBehavior" id="cdk8s.SizeRoundingBehavior"></a>
 
 Rounding behaviour when converting between units of `Size`.
 
-#### `FAIL` <a name="cdk8s.SizeRoundingBehavior.FAIL"></a>
+#### Members <a name="Members" id="Members"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.SizeRoundingBehavior.FAIL">FAIL</a></code> | Fail the conversion if the result is not an integer. |
+| <code><a href="#cdk8s.SizeRoundingBehavior.FLOOR">FLOOR</a></code> | If the result is not an integer, round it to the closest integer less than the result. |
+| <code><a href="#cdk8s.SizeRoundingBehavior.NONE">NONE</a></code> | Don't round. |
+
+---
+
+##### `FAIL` <a name="FAIL" id="cdk8s.SizeRoundingBehavior.FAIL"></a>
 
 Fail the conversion if the result is not an integer.
 
 ---
 
 
-#### `FLOOR` <a name="cdk8s.SizeRoundingBehavior.FLOOR"></a>
+##### `FLOOR` <a name="FLOOR" id="cdk8s.SizeRoundingBehavior.FLOOR"></a>
 
 If the result is not an integer, round it to the closest integer less than the result.
 
 ---
 
 
-#### `NONE` <a name="cdk8s.SizeRoundingBehavior.NONE"></a>
+##### `NONE` <a name="NONE" id="cdk8s.SizeRoundingBehavior.NONE"></a>
 
 Don't round.
 
@@ -3722,32 +4891,43 @@ Return even if the result is a fraction.
 ---
 
 
-### YamlOutputType <a name="YamlOutputType"></a>
+### YamlOutputType <a name="YamlOutputType" id="cdk8s.YamlOutputType"></a>
 
 The method to divide YAML output into files.
 
-#### `FILE_PER_APP` <a name="cdk8s.YamlOutputType.FILE_PER_APP"></a>
+#### Members <a name="Members" id="Members"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.YamlOutputType.FILE_PER_APP">FILE_PER_APP</a></code> | All resources are output into a single YAML file. |
+| <code><a href="#cdk8s.YamlOutputType.FILE_PER_CHART">FILE_PER_CHART</a></code> | Resources are split into seperate files by chart. |
+| <code><a href="#cdk8s.YamlOutputType.FILE_PER_RESOURCE">FILE_PER_RESOURCE</a></code> | Each resource is output to its own file. |
+| <code><a href="#cdk8s.YamlOutputType.FOLDER_PER_CHART_FILE_PER_RESOURCE">FOLDER_PER_CHART_FILE_PER_RESOURCE</a></code> | Each chart in its own folder and each resource in its own file. |
+
+---
+
+##### `FILE_PER_APP` <a name="FILE_PER_APP" id="cdk8s.YamlOutputType.FILE_PER_APP"></a>
 
 All resources are output into a single YAML file.
 
 ---
 
 
-#### `FILE_PER_CHART` <a name="cdk8s.YamlOutputType.FILE_PER_CHART"></a>
+##### `FILE_PER_CHART` <a name="FILE_PER_CHART" id="cdk8s.YamlOutputType.FILE_PER_CHART"></a>
 
 Resources are split into seperate files by chart.
 
 ---
 
 
-#### `FILE_PER_RESOURCE` <a name="cdk8s.YamlOutputType.FILE_PER_RESOURCE"></a>
+##### `FILE_PER_RESOURCE` <a name="FILE_PER_RESOURCE" id="cdk8s.YamlOutputType.FILE_PER_RESOURCE"></a>
 
 Each resource is output to its own file.
 
 ---
 
 
-#### `FOLDER_PER_CHART_FILE_PER_RESOURCE` <a name="cdk8s.YamlOutputType.FOLDER_PER_CHART_FILE_PER_RESOURCE"></a>
+##### `FOLDER_PER_CHART_FILE_PER_RESOURCE` <a name="FOLDER_PER_CHART_FILE_PER_RESOURCE" id="cdk8s.YamlOutputType.FOLDER_PER_CHART_FILE_PER_RESOURCE"></a>
 
 Each chart in its own folder and each resource in its own file.
 
