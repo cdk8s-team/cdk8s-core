@@ -1,5 +1,8 @@
 # cdk8s
 
+> ⚠️ Version 1.x of the cdk8s toolchain is deprecated and will become end-of-life on 01/01/25.
+> **[We strongly recommend migrating to `2.x`](https://cdk8s.io/docs/latest/migrating-from-1.x/)**
+
 ### Cloud Development Kit for Kubernetes
 
 [![build](https://github.com/cdk8s-team/cdk8s-core/workflows/release/badge.svg)](https://github.com/cdk8s-team/cdk8s-core/actions/workflows/release.yml)
