@@ -57,14 +57,15 @@
         "BUMPFILE": "dist/version.txt",
         "RELEASETAG": "dist/releasetag.txt",
         "RELEASE_TAG_PREFIX": "",
-        "RELEASABLE_COMMITS": "git log --no-merges --oneline $LATEST_TAG..HEAD -E --grep '^(feat|fix){1}(\\([^()[:space:]]+\\))?(!)?:[[:blank:]]+.+'"
+        "BUMP_PACKAGE": "commit-and-tag-version@^12",
+        "RELEASABLE_COMMITS": "git log --no-merges --oneline $LATEST_TAG..HEAD -E --grep \"^(feat|fix){1}(\\([^()[:space:]]+\\))?(!)?:[[:blank:]]+.+\" --grep 'chore\\(deps\\): upgrade runtime dependencies' --grep 'chore\\(deps\\): upgrade compiler dependencies'"
       },
       "steps": [
         {
           "builtin": "release/bump-version"
         }
       ],
-      "condition": "! git log --oneline -1 | grep -q \"chore(release):\""
+      "condition": "git log --oneline -1 | grep -qv \"chore(release):\""
     },
     "clobber": {
       "name": "clobber",
@@ -160,7 +161,8 @@
       "description": "Runs eslint against the codebase",
       "steps": [
         {
-          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern src test build-tools .projenrc.js"
+          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern $@ src test build-tools .projenrc.js",
+          "receiveArgs": true
         }
       ]
     },
@@ -197,7 +199,12 @@
       "description": "Creates the distribution package",
       "steps": [
         {
-          "exec": "if [ ! -z ${CI} ]; then rsync -a . .repo --exclude .git --exclude node_modules && rm -rf dist && mv .repo dist; else npx projen package-all; fi"
+          "spawn": "package:js",
+          "condition": "node -e \"if (!process.env.CI) process.exit(1)\""
+        },
+        {
+          "spawn": "package-all",
+          "condition": "node -e \"if (process.env.CI) process.exit(1)\""
         }
       ]
     },
@@ -342,7 +349,7 @@
           "spawn": "install-helm"
         },
         {
-          "exec": "jest --passWithNoTests --coverageProvider=v8 --updateSnapshot",
+          "exec": "jest --passWithNoTests --updateSnapshot",
           "receiveArgs": true
         },
         {
@@ -368,7 +375,8 @@
         "BUMPFILE": "dist/version.txt",
         "RELEASETAG": "dist/releasetag.txt",
         "RELEASE_TAG_PREFIX": "",
-        "RELEASABLE_COMMITS": "git log --no-merges --oneline $LATEST_TAG..HEAD -E --grep '^(feat|fix){1}(\\([^()[:space:]]+\\))?(!)?:[[:blank:]]+.+'"
+        "BUMP_PACKAGE": "commit-and-tag-version@^12",
+        "RELEASABLE_COMMITS": "git log --no-merges --oneline $LATEST_TAG..HEAD -E --grep \"^(feat|fix){1}(\\([^()[:space:]]+\\))?(!)?:[[:blank:]]+.+\" --grep 'chore\\(deps\\): upgrade runtime dependencies' --grep 'chore\\(deps\\): upgrade compiler dependencies'"
       },
       "steps": [
         {
@@ -384,10 +392,7 @@
       },
       "steps": [
         {
-          "exec": "yarn upgrade npm-check-updates"
-        },
-        {
-          "exec": "npm-check-updates --upgrade --target=minor --filter=jsii,jsii-docgen,jsii-pacmak,jsii-rosetta,typescript"
+          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev --filter=jsii,jsii-docgen,jsii-pacmak,jsii-rosetta,typescript"
         },
         {
           "exec": "yarn install --check-files"
@@ -411,10 +416,7 @@
       },
       "steps": [
         {
-          "exec": "yarn upgrade npm-check-updates"
-        },
-        {
-          "exec": "npm-check-updates --upgrade --target=minor --filter=projen,@cdk8s/projen-common"
+          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev --filter=projen,@cdk8s/projen-common"
         },
         {
           "exec": "yarn install --check-files"
@@ -438,16 +440,13 @@
       },
       "steps": [
         {
-          "exec": "yarn upgrade npm-check-updates"
-        },
-        {
-          "exec": "npm-check-updates --upgrade --target=minor --filter=@types/follow-redirects,@types/jest,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint,jest,jest-junit,jsii-diff,json-schema-to-typescript,npm-check-updates,standard-version,ts-jest,fast-json-patch,follow-redirects,yaml"
+          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev --filter=@types/follow-redirects,@types/jest,backport,eslint-import-resolver-typescript,eslint-plugin-import,jest,jsii-diff,json-schema-to-typescript,ts-jest,fast-json-patch,follow-redirects,yaml"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @types/follow-redirects @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit jsii-diff json-schema-to-typescript npm-check-updates standard-version ts-jest fast-json-patch follow-redirects yaml"
+          "exec": "yarn upgrade @types/follow-redirects @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser backport commit-and-tag-version constructs eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit jsii-diff json-schema-to-typescript ts-jest fast-json-patch follow-redirects yaml"
         },
         {
           "exec": "npx projen"
@@ -465,16 +464,13 @@
       },
       "steps": [
         {
-          "exec": "yarn upgrade npm-check-updates"
-        },
-        {
-          "exec": "npm-check-updates --upgrade --target=minor --filter=constructs"
+          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=prod,optional --filter=fast-json-patch,follow-redirects,yaml"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade constructs"
+          "exec": "yarn upgrade fast-json-patch follow-redirects yaml"
         },
         {
           "exec": "npx projen"
