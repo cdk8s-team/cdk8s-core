@@ -61,25 +61,8 @@ export class Size {
   /**
    * Returns amount with abbreviated storage unit
    */
-  public toString(): string {
-    return `${this.amount}${this.getAbbreviatedStorageUnit(this.unit)}`;
-  }
-
-  private getAbbreviatedStorageUnit(unit: StorageUnit): string {
-    switch (unit) {
-      case StorageUnit.Kibibytes:
-        return 'Ki';
-      case StorageUnit.Mebibytes:
-        return 'Mi';
-      case StorageUnit.Gibibytes:
-        return 'Gi';
-      case StorageUnit.Tebibytes:
-        return 'Ti';
-      case StorageUnit.Pebibytes:
-        return 'Pi';
-      default:
-        throw new Error(`Recieved an incorrect storage unit: ${unit}`);
-    }
+  public asString(): string {
+    return `${this.amount}${this.unit.abbr}`;
   }
 
   /**
@@ -142,13 +125,13 @@ export interface SizeConversionOptions {
 }
 
 class StorageUnit {
-  public static readonly Kibibytes = new StorageUnit('kibibytes', 1);
-  public static readonly Mebibytes = new StorageUnit('mebibytes', 1024);
-  public static readonly Gibibytes = new StorageUnit('gibibytes', 1024 * 1024);
-  public static readonly Tebibytes = new StorageUnit('tebibytes', 1024 * 1024 * 1024);
-  public static readonly Pebibytes = new StorageUnit('pebibytes', 1024 * 1024 * 1024 * 1024);
+  public static readonly Kibibytes = new StorageUnit('kibibytes', 1, 'Ki');
+  public static readonly Mebibytes = new StorageUnit('mebibytes', 1024, 'Mi');
+  public static readonly Gibibytes = new StorageUnit('gibibytes', 1024 * 1024, 'Gi');
+  public static readonly Tebibytes = new StorageUnit('tebibytes', 1024 * 1024 * 1024, 'Ti');
+  public static readonly Pebibytes = new StorageUnit('pebibytes', 1024 * 1024 * 1024 * 1024, 'Pi');
 
-  private constructor(public readonly label: string, public readonly inKibiBytes: number) {
+  private constructor(public readonly label: string, public readonly inKibiBytes: number, public readonly abbr: string) {
     // MAX_SAFE_INTEGER is 2^53, so by representing storage in kibibytes,
     // the highest storage we can represent is 8 exbibytes.
   }
