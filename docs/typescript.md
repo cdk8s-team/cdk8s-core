@@ -354,6 +354,7 @@ Synthesizes the app into a YAML string.
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk8s.App.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#cdk8s.App.of">of</a></code> | *No description.* |
 
 ---
 
@@ -375,6 +376,20 @@ Any object.
 
 ---
 
+##### `of` <a name="of" id="cdk8s.App.of"></a>
+
+```typescript
+import { App } from 'cdk8s'
+
+App.of(c: IConstruct)
+```
+
+###### `c`<sup>Required</sup> <a name="c" id="cdk8s.App.of.parameter.c"></a>
+
+- *Type:* constructs.IConstruct
+
+---
+
 #### Properties <a name="Properties" id="Properties"></a>
 
 | **Name** | **Type** | **Description** |
@@ -383,6 +398,7 @@ Any object.
 | <code><a href="#cdk8s.App.property.charts">charts</a></code> | <code><a href="#cdk8s.Chart">Chart</a>[]</code> | Returns all the charts in this app, sorted topologically. |
 | <code><a href="#cdk8s.App.property.outdir">outdir</a></code> | <code>string</code> | The output directory into which manifests will be synthesized. |
 | <code><a href="#cdk8s.App.property.outputFileExtension">outputFileExtension</a></code> | <code>string</code> | The file extension to use for rendered YAML files. |
+| <code><a href="#cdk8s.App.property.resolvers">resolvers</a></code> | <code><a href="#cdk8s.IResolver">IResolver</a>[]</code> | Resolvers used by this app. |
 | <code><a href="#cdk8s.App.property.yamlOutputType">yamlOutputType</a></code> | <code><a href="#cdk8s.YamlOutputType">YamlOutputType</a></code> | How to divide the YAML output into files. |
 
 ---
@@ -433,6 +449,21 @@ public readonly outputFileExtension: string;
 - *Default:* .k8s.yaml
 
 The file extension to use for rendered YAML files.
+
+---
+
+##### `resolvers`<sup>Required</sup> <a name="resolvers" id="cdk8s.App.property.resolvers"></a>
+
+```typescript
+public readonly resolvers: IResolver[];
+```
+
+- *Type:* <a href="#cdk8s.IResolver">IResolver</a>[]
+
+Resolvers used by this app.
+
+This includes both custom resolvers
+passed by the `resolvers` property, as well as built-in resolvers.
 
 ---
 
@@ -631,6 +662,7 @@ a construct node.
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#cdk8s.Chart.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#cdk8s.Chart.property.apiObjects">apiObjects</a></code> | <code><a href="#cdk8s.ApiObject">ApiObject</a>[]</code> | Returns all the included API objects. |
 | <code><a href="#cdk8s.Chart.property.labels">labels</a></code> | <code>{[ key: string ]: string}</code> | Labels applied to all resources in this chart. |
 | <code><a href="#cdk8s.Chart.property.namespace">namespace</a></code> | <code>string</code> | The default namespace for all objects in this chart. |
 
@@ -645,6 +677,18 @@ public readonly node: Node;
 - *Type:* constructs.Node
 
 The tree node.
+
+---
+
+##### `apiObjects`<sup>Required</sup> <a name="apiObjects" id="cdk8s.Chart.property.apiObjects"></a>
+
+```typescript
+public readonly apiObjects: ApiObject[];
+```
+
+- *Type:* <a href="#cdk8s.ApiObject">ApiObject</a>[]
+
+Returns all the included API objects.
 
 ---
 
@@ -1082,6 +1126,178 @@ relationships.
 
 ---
 
+### ApiObjectMetadataDefinitionOptions <a name="ApiObjectMetadataDefinitionOptions" id="cdk8s.ApiObjectMetadataDefinitionOptions"></a>
+
+Options for `ApiObjectMetadataDefinition`.
+
+#### Initializer <a name="Initializer" id="cdk8s.ApiObjectMetadataDefinitionOptions.Initializer"></a>
+
+```typescript
+import { ApiObjectMetadataDefinitionOptions } from 'cdk8s'
+
+const apiObjectMetadataDefinitionOptions: ApiObjectMetadataDefinitionOptions = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinitionOptions.property.annotations">annotations</a></code> | <code>{[ key: string ]: string}</code> | Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinitionOptions.property.finalizers">finalizers</a></code> | <code>string[]</code> | Namespaced keys that tell Kubernetes to wait until specific conditions are met before it fully deletes resources marked for deletion. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinitionOptions.property.labels">labels</a></code> | <code>{[ key: string ]: string}</code> | Map of string keys and values that can be used to organize and categorize (scope and select) objects. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinitionOptions.property.name">name</a></code> | <code>string</code> | The unique, namespace-global, name of this object inside the Kubernetes cluster. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinitionOptions.property.namespace">namespace</a></code> | <code>string</code> | Namespace defines the space within each name must be unique. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinitionOptions.property.ownerReferences">ownerReferences</a></code> | <code><a href="#cdk8s.OwnerReference">OwnerReference</a>[]</code> | List of objects depended by this object. |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinitionOptions.property.apiObject">apiObject</a></code> | <code><a href="#cdk8s.ApiObject">ApiObject</a></code> | Which ApiObject instance is the metadata attached to. |
+
+---
+
+##### `annotations`<sup>Optional</sup> <a name="annotations" id="cdk8s.ApiObjectMetadataDefinitionOptions.property.annotations"></a>
+
+```typescript
+public readonly annotations: {[ key: string ]: string};
+```
+
+- *Type:* {[ key: string ]: string}
+- *Default:* No annotations.
+
+Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
+
+They are not queryable and should be
+preserved when modifying objects.
+
+> [http://kubernetes.io/docs/user-guide/annotations](http://kubernetes.io/docs/user-guide/annotations)
+
+---
+
+##### `finalizers`<sup>Optional</sup> <a name="finalizers" id="cdk8s.ApiObjectMetadataDefinitionOptions.property.finalizers"></a>
+
+```typescript
+public readonly finalizers: string[];
+```
+
+- *Type:* string[]
+- *Default:* No finalizers.
+
+Namespaced keys that tell Kubernetes to wait until specific conditions are met before it fully deletes resources marked for deletion.
+
+Must be empty before the object is deleted from the registry. Each entry is
+an identifier for the responsible component that will remove the entry from
+the list. If the deletionTimestamp of the object is non-nil, entries in
+this list can only be removed. Finalizers may be processed and removed in
+any order.  Order is NOT enforced because it introduces significant risk of
+stuck finalizers. finalizers is a shared field, any actor with permission
+can reorder it. If the finalizer list is processed in order, then this can
+lead to a situation in which the component responsible for the first
+finalizer in the list is waiting for a signal (field value, external
+system, or other) produced by a component responsible for a finalizer later
+in the list, resulting in a deadlock. Without enforced ordering finalizers
+are free to order amongst themselves and are not vulnerable to ordering
+changes in the list.
+
+> [https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/](https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/)
+
+---
+
+##### `labels`<sup>Optional</sup> <a name="labels" id="cdk8s.ApiObjectMetadataDefinitionOptions.property.labels"></a>
+
+```typescript
+public readonly labels: {[ key: string ]: string};
+```
+
+- *Type:* {[ key: string ]: string}
+- *Default:* No labels.
+
+Map of string keys and values that can be used to organize and categorize (scope and select) objects.
+
+May match selectors of replication controllers and services.
+
+> [http://kubernetes.io/docs/user-guide/labels](http://kubernetes.io/docs/user-guide/labels)
+
+---
+
+##### `name`<sup>Optional</sup> <a name="name" id="cdk8s.ApiObjectMetadataDefinitionOptions.property.name"></a>
+
+```typescript
+public readonly name: string;
+```
+
+- *Type:* string
+- *Default:* an app-unique name generated by the chart
+
+The unique, namespace-global, name of this object inside the Kubernetes cluster.
+
+Normally, you shouldn't specify names for objects and let the CDK generate
+a name for you that is application-unique. The names CDK generates are
+composed from the construct path components, separated by dots and a suffix
+that is based on a hash of the entire path, to ensure uniqueness.
+
+You can supply custom name allocation logic by overriding the
+`chart.generateObjectName` method.
+
+If you use an explicit name here, bear in mind that this reduces the
+composability of your construct because it won't be possible to include
+more than one instance in any app. Therefore it is highly recommended to
+leave this unspecified.
+
+---
+
+##### `namespace`<sup>Optional</sup> <a name="namespace" id="cdk8s.ApiObjectMetadataDefinitionOptions.property.namespace"></a>
+
+```typescript
+public readonly namespace: string;
+```
+
+- *Type:* string
+- *Default:* undefined (will be assigned to the 'default' namespace)
+
+Namespace defines the space within each name must be unique.
+
+An empty namespace is equivalent to the "default" namespace, but "default" is the canonical representation.
+Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces
+
+---
+
+##### `ownerReferences`<sup>Optional</sup> <a name="ownerReferences" id="cdk8s.ApiObjectMetadataDefinitionOptions.property.ownerReferences"></a>
+
+```typescript
+public readonly ownerReferences: OwnerReference[];
+```
+
+- *Type:* <a href="#cdk8s.OwnerReference">OwnerReference</a>[]
+- *Default:* automatically set by Kubernetes
+
+List of objects depended by this object.
+
+If ALL objects in the list have
+been deleted, this object will be garbage collected. If this object is
+managed by a controller, then an entry in this list will point to this
+controller, with the controller field set to true. There cannot be more
+than one managing controller.
+
+Kubernetes sets the value of this field automatically for objects that are
+dependents of other objects like ReplicaSets, DaemonSets, Deployments, Jobs
+and CronJobs, and ReplicationControllers. You can also configure these
+relationships manually by changing the value of this field. However, you
+usually don't need to and can allow Kubernetes to automatically manage the
+relationships.
+
+> [https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/)
+
+---
+
+##### `apiObject`<sup>Required</sup> <a name="apiObject" id="cdk8s.ApiObjectMetadataDefinitionOptions.property.apiObject"></a>
+
+```typescript
+public readonly apiObject: ApiObject;
+```
+
+- *Type:* <a href="#cdk8s.ApiObject">ApiObject</a>
+
+Which ApiObject instance is the metadata attached to.
+
+---
+
 ### ApiObjectProps <a name="ApiObjectProps" id="cdk8s.ApiObjectProps"></a>
 
 Options for defining API objects.
@@ -1160,6 +1376,7 @@ const appProps: AppProps = { ... }
 | <code><a href="#cdk8s.AppProps.property.outdir">outdir</a></code> | <code>string</code> | The directory to output Kubernetes manifests. |
 | <code><a href="#cdk8s.AppProps.property.outputFileExtension">outputFileExtension</a></code> | <code>string</code> | The file extension to use for rendered YAML files. |
 | <code><a href="#cdk8s.AppProps.property.recordConstructMetadata">recordConstructMetadata</a></code> | <code>boolean</code> | When set to true, the output directory will contain a `construct-metadata.json` file that holds construct related metadata on every resource in the app. |
+| <code><a href="#cdk8s.AppProps.property.resolvers">resolvers</a></code> | <code><a href="#cdk8s.IResolver">IResolver</a>[]</code> | A list of resolvers that can be used to replace property values before they are written to the manifest file. |
 | <code><a href="#cdk8s.AppProps.property.yamlOutputType">yamlOutputType</a></code> | <code><a href="#cdk8s.YamlOutputType">YamlOutputType</a></code> | How to divide the YAML output into files. |
 
 ---
@@ -1208,6 +1425,25 @@ public readonly recordConstructMetadata: boolean;
 - *Default:* false
 
 When set to true, the output directory will contain a `construct-metadata.json` file that holds construct related metadata on every resource in the app.
+
+---
+
+##### `resolvers`<sup>Optional</sup> <a name="resolvers" id="cdk8s.AppProps.property.resolvers"></a>
+
+```typescript
+public readonly resolvers: IResolver[];
+```
+
+- *Type:* <a href="#cdk8s.IResolver">IResolver</a>[]
+- *Default:* no resolvers.
+
+A list of resolvers that can be used to replace property values before they are written to the manifest file.
+
+When multiple resolvers are passed,
+they are invoked by order in the list, and only the first one that applies
+(e.g calls `context.replaceValue`) is invoked.
+
+> [https://cdk8s.io/docs/latest/basics/app/#resolvers](https://cdk8s.io/docs/latest/basics/app/#resolvers)
 
 ---
 
@@ -1799,7 +2035,7 @@ If true, this reference points to the managing controller.
 
 ### SizeConversionOptions <a name="SizeConversionOptions" id="cdk8s.SizeConversionOptions"></a>
 
-Options for how to convert size to a different unit.
+Options for how to convert time to a different unit.
 
 #### Initializer <a name="Initializer" id="cdk8s.SizeConversionOptions.Initializer"></a>
 
@@ -1874,18 +2110,18 @@ Object metadata.
 ```typescript
 import { ApiObjectMetadataDefinition } from 'cdk8s'
 
-new ApiObjectMetadataDefinition(options?: ApiObjectMetadata)
+new ApiObjectMetadataDefinition(options: ApiObjectMetadataDefinitionOptions)
 ```
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#cdk8s.ApiObjectMetadataDefinition.Initializer.parameter.options">options</a></code> | <code><a href="#cdk8s.ApiObjectMetadata">ApiObjectMetadata</a></code> | *No description.* |
+| <code><a href="#cdk8s.ApiObjectMetadataDefinition.Initializer.parameter.options">options</a></code> | <code><a href="#cdk8s.ApiObjectMetadataDefinitionOptions">ApiObjectMetadataDefinitionOptions</a></code> | *No description.* |
 
 ---
 
-##### `options`<sup>Optional</sup> <a name="options" id="cdk8s.ApiObjectMetadataDefinition.Initializer.parameter.options"></a>
+##### `options`<sup>Required</sup> <a name="options" id="cdk8s.ApiObjectMetadataDefinition.Initializer.parameter.options"></a>
 
-- *Type:* <a href="#cdk8s.ApiObjectMetadata">ApiObjectMetadata</a>
+- *Type:* <a href="#cdk8s.ApiObjectMetadataDefinitionOptions">ApiObjectMetadataDefinitionOptions</a>
 
 ---
 
@@ -2635,6 +2871,52 @@ the amount of Seconds the `Duration` will represent.
 
 
 
+### ImplicitTokenResolver <a name="ImplicitTokenResolver" id="cdk8s.ImplicitTokenResolver"></a>
+
+- *Implements:* <a href="#cdk8s.IResolver">IResolver</a>
+
+Resolves implicit tokens.
+
+#### Initializers <a name="Initializers" id="cdk8s.ImplicitTokenResolver.Initializer"></a>
+
+```typescript
+import { ImplicitTokenResolver } from 'cdk8s'
+
+new ImplicitTokenResolver()
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.ImplicitTokenResolver.resolve">resolve</a></code> | This function is invoked on every property during cdk8s synthesis. |
+
+---
+
+##### `resolve` <a name="resolve" id="cdk8s.ImplicitTokenResolver.resolve"></a>
+
+```typescript
+public resolve(context: ResolutionContext): void
+```
+
+This function is invoked on every property during cdk8s synthesis.
+
+To replace a value, implementations must invoke `context.replaceValue`.
+
+###### `context`<sup>Required</sup> <a name="context" id="cdk8s.ImplicitTokenResolver.resolve.parameter.context"></a>
+
+- *Type:* <a href="#cdk8s.ResolutionContext">ResolutionContext</a>
+
+---
+
+
+
+
 ### JsonPatch <a name="JsonPatch" id="cdk8s.JsonPatch"></a>
 
 Utility for applying RFC-6902 JSON-Patch to a document.
@@ -2920,6 +3202,52 @@ Lazy.any(producer: IAnyProducer)
 
 
 
+### LazyResolver <a name="LazyResolver" id="cdk8s.LazyResolver"></a>
+
+- *Implements:* <a href="#cdk8s.IResolver">IResolver</a>
+
+Resolvers instanecs of `Lazy`.
+
+#### Initializers <a name="Initializers" id="cdk8s.LazyResolver.Initializer"></a>
+
+```typescript
+import { LazyResolver } from 'cdk8s'
+
+new LazyResolver()
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.LazyResolver.resolve">resolve</a></code> | This function is invoked on every property during cdk8s synthesis. |
+
+---
+
+##### `resolve` <a name="resolve" id="cdk8s.LazyResolver.resolve"></a>
+
+```typescript
+public resolve(context: ResolutionContext): void
+```
+
+This function is invoked on every property during cdk8s synthesis.
+
+To replace a value, implementations must invoke `context.replaceValue`.
+
+###### `context`<sup>Required</sup> <a name="context" id="cdk8s.LazyResolver.resolve.parameter.context"></a>
+
+- *Type:* <a href="#cdk8s.ResolutionContext">ResolutionContext</a>
+
+---
+
+
+
+
 ### Names <a name="Names" id="cdk8s.Names"></a>
 
 Utilities for generating unique and stable names.
@@ -3024,6 +3352,196 @@ Name options.
 
 
 
+### NumberStringUnionResolver <a name="NumberStringUnionResolver" id="cdk8s.NumberStringUnionResolver"></a>
+
+- *Implements:* <a href="#cdk8s.IResolver">IResolver</a>
+
+Resolves union types that allow using either number or string (as generated by the CLI).
+
+E.g IntOrString, Quantity, ...
+
+#### Initializers <a name="Initializers" id="cdk8s.NumberStringUnionResolver.Initializer"></a>
+
+```typescript
+import { NumberStringUnionResolver } from 'cdk8s'
+
+new NumberStringUnionResolver()
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.NumberStringUnionResolver.resolve">resolve</a></code> | This function is invoked on every property during cdk8s synthesis. |
+
+---
+
+##### `resolve` <a name="resolve" id="cdk8s.NumberStringUnionResolver.resolve"></a>
+
+```typescript
+public resolve(context: ResolutionContext): void
+```
+
+This function is invoked on every property during cdk8s synthesis.
+
+To replace a value, implementations must invoke `context.replaceValue`.
+
+###### `context`<sup>Required</sup> <a name="context" id="cdk8s.NumberStringUnionResolver.resolve.parameter.context"></a>
+
+- *Type:* <a href="#cdk8s.ResolutionContext">ResolutionContext</a>
+
+---
+
+
+
+
+### ResolutionContext <a name="ResolutionContext" id="cdk8s.ResolutionContext"></a>
+
+Context object for a specific resolution process.
+
+#### Initializers <a name="Initializers" id="cdk8s.ResolutionContext.Initializer"></a>
+
+```typescript
+import { ResolutionContext } from 'cdk8s'
+
+new ResolutionContext(obj: ApiObject, key: string[], value: any)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.ResolutionContext.Initializer.parameter.obj">obj</a></code> | <code><a href="#cdk8s.ApiObject">ApiObject</a></code> | Which ApiObject is currently being resolved. |
+| <code><a href="#cdk8s.ResolutionContext.Initializer.parameter.key">key</a></code> | <code>string[]</code> | Which key is currently being resolved. |
+| <code><a href="#cdk8s.ResolutionContext.Initializer.parameter.value">value</a></code> | <code>any</code> | The value associated to the key currently being resolved. |
+
+---
+
+##### `obj`<sup>Required</sup> <a name="obj" id="cdk8s.ResolutionContext.Initializer.parameter.obj"></a>
+
+- *Type:* <a href="#cdk8s.ApiObject">ApiObject</a>
+
+Which ApiObject is currently being resolved.
+
+---
+
+##### `key`<sup>Required</sup> <a name="key" id="cdk8s.ResolutionContext.Initializer.parameter.key"></a>
+
+- *Type:* string[]
+
+Which key is currently being resolved.
+
+---
+
+##### `value`<sup>Required</sup> <a name="value" id="cdk8s.ResolutionContext.Initializer.parameter.value"></a>
+
+- *Type:* any
+
+The value associated to the key currently being resolved.
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.ResolutionContext.replaceValue">replaceValue</a></code> | Replaces the original value in this resolution context with a new value. |
+
+---
+
+##### `replaceValue` <a name="replaceValue" id="cdk8s.ResolutionContext.replaceValue"></a>
+
+```typescript
+public replaceValue(newValue: any): void
+```
+
+Replaces the original value in this resolution context with a new value.
+
+The new value is what will end up in the manifest.
+
+###### `newValue`<sup>Required</sup> <a name="newValue" id="cdk8s.ResolutionContext.replaceValue.parameter.newValue"></a>
+
+- *Type:* any
+
+---
+
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdk8s.ResolutionContext.property.key">key</a></code> | <code>string[]</code> | Which key is currently being resolved. |
+| <code><a href="#cdk8s.ResolutionContext.property.obj">obj</a></code> | <code><a href="#cdk8s.ApiObject">ApiObject</a></code> | Which ApiObject is currently being resolved. |
+| <code><a href="#cdk8s.ResolutionContext.property.value">value</a></code> | <code>any</code> | The value associated to the key currently being resolved. |
+| <code><a href="#cdk8s.ResolutionContext.property.replaced">replaced</a></code> | <code>boolean</code> | Whether or not the value was replaced by invoking the `replaceValue` method. |
+| <code><a href="#cdk8s.ResolutionContext.property.replacedValue">replacedValue</a></code> | <code>any</code> | The replaced value that was set via the `replaceValue` method. |
+
+---
+
+##### `key`<sup>Required</sup> <a name="key" id="cdk8s.ResolutionContext.property.key"></a>
+
+```typescript
+public readonly key: string[];
+```
+
+- *Type:* string[]
+
+Which key is currently being resolved.
+
+---
+
+##### `obj`<sup>Required</sup> <a name="obj" id="cdk8s.ResolutionContext.property.obj"></a>
+
+```typescript
+public readonly obj: ApiObject;
+```
+
+- *Type:* <a href="#cdk8s.ApiObject">ApiObject</a>
+
+Which ApiObject is currently being resolved.
+
+---
+
+##### `value`<sup>Required</sup> <a name="value" id="cdk8s.ResolutionContext.property.value"></a>
+
+```typescript
+public readonly value: any;
+```
+
+- *Type:* any
+
+The value associated to the key currently being resolved.
+
+---
+
+##### `replaced`<sup>Required</sup> <a name="replaced" id="cdk8s.ResolutionContext.property.replaced"></a>
+
+```typescript
+public readonly replaced: boolean;
+```
+
+- *Type:* boolean
+
+Whether or not the value was replaced by invoking the `replaceValue` method.
+
+---
+
+##### `replacedValue`<sup>Required</sup> <a name="replacedValue" id="cdk8s.ResolutionContext.property.replacedValue"></a>
+
+```typescript
+public readonly replacedValue: any;
+```
+
+- *Type:* any
+
+The replaced value that was set via the `replaceValue` method.
+
+---
+
+
 ### Size <a name="Size" id="cdk8s.Size"></a>
 
 Represents the amount of digital storage.
@@ -3037,7 +3555,6 @@ When the amount is passed as a token, unit conversion is not possible.
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#cdk8s.Size.asString">asString</a></code> | Returns amount with abbreviated storage unit. |
 | <code><a href="#cdk8s.Size.toGibibytes">toGibibytes</a></code> | Return this storage as a total number of gibibytes. |
 | <code><a href="#cdk8s.Size.toKibibytes">toKibibytes</a></code> | Return this storage as a total number of kibibytes. |
 | <code><a href="#cdk8s.Size.toMebibytes">toMebibytes</a></code> | Return this storage as a total number of mebibytes. |
@@ -3045,14 +3562,6 @@ When the amount is passed as a token, unit conversion is not possible.
 | <code><a href="#cdk8s.Size.toTebibytes">toTebibytes</a></code> | Return this storage as a total number of tebibytes. |
 
 ---
-
-##### `asString` <a name="asString" id="cdk8s.Size.asString"></a>
-
-```typescript
-public asString(): string
-```
-
-Returns amount with abbreviated storage unit.
 
 ##### `toGibibytes` <a name="toGibibytes" id="cdk8s.Size.toGibibytes"></a>
 
@@ -3422,6 +3931,37 @@ the set of documents to save.
 ```typescript
 public produce(): any
 ```
+
+
+### IResolver <a name="IResolver" id="cdk8s.IResolver"></a>
+
+- *Implemented By:* <a href="#cdk8s.ImplicitTokenResolver">ImplicitTokenResolver</a>, <a href="#cdk8s.LazyResolver">LazyResolver</a>, <a href="#cdk8s.NumberStringUnionResolver">NumberStringUnionResolver</a>, <a href="#cdk8s.IResolver">IResolver</a>
+
+Contract for resolver objects.
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdk8s.IResolver.resolve">resolve</a></code> | This function is invoked on every property during cdk8s synthesis. |
+
+---
+
+##### `resolve` <a name="resolve" id="cdk8s.IResolver.resolve"></a>
+
+```typescript
+public resolve(context: ResolutionContext): void
+```
+
+This function is invoked on every property during cdk8s synthesis.
+
+To replace a value, implementations must invoke `context.replaceValue`.
+
+###### `context`<sup>Required</sup> <a name="context" id="cdk8s.IResolver.resolve.parameter.context"></a>
+
+- *Type:* <a href="#cdk8s.ResolutionContext">ResolutionContext</a>
+
+---
 
 
 ## Enums <a name="Enums" id="Enums"></a>

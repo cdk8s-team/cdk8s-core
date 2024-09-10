@@ -1,8 +1,8 @@
-import { ApiObjectMetadataDefinition, Lazy, OwnerReference } from '../src';
+import { ApiObject, ApiObjectMetadataDefinition, Lazy, OwnerReference, Testing } from '../src';
 
 test('Can add a label', () => {
 
-  const meta = new ApiObjectMetadataDefinition();
+  const meta = new ApiObjectMetadataDefinition({ apiObject: createApiObject() });
 
   meta.addLabel('key', 'value');
 
@@ -16,7 +16,7 @@ test('Can add a label', () => {
 
 test('Can add an annotation', () => {
 
-  const meta = new ApiObjectMetadataDefinition();
+  const meta = new ApiObjectMetadataDefinition({ apiObject: createApiObject() });
 
   meta.addAnnotation('key', 'value');
 
@@ -30,7 +30,7 @@ test('Can add an annotation', () => {
 
 test('Can add a finalizer', () => {
 
-  const meta = new ApiObjectMetadataDefinition();
+  const meta = new ApiObjectMetadataDefinition({ apiObject: createApiObject() });
 
   meta.addFinalizers('my-finalizer');
 
@@ -42,7 +42,7 @@ test('Can add a finalizer', () => {
 
 test('Can add an owner reference', () => {
 
-  const meta = new ApiObjectMetadataDefinition();
+  const meta = new ApiObjectMetadataDefinition({ apiObject: createApiObject() });
 
   meta.addOwnerReference({
     apiVersion: 'v1',
@@ -65,6 +65,7 @@ test('Can add an owner reference', () => {
 test('Instantiation properties are all respected', () => {
 
   const meta = new ApiObjectMetadataDefinition({
+    apiObject: createApiObject(),
     labels: { key: 'value' },
     annotations: { key: 'value' },
     name: 'name',
@@ -91,6 +92,7 @@ test('Instantiation properties are all respected', () => {
 test('ensure Lazy properties are resolved', () => {
 
   const meta = new ApiObjectMetadataDefinition({
+    apiObject: createApiObject(),
     labels: { key: 'value' },
     annotations: {
       key: 'value',
@@ -122,6 +124,7 @@ test('ensure Lazy properties are resolved', () => {
 
 test('Can include arbirary key/value options', () => {
   const meta = new ApiObjectMetadataDefinition({
+    apiObject: createApiObject(),
     foo: 123,
     bar: {
       helloL: 'world',
@@ -139,12 +142,14 @@ test('Can include arbirary key/value options', () => {
 test('labels are cloned', () => {
   const shared = { foo: 'bar' };
   const met1 = new ApiObjectMetadataDefinition({
+    apiObject: createApiObject(),
     labels: shared,
   });
 
   met1.addLabel('bar', 'baz');
 
   const met2 = new ApiObjectMetadataDefinition({
+    apiObject: createApiObject(),
     labels: shared,
   });
 
@@ -160,12 +165,14 @@ test('labels are cloned', () => {
 test('annotations are cloned', () => {
   const shared = { foo: 'bar' };
   const met1 = new ApiObjectMetadataDefinition({
+    apiObject: createApiObject(),
     annotations: shared,
   });
 
   met1.addAnnotation('bar', 'baz');
 
   const met2 = new ApiObjectMetadataDefinition({
+    apiObject: createApiObject(),
     annotations: shared,
   });
 
@@ -181,12 +188,14 @@ test('annotations are cloned', () => {
 test('finalizers are cloned', () => {
   const shared = ['foo'];
   const met1 = new ApiObjectMetadataDefinition({
+    apiObject: createApiObject(),
     finalizers: shared,
   });
 
   met1.addFinalizers('bar', 'baz');
 
   const met2 = new ApiObjectMetadataDefinition({
+    apiObject: createApiObject(),
     finalizers: shared,
   });
 
@@ -204,6 +213,7 @@ test('ownerReferences are cloned', () => {
     { apiVersion: 'v1', kind: 'Kind', name: 'name1', uid: 'uid1' },
   ];
   const met1 = new ApiObjectMetadataDefinition({
+    apiObject: createApiObject(),
     ownerReferences: shared,
   });
 
@@ -215,6 +225,7 @@ test('ownerReferences are cloned', () => {
   });
 
   const met2 = new ApiObjectMetadataDefinition({
+    apiObject: createApiObject(),
     ownerReferences: shared,
   });
 
@@ -231,3 +242,11 @@ test('ownerReferences are cloned', () => {
     }
   `);
 });
+
+function createApiObject(): ApiObject {
+  const chart = Testing.chart();
+  return new ApiObject(chart, 'ApiObject', {
+    apiVersion: 'v1',
+    kind: 'Service',
+  });
+}

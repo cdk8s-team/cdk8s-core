@@ -147,5 +147,11 @@ export class Chart extends Construct {
   public toJson(): any[] {
     return App._synthChart(this);
   }
-}
 
+  /**
+   * Returns all the included API objects.
+   */
+  get apiObjects(): ApiObject[] {
+    return this.node.children.filter((o): o is ApiObject => o instanceof ApiObject);
+  }
+}

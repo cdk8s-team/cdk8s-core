@@ -1,5 +1,15 @@
 import { Construct } from 'constructs';
-import { ApiObject, Chart, JsonPatch, Testing } from '../src';
+import {
+  ApiObject,
+  Chart,
+  GroupVersionKind,
+  IResolver,
+  JsonPatch,
+  Lazy,
+  ResolutionContext,
+  Size,
+  Testing,
+} from '../src';
 
 test('minimal configuration', () => {
   const app = Testing.app();
@@ -56,35 +66,43 @@ test('the CDK8S_DISABLE_SORT environment variable can be used to disable key sor
   });
 
   // default behavior - sorted
-  expect(JSON.stringify(obj.toJson())).toStrictEqual('{"apiVersion":"v1","kind":"Dummy","metadata":{"name":"test-my-api-object-c8e6fbed"},"hello":{"aaa":333,"nested":{"bbb":123,"yyy":"hello"},"zzz":123}}');
+  expect(JSON.stringify(obj.toJson())).toStrictEqual(
+    '{"apiVersion":"v1","kind":"Dummy","metadata":{"name":"test-my-api-object-c8e6fbed"},"hello":{"aaa":333,"nested":{"bbb":123,"yyy":"hello"},"zzz":123}}',
+  );
 
   // with CDK8S_DISABLE_SORT set at the chart level
   process.env.CDK8S_DISABLE_SORT = '1';
   try {
-    expect(JSON.stringify(obj.toJson())).toStrictEqual('{"apiVersion":"v1","kind":"Dummy","metadata":{"name":"test-my-api-object-c8e6fbed"},"hello":{"zzz":123,"aaa":333,"nested":{"yyy":"hello","bbb":123}}}');
+    expect(JSON.stringify(obj.toJson())).toStrictEqual(
+      '{"apiVersion":"v1","kind":"Dummy","metadata":{"name":"test-my-api-object-c8e6fbed"},"hello":{"zzz":123,"aaa":333,"nested":{"yyy":"hello","bbb":123}}}',
+    );
   } finally {
     delete process.env.CDK8S_DISABLE_SORT;
   }
 });
 
 test('addDependency', () => {
-
   const app = Testing.app();
   const chart = new Chart(app, 'chart1');
 
-  const obj1 = new ApiObject(chart, 'obj1', { apiVersion: 'v1', kind: 'Kind1' });
-  const obj2 = new ApiObject(chart, 'obj2', { apiVersion: 'v1', kind: 'Kind2' });
-  const obj3 = new ApiObject(chart, 'obj3', { apiVersion: 'v1', kind: 'Kind3' });
+  const obj1 = new ApiObject(chart, 'obj1', {
+    apiVersion: 'v1',
+    kind: 'Kind1',
+  });
+  const obj2 = new ApiObject(chart, 'obj2', {
+    apiVersion: 'v1',
+    kind: 'Kind2',
+  });
+  const obj3 = new ApiObject(chart, 'obj3', {
+    apiVersion: 'v1',
+    kind: 'Kind3',
+  });
 
   obj1.addDependency(obj2, obj3);
 
   const dependencies = obj1.node.dependencies;
 
-  expect(dependencies).toEqual([
-    obj2,
-    obj3,
-  ]);
-
+  expect(dependencies).toEqual([obj2, obj3]);
 });
 
 test('synthesized resource name is based on path', () => {
@@ -184,11 +202,13 @@ test('object naming logic can be overridden at the chart level', () => {
 
   // THEN
   expect(object.name).toEqual('fixed!');
-  expect(Testing.synth(chart)).toStrictEqual([{
-    apiVersion: 'v1',
-    kind: 'MyKind',
-    metadata: { name: 'fixed!' },
-  }]);
+  expect(Testing.synth(chart)).toStrictEqual([
+    {
+      apiVersion: 'v1',
+      kind: 'MyKind',
+      metadata: { name: 'fixed!' },
+    },
+  ]);
 });
 
 test('default namespace can be defined at the chart level', () => {
@@ -199,25 +219,31 @@ test('default namespace can be defined at the chart level', () => {
 
   // WHEN
   new ApiObject(group1, 'obj1', { apiVersion: 'v1', kind: 'Kind1' });
-  new ApiObject(group1, 'obj2', { apiVersion: 'v2', kind: 'Kind2', metadata: { namespace: 'foobar' } });
-
-  // THEN
-  expect(Testing.synth(chart)).toStrictEqual([{
-    apiVersion: 'v1',
-    kind:
-    'Kind1',
-    metadata: {
-      name: 'chart-group1-obj1-c885aeec',
-      namespace: 'ns1',
-    },
-  }, {
+  new ApiObject(group1, 'obj2', {
     apiVersion: 'v2',
     kind: 'Kind2',
-    metadata: {
-      name: 'chart-group1-obj2-c81931d8',
-      namespace: 'foobar',
+    metadata: { namespace: 'foobar' },
+  });
+
+  // THEN
+  expect(Testing.synth(chart)).toStrictEqual([
+    {
+      apiVersion: 'v1',
+      kind: 'Kind1',
+      metadata: {
+        name: 'chart-group1-obj1-c885aeec',
+        namespace: 'ns1',
+      },
     },
-  }]);
+    {
+      apiVersion: 'v2',
+      kind: 'Kind2',
+      metadata: {
+        name: 'chart-group1-obj2-c81931d8',
+        namespace: 'foobar',
+      },
+    },
+  ]);
 });
 
 test('chart labels are applied to all api objects in the chart', () => {
@@ -274,19 +300,23 @@ test('chart labels are applied to all api objects in the chart', () => {
 });
 
 describe('ApiObject.of()', () => {
-
   test('fails if there is no default child', () => {
     // GIVEN
     const chart = Testing.chart();
 
     // THEN
-    expect(() => ApiObject.of(new Construct(chart, 'hello'))).toThrow(/cannot find a \(direct or indirect\) child of type ApiObject/);
+    expect(() => ApiObject.of(new Construct(chart, 'hello'))).toThrow(
+      /cannot find a \(direct or indirect\) child of type ApiObject/,
+    );
   });
 
   test('returns the object if it is an API object', () => {
     // GIVEN
     const chart = Testing.chart();
-    const obj = new ApiObject(chart, 'my-obj', { apiVersion: 'v1', kind: 'Foo' });
+    const obj = new ApiObject(chart, 'my-obj', {
+      apiVersion: 'v1',
+      kind: 'Foo',
+    });
 
     // THEN
     expect(ApiObject.of(obj)).toBe(obj);
@@ -298,7 +328,10 @@ describe('ApiObject.of()', () => {
     const parent = new Construct(chart, 'l2');
 
     // WHEN
-    const obj = new ApiObject(parent, 'Default', { apiVersion: 'v1', kind: 'Foo' });
+    const obj = new ApiObject(parent, 'Default', {
+      apiVersion: 'v1',
+      kind: 'Foo',
+    });
 
     // THEN
     expect(ApiObject.of(parent)).toBe(obj);
@@ -311,16 +344,17 @@ describe('ApiObject.of()', () => {
 
     // WHEN
     const parent2 = new Construct(parent1, 'Default');
-    const obj = new ApiObject(parent2, 'Default', { apiVersion: 'v1', kind: 'Foo' });
+    const obj = new ApiObject(parent2, 'Default', {
+      apiVersion: 'v1',
+      kind: 'Foo',
+    });
 
     // THEN
     expect(ApiObject.of(parent1)).toBe(obj);
   });
-
 });
 
 describe('addJsonPatch()', () => {
-
   test('applied after the object has been synthesized', () => {
     // GIVEN
     const chart = Testing.chart();
@@ -357,5 +391,254 @@ describe('addJsonPatch()', () => {
       },
     ]);
   });
+});
+
+test('compound resolution', () => {
+  const app = Testing.app();
+  const chart = new Chart(app, 'test');
+
+  // WHEN
+  const apiObject = new ApiObject(chart, 'resource1', {
+    kind: 'Resource1',
+    apiVersion: 'v1',
+    spec: {
+      foo: Lazy.any({ produce: () => createImplictToken(123) }),
+    },
+  });
+
+  expect(apiObject.toJson()).toMatchInlineSnapshot(`
+    Object {
+      "apiVersion": "v1",
+      "kind": "Resource1",
+      "metadata": Object {
+        "name": "test-resource1-c85cb0fc",
+      },
+      "spec": Object {
+        "foo": 123,
+      },
+    }
+  `);
+});
+
+function createImplictToken(value: any) {
+  const implicit = {};
+  Object.defineProperty(implicit, 'resolve', { value: () => value });
+  return implicit;
+}
+
+test('custom resolver', () => {
+  class Resolver implements IResolver {
+    public resolve(context: ResolutionContext) {
+      if (typeof context.value === 'string' && context.value !== 'newValue') {
+        context.replaceValue('newValue');
+      }
+    }
+  }
+
+  const resolver = new Resolver();
+  const app = Testing.app({ resolvers: [resolver] });
+  const chart = new Chart(app, 'Chart');
+
+  const apiObject = new ApiObject(chart, 'ApiObject', {
+    kind: 'Service',
+    apiVersion: 'v1',
+    metadata: {
+      foo: 'bar',
+    },
+    spec: {
+      type: 'LoadBalancer',
+      someArray: [1, 2],
+    },
+  });
+
+  expect(apiObject.toJson()).toMatchInlineSnapshot(`
+    Object {
+      "apiVersion": "newValue",
+      "kind": "newValue",
+      "metadata": Object {
+        "foo": "newValue",
+        "name": "newValue",
+      },
+      "spec": Object {
+        "someArray": Array [
+          1,
+          2,
+        ],
+        "type": "newValue",
+      },
+    }
+  `);
+});
+
+test('multiple custom resolvers', () => {
+  class Resolver1 implements IResolver {
+    public resolve(context: ResolutionContext) {
+      if (context.key.includes('type') && context.value !== 'newValue1') {
+        context.replaceValue('newValue1');
+      }
+    }
+  }
+
+  class Resolver2 implements IResolver {
+    public resolve(context: ResolutionContext) {
+      if (context.key.includes('someArray') && context.value !== 'newValue2') {
+        context.replaceValue('newValue2');
+      }
+    }
+  }
+
+  const app = Testing.app({ resolvers: [new Resolver1(), new Resolver2()] });
+  const chart = new Chart(app, 'Chart');
+
+  const apiObject = new ApiObject(chart, 'ApiObject', {
+    kind: 'Service',
+    apiVersion: 'v1',
+    metadata: {
+      foo: 'bar',
+    },
+    spec: {
+      type: 'LoadBalancer',
+      someArray: [1, 2],
+    },
+  });
+
+  expect(apiObject.toJson()).toMatchInlineSnapshot(`
+    Object {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": Object {
+        "foo": "bar",
+        "name": "chart-apiobject-c830d7bd",
+      },
+      "spec": Object {
+        "someArray": "newValue2",
+        "type": "newValue1",
+      },
+    }
+  `);
+});
+
+test('annonymous object custom resolver', () => {
+  class Resolver implements IResolver {
+    public resolve(context: ResolutionContext) {
+      if (typeof context.value.resolver === 'function') {
+        context.replaceValue(context.value.resolver());
+      }
+    }
+  }
+
+  const resolvable = {
+    resolver() {
+      return 'blah';
+    },
+  };
+
+  const resolver = new Resolver();
+  const app = Testing.app({ resolvers: [resolver] });
+  const chart = new Chart(app, 'Chart');
+
+  const apiObject = new ApiObject(chart, 'ApiObject', {
+    kind: 'Service',
+    apiVersion: 'v1',
+    metadata: {
+      foo: 'bar',
+    },
+    spec: {
+      type: resolvable,
+    },
+  });
+
+  expect(apiObject.toJson()).toMatchInlineSnapshot(`
+    Object {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": Object {
+        "foo": "bar",
+        "name": "chart-apiobject-c830d7bd",
+      },
+      "spec": Object {
+        "type": "blah",
+      },
+    }
+  `);
+});
+
+test('can resolve L1', () => {
+  class IntOrString {
+    public static fromString(value: string): IntOrString {
+      return new IntOrString(value);
+    }
+    public static fromNumber(value: number): IntOrString {
+      return new IntOrString(value);
+    }
+    private constructor(public readonly value: string | number) {}
+  }
+
+  interface L1Props {
+    readonly surge: IntOrString;
+  }
+
+  // simulates an L1 as generated via the CLI
+  class L1 extends ApiObject {
+    static readonly GVK: GroupVersionKind = {
+      apiVersion: 'v1',
+      kind: 'Kind',
+    };
+
+    constructor(scope: Construct, id: string, props: L1Props) {
+      super(scope, id, {
+        ...L1.GVK,
+        spec: {
+          surge: props.surge,
+        },
+      });
+    }
+
+    public toJson(): any {
+      const resolved = super.toJson();
+
+      return {
+        ...L1.GVK,
+        metadata: this.metadata.toJson(),
+        spec: {
+          surge: resolved.spec.surge.value,
+        },
+      };
+    }
+  }
+
+  const chart = Testing.chart();
+
+  const apiObject = new L1(chart, 'L1', {
+    surge: IntOrString.fromNumber(500),
+  });
+
+  expect(apiObject.toJson()).toMatchInlineSnapshot(`
+    Object {
+      "apiVersion": "v1",
+      "kind": "Kind",
+      "metadata": Object {
+        "name": "test-l1-c8c430b5",
+      },
+      "spec": Object {
+        "surge": 500,
+      },
+    }
+  `);
+});
+
+test('toJson error message', () => {
+
+  const chart = Testing.chart();
+
+  const obj = new ApiObject(chart, 'ConfigMap', {
+    kind: 'ConfigMap',
+    apiVersion: 'v1',
+    data: {
+      size: Size.gibibytes(5),
+    },
+  });
+
+  expect(() => obj.toJson()).toThrowError(`Failed serializing construct at path '${obj.node.path}' with name '${obj.name}': Error: can't render non-simple object of type 'Size'`);
 
 });

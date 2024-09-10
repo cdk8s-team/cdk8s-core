@@ -1,10 +1,11 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { Construct, IConstruct } from 'constructs';
+import { Construct, IConstruct, Node } from 'constructs';
 import { ApiObject } from './api-object';
 import { Chart } from './chart';
 import { DependencyGraph } from './dependency';
 import { Names } from './names';
+import { IResolver, ImplicitTokenResolver, LazyResolver, NumberStringUnionResolver } from './resolve';
 import { Yaml } from './yaml';
 
 /** The method to divide YAML output into files */
@@ -52,6 +53,32 @@ export interface AppProps {
    * @default false
    */
   readonly recordConstructMetadata?: boolean;
+
+  /**
+   * A list of resolvers that can be used to replace property values before
+   * they are written to the manifest file. When multiple resolvers are passed,
+   * they are invoked by order in the list, and only the first one that applies
+   * (e.g calls `context.replaceValue`) is invoked.
+   *
+   * @see https://cdk8s.io/docs/latest/basics/app/#resolvers
+   *
+   * @default - no resolvers.
+   */
+  readonly resolvers?: IResolver[];
+}
+
+class SynthRequestCache {
+  public nodeChildrenCache: Map<Node, IConstruct[]> = new Map<Node, IConstruct[]>();
+
+  public findAll(node: Node): IConstruct[] {
+    if (this.nodeChildrenCache.has(node)) {
+      return this.nodeChildrenCache.get(node)!;
+    }
+
+    const children = node.findAll();
+    this.nodeChildrenCache.set(node, children);
+    return children;
+  }
 }
 
 /**
@@ -75,19 +102,21 @@ export class App extends Construct {
 
     const app: App = App.of(chart);
 
+    const cache = new SynthRequestCache();
+
     // we must prepare the entire app before synthesizing the chart
     // because the dependency inference happens on the app level.
-    resolveDependencies(app);
+    resolveDependencies(app, cache);
 
     // validate the app since we want to call onValidate of the relevant constructs.
     // note this will also call onValidate on constructs from possibly different charts,
     // but thats ok too since we no longer treat constructs as a self-contained synthesis unit.
-    validate(app);
+    validate(app, cache);
 
     return chartToKube(chart).map(obj => obj.toJson());
   }
 
-  private static of(c: IConstruct): App {
+  public static of(c: IConstruct): App {
 
     const scope = c.node.scope;
 
@@ -115,6 +144,12 @@ export class App extends Construct {
    */
   public readonly yamlOutputType: YamlOutputType;
 
+  /**
+   * Resolvers used by this app. This includes both custom resolvers
+   * passed by the `resolvers` property, as well as built-in resolvers.
+   */
+  public readonly resolvers: IResolver[];
+
   private readonly recordConstructMetadata: boolean;
 
   /**
@@ -131,12 +166,12 @@ export class App extends Construct {
    * Defines an app
    * @param props configuration options
    */
-  constructor(props: AppProps = { }) {
+  constructor(props: AppProps = {}) {
     super(undefined as any, '');
     this.outdir = props.outdir ?? process.env.CDK8S_OUTDIR ?? 'dist';
     this.outputFileExtension = props.outputFileExtension ?? '.k8s.yaml';
     this.yamlOutputType = props.yamlOutputType ?? YamlOutputType.FILE_PER_CHART;
-
+    this.resolvers = [...(props.resolvers ?? []), new LazyResolver(), new ImplicitTokenResolver(), new NumberStringUnionResolver()];
     this.recordConstructMetadata = props.recordConstructMetadata ?? (process.env.CDK8S_RECORD_CONSTRUCT_METADATA === 'true' ? true : false);
 
   }
@@ -148,13 +183,15 @@ export class App extends Construct {
 
     fs.mkdirSync(this.outdir, { recursive: true });
 
+    const cache = new SynthRequestCache();
+
     // Since we plan on removing the distributed synth mechanism, we no longer call `Node.synthesize`, but rather simply implement
     // the necessary operations. We do however want to preserve the distributed validation.
-    validate(this);
+    validate(this, cache);
 
     // this is kind of sucky, eventually I would like the DependencyGraph
     // to be able to answer this question.
-    const hasDependantCharts = resolveDependencies(this);
+    const hasDependantCharts = resolveDependencies(this, cache);
     const charts = this.charts;
 
     switch (this.yamlOutputType) {
@@ -177,7 +214,7 @@ export class App extends Construct {
         for (const chart of charts) {
           const chartName = namer.name(chart);
           const objects = Object.values(chart.toJson());
-          Yaml.save(path.join(this.outdir, chartName+this.outputFileExtension), objects);
+          Yaml.save(path.join(this.outdir, chartName + this.outputFileExtension), objects);
         }
         break;
 
@@ -189,7 +226,7 @@ export class App extends Construct {
             if (!(apiObject === undefined)) {
               const fileName = `${`${apiObject.kind}.${apiObject.metadata.name}`
                 .replace(/[^0-9a-zA-Z-_.]/g, '')}`;
-              Yaml.save(path.join(this.outdir, fileName+this.outputFileExtension), [apiObject]);
+              Yaml.save(path.join(this.outdir, fileName + this.outputFileExtension), [apiObject]);
             }
           });
         }
@@ -207,7 +244,7 @@ export class App extends Construct {
             if (!(apiObject === undefined)) {
               const fileName = `${`${apiObject.kind}.${apiObject.metadata.name}`
                 .replace(/[^0-9a-zA-Z-_.]/g, '')}`;
-              Yaml.save(path.join(fullOutDir, fileName+this.outputFileExtension), [apiObject.toJson()]);
+              Yaml.save(path.join(fullOutDir, fileName + this.outputFileExtension), [apiObject.toJson()]);
             }
           });
         }
@@ -230,10 +267,11 @@ export class App extends Construct {
    * @returns A string with all YAML objects across all charts in this app.
    */
   public synthYaml(): string {
+    const cache = new SynthRequestCache();
 
-    resolveDependencies(this);
+    resolveDependencies(this, cache);
 
-    validate(this);
+    validate(this, cache);
 
     const charts = this.charts;
     const docs: any[] = [];
@@ -257,9 +295,9 @@ export class App extends Construct {
   }
 }
 
-function validate(app: App) {
+function validate(app: App, cache: SynthRequestCache) {
   const errors = [];
-  for (const child of app.node.findAll()) {
+  for (const child of cache.findAll(app.node)) {
     const childErrors = child.node.validate();
     for (const error of childErrors) {
       errors.push(`[${child.node.path}] ${error}`);
@@ -271,10 +309,10 @@ function validate(app: App) {
   }
 }
 
-function buildDependencies(app: App) {
+function buildDependencies(app: App, cache: SynthRequestCache) {
 
   const deps = [];
-  for (const child of app.node.findAll()) {
+  for (const child of cache.findAll(app.node)) {
     for (const dep of child.node.dependencies) {
       deps.push({ source: child, target: dep });
     }
@@ -284,12 +322,12 @@ function buildDependencies(app: App) {
 
 }
 
-function resolveDependencies(app: App) {
+function resolveDependencies(app: App, cache: SynthRequestCache) {
 
   let hasDependantCharts = false;
 
   // create an explicit chart dependency from nested chart relationships
-  for (const parentChart of app.node.findAll().filter(x => x instanceof Chart)) {
+  for (const parentChart of cache.findAll(app.node).filter(x => x instanceof Chart)) {
     for (const childChart of parentChart.node.children.filter(x => x instanceof Chart)) {
       parentChart.node.addDependency(childChart);
       hasDependantCharts = true;
@@ -297,7 +335,7 @@ function resolveDependencies(app: App) {
   }
 
   // create an explicit chart dependency from implicit construct dependencies
-  for (const dep of buildDependencies(app)) {
+  for (const dep of buildDependencies(app, cache)) {
 
     const sourceChart = Chart.of(dep.source);
     const targetChart = Chart.of(dep.target);
@@ -310,13 +348,13 @@ function resolveDependencies(app: App) {
   }
 
   // create explicit api object dependencies from implicit construct dependencies
-  for (const dep of buildDependencies(app)) {
+  for (const dep of buildDependencies(app, cache)) {
 
     const sourceChart = Chart.of(dep.source);
     const targetChart = Chart.of(dep.target);
 
-    const targetApiObjects = dep.target.node.findAll().filter(c => c instanceof ApiObject).filter(x => Chart.of(x) === targetChart);
-    const sourceApiObjects = dep.source.node.findAll().filter(c => c instanceof ApiObject).filter(x => Chart.of(x) === sourceChart);
+    const targetApiObjects = cache.findAll(dep.target.node).filter(c => c instanceof ApiObject).filter(x => Chart.of(x) === targetChart);
+    const sourceApiObjects = cache.findAll(dep.source.node).filter(c => c instanceof ApiObject).filter(x => Chart.of(x) === sourceChart);
 
     for (const target of targetApiObjects) {
       for (const source of sourceApiObjects) {
