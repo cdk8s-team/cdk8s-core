@@ -31,6 +31,7 @@ jspm_packages/
 *.tgz
 .yarn-integrity
 .cache
+!/.projenrc.js
 /test-reports/
 junit.xml
 /coverage/
@@ -43,6 +44,7 @@ junit.xml
 !/.github/workflows/upgrade-runtime-dependencies-2.x.yml
 !/.github/workflows/upgrade-runtime-dependencies-1.x.yml
 !/.github/pull_request_template.md
+!/.npmrc
 !/test/
 !/tsconfig.dev.json
 !/src/
@@ -73,4 +75,3 @@ tsconfig.json
 !/.backportrc.json
 !/.github/workflows/backport.yml
 !/src/_loadurl.js
-!/.projenrc.js

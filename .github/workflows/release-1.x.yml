@@ -13,12 +13,11 @@ jobs:
       contents: write
     outputs:
       latest_commit: ${{ steps.git_remote.outputs.latest_commit }}
-      tag_exists: ${{ steps.check_tag_exists.outputs.exists }}
     env:
       CI: "true"
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Set git identity
@@ -26,105 +25,86 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
-          node-version: lts/*
+          node-version: 16.20.0
       - name: Install dependencies
         run: yarn install --check-files --frozen-lockfile
       - name: release:1.x
         run: npx projen release:1.x
-      - name: Check if version has already been tagged
-        id: check_tag_exists
-        run: |-
-          TAG=$(cat dist/releasetag.txt)
-          ([ ! -z "$TAG" ] && git ls-remote -q --exit-code --tags origin $TAG && (echo "exists=true" >> $GITHUB_OUTPUT)) || (echo "exists=false" >> $GITHUB_OUTPUT)
-          cat $GITHUB_OUTPUT
       - name: Check for new commits
         id: git_remote
-        run: |-
-          echo "latest_commit=$(git ls-remote origin -h ${{ github.ref }} | cut -f1)" >> $GITHUB_OUTPUT
-          cat $GITHUB_OUTPUT
+        run: echo "latest_commit=$(git ls-remote origin -h ${{ github.ref }} | cut -f1)" >> $GITHUB_OUTPUT
       - name: Backup artifact permissions
         if: ${{ steps.git_remote.outputs.latest_commit == github.sha }}
         run: cd dist && getfacl -R . > permissions-backup.acl
         continue-on-error: true
       - name: Upload artifact
         if: ${{ steps.git_remote.outputs.latest_commit == github.sha }}
-        uses: actions/upload-artifact@v4.4.0
+        uses: actions/upload-artifact@v3
         with:
           name: build-artifact
           path: dist
-          overwrite: true
   release_github:
     name: Publish to GitHub Releases
-    needs:
-      - release
-      - release_npm
-      - release_maven
-      - release_pypi
-      - release_nuget
-      - release_golang
+    needs: release
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    if: needs.release.outputs.tag_exists != 'true' && needs.release.outputs.latest_commit == github.sha
+    if: needs.release.outputs.latest_commit == github.sha
     steps:
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v3
         with:
-          node-version: lts/*
+          node-version: 16.20.0
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: build-artifact
           path: dist
       - name: Restore build artifact permissions
         run: cd dist && setfacl --restore=permissions-backup.acl
         continue-on-error: true
+      - name: Prepare Repository
+        run: mv dist .repo
+      - name: Collect GitHub Metadata
+        run: mv .repo/dist dist
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_REF: ${{ github.sha }}
+          GITHUB_REF: ${{ github.ref }}
         run: errout=$(mktemp); gh release create $(cat dist/releasetag.txt) -R $GITHUB_REPOSITORY -F dist/changelog.md -t $(cat dist/releasetag.txt) --target $GITHUB_REF 2> $errout && true; exitcode=$?; if [ $exitcode -ne 0 ] && ! grep -q "Release.tag_name already exists" $errout; then cat $errout; exit $exitcode; fi
   release_npm:
     name: Publish to npm
     needs: release
     runs-on: ubuntu-latest
     permissions:
-      id-token: write
       contents: read
-    if: needs.release.outputs.tag_exists != 'true' && needs.release.outputs.latest_commit == github.sha
+    if: needs.release.outputs.latest_commit == github.sha
     steps:
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v3
         with:
-          node-version: lts/*
+          node-version: 16.20.0
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: build-artifact
           path: dist
       - name: Restore build artifact permissions
         run: cd dist && setfacl --restore=permissions-backup.acl
         continue-on-error: true
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          path: .repo
+      - name: Prepare Repository
+        run: mv dist .repo
       - name: Install Dependencies
         run: cd .repo && yarn install --check-files --frozen-lockfile
-      - name: Extract build artifact
-        run: tar --strip-components=1 -xzvf dist/js/*.tgz -C .repo
-      - name: Move build artifact out of the way
-        run: mv dist dist.old
       - name: Create js artifact
         run: cd .repo && npx projen package:js
-      - name: Collect js artifact
+      - name: Collect js Artifact
         run: mv .repo/dist dist
       - name: Release
         env:
           NPM_DIST_TAG: latest-1
           NPM_REGISTRY: registry.npmjs.org
-          NPM_CONFIG_PROVENANCE: "true"
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx -p publib@latest publib-npm
   release_maven:
@@ -133,36 +113,30 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    if: needs.release.outputs.tag_exists != 'true' && needs.release.outputs.latest_commit == github.sha
+    if: needs.release.outputs.latest_commit == github.sha
     steps:
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v3
         with:
-          distribution: corretto
-          java-version: "11"
-      - uses: actions/setup-node@v4
+          distribution: temurin
+          java-version: 11.x
+      - uses: actions/setup-node@v3
         with:
-          node-version: lts/*
+          node-version: 16.20.0
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: build-artifact
           path: dist
       - name: Restore build artifact permissions
         run: cd dist && setfacl --restore=permissions-backup.acl
         continue-on-error: true
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          path: .repo
+      - name: Prepare Repository
+        run: mv dist .repo
       - name: Install Dependencies
         run: cd .repo && yarn install --check-files --frozen-lockfile
-      - name: Extract build artifact
-        run: tar --strip-components=1 -xzvf dist/js/*.tgz -C .repo
-      - name: Move build artifact out of the way
-        run: mv dist dist.old
       - name: Create java artifact
         run: cd .repo && npx projen package:java
-      - name: Collect java artifact
+      - name: Collect java Artifact
         run: mv .repo/dist dist
       - name: Release
         env:
@@ -178,35 +152,29 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    if: needs.release.outputs.tag_exists != 'true' && needs.release.outputs.latest_commit == github.sha
+    if: needs.release.outputs.latest_commit == github.sha
     steps:
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v3
         with:
-          node-version: lts/*
-      - uses: actions/setup-python@v5
+          node-version: 16.20.0
+      - uses: actions/setup-python@v4
         with:
           python-version: 3.x
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: build-artifact
           path: dist
       - name: Restore build artifact permissions
         run: cd dist && setfacl --restore=permissions-backup.acl
         continue-on-error: true
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          path: .repo
+      - name: Prepare Repository
+        run: mv dist .repo
       - name: Install Dependencies
         run: cd .repo && yarn install --check-files --frozen-lockfile
-      - name: Extract build artifact
-        run: tar --strip-components=1 -xzvf dist/js/*.tgz -C .repo
-      - name: Move build artifact out of the way
-        run: mv dist dist.old
       - name: Create python artifact
         run: cd .repo && npx projen package:python
-      - name: Collect python artifact
+      - name: Collect python Artifact
         run: mv .repo/dist dist
       - name: Release
         env:
@@ -219,35 +187,29 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    if: needs.release.outputs.tag_exists != 'true' && needs.release.outputs.latest_commit == github.sha
+    if: needs.release.outputs.latest_commit == github.sha
     steps:
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v3
         with:
-          node-version: lts/*
-      - uses: actions/setup-dotnet@v4
+          node-version: 16.20.0
+      - uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 6.x
+          dotnet-version: 3.x
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: build-artifact
           path: dist
       - name: Restore build artifact permissions
         run: cd dist && setfacl --restore=permissions-backup.acl
         continue-on-error: true
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          path: .repo
+      - name: Prepare Repository
+        run: mv dist .repo
       - name: Install Dependencies
         run: cd .repo && yarn install --check-files --frozen-lockfile
-      - name: Extract build artifact
-        run: tar --strip-components=1 -xzvf dist/js/*.tgz -C .repo
-      - name: Move build artifact out of the way
-        run: mv dist dist.old
       - name: Create dotnet artifact
         run: cd .repo && npx projen package:dotnet
-      - name: Collect dotnet artifact
+      - name: Collect dotnet Artifact
         run: mv .repo/dist dist
       - name: Release
         env:
@@ -259,35 +221,29 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    if: needs.release.outputs.tag_exists != 'true' && needs.release.outputs.latest_commit == github.sha
+    if: needs.release.outputs.latest_commit == github.sha
     steps:
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v3
         with:
-          node-version: lts/*
-      - uses: actions/setup-go@v5
+          node-version: 16.20.0
+      - uses: actions/setup-go@v3
         with:
-          go-version: ^1.18.0
+          go-version: ^1.16.0
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: build-artifact
           path: dist
       - name: Restore build artifact permissions
         run: cd dist && setfacl --restore=permissions-backup.acl
         continue-on-error: true
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          path: .repo
+      - name: Prepare Repository
+        run: mv dist .repo
       - name: Install Dependencies
         run: cd .repo && yarn install --check-files --frozen-lockfile
-      - name: Extract build artifact
-        run: tar --strip-components=1 -xzvf dist/js/*.tgz -C .repo
-      - name: Move build artifact out of the way
-        run: mv dist dist.old
       - name: Create go artifact
         run: cd .repo && npx projen package:go
-      - name: Collect go artifact
+      - name: Collect go Artifact
         run: mv .repo/dist dist
       - name: Release
         env:
@@ -296,6 +252,3 @@ jobs:
           GIT_USER_EMAIL: cdk8s-team@amazon.com
           GITHUB_TOKEN: ${{ secrets.GO_GITHUB_TOKEN }}
         run: npx -p publib@latest publib-golang
-concurrency:
-  group: ${{ github.workflow }}
-  cancel-in-progress: false
