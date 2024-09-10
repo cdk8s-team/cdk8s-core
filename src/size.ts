@@ -59,6 +59,13 @@ export class Size {
   }
 
   /**
+   * Returns amount with abbreviated storage unit
+   */
+  public asString(): string {
+    return `${this.amount}${this.unit.abbr}`;
+  }
+
+  /**
    * Return this storage as a total number of kibibytes.
    */
   public toKibibytes(opts: SizeConversionOptions = {}): number {
@@ -104,11 +111,10 @@ export enum SizeRoundingBehavior {
   FLOOR,
   /** Don't round. Return even if the result is a fraction. */
   NONE,
-
 }
 
 /**
- * Options for how to convert time to a different unit.
+ * Options for how to convert size to a different unit.
  */
 export interface SizeConversionOptions {
   /**
@@ -119,13 +125,13 @@ export interface SizeConversionOptions {
 }
 
 class StorageUnit {
-  public static readonly Kibibytes = new StorageUnit('kibibytes', 1);
-  public static readonly Mebibytes = new StorageUnit('mebibytes', 1024);
-  public static readonly Gibibytes = new StorageUnit('gibibytes', 1024 * 1024);
-  public static readonly Tebibytes = new StorageUnit('tebibytes', 1024 * 1024 * 1024);
-  public static readonly Pebibytes = new StorageUnit('pebibytes', 1024 * 1024 * 1024 * 1024);
+  public static readonly Kibibytes = new StorageUnit('kibibytes', 1, 'Ki');
+  public static readonly Mebibytes = new StorageUnit('mebibytes', 1024, 'Mi');
+  public static readonly Gibibytes = new StorageUnit('gibibytes', 1024 * 1024, 'Gi');
+  public static readonly Tebibytes = new StorageUnit('tebibytes', 1024 * 1024 * 1024, 'Ti');
+  public static readonly Pebibytes = new StorageUnit('pebibytes', 1024 * 1024 * 1024 * 1024, 'Pi');
 
-  private constructor(public readonly label: string, public readonly inKibiBytes: number) {
+  private constructor(public readonly label: string, public readonly inKibiBytes: number, public readonly abbr: string) {
     // MAX_SAFE_INTEGER is 2^53, so by representing storage in kibibytes,
     // the highest storage we can represent is 8 exbibytes.
   }
@@ -137,7 +143,9 @@ class StorageUnit {
 
 function convert(amount: number, fromUnit: StorageUnit, toUnit: StorageUnit, options: SizeConversionOptions = {}) {
   const rounding = options.rounding ?? SizeRoundingBehavior.FAIL;
-  if (fromUnit.inKibiBytes === toUnit.inKibiBytes) { return amount; }
+  if (fromUnit.inKibiBytes === toUnit.inKibiBytes) {
+    return amount;
+  }
 
   const multiplier = fromUnit.inKibiBytes / toUnit.inKibiBytes;
   const value = amount * multiplier;

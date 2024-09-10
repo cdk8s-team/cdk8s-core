@@ -2035,7 +2035,7 @@ If true, this reference points to the managing controller.
 
 ### SizeConversionOptions <a name="SizeConversionOptions" id="cdk8s.SizeConversionOptions"></a>
 
-Options for how to convert time to a different unit.
+Options for how to convert size to a different unit.
 
 #### Initializer <a name="Initializer" id="cdk8s.SizeConversionOptions.Initializer"></a>
 
@@ -3555,6 +3555,7 @@ When the amount is passed as a token, unit conversion is not possible.
 
 | **Name** | **Description** |
 | --- | --- |
+| <code><a href="#cdk8s.Size.asString">asString</a></code> | Returns amount with abbreviated storage unit. |
 | <code><a href="#cdk8s.Size.toGibibytes">toGibibytes</a></code> | Return this storage as a total number of gibibytes. |
 | <code><a href="#cdk8s.Size.toKibibytes">toKibibytes</a></code> | Return this storage as a total number of kibibytes. |
 | <code><a href="#cdk8s.Size.toMebibytes">toMebibytes</a></code> | Return this storage as a total number of mebibytes. |
@@ -3562,6 +3563,14 @@ When the amount is passed as a token, unit conversion is not possible.
 | <code><a href="#cdk8s.Size.toTebibytes">toTebibytes</a></code> | Return this storage as a total number of tebibytes. |
 
 ---
+
+##### `asString` <a name="asString" id="cdk8s.Size.asString"></a>
+
+```typescript
+public asString(): string
+```
+
+Returns amount with abbreviated storage unit.
 
 ##### `toGibibytes` <a name="toGibibytes" id="cdk8s.Size.toGibibytes"></a>
 
