@@ -2366,7 +2366,7 @@ If true, this reference points to the managing controller.
 
 ### SizeConversionOptions <a name="SizeConversionOptions" id="cdk8s.SizeConversionOptions"></a>
 
-Options for how to convert time to a different unit.
+Options for how to convert size to a different unit.
 
 #### Initializer <a name="Initializer" id="cdk8s.SizeConversionOptions.Initializer"></a>
 
@@ -4334,6 +4334,7 @@ When the amount is passed as a token, unit conversion is not possible.
 
 | **Name** | **Description** |
 | --- | --- |
+| <code><a href="#cdk8s.Size.asString">as_string</a></code> | Returns amount with abbreviated storage unit. |
 | <code><a href="#cdk8s.Size.toGibibytes">to_gibibytes</a></code> | Return this storage as a total number of gibibytes. |
 | <code><a href="#cdk8s.Size.toKibibytes">to_kibibytes</a></code> | Return this storage as a total number of kibibytes. |
 | <code><a href="#cdk8s.Size.toMebibytes">to_mebibytes</a></code> | Return this storage as a total number of mebibytes. |
@@ -4341,6 +4342,14 @@ When the amount is passed as a token, unit conversion is not possible.
 | <code><a href="#cdk8s.Size.toTebibytes">to_tebibytes</a></code> | Return this storage as a total number of tebibytes. |
 
 ---
+
+##### `as_string` <a name="as_string" id="cdk8s.Size.asString"></a>
+
+```python
+def as_string() -> str
+```
+
+Returns amount with abbreviated storage unit.
 
 ##### `to_gibibytes` <a name="to_gibibytes" id="cdk8s.Size.toGibibytes"></a>
 

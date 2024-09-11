@@ -82,3 +82,10 @@ test('rounding behavior', () => {
   expect(size.toKibibytes({ rounding: SizeRoundingBehavior.NONE })).toEqual(5_324_800);
 });
 
+test('asString function gives abbreviated units', () => {
+  expect(Size.kibibytes(10).asString()).toEqual('10Ki');
+  expect(Size.mebibytes(10).asString()).toEqual('10Mi');
+  expect(Size.gibibytes(10).asString()).toEqual('10Gi');
+  expect(Size.tebibytes(10).asString()).toEqual('10Ti');
+  expect(Size.pebibyte(10).asString()).toEqual('10Pi');
+});
