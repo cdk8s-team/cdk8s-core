@@ -91,7 +91,7 @@ Returns a string representation of this construct.
 ##### `addDependency` <a name="addDependency" id="cdk8s.ApiObject.addDependency"></a>
 
 ```java
-public void addDependency(IConstruct dependencies)
+public void addDependency(IConstruct... dependencies)
 ```
 
 Create a dependency between this ApiObject and other constructs.
@@ -100,7 +100,7 @@ These can be other ApiObjects, Charts, or custom.
 
 ###### `dependencies`<sup>Required</sup> <a name="dependencies" id="cdk8s.ApiObject.addDependency.parameter.dependencies"></a>
 
-- *Type:* software.constructs.IConstruct
+- *Type:* software.constructs.IConstruct...
 
 the dependencies to add.
 
@@ -109,7 +109,7 @@ the dependencies to add.
 ##### `addJsonPatch` <a name="addJsonPatch" id="cdk8s.ApiObject.addJsonPatch"></a>
 
 ```java
-public void addJsonPatch(JsonPatch ops)
+public void addJsonPatch(JsonPatch... ops)
 ```
 
 Applies a set of RFC-6902 JSON-Patch operations to the manifest synthesized for this API object.
@@ -124,7 +124,7 @@ kubePod.addJsonPatch(JsonPatch.replace("/spec/enableServiceLinks", true));
 
 ###### `ops`<sup>Required</sup> <a name="ops" id="cdk8s.ApiObject.addJsonPatch.parameter.ops"></a>
 
-- *Type:* <a href="#cdk8s.JsonPatch">JsonPatch</a>
+- *Type:* <a href="#cdk8s.JsonPatch">JsonPatch</a>...
 
 The JSON-Patch operations to apply.
 
@@ -658,7 +658,7 @@ Returns a string representation of this construct.
 ##### `addDependency` <a name="addDependency" id="cdk8s.Chart.addDependency"></a>
 
 ```java
-public void addDependency(IConstruct dependencies)
+public void addDependency(IConstruct... dependencies)
 ```
 
 Create a dependency between this Chart and other constructs.
@@ -667,7 +667,7 @@ These can be other ApiObjects, Charts, or custom.
 
 ###### `dependencies`<sup>Required</sup> <a name="dependencies" id="cdk8s.Chart.addDependency.parameter.dependencies"></a>
 
-- *Type:* software.constructs.IConstruct
+- *Type:* software.constructs.IConstruct...
 
 the dependencies to add.
 
@@ -2615,14 +2615,14 @@ The value.
 ##### `addFinalizers` <a name="addFinalizers" id="cdk8s.ApiObjectMetadataDefinition.addFinalizers"></a>
 
 ```java
-public void addFinalizers(java.lang.String finalizers)
+public void addFinalizers(java.lang.String... finalizers)
 ```
 
 Add one or more finalizers.
 
 ###### `finalizers`<sup>Required</sup> <a name="finalizers" id="cdk8s.ApiObjectMetadataDefinition.addFinalizers.parameter.finalizers"></a>
 
-- *Type:* java.lang.String
+- *Type:* java.lang.String...
 
 the finalizers.
 
@@ -3468,7 +3468,7 @@ JsonPatch.add("/biscuits/1", Map.of("name", "Ginger Nut"));
 ```java
 import org.cdk8s.JsonPatch;
 
-JsonPatch.apply(java.lang.Object document, JsonPatch ops)
+JsonPatch.apply(java.lang.Object document, JsonPatch... ops)
 ```
 
 Applies a set of JSON-Patch (RFC-6902) operations to `document` and returns the result.
@@ -3483,7 +3483,7 @@ The document to patch.
 
 ###### `ops`<sup>Required</sup> <a name="ops" id="cdk8s.JsonPatch.apply.parameter.ops"></a>
 
-- *Type:* <a href="#cdk8s.JsonPatch">JsonPatch</a>
+- *Type:* <a href="#cdk8s.JsonPatch">JsonPatch</a>...
 
 The operations to apply.
 
@@ -4374,7 +4374,7 @@ The set of objects.
 ```java
 import org.cdk8s.Yaml;
 
-Yaml.stringify(java.lang.Object docs)
+Yaml.stringify(java.lang.Object... docs)
 ```
 
 Stringify a document (or multiple documents) into YAML.
@@ -4384,7 +4384,7 @@ undefined.
 
 ###### `docs`<sup>Required</sup> <a name="docs" id="cdk8s.Yaml.stringify.parameter.docs"></a>
 
-- *Type:* java.lang.Object
+- *Type:* java.lang.Object...
 
 A set of objects to convert to YAML.
 
