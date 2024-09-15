@@ -66,7 +66,7 @@ Returns a string representation of this construct.
 ##### `addDependency` <a name="addDependency" id="cdk8s.ApiObject.addDependency"></a>
 
 ```typescript
-public addDependency(dependencies: IConstruct): void
+public addDependency(dependencies: ...IConstruct[]): void
 ```
 
 Create a dependency between this ApiObject and other constructs.
@@ -75,7 +75,7 @@ These can be other ApiObjects, Charts, or custom.
 
 ###### `dependencies`<sup>Required</sup> <a name="dependencies" id="cdk8s.ApiObject.addDependency.parameter.dependencies"></a>
 
-- *Type:* constructs.IConstruct
+- *Type:* ...constructs.IConstruct[]
 
 the dependencies to add.
 
@@ -84,7 +84,7 @@ the dependencies to add.
 ##### `addJsonPatch` <a name="addJsonPatch" id="cdk8s.ApiObject.addJsonPatch"></a>
 
 ```typescript
-public addJsonPatch(ops: JsonPatch): void
+public addJsonPatch(ops: ...JsonPatch[]): void
 ```
 
 Applies a set of RFC-6902 JSON-Patch operations to the manifest synthesized for this API object.
@@ -98,7 +98,7 @@ Applies a set of RFC-6902 JSON-Patch operations to the manifest synthesized for 
 
 ###### `ops`<sup>Required</sup> <a name="ops" id="cdk8s.ApiObject.addJsonPatch.parameter.ops"></a>
 
-- *Type:* <a href="#cdk8s.JsonPatch">JsonPatch</a>
+- *Type:* ...<a href="#cdk8s.JsonPatch">JsonPatch</a>[]
 
 The JSON-Patch operations to apply.
 
@@ -475,7 +475,7 @@ Returns a string representation of this construct.
 ##### `addDependency` <a name="addDependency" id="cdk8s.Chart.addDependency"></a>
 
 ```typescript
-public addDependency(dependencies: IConstruct): void
+public addDependency(dependencies: ...IConstruct[]): void
 ```
 
 Create a dependency between this Chart and other constructs.
@@ -484,7 +484,7 @@ These can be other ApiObjects, Charts, or custom.
 
 ###### `dependencies`<sup>Required</sup> <a name="dependencies" id="cdk8s.Chart.addDependency.parameter.dependencies"></a>
 
-- *Type:* constructs.IConstruct
+- *Type:* ...constructs.IConstruct[]
 
 the dependencies to add.
 
@@ -2018,14 +2018,14 @@ The value.
 ##### `addFinalizers` <a name="addFinalizers" id="cdk8s.ApiObjectMetadataDefinition.addFinalizers"></a>
 
 ```typescript
-public addFinalizers(finalizers: string): void
+public addFinalizers(finalizers: ...string[]): void
 ```
 
 Add one or more finalizers.
 
 ###### `finalizers`<sup>Required</sup> <a name="finalizers" id="cdk8s.ApiObjectMetadataDefinition.addFinalizers.parameter.finalizers"></a>
 
-- *Type:* string
+- *Type:* ...string[]
 
 the finalizers.
 
@@ -2818,7 +2818,7 @@ JsonPatch.add('/biscuits/1', { "name": "Ginger Nut" })
 ```typescript
 import { JsonPatch } from 'cdk8s'
 
-JsonPatch.apply(document: any, ops: JsonPatch)
+JsonPatch.apply(document: any, ops: ...JsonPatch[])
 ```
 
 Applies a set of JSON-Patch (RFC-6902) operations to `document` and returns the result.
@@ -2833,7 +2833,7 @@ The document to patch.
 
 ###### `ops`<sup>Required</sup> <a name="ops" id="cdk8s.JsonPatch.apply.parameter.ops"></a>
 
-- *Type:* <a href="#cdk8s.JsonPatch">JsonPatch</a>
+- *Type:* ...<a href="#cdk8s.JsonPatch">JsonPatch</a>[]
 
 The operations to apply.
 
@@ -3704,7 +3704,7 @@ The set of objects.
 ```typescript
 import { Yaml } from 'cdk8s'
 
-Yaml.stringify(docs: any)
+Yaml.stringify(docs: ...any[])
 ```
 
 Stringify a document (or multiple documents) into YAML.
@@ -3714,7 +3714,7 @@ undefined.
 
 ###### `docs`<sup>Required</sup> <a name="docs" id="cdk8s.Yaml.stringify.parameter.docs"></a>
 
-- *Type:* any
+- *Type:* ...any[]
 
 A set of objects to convert to YAML.
 
