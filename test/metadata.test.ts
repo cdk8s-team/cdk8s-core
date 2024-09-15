@@ -1,8 +1,15 @@
-import { ApiObject, ApiObjectMetadataDefinition, Lazy, OwnerReference, Testing } from '../src';
+import {
+  ApiObject,
+  ApiObjectMetadataDefinition,
+  Lazy,
+  OwnerReference,
+  Testing,
+} from '../src';
 
 test('Can add a label', () => {
-
-  const meta = new ApiObjectMetadataDefinition({ apiObject: createApiObject() });
+  const meta = new ApiObjectMetadataDefinition({
+    apiObject: createApiObject(),
+  });
 
   meta.addLabel('key', 'value');
 
@@ -11,12 +18,12 @@ test('Can add a label', () => {
   expect(actual.labels).toEqual({
     key: 'value',
   });
-
 });
 
 test('Can add an annotation', () => {
-
-  const meta = new ApiObjectMetadataDefinition({ apiObject: createApiObject() });
+  const meta = new ApiObjectMetadataDefinition({
+    apiObject: createApiObject(),
+  });
 
   meta.addAnnotation('key', 'value');
 
@@ -25,24 +32,24 @@ test('Can add an annotation', () => {
   expect(actual.annotations).toEqual({
     key: 'value',
   });
-
 });
 
 test('Can add a finalizer', () => {
-
-  const meta = new ApiObjectMetadataDefinition({ apiObject: createApiObject() });
+  const meta = new ApiObjectMetadataDefinition({
+    apiObject: createApiObject(),
+  });
 
   meta.addFinalizers('my-finalizer');
 
   const actual = meta.toJson();
 
   expect(actual.finalizers).toEqual(['my-finalizer']);
-
 });
 
 test('Can add an owner reference', () => {
-
-  const meta = new ApiObjectMetadataDefinition({ apiObject: createApiObject() });
+  const meta = new ApiObjectMetadataDefinition({
+    apiObject: createApiObject(),
+  });
 
   meta.addOwnerReference({
     apiVersion: 'v1',
@@ -53,17 +60,17 @@ test('Can add an owner reference', () => {
 
   const actual = meta.toJson();
 
-  expect(actual.ownerReferences).toEqual([{
-    apiVersion: 'v1',
-    kind: 'Pod',
-    name: 'mypod',
-    uid: 'abcdef12-3456-7890-abcd-ef1234567890',
-  }]);
-
+  expect(actual.ownerReferences).toEqual([
+    {
+      apiVersion: 'v1',
+      kind: 'Pod',
+      name: 'mypod',
+      uid: 'abcdef12-3456-7890-abcd-ef1234567890',
+    },
+  ]);
 });
 
 test('Instantiation properties are all respected', () => {
-
   const meta = new ApiObjectMetadataDefinition({
     apiObject: createApiObject(),
     labels: { key: 'value' },
@@ -86,17 +93,19 @@ test('Instantiation properties are all respected', () => {
   };
 
   expect(actual).toStrictEqual(expected);
-
 });
 
 test('ensure Lazy properties are resolved', () => {
-
   const meta = new ApiObjectMetadataDefinition({
     apiObject: createApiObject(),
     labels: { key: 'value' },
     annotations: {
       key: 'value',
-      lazy: Lazy.any({ produce: () => { return { uiMeta: 'is good' }; } }),
+      lazy: Lazy.any({
+        produce: () => {
+          return { uiMeta: 'is good' };
+        },
+      }),
     },
     name: 'name',
     namespace: 'namespace',
@@ -119,7 +128,6 @@ test('ensure Lazy properties are resolved', () => {
   };
 
   expect(actual).toStrictEqual(expected);
-
 });
 
 test('Can include arbirary key/value options', () => {

@@ -4301,9 +4301,9 @@ jsii-diff@^1.103.1:
     yargs "^16.2.0"
 
 jsii-docgen@^10.5.0:
-  version "10.5.2"
-  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-10.5.2.tgz#09ebc7525cc8c09ccd59a2a73ddbd2dbbeb7e75e"
-  integrity sha512-1qDMCvd22f5WnQRYqfexvyA/60KLPdPl2YqY1P5kqzfU3ImyPRNKKe2/KZxGZb2h78SEkXyvdaJvIdDto2Z+IQ==
+  version "10.5.3"
+  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-10.5.3.tgz#f5bfa35f9737914cafc4f57752766831d685a6db"
+  integrity sha512-H6QAaaoRG5/AnnuQWZcl8RKO09ButL8VYCuabbMr2lZBb2q9j15jnBhiQljtNVw/TvFikNn4aJ12p3Dra8DKbw==
   dependencies:
     "@jsii/spec" "^1.103.0"
     case "^1.6.3"
@@ -6292,10 +6292,15 @@ typescript@next, typescript@~5.2.2:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.2.2.tgz#5ebb5e5a5b75f085f22bc3f8460fba308310fa78"
   integrity sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==
 
-typescript@~5.5, typescript@~5.5.4:
+typescript@~5.5:
   version "5.5.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.5.4.tgz#d9852d6c82bad2d2eda4fd74a5762a8f5909e9ba"
   integrity sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==
+
+typescript@~5.6.2:
+  version "5.6.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.6.2.tgz#d1de67b6bef77c41823f822df8f0b3bcff60a5a0"
+  integrity sha512-NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==
 
 uglify-js@^3.1.4:
   version "3.19.3"

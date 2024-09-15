@@ -94,7 +94,7 @@ Returns a string representation of this construct.
 
 ```python
 def add_dependency(
-  dependencies: IConstruct
+  dependencies: *IConstruct
 ) -> None
 ```
 
@@ -104,7 +104,7 @@ These can be other ApiObjects, Charts, or custom.
 
 ###### `dependencies`<sup>Required</sup> <a name="dependencies" id="cdk8s.ApiObject.addDependency.parameter.dependencies"></a>
 
-- *Type:* constructs.IConstruct
+- *Type:* *constructs.IConstruct
 
 the dependencies to add.
 
@@ -114,7 +114,7 @@ the dependencies to add.
 
 ```python
 def add_json_patch(
-  ops: JsonPatch
+  ops: *JsonPatch
 ) -> None
 ```
 
@@ -130,7 +130,7 @@ kube_pod.add_json_patch(JsonPatch.replace("/spec/enableServiceLinks", True))
 
 ###### `ops`<sup>Required</sup> <a name="ops" id="cdk8s.ApiObject.addJsonPatch.parameter.ops"></a>
 
-- *Type:* <a href="#cdk8s.JsonPatch">JsonPatch</a>
+- *Type:* *<a href="#cdk8s.JsonPatch">JsonPatch</a>
 
 The JSON-Patch operations to apply.
 
@@ -677,7 +677,7 @@ Returns a string representation of this construct.
 
 ```python
 def add_dependency(
-  dependencies: IConstruct
+  dependencies: *IConstruct
 ) -> None
 ```
 
@@ -687,7 +687,7 @@ These can be other ApiObjects, Charts, or custom.
 
 ###### `dependencies`<sup>Required</sup> <a name="dependencies" id="cdk8s.Chart.addDependency.parameter.dependencies"></a>
 
-- *Type:* constructs.IConstruct
+- *Type:* *constructs.IConstruct
 
 the dependencies to add.
 
@@ -2658,7 +2658,7 @@ The value.
 
 ```python
 def add_finalizers(
-  finalizers: str
+  finalizers: *str
 ) -> None
 ```
 
@@ -2666,7 +2666,7 @@ Add one or more finalizers.
 
 ###### `finalizers`<sup>Required</sup> <a name="finalizers" id="cdk8s.ApiObjectMetadataDefinition.addFinalizers.parameter.finalizers"></a>
 
-- *Type:* str
+- *Type:* *str
 
 the finalizers.
 
@@ -3668,7 +3668,7 @@ import cdk8s
 
 cdk8s.JsonPatch.apply(
   document: typing.Any,
-  ops: JsonPatch
+  ops: *JsonPatch
 )
 ```
 
@@ -3684,7 +3684,7 @@ The document to patch.
 
 ###### `ops`<sup>Required</sup> <a name="ops" id="cdk8s.JsonPatch.apply.parameter.ops"></a>
 
-- *Type:* <a href="#cdk8s.JsonPatch">JsonPatch</a>
+- *Type:* *<a href="#cdk8s.JsonPatch">JsonPatch</a>
 
 The operations to apply.
 
@@ -4768,7 +4768,7 @@ The set of objects.
 import cdk8s
 
 cdk8s.Yaml.stringify(
-  docs: typing.Any
+  docs: *typing.Any
 )
 ```
 
@@ -4779,7 +4779,7 @@ undefined.
 
 ###### `docs`<sup>Required</sup> <a name="docs" id="cdk8s.Yaml.stringify.parameter.docs"></a>
 
-- *Type:* typing.Any
+- *Type:* *typing.Any
 
 A set of objects to convert to YAML.
 
