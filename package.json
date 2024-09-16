@@ -6,8 +6,6 @@
     "url": "https://github.com/cdk8s-team/cdk8s-core.git"
   },
   "scripts": {
-    "backport": "npx projen backport",
-    "backport:1.x": "npx projen backport:1.x",
     "build": "npx projen build",
     "bump": "npx projen bump",
     "clobber": "npx projen clobber",
@@ -28,7 +26,6 @@
     "post-compile": "npx projen post-compile",
     "post-upgrade": "npx projen post-upgrade",
     "pre-compile": "npx projen pre-compile",
-    "release:1.x": "npx projen release:1.x",
     "release:2.x": "npx projen release:2.x",
     "test": "npx projen test",
     "test:watch": "npx projen test:watch",
@@ -52,7 +49,6 @@
     "@types/node": "16.18.78",
     "@typescript-eslint/eslint-plugin": "^7",
     "@typescript-eslint/parser": "^7",
-    "backport": "8.9.9",
     "commit-and-tag-version": "^12",
     "constructs": "^3.4.344",
     "eslint": "^8",
