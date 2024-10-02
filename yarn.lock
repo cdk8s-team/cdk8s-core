@@ -1637,9 +1637,9 @@ camelcase@^6.2.0, camelcase@^6.3.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001663:
-  version "1.0.30001664"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001664.tgz#d588d75c9682d3301956b05a3749652a80677df4"
-  integrity sha512-AmE7k4dXiNKQipgn7a2xg558IRqPN3jMQY/rOsbxDhrd0tyChwbITBfiwtnqz8bi2M5mIWbxAYBvk7W7QBUS2g==
+  version "1.0.30001666"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001666.tgz#112d77e80f1762f62a1b71ba92164e0cb3f3dd13"
+  integrity sha512-gD14ICmoV5ZZM1OdzPWmpx+q4GyefaK06zi8hmfHV5xe4/2nOQX3+Dw5o+fSqOws2xVwL9j+anOPFwHzdEdV4g==
 
 case@^1.6.3:
   version "1.6.3"
@@ -2385,9 +2385,9 @@ elastic-apm-node@^3.47.0:
     unicode-byte-truncate "^1.0.0"
 
 electron-to-chromium@^1.5.28:
-  version "1.5.30"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.30.tgz#5b264b489cfe0c3dd71097c164d795444834e7c7"
-  integrity sha512-sXI35EBN4lYxzc/pIGorlymYNzDBOqkSlVRe6MkgBsW/hW1tpC/HDJ2fjG7XnjakzfLEuvdmux0Mjs6jHq4UOA==
+  version "1.5.31"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.31.tgz#b1478418769dec72ea70d9fdf147a81491857f10"
+  integrity sha512-QcDoBbQeYt0+3CWcK/rEbuHvwpbT/8SV9T3OSgs6cX1FlcUAkgrkqbg9zLnDrMM/rLamzQwal4LYFCiWk861Tg==
 
 emittery@^0.8.1:
   version "0.8.1"
@@ -6111,17 +6111,17 @@ timers-ext@^0.1.7:
     es5-ext "^0.10.64"
     next-tick "^1.1.0"
 
-tldts-core@^6.1.48:
-  version "6.1.48"
-  resolved "https://registry.yarnpkg.com/tldts-core/-/tldts-core-6.1.48.tgz#efa7dc689b9757d1d4326b787cd992f10a16b2fb"
-  integrity sha512-3gD9iKn/n2UuFH1uilBviK9gvTNT6iYwdqrj1Vr5mh8FuelvpRNaYVH4pNYqUgOGU4aAdL9X35eLuuj0gRsx+A==
+tldts-core@^6.1.49:
+  version "6.1.49"
+  resolved "https://registry.yarnpkg.com/tldts-core/-/tldts-core-6.1.49.tgz#c321ef54b58c067a6b12d229f09d6cb6155c115f"
+  integrity sha512-ctRO/wzBasOCxAStJG/60Qe8/QpGmaVPsE8djdk0vioxN4uCOgKoveH71Qc2EOmVMIjVf0BjigI5p9ZDuLOygg==
 
 tldts@^6.1.32:
-  version "6.1.48"
-  resolved "https://registry.yarnpkg.com/tldts/-/tldts-6.1.48.tgz#bfef97f407fe73f1a88db8e0f6905378e9a348c0"
-  integrity sha512-SPbnh1zaSzi/OsmHb1vrPNnYuwJbdWjwo5TbBYYMlTtH3/1DSb41t8bcSxkwDmmbG2q6VLPVvQc7Yf23T+1EEw==
+  version "6.1.49"
+  resolved "https://registry.yarnpkg.com/tldts/-/tldts-6.1.49.tgz#fa396141c50c0d234bb8c37b238f47ff4fd874dc"
+  integrity sha512-E5se9HuCyfwWvmc0JiXiocOw+Cm4tlJCKewdB5RKMH8MmtiTsQCc+yu5BBYB5ZN4lNbz8Xg65bqJ1odS9+RhIA==
   dependencies:
-    tldts-core "^6.1.48"
+    tldts-core "^6.1.49"
 
 tmp@^0.0.33:
   version "0.0.33"
