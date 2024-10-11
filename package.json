@@ -66,7 +66,7 @@
     "jsii-pacmak": "^1.103.1",
     "jsii-rosetta": "^5",
     "json-schema-to-typescript": "^10.1.5",
-    "projen": "^0.88.1",
+    "projen": "^0.88.2",
     "ts-jest": "^27",
     "typescript": "~5.6.3"
   },
