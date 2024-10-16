@@ -226,7 +226,7 @@ export class ApiObject extends Construct {
   }
 }
 
-function parseApiGroup(apiVersion: string) {
+export function parseApiGroup(apiVersion: string) {
   const v = apiVersion.split('/');
 
   // no group means "core"
