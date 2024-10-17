@@ -70,5 +70,5 @@ tsconfig.json
 !/.github/workflows/upgrade-compiler-dependencies-1.x.yml
 !/.backportrc.json
 !/.github/workflows/backport.yml
-!/src/_loadurl.js
+!/src/_loadurl.mjs
 !/.projenrc.js
