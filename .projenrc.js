@@ -47,10 +47,10 @@ const project = new Cdk8sTeamJsiiProject({
   jsiiVersion: '^5',
 });
 
-// _loadurl.js is written in javascript so we need to commit it and also copy it
+// _loadurl.mjs is written in javascript so we need to commit it and also copy it
 // after compilation to the `lib/` directory.
-project.gitignore.include('/src/_loadurl.js');
-project.compileTask.exec('cp src/_loadurl.js lib/');
+project.gitignore.include('/src/_loadurl.mjs');
+project.compileTask.exec('cp src/_loadurl.mjs lib/');
 
 const installHelm = project.addTask('install-helm', {
   exec: 'curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash',
