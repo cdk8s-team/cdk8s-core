@@ -116,7 +116,7 @@
           "exec": "jsii --silence-warnings=reserved-word"
         },
         {
-          "exec": "cp src/_loadurl.js lib/"
+          "exec": "cp src/_loadurl.mjs lib/"
         }
       ]
     },
