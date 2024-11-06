@@ -392,7 +392,7 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev --filter=jsii,jsii-docgen,jsii-pacmak,jsii-rosetta,typescript"
+          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --no-deprecated --dep=dev --filter=jsii,jsii-docgen,jsii-pacmak,jsii-rosetta,typescript"
         },
         {
           "exec": "yarn install --check-files"
@@ -416,7 +416,7 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev --filter=projen,@cdk8s/projen-common"
+          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --no-deprecated --dep=dev --filter=projen,@cdk8s/projen-common"
         },
         {
           "exec": "yarn install --check-files"
@@ -440,7 +440,7 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev --filter=@types/follow-redirects,@types/jest,backport,eslint-import-resolver-typescript,eslint-plugin-import,jest,jsii-diff,json-schema-to-typescript,ts-jest,fast-json-patch,follow-redirects,yaml"
+          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --no-deprecated --dep=dev --filter=@types/follow-redirects,@types/jest,backport,eslint-import-resolver-typescript,eslint-plugin-import,jest,jsii-diff,json-schema-to-typescript,ts-jest,fast-json-patch,follow-redirects,yaml"
         },
         {
           "exec": "yarn install --check-files"
@@ -464,7 +464,7 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=prod,optional --filter=fast-json-patch,follow-redirects,yaml"
+          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --no-deprecated --dep=prod,optional --filter=fast-json-patch,follow-redirects,yaml"
         },
         {
           "exec": "yarn install --check-files"
