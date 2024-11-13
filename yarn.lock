@@ -5887,9 +5887,9 @@ stream-chopper@^3.0.1:
     readable-stream "^3.0.6"
 
 stream-json@^1.8.0:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/stream-json/-/stream-json-1.9.0.tgz#caae36fd9fff99662f504dce859bc855d5668282"
-  integrity sha512-TqnfW7hRTKje7UobBzXZJ2qOEDJvdcSVgVIK/fopC03xINFuFqQs8RVjyDT4ry7TmOo2ueAXwpXXXG4tNgtvoQ==
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/stream-json/-/stream-json-1.9.1.tgz#e3fec03e984a503718946c170db7d74556c2a187"
+  integrity sha512-uWkjJ+2Nt/LO9Z/JyKZbMusL8Dkh97uUBTv3AJQ74y07lVahLY4eEFsPsE97pxYBwr8nnjMAIch5eqI0gPShyw==
   dependencies:
     stream-chain "^2.2.5"
 
