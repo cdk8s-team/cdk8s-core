@@ -33,10 +33,6 @@
       "type": "build"
     },
     {
-      "name": "backport",
-      "type": "build"
-    },
-    {
       "name": "commit-and-tag-version",
       "version": "^12",
       "type": "build"
