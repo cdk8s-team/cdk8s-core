@@ -39,9 +39,7 @@ junit.xml
 /dist/changelog.md
 /dist/version.txt
 !/.github/workflows/release.yml
-!/.github/workflows/release-1.x.yml
 !/.github/workflows/upgrade-runtime-dependencies-2.x.yml
-!/.github/workflows/upgrade-runtime-dependencies-1.x.yml
 !/.github/pull_request_template.md
 !/test/
 !/tsconfig.dev.json
@@ -63,12 +61,7 @@ tsconfig.json
 !/.github/workflows/triage.yml
 !/.github/workflows/stale.yml
 !/.github/workflows/upgrade-configuration-2.x.yml
-!/.github/workflows/upgrade-configuration-1.x.yml
 !/.github/workflows/upgrade-dev-dependencies-2.x.yml
-!/.github/workflows/upgrade-dev-dependencies-1.x.yml
 !/.github/workflows/upgrade-compiler-dependencies-2.x.yml
-!/.github/workflows/upgrade-compiler-dependencies-1.x.yml
-!/.backportrc.json
-!/.github/workflows/backport.yml
 !/src/_loadurl.js
 !/.projenrc.js

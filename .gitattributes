@@ -2,28 +2,21 @@
 
 * text=auto eol=lf
 *.snap linguist-generated
-/.backportrc.json linguist-generated
 /.eslintrc.json linguist-generated
 /.gitattributes linguist-generated
 /.github/ISSUE_TEMPLATE/config.yml linguist-generated
 /.github/pull_request_template.md linguist-generated
 /.github/workflows/auto-approve.yml linguist-generated
 /.github/workflows/auto-queue.yml linguist-generated
-/.github/workflows/backport.yml linguist-generated
 /.github/workflows/build.yml linguist-generated
 /.github/workflows/pull-request-lint.yml linguist-generated
-/.github/workflows/release-1.x.yml linguist-generated
 /.github/workflows/release.yml linguist-generated
 /.github/workflows/security.yml linguist-generated
 /.github/workflows/stale.yml linguist-generated
 /.github/workflows/triage.yml linguist-generated
-/.github/workflows/upgrade-compiler-dependencies-1.x.yml linguist-generated
 /.github/workflows/upgrade-compiler-dependencies-2.x.yml linguist-generated
-/.github/workflows/upgrade-configuration-1.x.yml linguist-generated
 /.github/workflows/upgrade-configuration-2.x.yml linguist-generated
-/.github/workflows/upgrade-dev-dependencies-1.x.yml linguist-generated
 /.github/workflows/upgrade-dev-dependencies-2.x.yml linguist-generated
-/.github/workflows/upgrade-runtime-dependencies-1.x.yml linguist-generated
 /.github/workflows/upgrade-runtime-dependencies-2.x.yml linguist-generated
 /.gitignore linguist-generated
 /.npmignore linguist-generated
