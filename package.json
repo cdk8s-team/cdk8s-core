@@ -65,7 +65,7 @@
     "json-schema-to-typescript": "^10.1.5",
     "projen": "^0.91.5",
     "ts-jest": "^27",
-    "typescript": "~5.7.2"
+    "typescript": "~5.7.3"
   },
   "peerDependencies": {
     "constructs": "^10"
