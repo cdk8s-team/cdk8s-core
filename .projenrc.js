@@ -35,15 +35,7 @@ const project = new Cdk8sTeamJsiiProject({
 
   defaultReleaseBranch: '2.x',
   majorVersion: 2,
-  releaseBranches: {
-    '1.x': {
-      majorVersion: 1,
-      npmDistTag: 'latest-1',
-    },
-  },
   golangBranch: '2.x',
-  backport: true,
-  backportBranches: ['1.x'],
   jsiiVersion: '^5',
 });
 

@@ -270,31 +270,6 @@
       "name": "pre-compile",
       "description": "Prepare the project for compilation"
     },
-    "release:1.x": {
-      "name": "release:1.x",
-      "description": "Prepare a release from \"1.x\" branch",
-      "env": {
-        "RELEASE": "true",
-        "MAJOR": "1"
-      },
-      "steps": [
-        {
-          "exec": "rm -fr dist"
-        },
-        {
-          "spawn": "bump"
-        },
-        {
-          "spawn": "build"
-        },
-        {
-          "spawn": "unbump"
-        },
-        {
-          "exec": "git diff --ignore-space-at-eol --exit-code"
-        }
-      ]
-    },
     "release:2.x": {
       "name": "release:2.x",
       "description": "Prepare a release from \"2.x\" branch",
