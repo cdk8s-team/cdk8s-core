@@ -63,5 +63,5 @@ tsconfig.json
 !/.github/workflows/upgrade-configuration-2.x.yml
 !/.github/workflows/upgrade-dev-dependencies-2.x.yml
 !/.github/workflows/upgrade-compiler-dependencies-2.x.yml
-!/src/_loadurl.js
+!/src/_loadurl.mjs
 !/.projenrc.js
