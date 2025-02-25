@@ -27,9 +27,9 @@
 /API.md linguist-generated
 /CODE_OF_CONDUCT.md linguist-generated
 /DCO linguist-generated
-/git-hooks\prepare-commit-msg linguist-generated
-/git-hooks\README.md linguist-generated
-/git-hooks\setup.sh linguist-generated
+/git-hooks/prepare-commit-msg linguist-generated
+/git-hooks/README.md linguist-generated
+/git-hooks/setup.sh linguist-generated
 /LICENSE linguist-generated
 /package.json linguist-generated
 /SECURITY.md linguist-generated
