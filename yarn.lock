@@ -660,14 +660,7 @@
     chalk "^4.1.2"
     semver "^7.6.3"
 
-"@jsii/spec@^1.107.0":
-  version "1.107.0"
-  resolved "https://registry.yarnpkg.com/@jsii/spec/-/spec-1.107.0.tgz#b5f71fdd408c1449bdbe6ac193ce24bc8a8d12e9"
-  integrity sha512-m3qN+uGudQ9N36kNXJ5SUaqUh7G2Dm61JgmfswnkiCxlRr2fmRYL5mRD0DA+cJX/XG/S9iDjf6NlB/fLmblFHA==
-  dependencies:
-    ajv "^8.17.1"
-
-"@jsii/spec@^1.108.0":
+"@jsii/spec@^1.107.0", "@jsii/spec@^1.108.0":
   version "1.108.0"
   resolved "https://registry.yarnpkg.com/@jsii/spec/-/spec-1.108.0.tgz#fbcf6785ac7dc62f79aca535a18ecdfa2a8198aa"
   integrity sha512-YtebmBRy19UT1pKmxqlTqfW1OcFFjuU2zxxi+QFfM8KG1ahBlpcuz+3DE9gG1qTASIJJJI0fd8PaAiZ5gE40sQ==
@@ -1488,7 +1481,7 @@ co@^4.6.0:
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
   integrity sha512-QVb0dM5HvG+uaxitm8wONl7jltx8dqhfU33DcqtOZcLSVIKSDDLDi7+0LbAKiyI8hD9u42m2YxXSkMGWThaecQ==
 
-codemaker@^1.107.0:
+codemaker@^1.107.0, codemaker@^1.108.0:
   version "1.108.0"
   resolved "https://registry.yarnpkg.com/codemaker/-/codemaker-1.108.0.tgz#1e66e032636f5cdcb32d14ac5c3ebb175d1e9200"
   integrity sha512-EwMvLf3tkBXllS4hZbr3WYm4kZiAH5Spd01MaRd+yJ636RfwIvpGgCGVqYbjW0RJ7yyfnakZ0HvCc8PxqyYWbA==
@@ -3802,47 +3795,35 @@ jsii-diff@^1.108.0:
     yargs "^16.2.0"
 
 jsii-docgen@^10.5.0:
-  version "10.6.7"
-  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-10.6.7.tgz#c9b21d24740b5090cec96b99ca2633d90abbf151"
-  integrity sha512-+7arLTxVUzUtW82zjnOnjXUFTH54Y8D6XE23YqGCxp2XDlJENKZw9mUU8/M3Mq63/986qGJK1LAixRxg/v2ZyQ==
+  version "10.6.8"
+  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-10.6.8.tgz#6bbe1b3c57752970bd4cbf80327e8be277ab3343"
+  integrity sha512-bgkSJpTXNm/1gtLPee8pYfjDhpcYDMw9XaXOLjSlUM9/BhhrAIgeBgtFY2SdFGaDyp9LjAWpHRjojE7akE95UQ==
   dependencies:
-    "@jsii/spec" "^1.107.0"
+    "@jsii/spec" "^1.108.0"
     case "^1.6.3"
     fs-extra "^10.1.0"
     glob "^8.1.0"
     glob-promise "^6.0.7"
-    jsii-reflect "^1.107.0"
+    jsii-reflect "^1.108.0"
     semver "^7.7.1"
     yargs "^16.2.0"
 
-jsii-pacmak@^1.107.0:
-  version "1.107.0"
-  resolved "https://registry.yarnpkg.com/jsii-pacmak/-/jsii-pacmak-1.107.0.tgz#498918e29e80b18e421690fb5d3b0a6cc935dd87"
-  integrity sha512-LIOhMa2iYdh4QgTv5CETDDn8MsRBY1I2ALNRz2jbLR6LlcZAm8PFtZGpejGZiRxjjWjcwstuAsWC9iM2R6a9eg==
+jsii-pacmak@^1.108.0:
+  version "1.108.0"
+  resolved "https://registry.yarnpkg.com/jsii-pacmak/-/jsii-pacmak-1.108.0.tgz#4755a2b2bff2ab57eefa1f2cc4b092ef4421b6ee"
+  integrity sha512-qj/dGQkALH/YTMGUIyg+EgFD9+WXyrJPug8cwQureNyRK90gHLrTMo7oFQhhTlW2OVH6WAGlQO5FPLtkbujgmQ==
   dependencies:
-    "@jsii/check-node" "1.107.0"
-    "@jsii/spec" "^1.107.0"
+    "@jsii/check-node" "1.108.0"
+    "@jsii/spec" "^1.108.0"
     clone "^2.1.2"
-    codemaker "^1.107.0"
+    codemaker "^1.108.0"
     commonmark "^0.31.2"
     escape-string-regexp "^4.0.0"
     fs-extra "^10.1.0"
-    jsii-reflect "^1.107.0"
+    jsii-reflect "^1.108.0"
     semver "^7.6.3"
     spdx-license-list "^6.9.0"
     xmlbuilder "^15.1.1"
-    yargs "^16.2.0"
-
-jsii-reflect@^1.107.0:
-  version "1.107.0"
-  resolved "https://registry.yarnpkg.com/jsii-reflect/-/jsii-reflect-1.107.0.tgz#0402a18023fdc6e72ebe9997284a8b7dc572e6c8"
-  integrity sha512-Cznn8jmfNM8ou4mj51aBDeHW84sLr4+bAxlq3DbnlyQD9LhurUBFJH00bHpyvnBIKZRhFGoIiDD4raugYmdFRw==
-  dependencies:
-    "@jsii/check-node" "1.107.0"
-    "@jsii/spec" "^1.107.0"
-    chalk "^4"
-    fs-extra "^10.1.0"
-    oo-ascii-tree "^1.107.0"
     yargs "^16.2.0"
 
 jsii-reflect@^1.108.0:
@@ -4422,11 +4403,6 @@ onetime@^5.1.2:
   integrity sha512-kbpaSSGJTWdAY5KPVeMOKXSrPtr8C8C7wodJbcsd51jRnmD+GZu8Y0VoU6Dm5Z4vWr0Ig/1NKuWRKf7j5aaYSg==
   dependencies:
     mimic-fn "^2.1.0"
-
-oo-ascii-tree@^1.107.0:
-  version "1.107.0"
-  resolved "https://registry.yarnpkg.com/oo-ascii-tree/-/oo-ascii-tree-1.107.0.tgz#a572cc556f73183849c62fd1b8210eb8f0895528"
-  integrity sha512-Yf48F7fpsifcgDB3a0l+EgYRNpIKoMhYueMP9JC0cgSy3gwmHwM/yj+QVgCjCfxhScylnJLkCfVckC8+TU4WqQ==
 
 oo-ascii-tree@^1.108.0:
   version "1.108.0"
