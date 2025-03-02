@@ -5365,17 +5365,17 @@ timers-ext@^0.1.7:
     es5-ext "^0.10.64"
     next-tick "^1.1.0"
 
-tldts-core@^6.1.79:
-  version "6.1.79"
-  resolved "https://registry.yarnpkg.com/tldts-core/-/tldts-core-6.1.79.tgz#2d98689a161fbafe38a6640a54f5d4c88bd941a1"
-  integrity sha512-HM+Ud/2oQuHt4I43Nvjc213Zji/z25NSH5OkJskJwHXNtYh9DTRlHMDFhms9dFMP7qyve/yVaXFIxmcJ7TdOjw==
+tldts-core@^6.1.82:
+  version "6.1.82"
+  resolved "https://registry.yarnpkg.com/tldts-core/-/tldts-core-6.1.82.tgz#b93e0312378f67cfc15ea1da9bc1b699ec621ae9"
+  integrity sha512-Jabl32m21tt/d/PbDO88R43F8aY98Piiz6BVH9ShUlOAiiAELhEqwrAmBocjAqnCfoUeIsRU+h3IEzZd318F3w==
 
 tldts@^6.1.32:
-  version "6.1.79"
-  resolved "https://registry.yarnpkg.com/tldts/-/tldts-6.1.79.tgz#1804eddc48f8ae22a0e20937c9d92634ace7580b"
-  integrity sha512-wjlYwK8lC/WcywLWf3A7qbK07SexezXjTRVwuPWXHvcjD7MnpPS2RXY5rLO3g12a8CNc7Y7jQRQsV7XyuBZjig==
+  version "6.1.82"
+  resolved "https://registry.yarnpkg.com/tldts/-/tldts-6.1.82.tgz#1c06e884bcdbcccbaf73bd552e2f188ad670a4a9"
+  integrity sha512-KCTjNL9F7j8MzxgfTgjT+v21oYH38OidFty7dH00maWANAI2IsLw2AnThtTJi9HKALHZKQQWnNebYheadacD+g==
   dependencies:
-    tldts-core "^6.1.79"
+    tldts-core "^6.1.82"
 
 tmpl@1.0.5:
   version "1.0.5"
