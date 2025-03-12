@@ -287,12 +287,12 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cdk8s/projen-common@^0.0.584":
-  version "0.0.584"
-  resolved "https://registry.yarnpkg.com/@cdk8s/projen-common/-/projen-common-0.0.584.tgz#b257509d9a095c8332c1636bc81db4ab643d14fd"
-  integrity sha512-kmv6rct+TYz8E+G+jekfOBkndIoBBjdBBAHbKg9ov+XyuqqfN9Einm+eV3vusAtCHHUcveFha42OobbKEQdjFg==
+"@cdk8s/projen-common@^0.0.586":
+  version "0.0.586"
+  resolved "https://registry.yarnpkg.com/@cdk8s/projen-common/-/projen-common-0.0.586.tgz#442c5d3bd25770f4a65eabfd457c2dba778303d8"
+  integrity sha512-RhP/n1lPg5ITJlO3GBUHAwfELsQ8bPQ5muhYgz9Y3UEC00gRStDQvAnpzQJU8CSi0+MNW+sbZlWF4F7//hluqQ==
   dependencies:
-    codemaker "^1.108.0"
+    codemaker "^1.109.0"
     deepmerge "^4.3.1"
 
 "@csstools/color-helpers@^5.0.2":
@@ -1485,15 +1485,6 @@ co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
   integrity sha512-QVb0dM5HvG+uaxitm8wONl7jltx8dqhfU33DcqtOZcLSVIKSDDLDi7+0LbAKiyI8hD9u42m2YxXSkMGWThaecQ==
-
-codemaker@^1.108.0:
-  version "1.108.0"
-  resolved "https://registry.yarnpkg.com/codemaker/-/codemaker-1.108.0.tgz#1e66e032636f5cdcb32d14ac5c3ebb175d1e9200"
-  integrity sha512-EwMvLf3tkBXllS4hZbr3WYm4kZiAH5Spd01MaRd+yJ636RfwIvpGgCGVqYbjW0RJ7yyfnakZ0HvCc8PxqyYWbA==
-  dependencies:
-    camelcase "^6.3.0"
-    decamelize "^5.0.1"
-    fs-extra "^10.1.0"
 
 codemaker@^1.109.0:
   version "1.109.0"
