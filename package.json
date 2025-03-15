@@ -43,7 +43,7 @@
     "organization": false
   },
   "devDependencies": {
-    "@cdk8s/projen-common": "^0.0.587",
+    "@cdk8s/projen-common": "^0.0.588",
     "@stylistic/eslint-plugin": "^2",
     "@types/follow-redirects": "^1.14.4",
     "@types/jest": "^27",
@@ -63,7 +63,7 @@
     "jsii-pacmak": "^1.109.0",
     "jsii-rosetta": "^5",
     "json-schema-to-typescript": "^10.1.5",
-    "projen": "^0.91.15",
+    "projen": "^0.91.16",
     "ts-jest": "^27",
     "typescript": "~5.8.2"
   },
