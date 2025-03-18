@@ -3183,6 +3183,7 @@ public produce(): any
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk8s.Lazy.any">any</a></code> | *No description.* |
+| <code><a href="#cdk8s.Lazy.isLazy">isLazy</a></code> | Checks if an object is a Lazy instance. |
 
 ---
 
@@ -3197,6 +3198,24 @@ Lazy.any(producer: IAnyProducer)
 ###### `producer`<sup>Required</sup> <a name="producer" id="cdk8s.Lazy.any.parameter.producer"></a>
 
 - *Type:* <a href="#cdk8s.IAnyProducer">IAnyProducer</a>
+
+---
+
+##### `isLazy` <a name="isLazy" id="cdk8s.Lazy.isLazy"></a>
+
+```typescript
+import { Lazy } from 'cdk8s'
+
+Lazy.isLazy(obj: any)
+```
+
+Checks if an object is a Lazy instance.
+
+###### `obj`<sup>Required</sup> <a name="obj" id="cdk8s.Lazy.isLazy.parameter.obj"></a>
+
+- *Type:* any
+
+The object to check.
 
 ---
 

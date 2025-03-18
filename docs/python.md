@@ -3881,6 +3881,7 @@ def produce() -> typing.Any
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk8s.Lazy.any">any</a></code> | *No description.* |
+| <code><a href="#cdk8s.Lazy.isLazy">is_lazy</a></code> | Checks if an object is a Lazy instance. |
 
 ---
 
@@ -3897,6 +3898,26 @@ cdk8s.Lazy.any(
 ###### `producer`<sup>Required</sup> <a name="producer" id="cdk8s.Lazy.any.parameter.producer"></a>
 
 - *Type:* <a href="#cdk8s.IAnyProducer">IAnyProducer</a>
+
+---
+
+##### `is_lazy` <a name="is_lazy" id="cdk8s.Lazy.isLazy"></a>
+
+```python
+import cdk8s
+
+cdk8s.Lazy.is_lazy(
+  obj: typing.Any
+)
+```
+
+Checks if an object is a Lazy instance.
+
+###### `obj`<sup>Required</sup> <a name="obj" id="cdk8s.Lazy.isLazy.parameter.obj"></a>
+
+- *Type:* typing.Any
+
+The object to check.
 
 ---
 
