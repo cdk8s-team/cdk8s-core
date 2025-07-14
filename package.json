@@ -62,7 +62,7 @@
     "jsii-docgen": "^10.5.0",
     "jsii-pacmak": "^1.112.0",
     "jsii-rosetta": "^5",
-    "json-schema-to-typescript": "^10.1.5",
+    "json-schema-to-typescript": "^15.0.4",
     "projen": "^0.94.2",
     "ts-jest": "^27",
     "typescript": "~5.8.3"
