@@ -162,11 +162,11 @@ test('labels are cloned', () => {
   });
 
   expect(met2.toJson()).toMatchInlineSnapshot(`
-    Object {
-      "labels": Object {
-        "foo": "bar",
-      },
-    }
+   {
+     "labels": {
+       "foo": "bar",
+     },
+   }
   `);
 });
 
@@ -185,11 +185,11 @@ test('annotations are cloned', () => {
   });
 
   expect(met2.toJson()).toMatchInlineSnapshot(`
-    Object {
-      "annotations": Object {
-        "foo": "bar",
-      },
-    }
+   {
+     "annotations": {
+       "foo": "bar",
+     },
+   }
   `);
 });
 
@@ -208,11 +208,11 @@ test('finalizers are cloned', () => {
   });
 
   expect(met2.toJson()).toMatchInlineSnapshot(`
-    Object {
-      "finalizers": Array [
-        "foo",
-      ],
-    }
+   {
+     "finalizers": [
+       "foo",
+     ],
+   }
   `);
 });
 
@@ -238,16 +238,16 @@ test('ownerReferences are cloned', () => {
   });
 
   expect(met2.toJson()).toMatchInlineSnapshot(`
-    Object {
-      "ownerReferences": Array [
-        Object {
-          "apiVersion": "v1",
-          "kind": "Kind",
-          "name": "name1",
-          "uid": "uid1",
-        },
-      ],
-    }
+   {
+     "ownerReferences": [
+       {
+         "apiVersion": "v1",
+         "kind": "Kind",
+         "name": "name1",
+         "uid": "uid1",
+       },
+     ],
+   }
   `);
 });
 

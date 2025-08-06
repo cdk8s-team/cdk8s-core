@@ -1,33 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`load empty documents are filtered out 1`] = `
-Array [
-  Object {
+[
+  {
     "doc": 1,
   },
   "str_doc",
   "",
   0,
-  Object {
+  {
     "doc": 2,
   },
 ]
 `;
 
 exports[`load from file 1`] = `
-Array [
-  Object {
+[
+  {
     "hello": 1234,
     "world": 111,
   },
-  Object {
-    "foo": Array [
+  {
+    "foo": [
       "bar",
       "zoo",
       "goo",
     ],
   },
-  Array [
+  [
     "hello",
     "world",
   ],
@@ -35,67 +35,67 @@ Array [
 `;
 
 exports[`load from url 1`] = `
-Array [
-  Object {
+[
+  {
     "apiVersion": "v1",
     "kind": "Service",
-    "metadata": Object {
-      "labels": Object {
+    "metadata": {
+      "labels": {
         "app": "redis",
         "role": "master",
         "tier": "backend",
       },
       "name": "redis-master",
     },
-    "spec": Object {
-      "ports": Array [
-        Object {
+    "spec": {
+      "ports": [
+        {
           "port": 6379,
           "targetPort": 6379,
         },
       ],
-      "selector": Object {
+      "selector": {
         "app": "redis",
         "role": "master",
         "tier": "backend",
       },
     },
   },
-  Object {
+  {
     "apiVersion": "apps/v1",
     "kind": "Deployment",
-    "metadata": Object {
+    "metadata": {
       "name": "redis-master",
     },
-    "spec": Object {
+    "spec": {
       "replicas": 1,
-      "selector": Object {
-        "matchLabels": Object {
+      "selector": {
+        "matchLabels": {
           "app": "redis",
           "role": "master",
           "tier": "backend",
         },
       },
-      "template": Object {
-        "metadata": Object {
-          "labels": Object {
+      "template": {
+        "metadata": {
+          "labels": {
             "app": "redis",
             "role": "master",
             "tier": "backend",
           },
         },
-        "spec": Object {
-          "containers": Array [
-            Object {
+        "spec": {
+          "containers": [
+            {
               "image": "registry.k8s.io/redis:e2e",
               "name": "master",
-              "ports": Array [
-                Object {
+              "ports": [
+                {
                   "containerPort": 6379,
                 },
               ],
-              "resources": Object {
-                "requests": Object {
+              "resources": {
+                "requests": {
                   "cpu": "100m",
                   "memory": "100Mi",
                 },
@@ -106,71 +106,71 @@ Array [
       },
     },
   },
-  Object {
+  {
     "apiVersion": "v1",
     "kind": "Service",
-    "metadata": Object {
-      "labels": Object {
+    "metadata": {
+      "labels": {
         "app": "redis",
         "role": "replica",
         "tier": "backend",
       },
       "name": "redis-replica",
     },
-    "spec": Object {
-      "ports": Array [
-        Object {
+    "spec": {
+      "ports": [
+        {
           "port": 6379,
         },
       ],
-      "selector": Object {
+      "selector": {
         "app": "redis",
         "role": "replica",
         "tier": "backend",
       },
     },
   },
-  Object {
+  {
     "apiVersion": "apps/v1",
     "kind": "Deployment",
-    "metadata": Object {
+    "metadata": {
       "name": "redis-replica",
     },
-    "spec": Object {
+    "spec": {
       "replicas": 2,
-      "selector": Object {
-        "matchLabels": Object {
+      "selector": {
+        "matchLabels": {
           "app": "redis",
           "role": "replica",
           "tier": "backend",
         },
       },
-      "template": Object {
-        "metadata": Object {
-          "labels": Object {
+      "template": {
+        "metadata": {
+          "labels": {
             "app": "redis",
             "role": "replica",
             "tier": "backend",
           },
         },
-        "spec": Object {
-          "containers": Array [
-            Object {
-              "env": Array [
-                Object {
+        "spec": {
+          "containers": [
+            {
+              "env": [
+                {
                   "name": "GET_HOSTS_FROM",
                   "value": "dns",
                 },
               ],
               "image": "gcr.io/google_samples/gb-redisslave:v1",
               "name": "replica",
-              "ports": Array [
-                Object {
+              "ports": [
+                {
                   "containerPort": 6379,
                 },
               ],
-              "resources": Object {
-                "requests": Object {
+              "resources": {
+                "requests": {
                   "cpu": "100m",
                   "memory": "100Mi",
                 },
@@ -181,68 +181,68 @@ Array [
       },
     },
   },
-  Object {
+  {
     "apiVersion": "v1",
     "kind": "Service",
-    "metadata": Object {
-      "labels": Object {
+    "metadata": {
+      "labels": {
         "app": "guestbook",
         "tier": "frontend",
       },
       "name": "frontend",
     },
-    "spec": Object {
-      "ports": Array [
-        Object {
+    "spec": {
+      "ports": [
+        {
           "port": 80,
         },
       ],
-      "selector": Object {
+      "selector": {
         "app": "guestbook",
         "tier": "frontend",
       },
       "type": "NodePort",
     },
   },
-  Object {
+  {
     "apiVersion": "apps/v1",
     "kind": "Deployment",
-    "metadata": Object {
+    "metadata": {
       "name": "frontend",
     },
-    "spec": Object {
+    "spec": {
       "replicas": 3,
-      "selector": Object {
-        "matchLabels": Object {
+      "selector": {
+        "matchLabels": {
           "app": "guestbook",
           "tier": "frontend",
         },
       },
-      "template": Object {
-        "metadata": Object {
-          "labels": Object {
+      "template": {
+        "metadata": {
+          "labels": {
             "app": "guestbook",
             "tier": "frontend",
           },
         },
-        "spec": Object {
-          "containers": Array [
-            Object {
-              "env": Array [
-                Object {
+        "spec": {
+          "containers": [
+            {
+              "env": [
+                {
                   "name": "GET_HOSTS_FROM",
                   "value": "dns",
                 },
               ],
               "image": "gcr.io/google-samples/gb-frontend:v4",
               "name": "php-redis",
-              "ports": Array [
-                Object {
+              "ports": [
+                {
                   "containerPort": 80,
                 },
               ],
-              "resources": Object {
-                "requests": Object {
+              "resources": {
+                "requests": {
                   "cpu": "100m",
                   "memory": "100Mi",
                 },
@@ -307,8 +307,8 @@ hello:
 `;
 
 exports[`save strings are quoted 1`] = `
-"foo: \\"on\\"
-bar: this has a \\"big quote\\"
+"foo: "on"
+bar: this has a "big quote"
 not_a_string: true
 "
 `;

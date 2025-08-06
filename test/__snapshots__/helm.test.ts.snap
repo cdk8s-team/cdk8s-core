@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`basic usage 1`] = `
-Array [
-  Object {
+[
+  {
     "apiVersion": "v1",
     "kind": "ServiceAccount",
-    "metadata": Object {
-      "labels": Object {
+    "metadata": {
+      "labels": {
         "app.kubernetes.io/instance": "test-sample-c8e2763d",
         "app.kubernetes.io/managed-by": "Helm",
         "app.kubernetes.io/name": "helm-sample",
@@ -16,11 +16,11 @@ Array [
       "name": "test-sample-c8e2763d-helm-sample",
     },
   },
-  Object {
+  {
     "apiVersion": "v1",
     "kind": "Service",
-    "metadata": Object {
-      "labels": Object {
+    "metadata": {
+      "labels": {
         "app.kubernetes.io/instance": "test-sample-c8e2763d",
         "app.kubernetes.io/managed-by": "Helm",
         "app.kubernetes.io/name": "helm-sample",
@@ -29,27 +29,27 @@ Array [
       },
       "name": "test-sample-c8e2763d-helm-sample",
     },
-    "spec": Object {
-      "ports": Array [
-        Object {
+    "spec": {
+      "ports": [
+        {
           "name": "http",
           "port": 80,
           "protocol": "TCP",
           "targetPort": "http",
         },
       ],
-      "selector": Object {
+      "selector": {
         "app.kubernetes.io/instance": "test-sample-c8e2763d",
         "app.kubernetes.io/name": "helm-sample",
       },
       "type": "ClusterIP",
     },
   },
-  Object {
+  {
     "apiVersion": "apps/v1",
     "kind": "Deployment",
-    "metadata": Object {
-      "labels": Object {
+    "metadata": {
+      "labels": {
         "app.kubernetes.io/instance": "test-sample-c8e2763d",
         "app.kubernetes.io/managed-by": "Helm",
         "app.kubernetes.io/name": "helm-sample",
@@ -58,51 +58,51 @@ Array [
       },
       "name": "test-sample-c8e2763d-helm-sample",
     },
-    "spec": Object {
+    "spec": {
       "replicas": 1,
-      "selector": Object {
-        "matchLabels": Object {
+      "selector": {
+        "matchLabels": {
           "app.kubernetes.io/instance": "test-sample-c8e2763d",
           "app.kubernetes.io/name": "helm-sample",
         },
       },
-      "template": Object {
-        "metadata": Object {
-          "labels": Object {
+      "template": {
+        "metadata": {
+          "labels": {
             "app.kubernetes.io/instance": "test-sample-c8e2763d",
             "app.kubernetes.io/name": "helm-sample",
           },
         },
-        "spec": Object {
-          "containers": Array [
-            Object {
+        "spec": {
+          "containers": [
+            {
               "image": "nginx:1.16.0",
               "imagePullPolicy": "IfNotPresent",
-              "livenessProbe": Object {
-                "httpGet": Object {
+              "livenessProbe": {
+                "httpGet": {
                   "path": "/",
                   "port": "http",
                 },
               },
               "name": "helm-sample",
-              "ports": Array [
-                Object {
+              "ports": [
+                {
                   "containerPort": 80,
                   "name": "http",
                   "protocol": "TCP",
                 },
               ],
-              "readinessProbe": Object {
-                "httpGet": Object {
+              "readinessProbe": {
+                "httpGet": {
                   "path": "/",
                   "port": "http",
                 },
               },
-              "resources": Object {},
-              "securityContext": Object {},
+              "resources": {},
+              "securityContext": {},
             },
           ],
-          "securityContext": Object {},
+          "securityContext": {},
           "serviceAccountName": "test-sample-c8e2763d-helm-sample",
         },
       },
@@ -112,12 +112,12 @@ Array [
 `;
 
 exports[`values can be specified when defining the chart 1`] = `
-Array [
-  Object {
+[
+  {
     "apiVersion": "v1",
     "kind": "ServiceAccount",
-    "metadata": Object {
-      "labels": Object {
+    "metadata": {
+      "labels": {
         "app.kubernetes.io/instance": "test-sample-c8e2763d",
         "app.kubernetes.io/managed-by": "Helm",
         "app.kubernetes.io/name": "helm-sample",
@@ -127,11 +127,11 @@ Array [
       "name": "test-sample-c8e2763d-helm-sample",
     },
   },
-  Object {
+  {
     "apiVersion": "v1",
     "kind": "Service",
-    "metadata": Object {
-      "labels": Object {
+    "metadata": {
+      "labels": {
         "app.kubernetes.io/instance": "test-sample-c8e2763d",
         "app.kubernetes.io/managed-by": "Helm",
         "app.kubernetes.io/name": "helm-sample",
@@ -140,27 +140,27 @@ Array [
       },
       "name": "test-sample-c8e2763d-helm-sample",
     },
-    "spec": Object {
-      "ports": Array [
-        Object {
+    "spec": {
+      "ports": [
+        {
           "name": "http",
           "port": 80,
           "protocol": "TCP",
           "targetPort": "http",
         },
       ],
-      "selector": Object {
+      "selector": {
         "app.kubernetes.io/instance": "test-sample-c8e2763d",
         "app.kubernetes.io/name": "helm-sample",
       },
       "type": "ClusterIP",
     },
   },
-  Object {
+  {
     "apiVersion": "apps/v1",
     "kind": "Deployment",
-    "metadata": Object {
-      "labels": Object {
+    "metadata": {
+      "labels": {
         "app.kubernetes.io/instance": "test-sample-c8e2763d",
         "app.kubernetes.io/managed-by": "Helm",
         "app.kubernetes.io/name": "helm-sample",
@@ -169,54 +169,54 @@ Array [
       },
       "name": "test-sample-c8e2763d-helm-sample",
     },
-    "spec": Object {
+    "spec": {
       "replicas": 889,
-      "selector": Object {
-        "matchLabels": Object {
+      "selector": {
+        "matchLabels": {
           "app.kubernetes.io/instance": "test-sample-c8e2763d",
           "app.kubernetes.io/name": "helm-sample",
         },
       },
-      "template": Object {
-        "metadata": Object {
-          "labels": Object {
+      "template": {
+        "metadata": {
+          "labels": {
             "app.kubernetes.io/instance": "test-sample-c8e2763d",
             "app.kubernetes.io/name": "helm-sample",
           },
         },
-        "spec": Object {
-          "containers": Array [
-            Object {
+        "spec": {
+          "containers": [
+            {
               "image": "nginx:1.16.0",
               "imagePullPolicy": "IfNotPresent",
-              "livenessProbe": Object {
-                "httpGet": Object {
+              "livenessProbe": {
+                "httpGet": {
                   "path": "/",
                   "port": "http",
                 },
               },
               "name": "helm-sample",
-              "ports": Array [
-                Object {
+              "ports": [
+                {
                   "containerPort": 80,
                   "name": "http",
                   "protocol": "TCP",
                 },
               ],
-              "readinessProbe": Object {
-                "httpGet": Object {
+              "readinessProbe": {
+                "httpGet": {
                   "path": "/",
                   "port": "http",
                 },
               },
-              "resources": Object {},
-              "securityContext": Object {},
+              "resources": {},
+              "securityContext": {},
             },
           ],
-          "nodeSelector": Object {
+          "nodeSelector": {
             "selectMe": "boomboom",
           },
-          "securityContext": Object {},
+          "securityContext": {},
           "serviceAccountName": "test-sample-c8e2763d-helm-sample",
         },
       },
