@@ -2,33 +2,33 @@
 
 exports[`sanitizeValue sortKeys 1`] = `
 "{
-  \\"aaa\\": 111,
-  \\"nested\\": {
-    \\"foo\\": {
-      \\"bar\\": \\"1111\\",
-      \\"zag\\": [
+  "aaa": 111,
+  "nested": {
+    "foo": {
+      "bar": "1111",
+      "zag": [
         1,
         2,
         3
       ]
     }
   },
-  \\"zzz\\": 999
+  "zzz": 999
 }"
 `;
 
 exports[`sanitizeValue sortKeys 2`] = `
 "{
-  \\"zzz\\": 999,
-  \\"aaa\\": 111,
-  \\"nested\\": {
-    \\"foo\\": {
-      \\"zag\\": [
+  "zzz": 999,
+  "aaa": 111,
+  "nested": {
+    "foo": {
+      "zag": [
         1,
         2,
         3
       ],
-      \\"bar\\": \\"1111\\"
+      "bar": "1111"
     }
   }
 }"

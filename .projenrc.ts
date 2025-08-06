@@ -1,11 +1,10 @@
-const { Cdk8sTeamJsiiProject } = require('@cdk8s/projen-common');
-const { JsonFile, github } = require('projen');
+import { Cdk8sTeamJsiiProject } from '@cdk8s/projen-common';
 
 const project = new Cdk8sTeamJsiiProject({
   name: 'cdk8s',
   repoName: 'cdk8s-core',
   description: 'This is the core library of Cloud Development Kit (CDK) for Kubernetes (cdk8s). cdk8s apps synthesize into standard Kubernetes manifests which can be applied to any Kubernetes cluster.',
-  projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
+  projenrcTs: true,
 
   peerDeps: [
     'constructs@^10',
@@ -36,7 +35,8 @@ const project = new Cdk8sTeamJsiiProject({
   defaultReleaseBranch: '2.x',
   majorVersion: 2,
   golangBranch: '2.x',
-  jsiiVersion: '^5',
+  jsiiVersion: '5.8.x',
+  typescriptVersion: '5.8.x',
 });
 
 // _loadurl.mjs is written in javascript so we need to commit it and also copy it
@@ -55,10 +55,12 @@ const installHelm = project.addTask('install-helm', {
 project.testTask.prependSpawn(installHelm);
 
 const docgenTask = project.tasks.tryFind('docgen');
-docgenTask.reset();
-docgenTask.exec('jsii-docgen -l typescript -o docs/typescript.md');
-docgenTask.exec('jsii-docgen -l python -o docs/python.md');
-docgenTask.exec('jsii-docgen -l java -o docs/java.md');
+if (docgenTask) {
+  docgenTask.reset();
+  docgenTask.exec('jsii-docgen -l typescript -o docs/typescript.md');
+  docgenTask.exec('jsii-docgen -l python -o docs/python.md');
+  docgenTask.exec('jsii-docgen -l java -o docs/java.md');
+}
 
 // https://github.com/DefinitelyTyped/DefinitelyTyped/pull/64924
 project.package.addPackageResolutions('@types/lodash@4.14.192');

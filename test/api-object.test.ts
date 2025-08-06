@@ -407,16 +407,16 @@ test('compound resolution', () => {
   });
 
   expect(apiObject.toJson()).toMatchInlineSnapshot(`
-    Object {
-      "apiVersion": "v1",
-      "kind": "Resource1",
-      "metadata": Object {
-        "name": "test-resource1-c85cb0fc",
-      },
-      "spec": Object {
-        "foo": 123,
-      },
-    }
+   {
+     "apiVersion": "v1",
+     "kind": "Resource1",
+     "metadata": {
+       "name": "test-resource1-c85cb0fc",
+     },
+     "spec": {
+       "foo": 123,
+     },
+   }
   `);
 });
 
@@ -452,21 +452,21 @@ test('custom resolver', () => {
   });
 
   expect(apiObject.toJson()).toMatchInlineSnapshot(`
-    Object {
-      "apiVersion": "newValue",
-      "kind": "newValue",
-      "metadata": Object {
-        "foo": "newValue",
-        "name": "newValue",
-      },
-      "spec": Object {
-        "someArray": Array [
-          1,
-          2,
-        ],
-        "type": "newValue",
-      },
-    }
+   {
+     "apiVersion": "newValue",
+     "kind": "newValue",
+     "metadata": {
+       "foo": "newValue",
+       "name": "newValue",
+     },
+     "spec": {
+       "someArray": [
+         1,
+         2,
+       ],
+       "type": "newValue",
+     },
+   }
   `);
 });
 
@@ -503,18 +503,18 @@ test('multiple custom resolvers', () => {
   });
 
   expect(apiObject.toJson()).toMatchInlineSnapshot(`
-    Object {
-      "apiVersion": "v1",
-      "kind": "Service",
-      "metadata": Object {
-        "foo": "bar",
-        "name": "chart-apiobject-c830d7bd",
-      },
-      "spec": Object {
-        "someArray": "newValue2",
-        "type": "newValue1",
-      },
-    }
+   {
+     "apiVersion": "v1",
+     "kind": "Service",
+     "metadata": {
+       "foo": "bar",
+       "name": "chart-apiobject-c830d7bd",
+     },
+     "spec": {
+       "someArray": "newValue2",
+       "type": "newValue1",
+     },
+   }
   `);
 });
 
@@ -549,17 +549,17 @@ test('annonymous object custom resolver', () => {
   });
 
   expect(apiObject.toJson()).toMatchInlineSnapshot(`
-    Object {
-      "apiVersion": "v1",
-      "kind": "Service",
-      "metadata": Object {
-        "foo": "bar",
-        "name": "chart-apiobject-c830d7bd",
-      },
-      "spec": Object {
-        "type": "blah",
-      },
-    }
+   {
+     "apiVersion": "v1",
+     "kind": "Service",
+     "metadata": {
+       "foo": "bar",
+       "name": "chart-apiobject-c830d7bd",
+     },
+     "spec": {
+       "type": "blah",
+     },
+   }
   `);
 });
 
@@ -614,21 +614,20 @@ test('can resolve L1', () => {
   });
 
   expect(apiObject.toJson()).toMatchInlineSnapshot(`
-    Object {
-      "apiVersion": "v1",
-      "kind": "Kind",
-      "metadata": Object {
-        "name": "test-l1-c8c430b5",
-      },
-      "spec": Object {
-        "surge": 500,
-      },
-    }
+   {
+     "apiVersion": "v1",
+     "kind": "Kind",
+     "metadata": {
+       "name": "test-l1-c8c430b5",
+     },
+     "spec": {
+       "surge": 500,
+     },
+   }
   `);
 });
 
 test('toJson error message', () => {
-
   const chart = Testing.chart();
 
   const obj = new ApiObject(chart, 'ConfigMap', {
@@ -639,6 +638,7 @@ test('toJson error message', () => {
     },
   });
 
-  expect(() => obj.toJson()).toThrowError(`Failed serializing construct at path '${obj.node.path}' with name '${obj.name}': Error: can't render non-simple object of type 'Size'`);
-
+  expect(() => obj.toJson()).toThrow(
+    `Failed serializing construct at path '${obj.node.path}' with name '${obj.name}': Error: can't render non-simple object of type 'Size'`,
+  );
 });

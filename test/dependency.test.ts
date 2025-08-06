@@ -33,7 +33,7 @@ test('cycle detection', () => {
 
   expect(() => {
     new DependencyGraph(group.node);
-  }).toThrowError(`Dependency cycle detected: ${obj1.node.path} => ${obj2.node.path} => ${obj3.node.path} => ${obj1.node.path}`);
+  }).toThrow(`Dependency cycle detected: ${obj1.node.path} => ${obj2.node.path} => ${obj3.node.path} => ${obj1.node.path}`);
 
 });
 
