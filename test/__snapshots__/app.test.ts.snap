@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`app with nested charts will deduplicate api objects (using custom classes) 1`] = `
 "apiVersion: v1
