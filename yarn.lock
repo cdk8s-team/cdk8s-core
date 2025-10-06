@@ -4022,12 +4022,12 @@ jsii-rosetta@5.8.x:
     yargs "^17.7.2"
 
 jsii@5.8.x, jsii@~5.8.0:
-  version "5.8.20"
-  resolved "https://registry.yarnpkg.com/jsii/-/jsii-5.8.20.tgz#6723d9a29434a412509c2e9494f84cd6ad94b2f3"
-  integrity sha512-WMvCAeqG+uXvbMq/0l2xzLN+XEsb+snFhMZ4OQAf6xhT9yY1RwH8jR83T+oJQLYKYxgtTCVkjMSyDR/pUAtJ8w==
+  version "5.8.21"
+  resolved "https://registry.yarnpkg.com/jsii/-/jsii-5.8.21.tgz#b6c39b6b1ce7944c74878511c0485d6ddb3bec01"
+  integrity sha512-9tPMOKh6XcIYaSRoiaztR96iD2oSE3yp0yZMDlr2ryqvGZKAKZ5Kn/eocGqIBniqx/goPBzqyOlRhPl4P1FICA==
   dependencies:
-    "@jsii/check-node" "1.114.1"
-    "@jsii/spec" "^1.114.1"
+    "@jsii/check-node" "1.115.0"
+    "@jsii/spec" "^1.115.0"
     case "^1.6.3"
     chalk "^4"
     fast-deep-equal "^3.1.3"
