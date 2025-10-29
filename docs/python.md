@@ -157,7 +157,7 @@ To disable sorting of dictionary keys in output object set the
 
 ---
 
-##### ~~`is_construct`~~ <a name="is_construct" id="cdk8s.ApiObject.isConstruct"></a>
+##### `is_construct` <a name="is_construct" id="cdk8s.ApiObject.isConstruct"></a>
 
 ```python
 import cdk8s
@@ -168,6 +168,20 @@ cdk8s.ApiObject.is_construct(
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdk8s.ApiObject.isConstruct.parameter.x"></a>
 
@@ -457,7 +471,7 @@ Synthesizes the app into a YAML string.
 
 ---
 
-##### ~~`is_construct`~~ <a name="is_construct" id="cdk8s.App.isConstruct"></a>
+##### `is_construct` <a name="is_construct" id="cdk8s.App.isConstruct"></a>
 
 ```python
 import cdk8s
@@ -468,6 +482,20 @@ cdk8s.App.is_construct(
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdk8s.App.isConstruct.parameter.x"></a>
 
@@ -744,7 +772,7 @@ Renders this chart to a set of Kubernetes JSON resources.
 
 ---
 
-##### ~~`is_construct`~~ <a name="is_construct" id="cdk8s.Chart.isConstruct"></a>
+##### `is_construct` <a name="is_construct" id="cdk8s.Chart.isConstruct"></a>
 
 ```python
 import cdk8s
@@ -755,6 +783,20 @@ cdk8s.Chart.is_construct(
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdk8s.Chart.isConstruct.parameter.x"></a>
 
@@ -1034,7 +1076,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`is_construct`~~ <a name="is_construct" id="cdk8s.Helm.isConstruct"></a>
+##### `is_construct` <a name="is_construct" id="cdk8s.Helm.isConstruct"></a>
 
 ```python
 import cdk8s
@@ -1045,6 +1087,20 @@ cdk8s.Helm.is_construct(
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdk8s.Helm.isConstruct.parameter.x"></a>
 
@@ -1180,7 +1236,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`is_construct`~~ <a name="is_construct" id="cdk8s.Include.isConstruct"></a>
+##### `is_construct` <a name="is_construct" id="cdk8s.Include.isConstruct"></a>
 
 ```python
 import cdk8s
@@ -1191,6 +1247,20 @@ cdk8s.Include.is_construct(
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdk8s.Include.isConstruct.parameter.x"></a>
 
