@@ -4091,7 +4091,7 @@ The method to divide YAML output into files.
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk8s.YamlOutputType.FILE_PER_APP">FILE_PER_APP</a></code> | All resources are output into a single YAML file. |
-| <code><a href="#cdk8s.YamlOutputType.FILE_PER_CHART">FILE_PER_CHART</a></code> | Resources are split into seperate files by chart. |
+| <code><a href="#cdk8s.YamlOutputType.FILE_PER_CHART">FILE_PER_CHART</a></code> | Resources are split into separate files by chart. |
 | <code><a href="#cdk8s.YamlOutputType.FILE_PER_RESOURCE">FILE_PER_RESOURCE</a></code> | Each resource is output to its own file. |
 | <code><a href="#cdk8s.YamlOutputType.FOLDER_PER_CHART_FILE_PER_RESOURCE">FOLDER_PER_CHART_FILE_PER_RESOURCE</a></code> | Each chart in its own folder and each resource in its own file. |
 
@@ -4106,7 +4106,7 @@ All resources are output into a single YAML file.
 
 ##### `FILE_PER_CHART` <a name="FILE_PER_CHART" id="cdk8s.YamlOutputType.FILE_PER_CHART"></a>
 
-Resources are split into seperate files by chart.
+Resources are split into separate files by chart.
 
 ---
 
