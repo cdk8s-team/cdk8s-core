@@ -74,6 +74,7 @@ framework based on the path of the construct within thes construct tree.
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk8s.ApiObject.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk8s.ApiObject.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#cdk8s.ApiObject.addDependency">addDependency</a></code> | Create a dependency between this ApiObject and other constructs. |
 | <code><a href="#cdk8s.ApiObject.addJsonPatch">addJsonPatch</a></code> | Applies a set of RFC-6902 JSON-Patch operations to the manifest synthesized for this API object. |
 | <code><a href="#cdk8s.ApiObject.toJson">toJson</a></code> | Renders the object to Kubernetes JSON. |
@@ -87,6 +88,27 @@ public java.lang.String toString()
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="cdk8s.ApiObject.with"></a>
+
+```java
+public IConstruct with(IMixin... mixins)
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk8s.ApiObject.with.parameter.mixins"></a>
+
+- *Type:* software.constructs.IMixin...
+
+The mixins to apply.
+
+---
 
 ##### `addDependency` <a name="addDependency" id="cdk8s.ApiObject.addDependency"></a>
 
@@ -421,6 +443,7 @@ How to divide the YAML output into files.
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk8s.App.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk8s.App.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#cdk8s.App.synth">synth</a></code> | Synthesizes all manifests to the output directory. |
 | <code><a href="#cdk8s.App.synthYaml">synthYaml</a></code> | Synthesizes the app into a YAML string. |
 
@@ -433,6 +456,27 @@ public java.lang.String toString()
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="cdk8s.App.with"></a>
+
+```java
+public IConstruct with(IMixin... mixins)
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk8s.App.with.parameter.mixins"></a>
+
+- *Type:* software.constructs.IMixin...
+
+The mixins to apply.
+
+---
 
 ##### `synth` <a name="synth" id="cdk8s.App.synth"></a>
 
@@ -669,6 +713,7 @@ This namespace will only apply to objects that don't have a
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk8s.Chart.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk8s.Chart.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#cdk8s.Chart.addDependency">addDependency</a></code> | Create a dependency between this Chart and other constructs. |
 | <code><a href="#cdk8s.Chart.generateObjectName">generateObjectName</a></code> | Generates a app-unique name for an object given it's construct node path. |
 | <code><a href="#cdk8s.Chart.toJson">toJson</a></code> | Renders this chart to a set of Kubernetes JSON resources. |
@@ -682,6 +727,27 @@ public java.lang.String toString()
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="cdk8s.Chart.with"></a>
+
+```java
+public IConstruct with(IMixin... mixins)
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk8s.Chart.with.parameter.mixins"></a>
+
+- *Type:* software.constructs.IMixin...
+
+The mixins to apply.
+
+---
 
 ##### `addDependency` <a name="addDependency" id="cdk8s.Chart.addDependency"></a>
 
@@ -1027,6 +1093,7 @@ This name is passed to `helm template --version` and has all the relevant semant
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk8s.Helm.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk8s.Helm.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -1037,6 +1104,27 @@ public java.lang.String toString()
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="cdk8s.Helm.with"></a>
+
+```java
+public IConstruct with(IMixin... mixins)
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk8s.Helm.with.parameter.mixins"></a>
+
+- *Type:* software.constructs.IMixin...
+
+The mixins to apply.
+
+---
 
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
@@ -1183,6 +1271,7 @@ mymanifest.getYaml();
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk8s.Include.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk8s.Include.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -1193,6 +1282,27 @@ public java.lang.String toString()
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="cdk8s.Include.with"></a>
+
+```java
+public IConstruct with(IMixin... mixins)
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk8s.Include.with.parameter.mixins"></a>
+
+- *Type:* software.constructs.IMixin...
+
+The mixins to apply.
+
+---
 
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
