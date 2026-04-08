@@ -27,8 +27,7 @@
     "types": [
       "follow-redirects",
       "jest",
-      "node",
-      "lodash"
+      "node"
     ]
   },
   "include": [
