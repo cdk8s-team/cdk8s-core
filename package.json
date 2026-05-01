@@ -60,7 +60,7 @@
     "jsii": "5.8.x",
     "jsii-diff": "^1.129.0",
     "jsii-docgen": "^10.5.0",
-    "jsii-pacmak": "^1.128.0",
+    "jsii-pacmak": "^1.129.0",
     "jsii-rosetta": "5.8.x",
     "json-schema-to-typescript": "^15.0.4",
     "projen": "^0.99.52",
