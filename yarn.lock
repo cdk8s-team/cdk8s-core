@@ -862,9 +862,9 @@
     type-detect "4.0.8"
 
 "@sinonjs/fake-timers@^15.0.0":
-  version "15.3.2"
-  resolved "https://registry.yarnpkg.com/@sinonjs/fake-timers/-/fake-timers-15.3.2.tgz#afecc36681e26aab9e0fe809fd9ad578096a3058"
-  integrity sha512-mrn35Jl2pCpns+mE3HaZa1yPN5EYCRgiMI+135COjr2hr8Cls9DXqIZ57vZe2cz7y2XVSq92tcs6kGQcT1J8Rw==
+  version "15.4.0"
+  resolved "https://registry.yarnpkg.com/@sinonjs/fake-timers/-/fake-timers-15.4.0.tgz#5d40c151a9e66075fe4520bec40bccfe54931962"
+  integrity sha512-DsG+8/LscQIQg68J6Ef3dv10u6nVyetYn923s3/sus5eaGfTo1of5WMZSLf0UJc9KDuKPilPH0UDJCjvNbDNCA==
   dependencies:
     "@sinonjs/commons" "^3.0.1"
 
@@ -1129,9 +1129,9 @@
     eslint-visitor-keys "^5.0.0"
 
 "@ungap/structured-clone@^1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.3.0.tgz#d06bbb384ebcf6c505fde1c3d0ed4ddffe0aaff8"
-  integrity sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.3.1.tgz#0e8f34854df7966b09304a18e808b23997bb9fc1"
+  integrity sha512-mUFwbeTqrVgDQxFveS+df2yfap6iuP20NAKAsBt5jDEoOTDew+zwLAOilHCeQJOVSvmgCX4ogqIrA0mnyr08yQ==
 
 "@unrs/resolver-binding-android-arm-eabi@1.11.1":
   version "1.11.1"
@@ -1616,9 +1616,9 @@ camelcase@^6.3.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001782:
-  version "1.0.30001791"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001791.tgz#dfb93d85c40ad380c57123e72e10f3c575786b51"
-  integrity sha512-yk0l/YSrOnFZk3UROpDLQD9+kC1l4meK/wed583AXrzoarMGJcbRi2Q4RaUYbKxYAsZ8sWmaSa/DsLmdBeI1vQ==
+  version "1.0.30001792"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001792.tgz#ca8bb9be244835a335e2018272ce7223691873c5"
+  integrity sha512-hVLMUZFgR4JJ6ACt1uEESvQN1/dBVqPAKY0hgrV70eN3391K6juAfTjKZLKvOMsx8PxA7gsY1/tLMMTcfFLLpw==
 
 case@^1.6.3:
   version "1.6.3"
@@ -2150,9 +2150,9 @@ eastasianwidth@^0.2.0:
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
 electron-to-chromium@^1.5.328:
-  version "1.5.349"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.349.tgz#9b9c6a6d84d1107557c18a9336099ce0ee890e5b"
-  integrity sha512-QsWVGyRuY07Aqb234QytTfwd5d9AJlfNIQ5wIOl1L+PZDzI9d9+Fn0FRale/QYlFxt/bUnB0/nLd1jFPGxGK1A==
+  version "1.5.351"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.351.tgz#7314fbb5b4835a1869feaec09665541b6a84cd37"
+  integrity sha512-9D7Iqx8RImSvCnOsj86rCH6eQjZFQoM04Jn6HnZVM0Nu/G58/gmKYQ1d12MZTbjQbQSTGI8nwEy07ErsA2slLA==
 
 emittery@^0.13.1:
   version "0.13.1"
@@ -2552,9 +2552,9 @@ fast-levenshtein@^2.0.6:
   integrity sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==
 
 fast-xml-builder@^1.1.7:
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/fast-xml-builder/-/fast-xml-builder-1.1.8.tgz#7bbc0c3957587f3c44d13c10fa1fdf8d4bcc328b"
-  integrity sha512-sDVBc2gg8pSKvcbE8rBmOyjSGQf0AdsbqvHeIOv3D/uYNoV4eCReQXyDF8Pdv8+m1FHazACypSz2hR7O2S1LLw==
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/fast-xml-builder/-/fast-xml-builder-1.1.9.tgz#96bf8de1e3a5f560149b6092844db4e6fd0ee38f"
+  integrity sha512-jcyKVSEX13iseJqg7n/KWw+xnu/7fdrZ333Fac54KjHDIELVCfDDJXYIm6DTJ0Su4gSzrhqiK0DzY/wZbF40mw==
   dependencies:
     path-expression-matcher "^1.1.3"
 
@@ -2952,7 +2952,7 @@ has-tostringtag@^1.0.2:
   dependencies:
     has-symbols "^1.0.3"
 
-hasown@^2.0.2:
+hasown@^2.0.2, hasown@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/hasown/-/hasown-2.0.3.tgz#5e5c2b15b60370a4c7930c383dfb76bf17bc403c"
   integrity sha512-ej4AhfhfL2Q2zpMmLo7U1Uv9+PyhIZpgQLGT1F9miIGmiCJIoCgSmczFdrc97mWT4kVY72KA+WnnhJ5pghSvSg==
@@ -3100,11 +3100,11 @@ is-callable@^1.2.7:
   integrity sha512-1BC0BVFhS/p0qtw6enp8e+8OD0UrK0oFLztSjNzhcKA3WDuJxxAPXzPuPtKkjEY9UUoEWlX/8fgKeu2S8i9JTA==
 
 is-core-module@^2.16.1, is-core-module@^2.5.0:
-  version "2.16.1"
-  resolved "https://registry.yarnpkg.com/is-core-module/-/is-core-module-2.16.1.tgz#2a98801a849f43e2add644fbb6bc6229b19a4ef4"
-  integrity sha512-UfoeMA6fIJ8wTYFEUjelnaGI67v6+N7qXJEvQuIGa99l4xsCruSYOVSQ0uPANn4dAzm8lkYPaKLrrijLq7x23w==
+  version "2.16.2"
+  resolved "https://registry.yarnpkg.com/is-core-module/-/is-core-module-2.16.2.tgz#3e07450a8080ebce3fbf0cac494f4d2ab324e082"
+  integrity sha512-evOr8xfXKxE6qSR0hSXL2r3sd7ALj8+7jQEUvPYcm5sgZFdJ+AYzT6yNmJenvIYQBgIGwfwz08sL8zoL7yq2BA==
   dependencies:
-    hasown "^2.0.2"
+    hasown "^2.0.3"
 
 is-data-view@^1.0.1, is-data-view@^1.0.2:
   version "1.0.2"
