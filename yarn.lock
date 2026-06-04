@@ -761,10 +761,23 @@
     chalk "^4.1.2"
     semver "^7.8.1"
 
+"@jsii/check-node@1.134.0":
+  version "1.134.0"
+  resolved "https://registry.yarnpkg.com/@jsii/check-node/-/check-node-1.134.0.tgz#68c3695ff388846146cf4a926145cf2edf5d7697"
+  integrity sha512-llnGrxrzX2Q2kQM96C7gnO2upIHwVuyt/srRZlwRmnDjnfIK7TDEwDWXkqTgf//p9Ly25zip4Vm0eAqYWacglQ==
+  dependencies:
+    chalk "^4.1.2"
+    semver "^7.8.1"
+
 "@jsii/spec@1.133.0", "@jsii/spec@^1.124.0", "@jsii/spec@^1.126.0", "@jsii/spec@^1.133.0":
   version "1.133.0"
   resolved "https://registry.yarnpkg.com/@jsii/spec/-/spec-1.133.0.tgz#ff9fbf6d5d2aa3372df54f90851f9634a5c484af"
   integrity sha512-U6LSoWV/0yYunjEvHTMf4+aL+v3UCh3+n+1qE0al1vVcobt0CDXpNF/NIERNjZDuCY0w5Oxo1U25dUrm4D8n7g==
+
+"@jsii/spec@1.134.0":
+  version "1.134.0"
+  resolved "https://registry.yarnpkg.com/@jsii/spec/-/spec-1.134.0.tgz#d3c9764c2cea9d03173a28ff8178ebc3bddd28e0"
+  integrity sha512-2K0r9Nvyf+l6OjlnKIOzKFrcMKVKyvhKecO++XCN0BFZbP+EcHEGdkwS+X50CAx8CvgGjbQH+DgdhQzYQryySA==
 
 "@napi-rs/wasm-runtime@^1.1.4":
   version "1.1.4"
@@ -2166,9 +2179,9 @@ eastasianwidth@^0.2.0:
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
 electron-to-chromium@^1.5.328:
-  version "1.5.366"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.366.tgz#54cfb4090db768d58dce9ef5a2f8b837e61ebe6b"
-  integrity sha512-OlRuhb688YTCzzU3gXPLn6nGyd+F+53INE1qaKKlu6kETErE8FYsyDh0XqXEU+uBRn0MpCzz2vfNwORhkap8qg==
+  version "1.5.367"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.367.tgz#ceae3cb3f2939d03a4f0f9b70caf93b7400fa705"
+  integrity sha512-4Mk/mrynCNQ+atY40D3UpmhLWB6AHMbYMlIrPhHcMF6x0L7O0b052FCAsxw1LlaR++UFuNg3D/A6XCuGDa0guQ==
 
 emittery@^0.13.1:
   version "0.13.1"
@@ -3806,15 +3819,15 @@ jsesc@^3.0.2:
   resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-3.1.0.tgz#74d335a234f67ed19907fdadfac7ccf9d409825d"
   integrity sha512-/sM3dO2FOzXjKQhJuo0Q173wf2KOo8t4I8vHy6lF9poUp7bKT0/NHE8fPX23PwfhnykfqnC2xRxOnVw5XuGIaA==
 
-jsii-diff@^1.133.0:
-  version "1.133.0"
-  resolved "https://registry.yarnpkg.com/jsii-diff/-/jsii-diff-1.133.0.tgz#1bda6f3ffbcf5368cb13d795867ce381a0bf9912"
-  integrity sha512-woXYvq/sQtJ8iNwN8tG2ZGLRApnP02HK6W52Wt6/zGLz3WLnMahwpPjP3MfI9ERNhxiRBcuAAc2pKqC290IIrQ==
+jsii-diff@^1.134.0:
+  version "1.134.0"
+  resolved "https://registry.yarnpkg.com/jsii-diff/-/jsii-diff-1.134.0.tgz#163bbc64401c5c796adabc8796004ea825411a9c"
+  integrity sha512-RCVaDK2MZI39dY2bK+CKwvHMM/EFnXcSvA2D/kEBmBr9dYkCI6OirzBPMmju6ppUHGe4MA66tfti+4iZxChrhw==
   dependencies:
-    "@jsii/check-node" "1.133.0"
-    "@jsii/spec" "1.133.0"
+    "@jsii/check-node" "1.134.0"
+    "@jsii/spec" "1.134.0"
     fs-extra "^10.1.0"
-    jsii-reflect "^1.133.0"
+    jsii-reflect "^1.134.0"
     log4js "^6.9.1"
     yargs "^17.7.2"
 
@@ -3860,6 +3873,18 @@ jsii-reflect@^1.133.0:
     chalk "^4"
     fs-extra "^10.1.0"
     oo-ascii-tree "^1.133.0"
+    yargs "^17.7.2"
+
+jsii-reflect@^1.134.0:
+  version "1.134.0"
+  resolved "https://registry.yarnpkg.com/jsii-reflect/-/jsii-reflect-1.134.0.tgz#869629ad490d13f65eaaa5642781111de53c0df7"
+  integrity sha512-lS+N7xAsQn5EfunfNhFQ48JwEGgLIEM4NDJqloVrcl8SsycOuq8Sf2ePVsN7VlG39bmP/rJ5i3fF1wRM/+474g==
+  dependencies:
+    "@jsii/check-node" "1.134.0"
+    "@jsii/spec" "1.134.0"
+    chalk "^4"
+    fs-extra "^10.1.0"
+    oo-ascii-tree "^1.134.0"
     yargs "^17.7.2"
 
 jsii-rosetta@5.8.x:
@@ -4414,6 +4439,11 @@ oo-ascii-tree@^1.133.0:
   version "1.133.0"
   resolved "https://registry.yarnpkg.com/oo-ascii-tree/-/oo-ascii-tree-1.133.0.tgz#7910154a8eb4bc9e7dc9414607d1ceba83aa9e4f"
   integrity sha512-IiKCKjD5wFotI1zZIe0cYt8k6I1+TZR2yqE4LbfaGSBooyBWfbvHsgBw+fxTT6+r5Fuct6FJtFEHGgNJMT4ZPA==
+
+oo-ascii-tree@^1.134.0:
+  version "1.134.0"
+  resolved "https://registry.yarnpkg.com/oo-ascii-tree/-/oo-ascii-tree-1.134.0.tgz#0cb815252e9b193da763c3cc0b66895ae8790fb3"
+  integrity sha512-bOOKLIS62zb1BeNivIIHcuZsvCQfe/kZMsklmFQXiBD/JXCsDrWmPHnzT746tsnq4UmpjFUGy4xw0NBvUbm99w==
 
 optionator@^0.9.3:
   version "0.9.4"
