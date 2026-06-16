@@ -761,7 +761,7 @@
     chalk "^4.1.2"
     semver "^7.8.2"
 
-"@jsii/spec@1.135.0", "@jsii/spec@^1.124.0", "@jsii/spec@^1.126.0", "@jsii/spec@^1.134.0":
+"@jsii/spec@1.135.0", "@jsii/spec@^1.124.0", "@jsii/spec@^1.126.0", "@jsii/spec@^1.135.0":
   version "1.135.0"
   resolved "https://registry.yarnpkg.com/@jsii/spec/-/spec-1.135.0.tgz#c9d09b1dd2e6853ddc4f34b486faa67940afc8e7"
   integrity sha512-hYmL6tJeLUleWjMNJtMax5CARgE4FX10tAESfi4aEhJ4MT9DplCuYlcqHyfRY6+g+cepUknGASjxEJlatzN72g==
@@ -3852,17 +3852,17 @@ jsii-diff@^1.135.0:
     yargs "^17.7.2"
 
 jsii-docgen@^10.5.0:
-  version "10.12.0"
-  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-10.12.0.tgz#92185793c6bd12a96b6b72f968e7bbead32f9605"
-  integrity sha512-uC7MsOl+1Gg2mvc3FuRnBaYNr8dLCQRqGXCij7WOzN9tfLGf/qqzXJvQKSmsvYCLXrYeJsCkSeN24RTpYFZiew==
+  version "10.12.1"
+  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-10.12.1.tgz#074cbdbde7dcb4b42f4e478ebecd0129e94f0fa2"
+  integrity sha512-2gnE3k+7T8IXVMdWHWUQc4YYxQEsUn3a+JlE7ObkHShs5yRbqn57okhTJATwcEX547j7vkx6kaWK+4qgaN/GsQ==
   dependencies:
-    "@jsii/spec" "^1.134.0"
+    "@jsii/spec" "^1.135.0"
     case "^1.6.3"
     fast-glob "^3.3.3"
     fs-extra "^10.1.0"
-    jsii-reflect "^1.134.0"
+    jsii-reflect "^1.135.0"
     json-stream-stringify "^3.1.6"
-    semver "^7.8.3"
+    semver "^7.8.4"
     yargs "^16.2.0"
 
 jsii-pacmak@^1.135.0:
@@ -3883,7 +3883,7 @@ jsii-pacmak@^1.135.0:
     xmlbuilder "^15.1.1"
     yargs "^17.7.2"
 
-jsii-reflect@^1.134.0, jsii-reflect@^1.135.0:
+jsii-reflect@^1.135.0:
   version "1.135.0"
   resolved "https://registry.yarnpkg.com/jsii-reflect/-/jsii-reflect-1.135.0.tgz#d40e786fd820572218b897bb905dcda481b64e37"
   integrity sha512-fdjy8GeJy1oww2x0Dh+TFNnsZh3Hllwy9uwa2aU8k2kYFEhhREZ4ZOLSUctJayJCw0r0NIDhFK22EpyT0d21Vg==
@@ -4982,7 +4982,7 @@ semver@^6.3.0, semver@^6.3.1:
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.1.tgz#556d2ef8689146e46dcea4bfdd095f3434dffcb4"
   integrity sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==
 
-semver@^7.0.0, semver@^7.3.4, semver@^7.5.3, semver@^7.5.4, semver@^7.7.2, semver@^7.7.3, semver@^7.7.4, semver@^7.8.0, semver@^7.8.2, semver@^7.8.3, semver@^7.8.4:
+semver@^7.0.0, semver@^7.3.4, semver@^7.5.3, semver@^7.5.4, semver@^7.7.2, semver@^7.7.3, semver@^7.7.4, semver@^7.8.0, semver@^7.8.2, semver@^7.8.4:
   version "7.8.4"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.8.4.tgz#c73eceebae0616934be8dff28a7fd70757c8e696"
   integrity sha512-rUCObTnP32Q08R2uuIrt7r9PlEonuTmtuXYcW6s5kjdlj3xbnwe+21yXptAUYcMAABLkYYTtnmzb3w3EDZfueA==
