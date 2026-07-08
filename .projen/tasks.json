@@ -381,13 +381,30 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@20 --upgrade --target=minor --peer --no-deprecated --dep=dev --filter=jsii,jsii-docgen,jsii-pacmak,jsii-rosetta,typescript"
+          "execArgs": [
+            "npx",
+            "npm-check-updates@20",
+            "--upgrade",
+            "--target=minor",
+            "--peer",
+            "--no-deprecated",
+            "--dep=dev",
+            "--filter=jsii,jsii-docgen,jsii-pacmak,jsii-rosetta,typescript"
+          ]
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade jsii jsii-docgen jsii-pacmak jsii-rosetta typescript"
+          "execArgs": [
+            "yarn",
+            "upgrade",
+            "jsii",
+            "jsii-docgen",
+            "jsii-pacmak",
+            "jsii-rosetta",
+            "typescript"
+          ]
         },
         {
           "exec": "npx projen"
@@ -405,13 +422,27 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@20 --upgrade --target=minor --peer --no-deprecated --dep=dev --filter=projen,@cdk8s/projen-common"
+          "execArgs": [
+            "npx",
+            "npm-check-updates@20",
+            "--upgrade",
+            "--target=minor",
+            "--peer",
+            "--no-deprecated",
+            "--dep=dev",
+            "--filter=projen,@cdk8s/projen-common"
+          ]
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade projen @cdk8s/projen-common"
+          "execArgs": [
+            "yarn",
+            "upgrade",
+            "projen",
+            "@cdk8s/projen-common"
+          ]
         },
         {
           "exec": "npx projen"
@@ -429,13 +460,45 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@20 --upgrade --target=minor --peer --no-deprecated --dep=dev --filter=@types/follow-redirects,@types/jest,eslint-import-resolver-typescript,eslint-plugin-import,jest,jsii-diff,json-schema-to-typescript,ts-jest,ts-node,fast-json-patch,follow-redirects,yaml"
+          "execArgs": [
+            "npx",
+            "npm-check-updates@20",
+            "--upgrade",
+            "--target=minor",
+            "--peer",
+            "--no-deprecated",
+            "--dep=dev,prod",
+            "--filter=@types/follow-redirects,@types/jest,eslint-import-resolver-typescript,eslint-plugin-import,jest,jsii-diff,json-schema-to-typescript,ts-jest,ts-node,fast-json-patch,follow-redirects,yaml"
+          ]
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @stylistic/eslint-plugin @types/follow-redirects @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser commit-and-tag-version constructs eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit jsii-diff json-schema-to-typescript ts-jest ts-node fast-json-patch follow-redirects yaml"
+          "execArgs": [
+            "yarn",
+            "upgrade",
+            "@stylistic/eslint-plugin",
+            "@types/follow-redirects",
+            "@types/jest",
+            "@types/node",
+            "@typescript-eslint/eslint-plugin",
+            "@typescript-eslint/parser",
+            "commit-and-tag-version",
+            "constructs",
+            "eslint-import-resolver-typescript",
+            "eslint-plugin-import",
+            "eslint",
+            "jest",
+            "jest-junit",
+            "jsii-diff",
+            "json-schema-to-typescript",
+            "ts-jest",
+            "ts-node",
+            "fast-json-patch",
+            "follow-redirects",
+            "yaml"
+          ]
         },
         {
           "exec": "npx projen"
@@ -453,13 +516,28 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@20 --upgrade --target=minor --peer --no-deprecated --dep=prod,optional --filter=fast-json-patch,follow-redirects,yaml"
+          "execArgs": [
+            "npx",
+            "npm-check-updates@20",
+            "--upgrade",
+            "--target=minor",
+            "--peer",
+            "--no-deprecated",
+            "--dep=prod,optional",
+            "--filter=fast-json-patch,follow-redirects,yaml"
+          ]
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade fast-json-patch follow-redirects yaml"
+          "execArgs": [
+            "yarn",
+            "upgrade",
+            "fast-json-patch",
+            "follow-redirects",
+            "yaml"
+          ]
         },
         {
           "exec": "npx projen"
