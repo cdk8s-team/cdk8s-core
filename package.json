@@ -8,6 +8,7 @@
   "scripts": {
     "build": "projen build",
     "bump": "projen bump",
+    "bump:releasable-commits": "projen bump:releasable-commits",
     "clobber": "projen clobber",
     "compat": "projen compat",
     "compile": "projen compile",
@@ -43,10 +44,10 @@
     "organization": false
   },
   "devDependencies": {
-    "@cdk8s/projen-common": "^0.1.4",
+    "@cdk8s/projen-common": "^0.1.13",
     "@stylistic/eslint-plugin": "^2",
     "@types/follow-redirects": "^1.14.4",
-    "@types/jest": "^29",
+    "@types/jest": "^30",
     "@types/node": "^18",
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
@@ -57,16 +58,16 @@
     "eslint-plugin-import": "^2.32.0",
     "jest": "^30",
     "jest-junit": "^17",
-    "jsii": "5.8.x",
+    "jsii": "6.0.x",
     "jsii-diff": "^1.139.0",
     "jsii-docgen": "^10.5.0",
     "jsii-pacmak": "^1.139.0",
-    "jsii-rosetta": "5.8.x",
+    "jsii-rosetta": "6.0.x",
     "json-schema-to-typescript": "^15.0.4",
-    "projen": "^0.101.8",
+    "projen": "^0.101.21",
     "ts-jest": "^29",
     "ts-node": "^10.9.2",
-    "typescript": "5.8.x"
+    "typescript": "6.0.x"
   },
   "peerDependencies": {
     "constructs": "^10"
@@ -83,7 +84,6 @@
   ],
   "resolutions": {
     "@types/lodash": "4.14.192",
-    "**/downlevel-dts/**/typescript": "~5.2.2",
     "wrap-ansi": "7.0.0"
   },
   "keywords": [
