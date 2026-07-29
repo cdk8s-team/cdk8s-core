@@ -79,12 +79,12 @@
     },
     {
       "name": "jsii-rosetta",
-      "version": "5.8.x",
+      "version": "6.0.x",
       "type": "build"
     },
     {
       "name": "jsii",
-      "version": "5.8.x",
+      "version": "6.0.x",
       "type": "build"
     },
     {
@@ -105,7 +105,7 @@
     },
     {
       "name": "typescript",
-      "version": "5.8.x",
+      "version": "6.0.x",
       "type": "build"
     },
     {
@@ -123,11 +123,6 @@
     {
       "name": "@types/lodash",
       "version": "4.14.192",
-      "type": "override"
-    },
-    {
-      "name": "**/downlevel-dts/**/typescript",
-      "version": "~5.2.2",
       "type": "override"
     },
     {
