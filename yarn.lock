@@ -1209,7 +1209,7 @@
   resolved "https://registry.yarnpkg.com/@unrs/resolver-binding-win32-x64-msvc/-/resolver-binding-win32-x64-msvc-1.12.2.tgz#72da0da48d72b1e87831b9c0308931d3f4669027"
   integrity sha512-nAB74NfSNKknqQ1RrYj6uz8FcXEomu/MATJZxh/x+BArzN2U3JbOYC0APYzUIGhVY3m5hRxA8VPNdPBoG8txlA==
 
-"@xmldom/xmldom@^0.9.10":
+"@xmldom/xmldom@^0.9.11":
   version "0.9.11"
   resolved "https://registry.yarnpkg.com/@xmldom/xmldom/-/xmldom-0.9.11.tgz#2ed75a186886383624cf16400930ed6b9adaa656"
   integrity sha512-tW8bcK3hsG0/uqSnNz6TK4BkcuZSezoU7DlnYssILmZDktPnSHHuDJJFM0AJv+13gz2r0iGdrj6qqKeUnxXEDg==
@@ -3746,13 +3746,13 @@ jsii-reflect@^1.139.0:
     yargs "^17.7.3"
 
 jsii-rosetta@6.0.x:
-  version "6.0.10"
-  resolved "https://registry.yarnpkg.com/jsii-rosetta/-/jsii-rosetta-6.0.10.tgz#f3a32dcd2c2eb3273aa4ccfe71705ea7c8bcb69f"
-  integrity sha512-qKLoSHRSLy2xNOzYObS/4TXpzwulcvybys0mW+Aqgja55glPIPUoOKabFA0wHJvfjsSCQP9HEH+wER6TfGZEdw==
+  version "6.0.11"
+  resolved "https://registry.yarnpkg.com/jsii-rosetta/-/jsii-rosetta-6.0.11.tgz#36c5a3946267c63eff0cf1446ed4119f685c813f"
+  integrity sha512-YWZpI9UGBQcvoOcCNZqYnrO8Q1xs8n/tMBJigFoMr8y1EB4j9inukNWKFbhT0UhWi93PfPpVZ8Q57vucuIoWJg==
   dependencies:
     "@jsii/check-node" "^1.139.0"
     "@jsii/spec" "^1.139.0"
-    "@xmldom/xmldom" "^0.9.10"
+    "@xmldom/xmldom" "^0.9.11"
     chalk "^4"
     commonmark "^0.31.2"
     fast-glob "^3.3.3"
