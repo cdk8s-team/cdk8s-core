@@ -2650,9 +2650,9 @@ fast-xml-parser@^5.5.6:
     xml-naming "^0.3.0"
 
 fastq@^1.6.0:
-  version "1.20.1"
-  resolved "https://registry.yarnpkg.com/fastq/-/fastq-1.20.1.tgz#ca750a10dc925bc8b18839fd203e3ef4b3ced675"
-  integrity sha512-GGToxJ/w1x32s/D2EKND7kTil4n8OVk/9mycTc4VDza13lOvpUZTGX3mFSCtV9ksdGBVzvsyAVLM6mHFThxXxw==
+  version "1.20.2"
+  resolved "https://registry.yarnpkg.com/fastq/-/fastq-1.20.2.tgz#b762f46b4fa9c563adba6dd213a8984d8a5cd59f"
+  integrity sha512-UpGiiODyCGprM8EPP6JodP6jC9Rws6TCuiDOD+nn0CJhR8guI3g/ozo4ugL0vJ+Yz1UtJuuRPqvQuybVOF1VQA==
   dependencies:
     reusify "^1.0.4"
 
