@@ -536,6 +536,62 @@ test('Modified file extensions with varying output types; two charts, no objects
 });
 
 
+test('FILE_PER_RESOURCE and FOLDER_PER_CHART_FILE_PER_RESOURCE include namespace in filename to avoid collisions', () => {
+  const testSpecs = [
+    {
+      props: { yamlOutputType: YamlOutputType.FILE_PER_RESOURCE },
+      result: [
+        'ConfigMap.dev.my-config.k8s.yaml',
+        'ConfigMap.prod.my-config.k8s.yaml',
+      ],
+    },
+    {
+      props: { yamlOutputType: YamlOutputType.FOLDER_PER_CHART_FILE_PER_RESOURCE },
+      result: [
+        'chart1/ConfigMap.dev.my-config.k8s.yaml',
+        'chart1/ConfigMap.prod.my-config.k8s.yaml',
+      ],
+    },
+  ];
+
+  for (const testSpec of testSpecs) {
+    const app = Testing.app(testSpec.props);
+    const chart = new Chart(app, 'chart1');
+
+    new ApiObject(chart, 'obj1', {
+      apiVersion: 'v1',
+      kind: 'ConfigMap',
+      metadata: { name: 'my-config', namespace: 'dev' },
+    });
+    new ApiObject(chart, 'obj2', {
+      apiVersion: 'v1',
+      kind: 'ConfigMap',
+      metadata: { name: 'my-config', namespace: 'prod' },
+    });
+
+    app.synth();
+
+    expect(getFilesAndFolders(app.outdir).sort()).toEqual(testSpec.result);
+  }
+});
+
+test('FILE_PER_RESOURCE without namespace preserves original filename format', () => {
+  const app = Testing.app({ yamlOutputType: YamlOutputType.FILE_PER_RESOURCE });
+  const chart = new Chart(app, 'chart1');
+
+  new ApiObject(chart, 'obj1', {
+    apiVersion: 'v1',
+    kind: 'ConfigMap',
+    metadata: { name: 'my-config' },
+  });
+
+  app.synth();
+
+  expect(getFilesAndFolders(app.outdir)).toEqual([
+    'ConfigMap.my-config.k8s.yaml',
+  ]);
+});
+
 /**
  * Get the list of files and folders in the source folder and sub folders (one level deep)
  * @param sourceDir Folder in which to search for files and folders

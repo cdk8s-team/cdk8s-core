@@ -224,8 +224,7 @@ export class App extends Construct {
 
           apiObjects.forEach((apiObject) => {
             if (!(apiObject === undefined)) {
-              const fileName = `${`${apiObject.kind}.${apiObject.metadata.name}`
-                .replace(/[^0-9a-zA-Z-_.]/g, '')}`;
+              const fileName = sanitizeResourceFileName(apiObject.kind, apiObject.metadata.name, apiObject.metadata.namespace);
               Yaml.save(path.join(this.outdir, fileName + this.outputFileExtension), [apiObject]);
             }
           });
@@ -242,9 +241,9 @@ export class App extends Construct {
 
           apiObjects.forEach((apiObject) => {
             if (!(apiObject === undefined)) {
-              const fileName = `${`${apiObject.kind}.${apiObject.metadata.name}`
-                .replace(/[^0-9a-zA-Z-_.]/g, '')}`;
-              Yaml.save(path.join(fullOutDir, fileName + this.outputFileExtension), [apiObject.toJson()]);
+              const json = apiObject.toJson();
+              const fileName = sanitizeResourceFileName(json.kind, json.metadata.name, json.metadata.namespace);
+              Yaml.save(path.join(fullOutDir, fileName + this.outputFileExtension), [json]);
             }
           });
         }
@@ -400,6 +399,11 @@ class IndexedChartNamer extends SimpleChartNamer implements ChartNamer {
     this.index++;
     return name;
   }
+}
+
+function sanitizeResourceFileName(kind: string, name: string, namespace?: string): string {
+  const parts = namespace ? `${kind}.${namespace}.${name}` : `${kind}.${name}`;
+  return parts.replace(/[^0-9a-zA-Z-_.]/g, '');
 }
 
 class SimpleChartFolderNamer implements ChartNamer {
