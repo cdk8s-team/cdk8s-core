@@ -3617,9 +3617,9 @@ jsii-reflect@^1.140.0:
     yargs "^17.7.3"
 
 jsii-rosetta@6.0.x:
-  version "6.0.15"
-  resolved "https://registry.yarnpkg.com/jsii-rosetta/-/jsii-rosetta-6.0.15.tgz#0a25aba2b8e5fd2da4ba764c565ed11d3a2aa6dd"
-  integrity sha512-F6a9ji8XQgM0VKgLDxM5sFf0zypksF1aMvCl1UmvuIQuhJmBZVqhvGTtxBns8M5Q9h7nzK89CRZ57ijrbq1QVw==
+  version "6.0.16"
+  resolved "https://registry.yarnpkg.com/jsii-rosetta/-/jsii-rosetta-6.0.16.tgz#12055d9687833a025b95a9c0a8ac0fa0f0ac1df0"
+  integrity sha512-BK5R8A9mfXa3kZiDEbs8ywDXJSgaJ+hvkMn6ZU+r0c2NDGdNWZuzPHoMhF7VsfBEjxTtu/hhcjQ/vpIPBVchwA==
   dependencies:
     "@jsii/check-node" "^1.140.0"
     "@jsii/spec" "^1.140.0"
@@ -3630,15 +3630,15 @@ jsii-rosetta@6.0.x:
     jsii "~6.0.0"
     semver "^7.8.5"
     semver-intersect "^1.5.0"
-    stream-json "^1.9.1"
+    stream-json "^3.6.0"
     typescript "~6.0"
     workerpool "^6.5.1"
     yargs "^17.7.3"
 
 jsii@6.0.x, jsii@~6.0.0:
-  version "6.0.14"
-  resolved "https://registry.yarnpkg.com/jsii/-/jsii-6.0.14.tgz#f636178bc02862f88c3717f1fb35847ad1345a3a"
-  integrity sha512-amJ6WKV3lDagLiQX3z6nEeCroYe8La96iAl9f9hw5790Bt5WKDN8qwiwOabPm88tUB2Mya+KC7ufp8deS+GtTQ==
+  version "6.0.15"
+  resolved "https://registry.yarnpkg.com/jsii/-/jsii-6.0.15.tgz#4ad9a63cfd92b390e33555ca5da2157ce210c3ef"
+  integrity sha512-yJBUy8szt8ncAiwIuCKVFXMb/maVg6ujAjRFeyMqOqDFq7tIruFNQLIiLHOVWvb+i6QSXakl5V8il6s4g8y82g==
   dependencies:
     "@jsii/check-node" "1.140.0"
     "@jsii/spec" "1.140.0"
@@ -4551,17 +4551,17 @@ stop-iteration-iterator@^1.1.0:
     es-errors "^1.3.0"
     internal-slot "^1.1.0"
 
-stream-chain@^2.2.5:
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/stream-chain/-/stream-chain-2.2.5.tgz#b30967e8f14ee033c5b9a19bbe8a2cba90ba0d09"
-  integrity sha512-1TJmBx6aSWqZ4tx7aTpBDXK0/e2hhcNSTV8+CbFJtDjbb+I1mZ8lHit0Grw9GRT+6JbIrrDd8esncgBi8aBXGA==
+stream-chain@^4.2.5:
+  version "4.2.5"
+  resolved "https://registry.yarnpkg.com/stream-chain/-/stream-chain-4.2.5.tgz#9061d29573ab79c49258b2cbe2f72bed7629c79f"
+  integrity sha512-Wtyq3bNE3ggLR0v2vftqvuhltym3WbZAkZpfIrkr5F/6vpeUmWmwTgXa16zD87gpahwJ/Qulq3zVfUlgIc0J2A==
 
-stream-json@^1.9.1:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/stream-json/-/stream-json-1.9.1.tgz#e3fec03e984a503718946c170db7d74556c2a187"
-  integrity sha512-uWkjJ+2Nt/LO9Z/JyKZbMusL8Dkh97uUBTv3AJQ74y07lVahLY4eEFsPsE97pxYBwr8nnjMAIch5eqI0gPShyw==
+stream-json@^3.6.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/stream-json/-/stream-json-3.7.0.tgz#49722876f93d85b82fc867b86df5da79ef699cd8"
+  integrity sha512-rCSBdcBP/bPk6T8QFcxAj1MSzAuc5i49cYW6IE7sYObNEPccBJIUiL6fU9c9BWt40aJK0siVynLX7lWaW8alXw==
   dependencies:
-    stream-chain "^2.2.5"
+    stream-chain "^4.2.5"
 
 streamroller@^3.1.5:
   version "3.1.5"
