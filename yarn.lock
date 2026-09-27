@@ -4552,9 +4552,9 @@ stop-iteration-iterator@^1.1.0:
     internal-slot "^1.1.0"
 
 stream-chain@^4.2.5:
-  version "4.2.5"
-  resolved "https://registry.yarnpkg.com/stream-chain/-/stream-chain-4.2.5.tgz#9061d29573ab79c49258b2cbe2f72bed7629c79f"
-  integrity sha512-Wtyq3bNE3ggLR0v2vftqvuhltym3WbZAkZpfIrkr5F/6vpeUmWmwTgXa16zD87gpahwJ/Qulq3zVfUlgIc0J2A==
+  version "4.2.6"
+  resolved "https://registry.yarnpkg.com/stream-chain/-/stream-chain-4.2.6.tgz#0ff67bbf3e3fc05b46dd37fe39373229e1504776"
+  integrity sha512-1zeJ8CrtJfmiba26ui8jXkq/xLRFvhzkdH02D5QLO9Cnovgeb28IJxg88DdraWnjnkbOol/++uIAybJbJhk7ig==
 
 stream-json@^3.6.0:
   version "3.7.0"
