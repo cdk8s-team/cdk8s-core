@@ -3617,9 +3617,9 @@ jsii-reflect@^1.140.0:
     yargs "^17.7.3"
 
 jsii-rosetta@6.0.x:
-  version "6.0.16"
-  resolved "https://registry.yarnpkg.com/jsii-rosetta/-/jsii-rosetta-6.0.16.tgz#12055d9687833a025b95a9c0a8ac0fa0f0ac1df0"
-  integrity sha512-BK5R8A9mfXa3kZiDEbs8ywDXJSgaJ+hvkMn6ZU+r0c2NDGdNWZuzPHoMhF7VsfBEjxTtu/hhcjQ/vpIPBVchwA==
+  version "6.0.17"
+  resolved "https://registry.yarnpkg.com/jsii-rosetta/-/jsii-rosetta-6.0.17.tgz#f5d0ff65dd99b7db90447212d11e022f7a9eee70"
+  integrity sha512-fWdMAJB+Do7utgRkQz2lFQfuJKzOKfVRgOYMjw8yhfj9PT7jzX2NQQAe9B5Lo5JIUymBvUrZ0DN9LOZnH8XzKw==
   dependencies:
     "@jsii/check-node" "^1.140.0"
     "@jsii/spec" "^1.140.0"
@@ -3630,15 +3630,15 @@ jsii-rosetta@6.0.x:
     jsii "~6.0.0"
     semver "^7.8.5"
     semver-intersect "^1.5.0"
-    stream-json "^3.6.0"
+    stream-json "^3.7.0"
     typescript "~6.0"
     workerpool "^6.5.1"
     yargs "^17.7.3"
 
 jsii@6.0.x, jsii@~6.0.0:
-  version "6.0.15"
-  resolved "https://registry.yarnpkg.com/jsii/-/jsii-6.0.15.tgz#4ad9a63cfd92b390e33555ca5da2157ce210c3ef"
-  integrity sha512-yJBUy8szt8ncAiwIuCKVFXMb/maVg6ujAjRFeyMqOqDFq7tIruFNQLIiLHOVWvb+i6QSXakl5V8il6s4g8y82g==
+  version "6.0.16"
+  resolved "https://registry.yarnpkg.com/jsii/-/jsii-6.0.16.tgz#0a236608df54516e5df36d7c4415302fa97147bf"
+  integrity sha512-sgmBMjV4jzGCVX2+kTvUWJ3rd6D8rdtsmDXA/V0CeVgrg5BnVlSuuYD1DvOYgA4SY2PZRYlLHTGQ925/jcwFHg==
   dependencies:
     "@jsii/check-node" "1.140.0"
     "@jsii/spec" "1.140.0"
@@ -4556,7 +4556,7 @@ stream-chain@^4.2.5:
   resolved "https://registry.yarnpkg.com/stream-chain/-/stream-chain-4.2.6.tgz#0ff67bbf3e3fc05b46dd37fe39373229e1504776"
   integrity sha512-1zeJ8CrtJfmiba26ui8jXkq/xLRFvhzkdH02D5QLO9Cnovgeb28IJxg88DdraWnjnkbOol/++uIAybJbJhk7ig==
 
-stream-json@^3.6.0:
+stream-json@^3.7.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/stream-json/-/stream-json-3.7.0.tgz#49722876f93d85b82fc867b86df5da79ef699cd8"
   integrity sha512-rCSBdcBP/bPk6T8QFcxAj1MSzAuc5i49cYW6IE7sYObNEPccBJIUiL6fU9c9BWt40aJK0siVynLX7lWaW8alXw==
