@@ -3528,9 +3528,9 @@ jsii-diff@^1.142.0:
     yargs "^17.7.3"
 
 jsii-docgen@^10.5.0:
-  version "10.12.8"
-  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-10.12.8.tgz#835e0d8aac125f21107a804ab888cc6495380ebb"
-  integrity sha512-KYiq6N4l4uAv8CPfHkyTOKs5ggxHf2DJREoo5CohIJTPk54CpMAoE7D6WI3CQTxKeDPNigQfEA529chnB6AbXQ==
+  version "10.12.9"
+  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-10.12.9.tgz#0bbd02c17c61b4029232435d1e5e8f88c9053b1a"
+  integrity sha512-6KE1MsVu8Mq3UUimGqmpED6t+pmG5XOXpjdUldEdFS9w7zqSoAb0snJUliNoSKHLm+NF1DoP2ZNL5JyXfvRIFg==
   dependencies:
     "@jsii/spec" "^1.142.0"
     case "^1.6.3"
@@ -3538,7 +3538,7 @@ jsii-docgen@^10.5.0:
     fs-extra "^10.1.0"
     jsii-reflect "^1.142.0"
     json-stream-stringify "^3.1.7"
-    semver "^7.8.5"
+    semver "^7.8.6"
     yargs "^16.2.2"
 
 jsii-pacmak@^1.142.0:
@@ -4506,17 +4506,17 @@ stop-iteration-iterator@^1.1.0:
     es-errors "^1.3.0"
     internal-slot "^1.1.0"
 
-stream-chain@^4.4.1:
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/stream-chain/-/stream-chain-4.4.1.tgz#bd7f954214405a84a2bc1eeaf52335f7b0fad658"
-  integrity sha512-4MWXw+Si0RW3HAYQN3MdxpgTJA6Te9StiLtdkZO248DLPsRipqBbuiQSkyYLpCDEuvqGfqb2B5dEGxiEfHYkNQ==
+stream-chain@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/stream-chain/-/stream-chain-4.4.2.tgz#9d810a2162cc133735d452c51b26addd6345bd6e"
+  integrity sha512-6WQtf7XW70N8/IXV4DfpTswi0VHTahsB0nO5UlLGp5HarJN+Q7VHT5HvBMlH9x0x77e+kJFnQkhkCdvFkwv2Vw==
 
 stream-json@^3.7.0:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/stream-json/-/stream-json-3.8.0.tgz#cef8bd190d5cd591c0d86ea962249e62cf2eb439"
-  integrity sha512-xD0bPEoPgaaEpEu2HSq1spYAs5LSJrLAlo44SHycE+aI8W0IrU2cklY7fiQKhRTVbuvxNUij06vIiz1NBT+AZA==
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/stream-json/-/stream-json-3.9.0.tgz#7998952b974602370770ec02d5259d5fe09aaebf"
+  integrity sha512-kL2w6owYCdzCRApK9/9HI7Vgrd+0iWE5tTGc8P/AS2AdPoHcFTQwUek66sbMpfaX73lgHvDN+u1AoRC/dzB1Hw==
   dependencies:
-    stream-chain "^4.4.1"
+    stream-chain "^4.4.2"
 
 streamroller@^3.1.5:
   version "3.1.5"
