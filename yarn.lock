@@ -2714,7 +2714,12 @@ gopd@^1.0.1, gopd@^1.2.0:
   resolved "https://registry.yarnpkg.com/gopd/-/gopd-1.2.0.tgz#89f56b8217bdbc8802bd299df6d7f1081d7e51a1"
   integrity sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==
 
-graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.11:
+graceful-fs@^4.1.6, graceful-fs@^4.2.0:
+  version "4.2.12"
+  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.12.tgz#7f6162dee07bc600281cea1b038e5f7cf215a6c2"
+  integrity sha512-iuyGF2E4oafQfPsRrG2wtY2ILupMhvtdrhzrxB+0VcjsPpSPttpfYdjnGFGsTi5MaJFjI1jOKHPQ6UTbTj9TAw==
+
+graceful-fs@^4.2.11:
   version "4.2.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.11.tgz#4183e4e8bf08bb6e05bbb2f7d2e0c8f712ca40e3"
   integrity sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==
@@ -3572,9 +3577,9 @@ jsii-reflect@^1.142.0:
     yargs "^17.7.3"
 
 jsii-rosetta@6.0.x:
-  version "6.0.22"
-  resolved "https://registry.yarnpkg.com/jsii-rosetta/-/jsii-rosetta-6.0.22.tgz#adfd1d5c1dfac2706e711c6575274aa77fad8773"
-  integrity sha512-f8Nv3odcoH6tmdlbDoqDzLLbwYIhv3v3cjtBlxodgRr2v7qEwHJbL9gl9HDjayR0bUKUmQWbI5hSPAMTcsKG2A==
+  version "6.0.23"
+  resolved "https://registry.yarnpkg.com/jsii-rosetta/-/jsii-rosetta-6.0.23.tgz#0f0ae05103a1449486c211bf4e7eab937b39eb05"
+  integrity sha512-6Pd1A4qN1oGB1sc1wLKSuXVceoUztPW2klI2QQGktyGlVxJ+RfK1id59xMhxZdqC8BWDOUrJUtcR1Yzb8LqV/A==
   dependencies:
     "@jsii/check-node" "^1.142.0"
     "@jsii/spec" "^1.142.0"
@@ -3583,9 +3588,9 @@ jsii-rosetta@6.0.x:
     commonmark "^0.31.2"
     fast-glob "^3.3.3"
     jsii "~6.0.0"
-    semver "^7.8.5"
+    semver "^7.8.6"
     semver-intersect "^1.5.0"
-    stream-json "^3.7.0"
+    stream-json "^3.8.0"
     typescript "~6.0"
     workerpool "^6.5.1"
     yargs "^17.7.3"
@@ -4511,7 +4516,7 @@ stream-chain@^4.4.2:
   resolved "https://registry.yarnpkg.com/stream-chain/-/stream-chain-4.4.2.tgz#9d810a2162cc133735d452c51b26addd6345bd6e"
   integrity sha512-6WQtf7XW70N8/IXV4DfpTswi0VHTahsB0nO5UlLGp5HarJN+Q7VHT5HvBMlH9x0x77e+kJFnQkhkCdvFkwv2Vw==
 
-stream-json@^3.7.0:
+stream-json@^3.8.0:
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/stream-json/-/stream-json-3.9.0.tgz#7998952b974602370770ec02d5259d5fe09aaebf"
   integrity sha512-kL2w6owYCdzCRApK9/9HI7Vgrd+0iWE5tTGc8P/AS2AdPoHcFTQwUek66sbMpfaX73lgHvDN+u1AoRC/dzB1Hw==
