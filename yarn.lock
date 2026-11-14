@@ -3572,9 +3572,9 @@ jsii-reflect@^1.142.0:
     yargs "^17.7.3"
 
 jsii-rosetta@6.0.x:
-  version "6.0.23"
-  resolved "https://registry.yarnpkg.com/jsii-rosetta/-/jsii-rosetta-6.0.23.tgz#0f0ae05103a1449486c211bf4e7eab937b39eb05"
-  integrity sha512-6Pd1A4qN1oGB1sc1wLKSuXVceoUztPW2klI2QQGktyGlVxJ+RfK1id59xMhxZdqC8BWDOUrJUtcR1Yzb8LqV/A==
+  version "6.0.24"
+  resolved "https://registry.yarnpkg.com/jsii-rosetta/-/jsii-rosetta-6.0.24.tgz#51cfebfa0819e71c62f1992da8a1ce90633988a2"
+  integrity sha512-EqsaakUkYoNhwsbCiJLuoy6SZq/QDaMxsG5Xy7ntYS/vCe4eWEenypfzZo6Ri15Fde2r3CQBYnYO906yRybxKQ==
   dependencies:
     "@jsii/check-node" "^1.142.0"
     "@jsii/spec" "^1.142.0"
@@ -3585,15 +3585,15 @@ jsii-rosetta@6.0.x:
     jsii "~6.0.0"
     semver "^7.8.6"
     semver-intersect "^1.5.0"
-    stream-json "^3.8.0"
+    stream-json "^3.9.0"
     typescript "~6.0"
     workerpool "^6.5.1"
     yargs "^17.7.3"
 
 jsii@6.0.x, jsii@~6.0.0:
-  version "6.0.21"
-  resolved "https://registry.yarnpkg.com/jsii/-/jsii-6.0.21.tgz#c137bb61d6955cf838ce0cfad44723e8d2fa95e1"
-  integrity sha512-GzEbhpWU930tm3bU/OY/cI5VMRYL8ElnAdLHz3LCr7c0LQr9Zp8KKA1Eno3hHd/4rRmd+ZiI7Wgx9Cc9chWIoA==
+  version "6.0.22"
+  resolved "https://registry.yarnpkg.com/jsii/-/jsii-6.0.22.tgz#8e17c263f537086ca2ecdc9d3e70a7b40b8cf9a7"
+  integrity sha512-BJ0tFyAvCctf66j5sCpSPWRIAzbJKuTsaVWM5eK6Cocb0hqRLrjESKgd0c75jePBX+cobvRO9n/Uc5xcrDU8Ng==
   dependencies:
     "@jsii/check-node" "1.142.0"
     "@jsii/spec" "1.142.0"
@@ -4511,7 +4511,7 @@ stream-chain@^4.4.2:
   resolved "https://registry.yarnpkg.com/stream-chain/-/stream-chain-4.4.2.tgz#9d810a2162cc133735d452c51b26addd6345bd6e"
   integrity sha512-6WQtf7XW70N8/IXV4DfpTswi0VHTahsB0nO5UlLGp5HarJN+Q7VHT5HvBMlH9x0x77e+kJFnQkhkCdvFkwv2Vw==
 
-stream-json@^3.8.0:
+stream-json@^3.9.0:
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/stream-json/-/stream-json-3.9.0.tgz#7998952b974602370770ec02d5259d5fe09aaebf"
   integrity sha512-kL2w6owYCdzCRApK9/9HI7Vgrd+0iWE5tTGc8P/AS2AdPoHcFTQwUek66sbMpfaX73lgHvDN+u1AoRC/dzB1Hw==
