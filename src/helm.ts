@@ -126,9 +126,12 @@ export class Helm extends Include {
     args.push(props.chart);
 
     const prog = props.helmExecutable ?? 'helm';
-    const outputFile = renderTemplate(workdir, prog, args);
-
-    super(scope, id, { url: outputFile });
+    try {
+      const outputFile = renderTemplate(workdir, prog, args);
+      super(scope, id, { url: outputFile });
+    } finally {
+      fs.rmSync(workdir, { recursive: true, force: true });
+    }
 
     this.releaseName = releaseName;
   }
