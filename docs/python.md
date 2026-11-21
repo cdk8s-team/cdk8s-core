@@ -4,6 +4,8 @@
 
 ### ApiObject <a name="ApiObject" id="cdk8s.ApiObject"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable
+
 #### Initializers <a name="Initializers" id="cdk8s.ApiObject.Initializer"></a>
 
 ```python
@@ -367,6 +369,8 @@ construct path to generate a DNS-compatible name for the resource.
 
 ### App <a name="App" id="cdk8s.App"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable
+
 Represents a cdk8s application.
 
 #### Initializers <a name="Initializers" id="cdk8s.App.Initializer"></a>
@@ -661,6 +665,8 @@ How to divide the YAML output into files.
 
 
 ### Chart <a name="Chart" id="cdk8s.Chart"></a>
+
+- *Implements:* constructs.IConstruct, constructs.IDependable
 
 #### Initializers <a name="Initializers" id="cdk8s.Chart.Initializer"></a>
 
@@ -982,6 +988,8 @@ The default namespace for all objects in this chart.
 
 ### Helm <a name="Helm" id="cdk8s.Helm"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable
+
 Represents a Helm deployment.
 
 Use this construct to import an existing Helm chart and incorporate it into your constructs.
@@ -1254,6 +1262,8 @@ The helm release name.
 
 
 ### Include <a name="Include" id="cdk8s.Include"></a>
+
+- *Implements:* constructs.IConstruct, constructs.IDependable
 
 Reads a YAML manifest from a file or a URL and defines all resources as API objects within the defined scope.
 
