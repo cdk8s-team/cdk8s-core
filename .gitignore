@@ -60,7 +60,6 @@ junit.xml
 !/.github/ISSUE_TEMPLATE/config.yml
 !/SECURITY.md
 !/.github/workflows/security.yml
-!/.github/workflows/triage.yml
 !/.github/workflows/stale.yml
 !/.github/workflows/upgrade-configuration-2.x.yml
 !/.github/workflows/upgrade-dev-dependencies-2.x.yml
