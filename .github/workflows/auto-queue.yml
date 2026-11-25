@@ -10,7 +10,7 @@ on:
       - edited
       - synchronize
     branches:
-      - main
+      - 2.x
 jobs:
   enableAutoQueue:
     name: "Set AutoQueue on PR #${{ github.event.number }}"

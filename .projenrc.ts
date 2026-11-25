@@ -35,6 +35,13 @@ const project = new Cdk8sTeamJsiiProject({
   defaultReleaseBranch: '2.x',
   majorVersion: 2,
   golangBranch: '2.x',
+  githubOptions: {
+    mergeQueueOptions: {
+      autoQueueOptions: {
+        targetBranches: ['2.x'],
+      },
+    },
+  },
   jsiiVersion: '6.0.x',
   typescriptVersion: '6.0.x',
 });
