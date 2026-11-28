@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import * as path from 'path';
 import { Helm, Testing } from '../src';
 import { _child_process } from '../src/_child_process';
@@ -175,4 +176,22 @@ test('propagates helm failures', () => {
     chart: SAMPLE_CHART_PATH,
     helmFlags: ['--invalid-argument-not-found-boom-boom'],
   })).toThrow(/unknown flag/);
+});
+
+test('removes its temporary working directory', () => {
+  // GIVEN
+  const chart = Testing.chart();
+  const spawnSpy = jest.spyOn(_child_process, 'spawnSync');
+
+  // WHEN
+  new Helm(chart, 'sample', {
+    chart: SAMPLE_CHART_PATH,
+    values: { foo: 'bar' },
+  });
+
+  // THEN
+  const args = spawnSpy.mock.calls[0][1] as string[];
+  const workdir = path.dirname(args[args.indexOf('-f') + 1]);
+  expect(workdir).toContain('cdk8s-helm-');
+  expect(fs.existsSync(workdir)).toBe(false);
 });
